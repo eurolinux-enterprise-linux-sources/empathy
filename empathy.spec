@@ -17,7 +17,7 @@
 
 Name:		empathy
 Version:	3.8.4
-Release:	3%{?dist}
+Release:	6%{?dist}
 Summary:	Instant Messaging Client for GNOME
 
 License:	GPLv2+
@@ -30,6 +30,7 @@ Source1:	%{name}-README.ConnectionManagers
 Patch0:		0001-protocol-chooser-skip-Haze-s-IRC-implementation.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1025727
 Patch1:		SASL-fix-facebook-mechanism.patch
+Patch2: 	translations.patch
 
 BuildRequires:	enchant-devel >= %{enchant_version}
 BuildRequires:	iso-codes-devel
@@ -92,6 +93,7 @@ rm data/empathy.desktop
 
 %patch0 -p1
 %patch1 -p1
+%patch2 -p2 -b .translations
 
 
 %build
@@ -202,6 +204,16 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/adium/message-styles/PlanetGNOME.AdiumMessageStyle/Contents/Resources/main.css
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 3.8.4-6
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 3.8.4-5
+- Mass rebuild 2013-12-27
+
+* Mon Dec 16 2013 Matthias Clasen <mclasen@redhat.com> - 3.8.4-4
+- Update translations
+- Resolves: #1030324
+
 * Fri Nov  1 2013 Debarshi Ray <rishi@fedoraproject.org> - 3.8.4-3
 - Can not log into Facebook Chat using X-FACEBOOK-PLATFORM (Red Hat #1025727)
 
