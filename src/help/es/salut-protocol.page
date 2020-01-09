@@ -28,7 +28,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Daniel Mustieles</mal:name>
       <mal:email>daniel.mustieles@gmail.com</mal:email>
-      <mal:years>2012 - 2015</mal:years>
+      <mal:years>2012</mal:years>
     </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
@@ -39,6 +39,11 @@
   </info>
 
   <title>¿Qué es Gente cerca?</title>
+
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
 
   <p>El servicio Gente cerca es un servicio de comunicación sin servidores: no necesita conectarse y autenticarse contra un servidor central para poder usarlo.</p>
   <p>Este tipo de sistemas de mensajería sin servidores está restringido a redes de área local y no se necesita una conexión activa con Internet.</p>

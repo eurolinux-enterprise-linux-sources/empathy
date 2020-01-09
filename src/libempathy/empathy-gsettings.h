@@ -73,6 +73,7 @@ G_BEGIN_DECLS
 #define EMPATHY_PREFS_UI_SEPARATE_CHAT_WINDOWS     "separate-chat-windows"
 #define EMPATHY_PREFS_UI_EVENTS_NOTIFY_AREA        "events-notify-area"
 #define EMPATHY_PREFS_UI_MAIN_WINDOW_HIDDEN        "main-window-hidden"
+#define EMPATHY_PREFS_UI_AVATAR_DIRECTORY          "avatar-directory"
 #define EMPATHY_PREFS_UI_SHOW_BALANCES             "show-balance-in-roster"
 #define EMPATHY_PREFS_UI_CHAT_WINDOW_PANED_POS     "chat-window-paned-pos"
 #define EMPATHY_PREFS_UI_SHOW_OFFLINE              "show-offline"
@@ -83,6 +84,9 @@ G_BEGIN_DECLS
 
 #define EMPATHY_PREFS_LOCATION_SCHEMA EMPATHY_PREFS_SCHEMA ".location"
 #define EMPATHY_PREFS_LOCATION_PUBLISH             "publish"
+#define EMPATHY_PREFS_LOCATION_RESOURCE_NETWORK    "resource-network"
+#define EMPATHY_PREFS_LOCATION_RESOURCE_CELL       "resource-cell"
+#define EMPATHY_PREFS_LOCATION_RESOURCE_GPS        "resource-gps"
 #define EMPATHY_PREFS_LOCATION_REDUCE_ACCURACY     "reduce-accuracy"
 
 #define EMPATHY_PREFS_LOGGER_SCHEMA "org.freedesktop.Telepathy.Logger"

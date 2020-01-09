@@ -1,9 +1,10 @@
 #include "config.h"
+
 #include "empathy-roster-group.h"
 
 #include <telepathy-glib/telepathy-glib.h>
 
-G_DEFINE_TYPE (EmpathyRosterGroup, empathy_roster_group, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE (EmpathyRosterGroup, empathy_roster_group, GTK_TYPE_EXPANDER)
 
 enum
 {
@@ -116,7 +117,7 @@ empathy_roster_group_constructed (GObject *object)
 
   gtk_widget_show_all (box);
 
-  gtk_expander_set_label_widget (self->expander, box);
+  gtk_expander_set_label_widget (GTK_EXPANDER (self), box);
 }
 
 static void
@@ -181,13 +182,6 @@ empathy_roster_group_init (EmpathyRosterGroup *self)
       EMPATHY_TYPE_ROSTER_GROUP, EmpathyRosterGroupPriv);
 
   self->priv->widgets = g_hash_table_new (NULL, NULL);
-
-  self->expander = GTK_EXPANDER (gtk_expander_new (NULL));
-  gtk_expander_set_use_markup (self->expander, TRUE);
-  gtk_expander_set_expanded (self->expander, TRUE);
-  gtk_widget_show (GTK_WIDGET (self->expander));
-
-  gtk_container_add (GTK_CONTAINER (self), GTK_WIDGET (self->expander));
 }
 
 GtkWidget *
@@ -197,6 +191,8 @@ empathy_roster_group_new (const gchar *name,
   return g_object_new (EMPATHY_TYPE_ROSTER_GROUP,
       "name", name,
       "icon", icon,
+      "use-markup", TRUE,
+      "expanded", TRUE,
       NULL);
 }
 

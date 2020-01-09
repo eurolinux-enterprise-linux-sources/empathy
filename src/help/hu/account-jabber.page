@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -44,7 +43,7 @@
       <title><gui>Titkosítás szükséges (TLS/SSL)</gui></title>
       <title><gui>SSL-tanúsítványhibák figyelmen kívül hagyása</gui></title>
       <p>Amikor csak lehetséges, az <app>Empathy</app> és a Jabber kiszolgáló közötti kommunikáció titkosított. Ha a titkosított kommunikáció nem lehetséges, az üzenetek titkosítatlanul kerülhetnek elküldésre. Válassza ki a <gui>Titkosítás szükséges</gui> négyzetet a Jabber kiszolgálóval való kommunikáció megtiltásához az <app>Empathynak</app>, ha a titkosítás nem lehetséges.</p>
-      <p>Néhány Jabber kiszolgáló érvénytelen, vagy ismeretlen hitelesítésszolgáltató által aláírt tanúsítványokkal titkosíthatja az adatokat. Az <gui>SSL-tanúsítványhibák figyelmen kívül hagyása</gui> lehetőség választásával engedélyezheti a titkosított kommunikációt érvénytelen tanúsítványok használatával, de ez lehetővé teheti egy támadó számára a kiszolgálóval folyó kommunikáció (beleértve a jelszót is) eltérítését. Ezt a lehetőséget tesztelési célra érdemes csak használni, vagy ha a kiszolgáló hibás, és nem foglalkozik a kommunikáció biztonságával.</p>
+      <p>Egyes Jabber kiszolgálók az adatokat érvénytelen, vagy ismeretlen hitelesítésszolgáltatóktól származó tanúsítványokkal titkosíthatják. Ha megbízik a kiszolgálóban, amelyhez csatlakozik, akkor kiválaszthatja az <gui>SSL-tanúsítványhibák figyelmen kívül hagyása</gui> négyzetet az érvénytelen tanúsítvánnyal történő titkosított kommunikáció engedélyezéséhez.</p>
     </item>
     <item>
       <title><gui>Erőforrás</gui></title>

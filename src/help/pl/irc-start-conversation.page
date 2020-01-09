@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="irc-manage#manage" group="two"/>
-    <desc>Nawiązywanie rozmowy z kontaktem IRC.</desc>
+    <desc>Start a conversation with an IRC contact.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
@@ -23,27 +23,15 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Prowadzenie rozmowy z kimś na IRC.</title>
+  <title>Prowadzenie rozmowy z kimś na IRC.</title>
 
-  <p>Można prowadzić prywatne rozmowy z innymi użytkownikami IRC poza publicznymi pokojami IRC. Aby rozpocząć rozmowę z innym użytkownikiem IRC:</p>
+  <p>Można prowadzić prywatne rozmowy z innymi użytkownikami IRC poza publicznymi pokojami IRC. Aby rozpocząć rozmowę z innym użytkownikiem IRC:</p>
 
   <steps>
     <item>
-      <p>Na liście kontaktów pokoju rozmów IRC należy wybrać nazwę użytkownika, z którym chcemy rozmawiać. Można również kliknąć nazwę użytkownika i wybrać <gui>Rozmowa</gui>.</p>
+      <p>Na liście kontaktów pokoju rozmów IRC należy wybrać nazwę użytkownika, z którym chcemy rozmawiać. Można również kliknąć w nazwę użytkownika i wybrać <gui>Rozmowa</gui>.</p>
     </item>
   </steps>
 

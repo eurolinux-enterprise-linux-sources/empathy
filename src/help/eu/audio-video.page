@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Audio- nahiz bideo-solasaldi bat noiz eduki daitekeen jakinarazten du.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Partekatu Berdin 3.0</p>
     </license>    
@@ -25,15 +25,51 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Audio- nahiz bideo-solasaldi bat noiz eduki daitekeen jakinarazten du.</desc>
-
   </info>
 
   <title>Audio- eta bideo-euskarria</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Eginbide hau onartzen duen aplikazioa darabilten kontaktuekin bakarrik izan ditzakezu audio- eta bideo-solasdaldiak. Zure kontaktuek audio- edo bideo-solasaldiak onartzen dituztenean, ikono hauek ikusiko dituzu kontaktu-zerrendako haien izenen ondoan:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Ikonoa</p>
+        </td>
+        <td>
+          <p>Azalpena</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/audio-input-microphone.png">
+            Icon for audio conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>Kontaktuak audio-solasaldiak izan ditzake.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/camera-web.png">
+            Icon for video conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>Kontaktuak bideo-solasaldiak izan ditzake.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Audio-solasaldi bat eduki ahal izateko, zure sistema eragileak onartutako soinu-txartela eta ondo dabilen mikrofonoa behar dituzu.</p>
     <p>Bideo-solasaldi bat eduki ahal izateko, zure sistema eragileak onartutako web-kamera eta ondo dabilen mikrofonoa behar dituzu.</p>
@@ -49,6 +85,22 @@
     <p>Kontu motak pluginek hornitzen dituzte. Agian zure sistemak ez ditu izango mota erabilgarri guztiak, edo agian mota guztiak ez dira zerrendan azaltzen. Bestalde, plugin eguneratuek posible egin ditzakete audio- eta bideo-solasaldiak zerrendan ez onartutako gisa azeltzen diren kontu motekin.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -61,6 +113,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>Ez</p></td>
+        <td><p>Ez</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook berriketa</p></td>
         <td><p>Ez</p></td>
         <td><p>Ez</p></td>
       </tr>
@@ -91,6 +148,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Bai</p></td>
+        <td><p>Bai</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Bai</p></td>
         <td><p>Bai</p></td>
       </tr>

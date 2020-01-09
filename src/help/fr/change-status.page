@@ -108,7 +108,7 @@
   <p>Consultez <link xref="status-icons"/> pour voir la liste des états prédéfinis et leur signification. Vous pouvez aussi <link xref="set-custom-status">ajouter des états personnalisés</link> pour informer davantage vos contacts sur votre disponibilité.</p>
 
   <note>
-    <p>Si vous n'utilisez pas votre ordinateur pendant un certain laps de temps, ou si l'économiseur d'écran est actif, votre état est automatiquement mis sur « Absent ».</p>
+    <p>Si vous n'utilisez pas votre ordinateur pendant un certain laps de temps, ou si l'économiseur d'écran est actif, votre état est automatiquement défini à Absent.</p>
   </note>
 
 </page>

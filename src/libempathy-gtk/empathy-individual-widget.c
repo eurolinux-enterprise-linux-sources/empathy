@@ -20,30 +20,26 @@
  */
 
 #include "config.h"
-#include "empathy-individual-widget.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-contactinfo-utils.h>
-#include <tp-account-widgets/tpaw-time.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
 #ifdef HAVE_LIBCHAMPLAIN
 #include <champlain/champlain.h>
 #include <champlain-gtk/champlain-gtk.h>
 #endif
 
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-location.h>
+#include <libempathy/empathy-time.h>
+
 #include "empathy-avatar-image.h"
+#include "empathy-contactinfo-utils.h"
 #include "empathy-groups-widget.h"
 #include "empathy-gtk-enum-types.h"
-#include "empathy-location.h"
-#include "empathy-request-util.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /**
  * SECTION:empathy-individual-widget
@@ -222,70 +218,6 @@ add_row (GtkGrid *grid,
   gtk_widget_show (value);
 }
 
-static gboolean
-channel_name_activated_cb (
-    GtkLabel *label,
-    gchar *uri,
-    TpAccount *account)
-{
-  empathy_join_muc (account, uri, empathy_get_current_action_time ());
-  return TRUE;
-}
-
-static GtkWidget *
-create_channel_list_label (TpAccount *account,
-    GList *info,
-    guint row)
-{
-  GtkWidget *label = NULL;
-  GString *label_markup = g_string_new ("");
-  guint i;
-  GPtrArray *channels;
-  GList *l;
-
-  /* Is there channels? */
-  channels = g_ptr_array_new ();
-
-  for (l = info; l != NULL; l = l->next)
-    {
-      TpContactInfoField *field = l->data;
-
-      if (!tp_strdiff (field->field_name, "x-irc-channel"))
-        g_ptr_array_add (channels, (gpointer) field->field_value[0]);
-    }
-
-  if (channels->len == 0)
-    goto out;
-
-  for (i = 0; i < channels->len; i++)
-    {
-      const gchar *channel_name = g_ptr_array_index (channels, i);
-      /* We abuse the URI of the link to hold the channel name. It seems to
-       * be okay to just use it essentially verbatim, rather than trying to
-       * ensure it's actually a valid URI. */
-      gchar *escaped = g_markup_escape_text (channel_name, -1);
-
-      if (i > 0)
-        g_string_append (label_markup, ", ");
-
-      g_string_append_printf (label_markup, "<a href='%s'>%s</a>",
-          escaped, escaped);
-      g_free (escaped);
-    }
-
-  label = gtk_label_new (NULL);
-  gtk_label_set_markup (GTK_LABEL (label), label_markup->str);
-  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-
-  g_signal_connect (label, "activate-link",
-      (GCallback) channel_name_activated_cb, account);
-
-out:
-  g_ptr_array_unref (channels);
-  g_string_free (label_markup, TRUE);
-
-  return label;
-}
 static guint
 details_update_show (EmpathyIndividualWidget *self,
     TpContact *contact)
@@ -298,13 +230,13 @@ details_update_show (EmpathyIndividualWidget *self,
   TpAccount *account;
 
   info = tp_contact_dup_contact_info (contact);
-  info = g_list_sort (info, (GCompareFunc) tpaw_contact_info_field_cmp);
+  info = g_list_sort (info, (GCompareFunc) empathy_contact_info_field_cmp);
   for (l = info; l != NULL; l = l->next)
     {
       TpContactInfoField *field = l->data;
       gchar *title;
       const gchar *value;
-      TpawContactInfoFormatFunc format;
+      EmpathyContactInfoFormatFunc format;
       GtkWidget *title_widget, *value_widget;
 
       if (field->field_value == NULL || field->field_value[0] == NULL)
@@ -312,7 +244,7 @@ details_update_show (EmpathyIndividualWidget *self,
 
       value = field->field_value[0];
 
-      if (!tpaw_contact_info_lookup_field (field->field_name,
+      if (!empathy_contact_info_lookup_field (field->field_name,
           NULL, &format))
         {
           DEBUG ("Unhandled ContactInfo field: %s", field->field_name);
@@ -324,7 +256,7 @@ details_update_show (EmpathyIndividualWidget *self,
         continue;
 
       /* Add Title */
-      title = tpaw_contact_info_field_label (field->field_name,
+      title = empathy_contact_info_field_label (field->field_name,
           field->parameters, TRUE);
       title_widget = gtk_label_new (title);
 
@@ -352,7 +284,8 @@ details_update_show (EmpathyIndividualWidget *self,
   conn = tp_contact_get_connection (contact);
   account = tp_connection_get_account (conn);
 
-  channels_label = create_channel_list_label (account, info, n_rows);
+  channels_label = empathy_contact_info_create_channel_list_label (account,
+      info, n_rows);
 
   if (channels_label != NULL)
     {
@@ -660,7 +593,7 @@ location_update (EmpathyIndividualWidget *self)
 
       stamp = g_value_get_int64 (value);
 
-      user_date = tpaw_time_to_string_relative (stamp);
+      user_date = empathy_time_to_string_relative (stamp);
 
       tmp = g_strdup_printf ("<b>%s</b>", _("Location"));
       /* translators: format is "Location, $date" */
@@ -713,7 +646,7 @@ location_update (EmpathyIndividualWidget *self)
           gint64 time_;
 
           time_ = g_value_get_int64 (value);
-          svalue = tpaw_time_to_string_utc (time_, _("%B %e, %Y at %R UTC"));
+          svalue = empathy_time_to_string_utc (time_, _("%B %e, %Y at %R UTC"));
         }
 
       if (svalue != NULL)
@@ -1295,21 +1228,21 @@ notify_presence_cb (gpointer folks_object,
       goto out;
     }
 
+  /* FIXME: Default messages should be moved into libfolks (bgo#627403) */
   message = folks_presence_details_get_presence_message (
       FOLKS_PRESENCE_DETAILS (folks_object));
-  if (TPAW_STR_EMPTY (message))
+  if (EMP_STR_EMPTY (message))
     {
-      message = folks_presence_details_get_default_message_from_type (presence);
+      message = empathy_presence_get_default_message (presence);
     }
 
   if (message != NULL)
-    markup_text = tpaw_add_link_markup (message);
+    markup_text = empathy_add_link_markup (message);
   gtk_label_set_markup (GTK_LABEL (status_label), markup_text);
   g_free (markup_text);
 
   gtk_image_set_from_icon_name (GTK_IMAGE (state_image),
-      empathy_icon_name_for_presence (
-        empathy_folks_presence_type_to_tp (presence)),
+      empathy_icon_name_for_presence (presence),
       GTK_ICON_SIZE_BUTTON);
 
 out:
@@ -1784,7 +1717,6 @@ personas_changed_cb (FolksIndividual *individual,
 
       g_clear_object (&persona);
     }
-  g_clear_object (&iter);
 
   /*
    * What we display for various conditions:
@@ -1850,7 +1782,6 @@ personas_changed_cb (FolksIndividual *individual,
           add_persona (self, persona);
           g_clear_object (&persona);
         }
-      g_clear_object (&iter);
     }
   else if (was_showing_personas && !will_show_personas)
     {
@@ -1862,7 +1793,6 @@ personas_changed_cb (FolksIndividual *individual,
           remove_persona (self, persona);
           g_clear_object (&persona);
         }
-      g_clear_object (&iter);
 
       if (removed != NULL)
         {
@@ -1881,6 +1811,7 @@ personas_changed_cb (FolksIndividual *individual,
       /* Set up the Individual grid instead */
       individual_grid_set_up (self);
     }
+  g_clear_object (&iter);
 
   /* Hide the last separator and show the others */
   children = gtk_container_get_children (GTK_CONTAINER (priv->vbox_individual));
@@ -2034,7 +1965,7 @@ empathy_individual_widget_init (EmpathyIndividualWidget *self)
 
   filename = empathy_file_lookup ("empathy-individual-widget.ui",
       "libempathy-gtk");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "scrolled_window_individual", &priv->scrolled_window_individual,
       "viewport_individual", &priv->viewport_individual,
       "vbox_individual_widget", &priv->vbox_individual_widget,

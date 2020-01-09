@@ -60,13 +60,7 @@ css_DATA = \
 	empathy.css \
 	$(NULL)
 
-appdatadir = $(datadir)/appdata
-appdata_in_files = empathy.appdata.xml.in
-appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-@INTLTOOL_XML_RULE@
-
 EXTRA_DIST = 				\
-	$(appdata_in_files)		\
 	$(convert_DATA)			\
 	$(desktop_in_files)		\
 	$(desktop_DATA)			\
@@ -75,11 +69,8 @@ EXTRA_DIST = 				\
 	$(clientfile_DATA)		\
 	$(servicefile_in_files)		\
 	$(gsettings_SCHEMAS)		\
-	$(css_DATA)			\
+	$(css_DATA)		\
 	$(NULL)
-CLEANFILES = \
-	$(appdata_DATA)
-
 
 DISTCLEANFILES = 		\
 	$(desktop_DATA)		\

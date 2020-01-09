@@ -13,18 +13,6 @@
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Wprowadzenie</title>
@@ -32,9 +20,9 @@
   <p>
     <app>Empathy</app> is an instant messaging application for the GNOME Desktop.
     It supports text messaging, voice &amp; video calls, file transfers, and all the
-    most used messaging systems such as Jabber and Google Talk.
+    most used messaging systems such as MSN and Google Talk.
   </p>
-  <p>Program <app>Empathy</app> ma funkcje pozwalające na lepszą współpracę podczas pracy oraz z łatwością utrzymywać kontakt z przyjaciółmi.</p>
+  <p>Program <app>Empathy</app> posiada funkcje pozwalające na lepszą współpracę podczas pracy oraz z łatwością utrzymywać kontakt z przyjaciółmi.</p>
   <p>
     Using <app>Empathy</app>, you can group all the conversations in a single window,
     have multiple windows for different kind of conversations, easily search through

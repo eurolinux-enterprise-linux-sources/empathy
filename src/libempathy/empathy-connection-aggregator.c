@@ -19,6 +19,7 @@
  */
 
 #include "config.h"
+
 #include "empathy-connection-aggregator.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER

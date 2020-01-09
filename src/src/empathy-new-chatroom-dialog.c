@@ -22,20 +22,20 @@
  */
 
 #include "config.h"
-#include "empathy-new-chatroom-dialog.h"
 
 #include <glib/gi18n.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-account-chooser.h"
-#include "empathy-gsettings.h"
-#include "empathy-request-util.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-gsettings.h>
+
+#include <libempathy-gtk/empathy-account-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "empathy-new-chatroom-dialog.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 G_DEFINE_TYPE (EmpathyNewChatroomDialog, empathy_new_chatroom_dialog,
     GTK_TYPE_DIALOG)
@@ -115,7 +115,7 @@ new_chatroom_dialog_join (EmpathyNewChatroomDialog *self)
   account_chooser = EMPATHY_ACCOUNT_CHOOSER (self->priv->account_chooser);
   account = empathy_account_chooser_get_account (account_chooser);
 
-  if (!TPAW_STR_EMPTY (server))
+  if (!EMP_STR_EMPTY (server))
     room_name = g_strconcat (room, "@", server, NULL);
   else
     room_name = g_strdup (room);
@@ -290,7 +290,7 @@ update_join_button_sensitivity (EmpathyNewChatroomDialog *self)
 
   room = gtk_entry_get_text (GTK_ENTRY (self->priv->entry_room));
   protocol = tp_account_get_protocol_name (self->priv->account);
-  if (TPAW_STR_EMPTY (room))
+  if (EMP_STR_EMPTY (room))
     goto out;
 
   if (!tp_strdiff (protocol, "irc") &&
@@ -749,7 +749,7 @@ empathy_new_chatroom_dialog_init (EmpathyNewChatroomDialog *self)
       EMPATHY_TYPE_NEW_CHATROOM_DIALOG, EmpathyNewChatroomDialogPriv);
 
   filename = empathy_file_lookup ("empathy-new-chatroom-dialog.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "vbox_new_chatroom", &vbox,
       "table_grid", &self->priv->table_grid,
       "label_account", &self->priv->label_account,
@@ -765,7 +765,7 @@ empathy_new_chatroom_dialog_init (EmpathyNewChatroomDialog *self)
       NULL);
   g_free (filename);
 
-  tpaw_builder_connect (gui, self,
+  empathy_builder_connect (gui, self,
       "entry_server", "changed", new_chatroom_dialog_entry_changed_cb,
       "entry_server", "activate", new_chatroom_dialog_entry_server_activate_cb,
       "entry_server", "focus-out-event",

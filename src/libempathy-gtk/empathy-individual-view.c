@@ -25,27 +25,25 @@
  */
 
 #include "config.h"
-#include "empathy-individual-view.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-cell-renderer-activatable.h"
+#include <libempathy/empathy-connection-aggregator.h>
+#include <libempathy/empathy-individual-manager.h>
+#include <libempathy/empathy-contact-groups.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-utils.h>
+
+#include "empathy-individual-edit-dialog.h"
+#include "empathy-images.h"
 #include "empathy-cell-renderer-expander.h"
 #include "empathy-cell-renderer-text.h"
-#include "empathy-connection-aggregator.h"
-#include "empathy-contact-groups.h"
-#include "empathy-gtk-enum-types.h"
-#include "empathy-images.h"
-#include "empathy-individual-edit-dialog.h"
-#include "empathy-individual-manager.h"
-#include "empathy-request-util.h"
+#include "empathy-cell-renderer-activatable.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-gtk-enum-types.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Active users are those which have recently changed state
  * (e.g. online, offline or from normal to a busy state).
@@ -1071,14 +1069,12 @@ individual_view_call_activated_cb (EmpathyCellRendererActivatable *cell,
   shell = GTK_MENU_SHELL (menu);
 
   /* audio */
-  item = empathy_individual_audio_call_menu_item_new_individual (NULL,
-      individual);
+  item = empathy_individual_audio_call_menu_item_new (individual);
   gtk_menu_shell_append (shell, item);
   gtk_widget_show (item);
 
   /* video */
-  item = empathy_individual_video_call_menu_item_new_individual (NULL,
-      individual);
+  item = empathy_individual_video_call_menu_item_new (individual);
   gtk_menu_shell_append (shell, item);
   gtk_widget_show (item);
 
@@ -1102,11 +1098,8 @@ individual_view_cell_set_background (EmpathyIndividualView *view,
 
       style = gtk_widget_get_style_context (GTK_WIDGET (view));
 
-      gtk_style_context_save (style);
-      gtk_style_context_set_state (style, GTK_STATE_FLAG_SELECTED);
       gtk_style_context_get_background_color (style, GTK_STATE_FLAG_SELECTED,
           &color);
-      gtk_style_context_restore (style);
 
       /* Here we take the current theme colour and add it to
        * the colour for white and average the two. This
@@ -1167,12 +1160,12 @@ individual_view_group_icon_cell_data_func (GtkTreeViewColumn *tree_column,
 
   if (!tp_strdiff (name, EMPATHY_INDIVIDUAL_STORE_FAVORITE))
     {
-      pixbuf = tpaw_pixbuf_from_icon_name ("emblem-favorite",
+      pixbuf = empathy_pixbuf_from_icon_name ("emblem-favorite",
           GTK_ICON_SIZE_MENU);
     }
   else if (!tp_strdiff (name, EMPATHY_INDIVIDUAL_STORE_PEOPLE_NEARBY))
     {
-      pixbuf = tpaw_pixbuf_from_icon_name ("im-local-xmpp",
+      pixbuf = empathy_pixbuf_from_icon_name ("im-local-xmpp",
           GTK_ICON_SIZE_MENU);
     }
 
@@ -1334,7 +1327,7 @@ individual_view_start_search_cb (EmpathyIndividualView *view,
 }
 
 static void
-individual_view_search_text_notify_cb (TpawLiveSearch *search,
+individual_view_search_text_notify_cb (EmpathyLiveSearch *search,
     GParamSpec *pspec,
     EmpathyIndividualView *view)
 {
@@ -1427,7 +1420,7 @@ individual_view_search_key_navigation_cb (GtkWidget *search,
 }
 
 static void
-individual_view_search_hide_cb (TpawLiveSearch *search,
+individual_view_search_hide_cb (EmpathyLiveSearch *search,
     EmpathyIndividualView *view)
 {
   EmpathyIndividualViewPriv *priv = GET_PRIV (view);
@@ -1496,7 +1489,7 @@ individual_view_search_hide_cb (TpawLiveSearch *search,
 }
 
 static void
-individual_view_search_show_cb (TpawLiveSearch *search,
+individual_view_search_show_cb (EmpathyLiveSearch *search,
     EmpathyIndividualView *view)
 {
   /* block expand or collapse handlers during expand all, they would
@@ -1602,7 +1595,7 @@ individual_view_row_has_child_toggled_cb (GtkTreeModel *model,
       EMPATHY_INDIVIDUAL_STORE_COL_NAME, &name,
       -1);
 
-  if (!is_group || TPAW_STR_EMPTY (name))
+  if (!is_group || EMP_STR_EMPTY (name))
     {
       g_free (name);
       return;
@@ -1646,7 +1639,7 @@ individual_view_is_visible_individual (EmpathyIndividualView *self,
     guint event_count)
 {
   EmpathyIndividualViewPriv *priv = GET_PRIV (self);
-  TpawLiveSearch *live = TPAW_LIVE_SEARCH (priv->search_widget);
+  EmpathyLiveSearch *live = EMPATHY_LIVE_SEARCH (priv->search_widget);
   GeeSet *personas;
   GeeIterator *iter;
   gboolean is_favorite;
@@ -1698,8 +1691,8 @@ individual_view_is_visible_individual (EmpathyIndividualView *self,
   }
 
   return empathy_individual_match_string (individual,
-      tpaw_live_search_get_text (live),
-      tpaw_live_search_get_words (live));
+      empathy_live_search_get_text (live),
+      empathy_live_search_get_words (live));
 }
 
 static gchar *
@@ -1975,7 +1968,7 @@ individual_view_constructed (GObject *object)
 
 static void
 individual_view_set_view_features (EmpathyIndividualView *view,
-    EmpathyIndividualViewFeatureFlags features)
+    EmpathyIndividualFeatureFlags features)
 {
   EmpathyIndividualViewPriv *priv = GET_PRIV (view);
   gboolean has_tooltip;
@@ -2366,7 +2359,7 @@ individual_view_group_remove_activate_cb (GtkMenuItem *menuitem,
       text =
           g_strdup_printf (_("Do you really want to remove the group '%s'?"),
           group);
-      parent = tpaw_get_toplevel_window (GTK_WIDGET (view));
+      parent = empathy_get_toplevel_window (GTK_WIDGET (view));
       if (individual_view_remove_dialog_show (parent, _("Removing group"),
               text) == REMOVE_DIALOG_RESPONSE_DELETE)
         {
@@ -2479,8 +2472,8 @@ empathy_individual_view_get_individual_menu (EmpathyIndividualView *view)
   if (!empathy_folks_individual_contains_contact (individual))
     goto out;
 
-  menu = empathy_individual_menu_new (individual, NULL,
-      priv->individual_features, priv->store);
+  menu = empathy_individual_menu_new (individual, priv->individual_features,
+      priv->store);
 
 out:
   g_object_unref (individual);
@@ -2490,7 +2483,7 @@ out:
 
 void
 empathy_individual_view_set_live_search (EmpathyIndividualView *view,
-    TpawLiveSearch *search)
+    EmpathyLiveSearch *search)
 {
   EmpathyIndividualViewPriv *priv = GET_PRIV (view);
 

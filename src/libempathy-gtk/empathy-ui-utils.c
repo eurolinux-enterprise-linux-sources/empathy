@@ -30,22 +30,20 @@
  */
 
 #include "config.h"
-#include "empathy-ui-utils.h"
 
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
 #include <glib/gi18n-lib.h>
 #include <gio/gdesktopappinfo.h>
-#include <tp-account-widgets/tpaw-live-search.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-ft-factory.h"
+#include "empathy-ui-utils.h"
 #include "empathy-images.h"
-#include "empathy-utils.h"
+#include "empathy-live-search.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-ft-factory.h>
 
 void
 empathy_gtk_init (void)
@@ -75,6 +73,119 @@ empathy_gtk_init (void)
     }
 
   initialized = TRUE;
+}
+
+static GtkBuilder *
+builder_get_file_valist (const gchar *filename,
+    const gchar *first_object,
+    va_list args)
+{
+  GtkBuilder *gui;
+  const gchar *name;
+  GObject **object_ptr;
+  GError *error = NULL;
+
+  DEBUG ("Loading file %s", filename);
+
+  gui = gtk_builder_new ();
+  gtk_builder_set_translation_domain (gui, GETTEXT_PACKAGE);
+
+  if (!gtk_builder_add_from_file (gui, filename, &error))
+    {
+      g_critical ("GtkBuilder Error (%s): %s",
+          filename, error->message);
+
+      g_clear_error (&error);
+      g_object_unref (gui);
+
+      /* we need to iterate and set all of the pointers to NULL */
+      for (name = first_object; name; name = va_arg (args, const gchar *))
+        {
+          object_ptr = va_arg (args, GObject**);
+
+          *object_ptr = NULL;
+        }
+
+      return NULL;
+    }
+
+  for (name = first_object; name; name = va_arg (args, const gchar *))
+    {
+      object_ptr = va_arg (args, GObject**);
+
+      *object_ptr = gtk_builder_get_object (gui, name);
+
+      if (!*object_ptr)
+        {
+          g_warning ("File is missing object '%s'.", name);
+          continue;
+        }
+    }
+
+  return gui;
+}
+
+GtkBuilder *
+empathy_builder_get_file (const gchar *filename,
+    const gchar *first_object,
+    ...)
+{
+  GtkBuilder *gui;
+  va_list args;
+
+  va_start (args, first_object);
+  gui = builder_get_file_valist (filename, first_object, args);
+  va_end (args);
+
+  return gui;
+}
+
+void
+empathy_builder_connect (GtkBuilder *gui,
+    gpointer user_data,
+    const gchar *first_object,
+    ...)
+{
+  va_list args;
+  const gchar *name;
+  const gchar *sig;
+  GObject *object;
+  GCallback callback;
+
+  va_start (args, first_object);
+  for (name = first_object; name; name = va_arg (args, const gchar *))
+    {
+      sig = va_arg (args, const gchar *);
+      callback = va_arg (args, GCallback);
+
+      object = gtk_builder_get_object (gui, name);
+      if (!object)
+        {
+          g_warning ("File is missing object '%s'.", name);
+          continue;
+        }
+
+      g_signal_connect (object, sig, callback, user_data);
+    }
+
+  va_end (args);
+}
+
+GtkWidget *
+empathy_builder_unref_and_keep_widget (GtkBuilder *gui,
+    GtkWidget *widget)
+{
+  /* On construction gui sinks the initial reference to widget. When gui
+   * is finalized it will drop its ref to widget. We take our own ref to
+   * prevent widget being finalised. The widget is forced to have a
+   * floating reference, like when it was initially unowned so that it can
+   * be used like any other GtkWidget. */
+
+  g_object_ref (widget);
+  g_object_force_floating (G_OBJECT (widget));
+  g_object_unref (gui);
+
+  return widget;
 }
 
 const gchar *
@@ -156,6 +267,69 @@ empathy_protocol_name_for_contact (EmpathyContact *contact)
   return tp_account_get_icon_name (account);
 }
 
+GdkPixbuf *
+empathy_pixbuf_from_data (gchar *data,
+    gsize data_size)
+{
+  return empathy_pixbuf_from_data_and_mime (data, data_size, NULL);
+}
+
+GdkPixbuf *
+empathy_pixbuf_from_data_and_mime (gchar *data,
+           gsize data_size,
+           gchar **mime_type)
+{
+  GdkPixbufLoader *loader;
+  GdkPixbufFormat *format;
+  GdkPixbuf *pixbuf = NULL;
+  gchar **mime_types;
+  GError *error = NULL;
+
+  if (!data)
+    return NULL;
+
+  loader = gdk_pixbuf_loader_new ();
+  if (!gdk_pixbuf_loader_write (loader, (guchar *) data, data_size, &error))
+    {
+      DEBUG ("Failed to write to pixbuf loader: %s",
+        error ? error->message : "No error given");
+      goto out;
+    }
+
+  if (!gdk_pixbuf_loader_close (loader, &error))
+    {
+      DEBUG ("Failed to close pixbuf loader: %s",
+        error ? error->message : "No error given");
+      goto out;
+    }
+
+  pixbuf = gdk_pixbuf_loader_get_pixbuf (loader);
+  if (pixbuf)
+    {
+      g_object_ref (pixbuf);
+
+      if (mime_type != NULL)
+        {
+          format = gdk_pixbuf_loader_get_format (loader);
+          mime_types = gdk_pixbuf_format_get_mime_types (format);
+
+          *mime_type = g_strdup (*mime_types);
+          if (mime_types[1] != NULL)
+            DEBUG ("Loader supports more than one mime "
+              "type! Picking the first one, %s",
+              *mime_type);
+
+          g_strfreev (mime_types);
+        }
+    }
+
+out:
+  g_clear_error (&error);
+  g_object_unref (loader);
+
+  return pixbuf;
+}
+
 struct SizeData
 {
   gint width;
@@ -173,6 +347,12 @@ pixbuf_from_avatar_size_prepared_cb (GdkPixbufLoader *loader,
 
   if (data->preserve_aspect_ratio && (data->width > 0 || data->height > 0))
     {
+      if (width < data->width && height < data->height)
+        {
+          width = width;
+          height = height;
+        }
+
       if (data->width < 0)
         {
           width = width * (double) data->height / (gdouble) height;
@@ -586,7 +766,7 @@ empathy_pixbuf_contact_status_icon_with_icon_name (EmpathyContact *contact,
   numerator = 3;
   denominator = 4;
 
-  icon_filename = tpaw_filename_from_icon_name (icon_name,
+  icon_filename = empathy_filename_from_icon_name (icon_name,
       GTK_ICON_SIZE_MENU);
 
   if (icon_filename == NULL)
@@ -643,7 +823,7 @@ empathy_pixbuf_protocol_from_contact_scaled (EmpathyContact *contact,
   g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
 
   account = empathy_contact_get_account (contact);
-  filename = tpaw_filename_from_icon_name (
+  filename = empathy_filename_from_icon_name (
       tp_account_get_icon_name (account), GTK_ICON_SIZE_MENU);
 
   if (filename != NULL)
@@ -653,6 +833,190 @@ empathy_pixbuf_protocol_from_contact_scaled (EmpathyContact *contact,
     }
 
   return pixbuf;
+}
+
+GdkPixbuf *
+empathy_pixbuf_scale_down_if_necessary (GdkPixbuf *pixbuf,
+    gint max_size)
+{
+  gint width, height;
+  gdouble factor;
+
+  width = gdk_pixbuf_get_width (pixbuf);
+  height = gdk_pixbuf_get_height (pixbuf);
+
+  if (width > 0 && (width > max_size || height > max_size))
+    {
+      factor = (gdouble) max_size / MAX (width, height);
+
+      width = width * factor;
+      height = height * factor;
+
+      return gdk_pixbuf_scale_simple (pixbuf, width, height, GDK_INTERP_HYPER);
+    }
+
+  return g_object_ref (pixbuf);
+}
+
+GdkPixbuf *
+empathy_pixbuf_from_icon_name_sized (const gchar *icon_name,
+    gint size)
+{
+  GtkIconTheme *theme;
+  GdkPixbuf *pixbuf;
+  GError *error = NULL;
+
+  if (!icon_name)
+    return NULL;
+
+  theme = gtk_icon_theme_get_default ();
+
+  pixbuf = gtk_icon_theme_load_icon (theme, icon_name, size, 0, &error);
+
+  if (error)
+    {
+      DEBUG ("Error loading icon: %s", error->message);
+      g_clear_error (&error);
+    }
+
+  return pixbuf;
+}
+
+GdkPixbuf *
+empathy_pixbuf_from_icon_name (const gchar *icon_name,
+    GtkIconSize  icon_size)
+{
+  gint w, h;
+  gint size = 48;
+
+  if (!icon_name)
+    return NULL;
+
+  if (gtk_icon_size_lookup (icon_size, &w, &h))
+    size = (w + h) / 2;
+
+  return empathy_pixbuf_from_icon_name_sized (icon_name, size);
+}
+
+gchar *
+empathy_filename_from_icon_name (const gchar *icon_name,
+    GtkIconSize icon_size)
+{
+  GtkIconTheme *icon_theme;
+  GtkIconInfo *icon_info;
+  gint w, h;
+  gint size = 48;
+  gchar *ret;
+
+  icon_theme = gtk_icon_theme_get_default ();
+
+  if (gtk_icon_size_lookup (icon_size, &w, &h))
+    size = (w + h) / 2;
+
+  icon_info = gtk_icon_theme_lookup_icon (icon_theme, icon_name, size, 0);
+  if (icon_info == NULL)
+    return NULL;
+
+  ret = g_strdup (gtk_icon_info_get_filename (icon_info));
+  gtk_icon_info_free (icon_info);
+
+  return ret;
+}
+
+/* Takes care of moving the window to the current workspace. */
+void
+empathy_window_present_with_time (GtkWindow *window,
+    guint32 timestamp)
+{
+  GdkWindow *gdk_window;
+
+  g_return_if_fail (GTK_IS_WINDOW (window));
+
+  /* Move the window to the current workspace before trying to show it.
+   * This is the behaviour people expect when clicking on the statusbar icon. */
+  gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
+
+  if (gdk_window)
+    {
+      gint x, y;
+      gint w, h;
+
+      /* Has no effect if the WM has viewports, like compiz */
+      gdk_x11_window_move_to_current_desktop (gdk_window);
+
+      /* If window is still off-screen, hide it to force it to
+       * reposition on the current workspace. */
+      gtk_window_get_position (window, &x, &y);
+      gtk_window_get_size (window, &w, &h);
+      if (!EMPATHY_RECT_IS_ON_SCREEN (x, y, w, h))
+        gtk_widget_hide (GTK_WIDGET (window));
+    }
+
+  if (timestamp == GDK_CURRENT_TIME)
+    gtk_window_present (window);
+  else
+    gtk_window_present_with_time (window, timestamp);
+}
+
+void
+empathy_window_present (GtkWindow *window)
+{
+  empathy_window_present_with_time (window, gtk_get_current_event_time ());
+}
+
+GtkWindow *
+empathy_get_toplevel_window (GtkWidget *widget)
+{
+  GtkWidget *toplevel;
+
+  g_return_val_if_fail (GTK_IS_WIDGET (widget), NULL);
+
+  toplevel = gtk_widget_get_toplevel (widget);
+  if (GTK_IS_WINDOW (toplevel) &&
+      gtk_widget_is_toplevel (toplevel))
+    return GTK_WINDOW (toplevel);
+
+  return NULL;
+}
+
+/** empathy_make_absolute_url_len:
+ * @url: an url
+ * @len: a length
+ *
+ * Same as #empathy_make_absolute_url but for a limited string length
+ */
+gchar *
+empathy_make_absolute_url_len (const gchar *url,
+    guint len)
+{
+  g_return_val_if_fail (url != NULL, NULL);
+
+  if (g_str_has_prefix (url, "help:") ||
+      g_str_has_prefix (url, "mailto:") ||
+      strstr (url, ":/"))
+    return g_strndup (url, len);
+
+  if (strstr (url, "@"))
+    return g_strdup_printf ("mailto:%.*s", len, url);
+
+  return g_strdup_printf ("http://%.*s", len, url);
+}
+
+/** empathy_make_absolute_url:
+ * @url: an url
+ *
+ * The URL opening code can't handle schemeless strings, so we try to be
+ * smart and add http if there is no scheme or doesn't look like a mail
+ * address. This should work in most cases, and let us click on strings
+ * like "www.gnome.org".
+ *
+ * Returns: a newly allocated url with proper mailto: or http:// prefix, use
+ * g_free when your are done with it
+ */
+gchar *
+empathy_make_absolute_url (const gchar *url)
+{
+  return empathy_make_absolute_url_len (url, strlen (url));
 }
 
 void
@@ -665,7 +1029,7 @@ empathy_url_show (GtkWidget *parent,
   g_return_if_fail (parent == NULL || GTK_IS_WIDGET (parent));
   g_return_if_fail (url != NULL);
 
-  real_url = tpaw_make_absolute_url (url);
+  real_url = empathy_make_absolute_url (url);
 
   gtk_show_uri (parent ? gtk_widget_get_screen (parent) : NULL, real_url,
       gtk_get_current_event_time (), &error);
@@ -1007,7 +1371,7 @@ empathy_get_current_action_time (void)
   return (tp_user_action_time_from_x11 (gtk_get_current_event_time ()));
 }
 
-/* @words = tpaw_live_search_strip_utf8_string (@text);
+/* @words = empathy_live_search_strip_utf8_string (@text);
  *
  * User has to pass both so we don't have to compute @words ourself each time
  * this function is called. */
@@ -1024,7 +1388,7 @@ empathy_individual_match_string (FolksIndividual *individual,
   /* check alias name */
   str = folks_alias_details_get_alias (FOLKS_ALIAS_DETAILS (individual));
 
-  if (tpaw_live_search_match_words (str, words))
+  if (empathy_live_search_match_words (str, words))
     return TRUE;
 
   personas = folks_individual_get_personas (individual);
@@ -1055,7 +1419,7 @@ empathy_individual_match_string (FolksIndividual *individual,
               if (p != NULL)
                 str = dup_str = g_strndup (str, p - str);
 
-              visible = tpaw_live_search_match_words (str, words);
+              visible = empathy_live_search_match_words (str, words);
               g_free (dup_str);
               if (visible)
                 retval = TRUE;
@@ -1121,8 +1485,6 @@ out:
   g_free (path);
   g_free (cmd);
 }
-
-#ifdef GDK_WINDOWING_X11
 
 /* Most of the workspace manipulation code has been copied from libwnck
  * Copyright (C) 2001 Havoc Pennington
@@ -1215,24 +1577,18 @@ window_get_workspace (Screen *xscreen,
   return number;
 }
 
-#endif
-
 /* Ask X to move to the desktop on which @window currently is
  * and the present @window. */
 void
 empathy_move_to_window_desktop (GtkWindow *window,
     guint32 timestamp)
 {
-#ifdef GDK_WINDOWING_X11
   GdkScreen *screen;
   Screen *xscreen;
   GdkWindow *gdk_window;
   int workspace;
 
   screen = gtk_window_get_screen (window);
-  if (!GDK_IS_X11_SCREEN (screen))
-    goto out;
-
   xscreen = gdk_x11_screen_get_xscreen (screen);
   gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
 
@@ -1245,7 +1601,6 @@ empathy_move_to_window_desktop (GtkWindow *window,
 
 out:
   gtk_window_present_with_time (window, timestamp);
-#endif
 }
 
 void

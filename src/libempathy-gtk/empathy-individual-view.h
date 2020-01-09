@@ -28,9 +28,10 @@
 #define __EMPATHY_INDIVIDUAL_VIEW_H__
 
 #include <gtk/gtk.h>
-#include <folks/folks.h>
-#include <tp-account-widgets/tpaw-live-search.h>
 
+#include <folks/folks.h>
+
+#include "empathy-live-search.h"
 #include "empathy-individual-menu.h"
 #include "empathy-individual-store.h"
 
@@ -100,7 +101,7 @@ GtkWidget *empathy_individual_view_get_individual_menu (
 GtkWidget *empathy_individual_view_get_group_menu (EmpathyIndividualView *view);
 
 void empathy_individual_view_set_live_search (EmpathyIndividualView *view,
-    TpawLiveSearch *search);
+    EmpathyLiveSearch *search);
 
 gboolean empathy_individual_view_get_show_offline (
     EmpathyIndividualView *view);

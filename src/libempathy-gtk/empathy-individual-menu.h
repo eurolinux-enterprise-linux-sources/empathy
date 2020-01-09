@@ -72,14 +72,13 @@ typedef struct {
 GType empathy_individual_menu_get_type (void) G_GNUC_CONST;
 
 GtkWidget * empathy_individual_menu_new (FolksIndividual *individual,
-    const gchar *active_group,
     EmpathyIndividualFeatureFlags features,
     EmpathyIndividualStore *store);
 
-GtkWidget * empathy_individual_audio_call_menu_item_new_individual (
-    EmpathyIndividualMenu *self, FolksIndividual *individual);
-GtkWidget * empathy_individual_video_call_menu_item_new_individual (
-    EmpathyIndividualMenu *self, FolksIndividual *individual);
+GtkWidget * empathy_individual_audio_call_menu_item_new (
+    FolksIndividual *individual);
+GtkWidget * empathy_individual_video_call_menu_item_new (
+    FolksIndividual *individual);
 
 G_END_DECLS
 

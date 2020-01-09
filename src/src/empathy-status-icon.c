@@ -20,21 +20,20 @@
  */
 
 #include "config.h"
+
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-presence-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-new-message-dialog.h>
+#include <libempathy-gtk/empathy-new-call-dialog.h>
+
 #include "empathy-status-icon.h"
-
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-utils.h>
-
 #include "empathy-event-manager.h"
-#include "empathy-gsettings.h"
-#include "empathy-new-call-dialog.h"
-#include "empathy-new-message-dialog.h"
-#include "empathy-presence-chooser.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_DISPATCHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Number of ms to wait when blinking */
 #define BLINK_TIMEOUT 500
@@ -83,7 +82,7 @@ status_icon_update_tooltip (EmpathyStatusIcon *icon)
 		type = tp_account_manager_get_most_available_presence (
 			priv->account_manager, NULL, &msg);
 
-		if (!TPAW_STR_EMPTY (msg)) {
+		if (!EMP_STR_EMPTY (msg)) {
 			gtk_status_icon_set_tooltip_text (priv->icon, msg);
 		}
 		else {
@@ -211,7 +210,7 @@ status_icon_set_visibility (EmpathyStatusIcon *icon,
 	if (!visible) {
 		gtk_widget_hide (priv->window);
 	} else {
-		tpaw_window_present (GTK_WINDOW (priv->window));
+		empathy_window_present (GTK_WINDOW (priv->window));
 	}
 }
 
@@ -354,7 +353,7 @@ status_icon_create_menu (EmpathyStatusIcon *icon)
 	gchar                 *filename;
 
 	filename = empathy_file_lookup ("empathy-status-icon.ui", "src");
-	gui = tpaw_builder_get_file (filename,
+	gui = empathy_builder_get_file (filename,
 					"ui_manager", &priv->ui_manager,
 					"menu", &priv->popup_menu,
 					"show_list", &priv->show_window_item,
@@ -363,7 +362,7 @@ status_icon_create_menu (EmpathyStatusIcon *icon)
 				       NULL);
 	g_free (filename);
 
-	tpaw_builder_connect (gui, icon,
+	empathy_builder_connect (gui, icon,
 			      "show_list", "toggled", status_icon_show_hide_window_cb,
 			      "new_message", "activate", status_icon_new_message_cb,
 			      "new_call", "activate", status_icon_new_call_cb,

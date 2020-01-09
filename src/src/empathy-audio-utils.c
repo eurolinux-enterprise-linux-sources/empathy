@@ -19,14 +19,15 @@
  */
 
 #include "config.h"
-#include "empathy-audio-utils.h"
 
 #include <pulse/pulseaudio.h>
 
-#include "empathy-gsettings.h"
+#include "empathy-audio-utils.h"
+
+#include <libempathy/empathy-gsettings.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 void
 empathy_audio_set_stream_properties (GstElement *element,

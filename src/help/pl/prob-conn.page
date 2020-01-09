@@ -21,20 +21,8 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Problemy z połączeniem z usługami komunikatora</title>
+  <title>Problemy z połączeniem z usługami komunikatora</title>
 
 </page>

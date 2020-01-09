@@ -20,11 +20,10 @@
 
 #include "config.h"
 
-#include <tp-account-widgets/tpaw-uoa-utils.h>
-
 #include "empathy-accounts-plugin.h"
 
-#include "empathy-client-factory.h"
+#include <libempathy/empathy-client-factory.h>
+#include <libempathy/empathy-uoa-utils.h>
 
 #include "empathy-accounts-plugin-widget.h"
 
@@ -44,7 +43,7 @@ empathy_accounts_plugin_build_widget (ApPlugin *plugin)
   GtkWidget *widget;
 
   account = ap_plugin_get_account (plugin);
-  tpaw_uoa_manager_set_default (ag_account_get_manager (account));
+  empathy_uoa_manager_set_default (ag_account_get_manager (account));
 
   widget = empathy_accounts_plugin_widget_new (account);
 
@@ -55,20 +54,18 @@ empathy_accounts_plugin_build_widget (ApPlugin *plugin)
 }
 
 static void
-store_delete_cb (GObject *source,
-    GAsyncResult *res,
+store_delete_cb (AgAccount *account,
+    const GError *error,
     gpointer user_data)
 {
-  AgAccount *account = (AgAccount *) source;
   GSimpleAsyncResult *result = user_data;
-  GError *error = NULL;
 
-  if (!ag_account_store_finish (account, res, &error))
+  if (error != NULL)
     {
       g_debug ("Failed to delete account with ID '%u': %s",
           account->id, error->message);
 
-      g_simple_async_result_take_error (result, error);
+      g_simple_async_result_set_from_error (result, error);
     }
 
   g_simple_async_result_complete (result);
@@ -89,7 +86,7 @@ empathy_accounts_plugin_delete_account (ApPlugin *plugin,
   account = ap_plugin_get_account (plugin);
 
   ag_account_delete (account);
-  ag_account_store_async (account, NULL, store_delete_cb, result);
+  ag_account_store (account, store_delete_cb, result);
 }
 
 static void

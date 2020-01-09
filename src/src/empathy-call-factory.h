@@ -21,7 +21,7 @@
 #ifndef __EMPATHY_CALL_FACTORY_H__
 #define __EMPATHY_CALL_FACTORY_H__
 
-#include <telepathy-glib/telepathy-glib.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

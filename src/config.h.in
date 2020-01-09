@@ -6,12 +6,6 @@
 /* Ignore post 1.8 deprecations */
 #undef CLUTTER_VERSION_MIN_REQUIRED
 
-/* Ignore post 1.14 deprecations */
-#undef COGL_VERSION_MAX_ALLOWED
-
-/* Ignore post 1.14 deprecations */
-#undef COGL_VERSION_MIN_REQUIRED
-
 /* Name of provider for accounts imported from GOA */
 #undef EMPATHY_GOA_PROVIDER
 
@@ -21,16 +15,16 @@
 /* Enable debug code */
 #undef ENABLE_DEBUG
 
-/* Prevent post 3.10 APIs */
+/* Prevent post 3.4 APIs */
 #undef GDK_VERSION_MAX_ALLOWED
 
-/* Ignore post 3.8 deprecations */
+/* Ignore post 3.4 deprecations */
 #undef GDK_VERSION_MIN_REQUIRED
 
 /* Gettext package name */
 #undef GETTEXT_PACKAGE
 
-/* Prevent post 2.38 APIs */
+/* Prevent post 2.34 APIs */
 #undef GLIB_VERSION_MAX_ALLOWED
 
 /* Ignore post 2.30 deprecations */
@@ -45,7 +39,7 @@
 /* Define if you have libenchant */
 #undef HAVE_ENCHANT
 
-/* Define if you have geoclue-2 */
+/* Define if you have geoclue */
 #undef HAVE_GEOCLUE
 
 /* Define if you have geocode */
@@ -53,6 +47,9 @@
 
 /* Define to 1 to enable GNOME Online Accounts */
 #undef HAVE_GOA
+
+/* Build with GStreamer 1.0 */
+#undef HAVE_GST1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -96,7 +93,8 @@
 /* ISO codes prefix */
 #undef ISO_CODES_PREFIX
 
-/* Define to the sub-directory where libtool stores uninstalled libraries. */
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
 #undef LT_OBJDIR
 
 /* Define to the address where bug reports for this package should be sent. */
@@ -126,7 +124,7 @@
 /* Prevent to use sealed variables */
 #undef TP_SEAL_ENABLE
 
-/* Prevent post 0.24 APIs */
+/* Prevent post 0.20 APIs */
 #undef TP_VERSION_MAX_ALLOWED
 
 /* Ignore post 0.20 deprecations */

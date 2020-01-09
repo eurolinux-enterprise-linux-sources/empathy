@@ -1,5 +1,3 @@
-#include "config.h"
-
 #include "extensions.h"
 
 #include <telepathy-glib/proxy-subclass.h>

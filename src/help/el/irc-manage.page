@@ -33,12 +33,6 @@
 -->
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
       <mal:email>dmtrs32@gmail.com</mal:email>
       <mal:years>2013</mal:years>
@@ -66,7 +60,7 @@
   <title>Internet Relay Chat (IRC)</title>
   
   <note style="info package">
-    <p>Πρέπει να έχετε εγκατεστημένο το πακέτο <sys>telepathy-idle</sys> για να χρησιμοποιήσετε το IRC στο <app>Empathy</app>.</p>
+    <p>Για να χρησιμοποιήσετε το IRC στο <app>Empathy</app>, θα πρέπει να έχετε εγκατεστημένο το πακέτο <sys>telepathy-idle</sys>.</p>
 
     <if:choose xmlns:if="http://projectmallard.org/if/1.0/">
       <if:when test="action:install">

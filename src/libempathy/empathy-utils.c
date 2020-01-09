@@ -27,15 +27,17 @@
  */
 
 #include "config.h"
-#include "empathy-utils.h"
 
 #include <glib/gi18n-lib.h>
+
+#include <libxml/uri.h>
 #include <dbus/dbus-protocol.h>
-#include <math.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
 #include "empathy-client-factory.h"
-#include "extensions.h"
+#include "empathy-utils.h"
+#include "empathy-presence-manager.h"
+
+#include <extensions/extensions.h>
 
 #include <math.h>
 
@@ -106,6 +108,41 @@ empathy_init (void)
 
   g_object_unref (factory);
   g_object_unref (am);
+}
+
+gboolean
+empathy_xml_validate (xmlDoc      *doc,
+    const gchar *dtd_filename)
+{
+  gchar *path;
+  xmlChar *escaped;
+  xmlValidCtxt  cvp;
+  xmlDtd *dtd;
+  gboolean ret;
+
+  path = g_build_filename (g_getenv ("EMPATHY_SRCDIR"), "libempathy",
+         dtd_filename, NULL);
+  if (!g_file_test (path, G_FILE_TEST_EXISTS))
+    {
+      g_free (path);
+      path = g_build_filename (DATADIR, "empathy", dtd_filename, NULL);
+    }
+
+  DEBUG ("Loading dtd file %s", path);
+
+  /* The list of valid chars is taken from libxml. */
+  escaped = xmlURIEscapeStr ((const xmlChar *) path,
+    (const xmlChar *)":@&=+$,/?;");
+  g_free (path);
+
+  memset (&cvp, 0, sizeof (cvp));
+  dtd = xmlParseDTD (NULL, escaped);
+  ret = xmlValidateDtd (&cvp, doc, dtd);
+
+  xmlFree (escaped);
+  xmlFreeDtd (dtd);
+
+  return ret;
 }
 
 xmlNodePtr
@@ -387,11 +424,43 @@ empathy_file_lookup (const gchar *filename, const gchar *subdir)
   return path;
 }
 
+gboolean
+empathy_check_available_state (void)
+{
+  TpConnectionPresenceType presence;
+  EmpathyPresenceManager *presence_mgr;
+
+  presence_mgr = empathy_presence_manager_dup_singleton ();
+  presence = empathy_presence_manager_get_state (presence_mgr);
+  g_object_unref (presence_mgr);
+
+  if (presence != TP_CONNECTION_PRESENCE_TYPE_AVAILABLE &&
+    presence != TP_CONNECTION_PRESENCE_TYPE_UNSET)
+    return FALSE;
+
+  return TRUE;
+}
+
 gint
 empathy_uint_compare (gconstpointer a,
     gconstpointer b)
 {
   return *(guint *) a - *(guint *) b;
+}
+
+gchar *
+empathy_protocol_icon_name (const gchar *protocol)
+{
+  if (!tp_strdiff (protocol, "yahoojp"))
+    /* Yahoo Japan uses the same icon as Yahoo */
+    protocol = "yahoo";
+  else if (!tp_strdiff (protocol, "simple"))
+    /* SIMPLE uses the same icon as SIP */
+    protocol = "sip";
+  else if (!tp_strdiff (protocol, "sms"))
+    return g_strdup ("phone");
+
+  return g_strdup_printf ("im-%s", protocol);
 }
 
 GType
@@ -405,6 +474,77 @@ empathy_type_dbus_ao (void)
   return t;
 }
 
+const char *
+empathy_protocol_name_to_display_name (const gchar *proto_name)
+{
+  int i;
+  static struct {
+    const gchar *proto;
+    const gchar *display;
+    gboolean translated;
+  } names[] = {
+    { "jabber", "Jabber", FALSE },
+    { "msn", "Windows Live (MSN)", FALSE, },
+    { "local-xmpp", N_("People Nearby"), TRUE },
+    { "irc", "IRC", FALSE },
+    { "icq", "ICQ", FALSE },
+    { "aim", "AIM", FALSE },
+    { "yahoo", "Yahoo!", FALSE },
+    { "yahoojp", N_("Yahoo! Japan"), TRUE },
+    { "groupwise", "GroupWise", FALSE },
+    { "sip", "SIP", FALSE },
+    { "gadugadu", "Gadu-Gadu", FALSE },
+    { "mxit", "Mxit", FALSE },
+    { "myspace", "Myspace", FALSE },
+    { "sametime", "Sametime", FALSE },
+    { "skype-dbus", "Skype (D-BUS)", FALSE },
+    { "skype-x11", "Skype (X11)", FALSE },
+    { "zephyr", "Zephyr", FALSE },
+    { NULL, NULL }
+  };
+
+  for (i = 0; names[i].proto != NULL; i++)
+    {
+      if (!tp_strdiff (proto_name, names[i].proto))
+        {
+          if (names[i].translated)
+            return gettext (names[i].display);
+          else
+            return names[i].display;
+        }
+    }
+
+  return proto_name;
+}
+
+const char *
+empathy_service_name_to_display_name (const gchar *service_name)
+{
+  int i;
+  static struct {
+    const gchar *service;
+    const gchar *display;
+    gboolean translated;
+  } names[] = {
+    { "google-talk", N_("Google Talk"), FALSE },
+    { "facebook", N_("Facebook Chat"), TRUE },
+    { NULL, NULL }
+  };
+
+  for (i = 0; names[i].service != NULL; i++)
+    {
+      if (!tp_strdiff (service_name, names[i].service))
+        {
+          if (names[i].translated)
+            return gettext (names[i].display);
+          else
+            return names[i].display;
+        }
+    }
+
+  return service_name;
+}
+
 gboolean
 empathy_account_manager_get_accounts_connected (gboolean *connecting)
 {
@@ -415,7 +555,7 @@ empathy_account_manager_get_accounts_connected (gboolean *connecting)
 
   manager = tp_account_manager_dup ();
 
-  if (G_UNLIKELY (!tp_proxy_is_prepared (manager,
+  if (G_UNLIKELY (!tp_account_manager_is_prepared (manager,
           TP_ACCOUNT_MANAGER_FEATURE_CORE)))
     g_critical (G_STRLOC ": %s called before AccountManager ready", G_STRFUNC);
 
@@ -442,6 +582,49 @@ empathy_account_manager_get_accounts_connected (gboolean *connecting)
     *connecting = out_connecting;
 
   return out_connected;
+}
+
+/* Change the RequestedPresence of a newly created account to ensure that it
+ * is actually connected. */
+void
+empathy_connect_new_account (TpAccount *account,
+    TpAccountManager *account_manager)
+{
+  TpConnectionPresenceType presence;
+  gchar *status, *message;
+
+  /* only force presence if presence was offline, unknown or unset */
+  presence = tp_account_get_requested_presence (account, NULL, NULL);
+  switch (presence)
+    {
+      case TP_CONNECTION_PRESENCE_TYPE_OFFLINE:
+      case TP_CONNECTION_PRESENCE_TYPE_UNKNOWN:
+      case TP_CONNECTION_PRESENCE_TYPE_UNSET:
+        presence = tp_account_manager_get_most_available_presence (
+            account_manager, &status, &message);
+
+        if (presence == TP_CONNECTION_PRESENCE_TYPE_OFFLINE)
+          /* Global presence is offline; we force it so user doesn't have to
+           * manually change the presence to connect his new account. */
+          presence = TP_CONNECTION_PRESENCE_TYPE_AVAILABLE;
+
+        tp_account_request_presence_async (account, presence,
+            status, NULL, NULL, NULL);
+
+        g_free (status);
+        g_free (message);
+        break;
+
+       case TP_CONNECTION_PRESENCE_TYPE_AVAILABLE:
+       case TP_CONNECTION_PRESENCE_TYPE_AWAY:
+       case TP_CONNECTION_PRESENCE_TYPE_EXTENDED_AWAY:
+       case TP_CONNECTION_PRESENCE_TYPE_HIDDEN:
+       case TP_CONNECTION_PRESENCE_TYPE_BUSY:
+       case TP_CONNECTION_PRESENCE_TYPE_ERROR:
+       default:
+        /* do nothing if the presence is not offline */
+        break;
+    }
 }
 
 /* Translate Folks' general presence type to the Tp presence type */
@@ -560,9 +743,7 @@ empathy_dup_persona_store_for_connection (TpConnection *connection)
           account = tpf_persona_store_get_account (persona_store);
           conn_cur = tp_account_get_connection (account);
           if (conn_cur == connection)
-            result = g_object_ref (persona_store);
-
-          g_clear_object (&persona_store);
+            result = persona_store;
         }
       g_clear_object (&iter);
     }
@@ -757,6 +938,25 @@ empathy_format_currency (gint amount,
   return money;
 }
 
+gboolean
+empathy_account_has_uri_scheme_tel (TpAccount *account)
+{
+  const gchar * const * uri_schemes;
+  guint i;
+
+  uri_schemes = tp_account_get_uri_schemes (account);
+  if (uri_schemes == NULL)
+    return FALSE;
+
+  for (i = 0; uri_schemes[i] != NULL; i++)
+    {
+      if (!tp_strdiff (uri_schemes[i], "tel"))
+        return TRUE;
+    }
+
+  return FALSE;
+}
+
 /* Return the TpContact on @conn associated with @individual, if any */
 TpContact *
 empathy_get_tp_contact_for_individual (FolksIndividual *individual,
@@ -943,6 +1143,26 @@ create_individual_from_persona (FolksPersona *persona)
 
   g_clear_object (&personas);
 
+  return individual;
+}
+
+FolksIndividual *
+empathy_create_individual_from_tp_contact (TpContact *contact)
+{
+  TpfPersona *persona;
+  FolksIndividual *individual;
+
+  persona = tpf_persona_dup_for_contact (contact);
+  if (persona == NULL)
+    {
+      DEBUG ("Failed to get a persona for %s",
+          tp_contact_get_identifier (contact));
+      return NULL;
+    }
+
+  individual = create_individual_from_persona (FOLKS_PERSONA (persona));
+
+  g_object_unref (persona);
   return individual;
 }
 

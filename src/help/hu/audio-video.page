@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Információk arról, hogy mikor kezdhet hang- vagy videohívást.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>    
@@ -25,8 +25,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Információk arról, hogy mikor kezdhet hang- vagy videohívást.</desc>
-
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Kelemen Gábor</mal:name>
@@ -37,8 +35,39 @@
 
   <title>Hang- és videotámogatás</title>
 
-  <p>Csak olyan partnerekkel folytathat hang- és videohívást, akik maguk is ezt a szolgáltatást támogató klienst használnak.</p>
+  <p>Csak olyan partnerekkel folytathat hang- és videohívást, akik maguk is ezt a szolgáltatást támogató klienst használnak. Ha a partner kliense támogatja a hang- vagy videohívást, akkor a partnerlistában a neve mellett a következő ikont láthatja:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Ikon</p>
+        </td>
+        <td>
+          <p>Leírás</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/audio-input-microphone.png">Hanghívások ikonja</media></p>
+      </td>
+      <td>
+        <p>A partner képes hanghívás fogadására.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/camera-web.png">Videohívások ikonja</media></p>
+      </td>
+      <td>
+        <p>A partner képes videohívás fogadására.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Hanghíváshoz az operációs rendszer által támogatott hangkártyára, és működő mikrofonra van szüksége.</p>
     <p>Videohíváshoz az operációs rendszer által támogatott webkamerára, és működő mikrofonra van szüksége.</p>
@@ -54,6 +83,22 @@
     <p>A fióktípusokat bővítmények biztosítják. Rendszerén lehet, hogy a következő típusok nem mindegyike érhető el, de rendelkezhet itt fel nem sorolt típusokkal is. A frissített bővítmények lehetővé tehetik a hang- és videohívásokat az itt nem támogatottként felsorolt fióktípusokkal.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -66,6 +111,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>Nem</p></td>
+        <td><p>Nem</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook csevegés</p></td>
         <td><p>Nem</p></td>
         <td><p>Nem</p></td>
       </tr>
@@ -96,6 +146,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Igen</p></td>
+        <td><p>Igen</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Igen</p></td>
         <td><p>Igen</p></td>
       </tr>

@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <desc>Oculta els contactes fora de línia de la <gui>Llista de contactes</gui>.</desc>
+    <desc>Oculta el contactes fora de línia de la <gui>Llista de contactes</gui>.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-03-11" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
@@ -12,40 +12,18 @@
     <license>
       <p>Creative Commons Reconeixement-Compartir Igual 3.0</p>
     </license>    
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Amagueu els contactes fora de línia</title>
+  <title>Com amagar els contactes fora de línia</title>
 
   <p>Normalment, l'<app>Empathy</app> mostra tots els contactes: aquells que són en línia, amb els quals teniu una conversa i els que són fora de línia.</p>
   <p>Per amagar els contactes que són fora de línia:</p>
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> escolliu <guiseq><gui>Visualitza</gui><gui>Contactes fora de línia</gui></guiseq> o premeu <keyseq><key>Ctrl</key><key>H</key></keyseq>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Offline Contacts</gui></guiseq>, or press <keyseq><key>Ctrl</key>
+      <key>H</key></keyseq>.</p>
     </item>
     <item>
       <p>Per tornar a mostrar els contactes fora de línia, repetiu els mateixos passos descrits aquí sobre.</p>

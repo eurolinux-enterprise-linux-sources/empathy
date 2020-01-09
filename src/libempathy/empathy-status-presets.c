@@ -21,18 +21,17 @@
  */
 
 #include "config.h"
-#include "empathy-status-presets.h"
 
 #include <sys/stat.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
 #include "empathy-utils.h"
+#include "empathy-status-presets.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
 #include "empathy-debug.h"
 
 #define STATUS_PRESETS_XML_FILENAME "status-presets.xml"
-#define STATUS_PRESETS_DTD_RESOURCENAME "/org/gnome/Empathy/empathy-status-presets.dtd"
+#define STATUS_PRESETS_DTD_FILENAME "empathy-status-presets.dtd"
 #define STATUS_PRESETS_MAX_EACH     15
 
 typedef struct {
@@ -93,7 +92,7 @@ status_presets_file_parse (const gchar *filename)
 		return;
 	}
 
-	if (!tpaw_xml_validate_from_resource (doc, STATUS_PRESETS_DTD_RESOURCENAME)) {
+	if (!empathy_xml_validate (doc, STATUS_PRESETS_DTD_FILENAME)) {
 		g_warning ("Failed to validate file:'%s'", filename);
 		xmlFreeDoc (doc);
 		xmlFreeParserCtxt (ctxt);
@@ -187,10 +186,10 @@ status_presets_file_save (void)
 	GList      *l;
 	gchar      *dir;
 	gchar      *file;
-	gint        count[TP_NUM_CONNECTION_PRESENCE_TYPES];
+	gint        count[NUM_TP_CONNECTION_PRESENCE_TYPES];
 	gint        i;
 
-	for (i = 0; i < TP_NUM_CONNECTION_PRESENCE_TYPES; i++) {
+	for (i = 0; i < NUM_TP_CONNECTION_PRESENCE_TYPES; i++) {
 		count[i] = 0;
 	}
 

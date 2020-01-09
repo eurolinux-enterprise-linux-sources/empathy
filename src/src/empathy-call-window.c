@@ -19,40 +19,38 @@
  */
 
 #include "config.h"
-#include "empathy-call-window.h"
 
 #include <glib/gi18n.h>
+
 #include <telepathy-farstream/telepathy-farstream.h>
+
 #include <farstream/fs-element-added-notifier.h>
 #include <farstream/fs-utils.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-camera-monitor.h>
-#include <tp-account-widgets/tpaw-images.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
+#include <libempathy/empathy-camera-monitor.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-dialpad-widget.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-sound-manager.h>
+#include <libempathy-gtk/empathy-geometry.h>
+#include <libempathy-gtk/empathy-images.h>
+#include <libempathy-gtk/empathy-call-utils.h>
+
+#define DEBUG_FLAG EMPATHY_DEBUG_VOIP
+#include <libempathy/empathy-debug.h>
+
+#include "empathy-call-window-fullscreen.h"
 #include "empathy-about-dialog.h"
 #include "empathy-audio-sink.h"
-#include "empathy-call-utils.h"
-#include "empathy-call-window-fullscreen.h"
-#include "empathy-camera-menu.h"
-#include "empathy-dialpad-widget.h"
-#include "empathy-geometry.h"
-#include "empathy-gsettings.h"
-#include "empathy-images.h"
 #include "empathy-mic-menu.h"
 #include "empathy-preferences.h"
-#include "empathy-request-util.h"
 #include "empathy-rounded-actor.h"
 #include "empathy-rounded-rectangle.h"
 #include "empathy-rounded-texture.h"
-#include "empathy-sound-manager.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
-
-#define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include "empathy-camera-menu.h"
 
 #define CONTENT_HBOX_SPACING 3
 #define CONTENT_HBOX_CHILDREN_PACKING_PADDING 0
@@ -126,7 +124,7 @@ struct _EmpathyCallWindowPriv
 
   EmpathyContact *contact;
 
-  TpawCameraMonitor *camera_monitor;
+  EmpathyCameraMonitor *camera_monitor;
 
   CallState call_state;
   gboolean outgoing;
@@ -566,17 +564,17 @@ empathy_call_window_swap_camera_cb (GtkAction *action,
 
   DEBUG ("Swapping the camera");
 
-  cameras = tpaw_camera_monitor_get_cameras (self->priv->camera_monitor);
+  cameras = empathy_camera_monitor_get_cameras (self->priv->camera_monitor);
   current_cam = empathy_video_src_dup_device (
       EMPATHY_GST_VIDEO_SRC (self->priv->video_input));
 
   for (l = cameras; l != NULL; l = l->next)
     {
-      TpawCamera *camera = l->data;
+      EmpathyCamera *camera = l->data;
 
       if (!tp_strdiff (camera->device, current_cam))
         {
-          TpawCamera *next;
+          EmpathyCamera *next;
 
           if (l->next != NULL)
             next = l->next->data;
@@ -597,29 +595,25 @@ empathy_call_window_swap_camera_cb (GtkAction *action,
 }
 
 static void
-empathy_call_window_update_swap_camera (EmpathyCallWindow *self)
+empathy_call_window_camera_added_cb (EmpathyCameraMonitor *monitor,
+    EmpathyCamera *camera,
+    EmpathyCallWindow *self)
 {
-  const GList *cameras = tpaw_camera_monitor_get_cameras (
-      self->priv->camera_monitor);
+  const GList *cameras = empathy_camera_monitor_get_cameras (monitor);
 
   gtk_action_set_visible (self->priv->menu_swap_camera,
       g_list_length ((GList *) cameras) >= 2);
 }
 
 static void
-empathy_call_window_camera_added_cb (TpawCameraMonitor *monitor,
-    TpawCamera *camera,
+empathy_call_window_camera_removed_cb (EmpathyCameraMonitor *monitor,
+    EmpathyCamera *camera,
     EmpathyCallWindow *self)
 {
-  empathy_call_window_update_swap_camera (self);
-}
+  const GList *cameras = empathy_camera_monitor_get_cameras (monitor);
 
-static void
-empathy_call_window_camera_removed_cb (TpawCameraMonitor *monitor,
-    TpawCamera *camera,
-    EmpathyCallWindow *self)
-{
-  empathy_call_window_update_swap_camera (self);
+  gtk_action_set_visible (self->priv->menu_swap_camera,
+      g_list_length ((GList *) cameras) >= 2);
 }
 
 static void
@@ -1510,9 +1504,8 @@ empathy_call_window_incoming_call_response_cb (GtkDialog *dialog,
   switch (response_id)
     {
       case GTK_RESPONSE_ACCEPT:
-        tp_channel_dispatch_operation_handle_with_time_async (
-            self->priv->pending_cdo, EMPATHY_CALL_TP_BUS_NAME,
-            empathy_get_current_action_time (), NULL, NULL);
+        tp_channel_dispatch_operation_handle_with_async (
+            self->priv->pending_cdo, EMPATHY_CALL_BUS_NAME, NULL, NULL);
 
         tp_clear_object (&self->priv->pending_cdo);
         tp_clear_object (&self->priv->pending_channel);
@@ -1632,7 +1625,7 @@ empathy_call_window_init (EmpathyCallWindow *self)
   priv->timer = g_timer_new ();
 
   filename = empathy_file_lookup ("empathy-call-window.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
     "call_window_vbox", &top_vbox,
     "errors_vbox", &priv->errors_vbox,
     "pane", &priv->pane,
@@ -1669,7 +1662,7 @@ empathy_call_window_init (EmpathyCallWindow *self)
     NULL);
   g_free (filename);
 
-  tpaw_builder_connect (gui, self,
+  empathy_builder_connect (gui, self,
     "hangup", "clicked", empathy_call_window_hangup_cb,
     "audiocall", "clicked", empathy_call_window_audio_call_cb,
     "videocall", "clicked", empathy_call_window_video_call_cb,
@@ -1690,8 +1683,7 @@ empathy_call_window_init (EmpathyCallWindow *self)
   empathy_set_css_provider (GTK_WIDGET (self));
   gtk_action_set_sensitive (priv->menu_fullscreen, FALSE);
 
-  priv->camera_monitor = tpaw_camera_monitor_dup_singleton ();
-  empathy_call_window_update_swap_camera (self);
+  priv->camera_monitor = empathy_camera_monitor_dup_singleton ();
 
   g_object_bind_property (priv->camera_monitor, "available",
       priv->camera_button, "sensitive",
@@ -1901,8 +1893,8 @@ init_contact_avatar_with_size (EmpathyContact *contact,
 
   if (pixbuf_avatar == NULL)
     {
-      pixbuf_avatar = tpaw_pixbuf_from_icon_name_sized (
-          TPAW_IMAGE_AVATAR_DEFAULT, size);
+      pixbuf_avatar = empathy_pixbuf_from_icon_name_sized (
+          EMPATHY_IMAGE_AVATAR_DEFAULT, size);
     }
 
   gtk_image_set_from_pixbuf (GTK_IMAGE (image_widget), pixbuf_avatar);
@@ -2465,15 +2457,12 @@ empathy_call_window_new (EmpathyCallHandler *handler)
 }
 
 void
-empathy_call_window_new_handler (EmpathyCallWindow *self,
-    EmpathyCallHandler *handler,
-    gboolean present,
-    guint32 x11_time)
+empathy_call_window_present (EmpathyCallWindow *self,
+    EmpathyCallHandler *handler)
 {
   g_return_if_fail (EMPATHY_IS_CALL_HANDLER (handler));
 
-  if (present)
-    tpaw_window_present_with_time (GTK_WINDOW (self), x11_time);
+  empathy_window_present (GTK_WINDOW (self));
 
   if (self->priv->call_state == DISCONNECTED)
     {
@@ -2513,30 +2502,17 @@ empathy_call_window_conference_added_cb (EmpathyCallHandler *handler,
 }
 
 static void
-empathy_call_window_add_notifier_remove (gpointer data, gpointer user_data)
-{
-  EmpathyCallWindow *self = EMPATHY_CALL_WINDOW (user_data);
-  EmpathyCallWindowPriv *priv = GET_PRIV (self);
-  FsElementAddedNotifier *notifier = data;
-
-  fs_element_added_notifier_remove (notifier, GST_BIN (priv->pipeline));
-}
-
-static void
 empathy_call_window_conference_removed_cb (EmpathyCallHandler *handler,
   GstElement *conference, gpointer user_data)
 {
   EmpathyCallWindow *self = EMPATHY_CALL_WINDOW (user_data);
   EmpathyCallWindowPriv *priv = GET_PRIV (self);
 
-  gst_bin_remove (GST_BIN (priv->pipeline), conference);
-  gst_element_set_state (conference, GST_STATE_NULL);
-
-  g_list_foreach (priv->notifiers,
-    empathy_call_window_add_notifier_remove, user_data);
-
   g_list_free_full (priv->notifiers, g_object_unref);
   priv->notifiers = NULL;
+
+  gst_bin_remove (GST_BIN (priv->pipeline), conference);
+  gst_element_set_state (conference, GST_STATE_NULL);
 }
 
 static gboolean
@@ -2832,7 +2808,11 @@ empathy_call_window_get_video_sink_pad (EmpathyCallWindow *self)
   if (priv->funnel == NULL)
     {
       output = priv->video_output_sink;
+#ifdef HAVE_GST1
       priv->funnel = gst_element_factory_make ("funnel", NULL);
+#else
+      priv->funnel = gst_element_factory_make ("fsfunnel", NULL);
+#endif
 
       if (!priv->funnel)
         {
@@ -2872,7 +2852,11 @@ empathy_call_window_get_video_sink_pad (EmpathyCallWindow *self)
           goto error_output_added;
         }
     }
+#ifdef HAVE_GST1
   pad = gst_element_get_request_pad (priv->funnel, "sink_%u");
+#else
+  pad = gst_element_get_request_pad (priv->funnel, "sink%d");
+#endif
 
   if (!pad)
     g_warning ("Could not get request pad from funnel");
@@ -3287,7 +3271,7 @@ empathy_call_window_state_changed_cb (EmpathyCallHandler *handler,
 
   can_send_video = priv->video_input != NULL &&
     empathy_contact_can_voip_video (priv->contact) &&
-    tpaw_camera_monitor_get_available (priv->camera_monitor);
+    empathy_camera_monitor_get_available (priv->camera_monitor);
 
   g_object_get (priv->handler, "call-channel", &call, NULL);
 
@@ -3353,6 +3337,7 @@ empathy_call_window_check_video_cb (gpointer data)
 }
 
 /* Called from the streaming thread */
+#ifdef HAVE_GST1
 static GstPadProbeReturn
 empathy_call_window_video_probe_cb (GstPad *pad,
     GstPadProbeInfo *info,
@@ -3372,6 +3357,29 @@ empathy_call_window_video_probe_cb (GstPad *pad,
 
   return GST_PAD_PROBE_OK;
 }
+#else
+static gboolean
+empathy_call_window_video_probe_cb (GstPad *pad,
+    GstMiniObject *mini_obj,
+    EmpathyCallWindow *self)
+{
+  /* Ignore events */
+  if (GST_IS_EVENT (mini_obj))
+    return TRUE;
+
+  if (G_UNLIKELY (!self->priv->got_video))
+    {
+      /* show the remote video */
+      g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
+          empathy_call_window_show_video_output_cb,
+          g_object_ref (self), g_object_unref);
+
+      self->priv->got_video = TRUE;
+    }
+
+  return TRUE;
+}
+#endif
 
 /* Called from the streaming thread */
 static gboolean
@@ -3398,10 +3406,14 @@ empathy_call_window_src_added_cb (EmpathyCallHandler *handler,
         g_idle_add (empathy_call_window_show_video_output_cb, self);
         pad = empathy_call_window_get_video_sink_pad (self);
 
+#ifdef HAVE_GST1
         gst_pad_add_probe (src,
             GST_PAD_PROBE_TYPE_BUFFER | GST_PAD_PROBE_TYPE_BUFFER_LIST,
             empathy_call_window_video_probe_cb, self, NULL);
-
+#else
+        gst_pad_add_data_probe (src,
+            G_CALLBACK (empathy_call_window_video_probe_cb), self);
+#endif
         if (priv->got_video_src > 0)
           g_source_remove (priv->got_video_src);
         priv->got_video_src = g_timeout_add_seconds (1,
@@ -3580,7 +3592,11 @@ empathy_call_window_content_added_cb (EmpathyCallHandler *handler,
       case FS_MEDIA_TYPE_VIDEO:
         if (priv->video_tee != NULL)
           {
+#ifdef HAVE_GST1
             pad = gst_element_get_request_pad (priv->video_tee, "src_%u");
+#else
+            pad = gst_element_get_request_pad (priv->video_tee, "src%d");
+#endif
             if (GST_PAD_LINK_FAILED (gst_pad_link (pad, sink)))
               {
                 g_warning ("Could not link video source input pipeline");
@@ -4002,7 +4018,7 @@ empathy_call_window_state_event_cb (GtkWidget *widget,
       show_controls (window, set_fullscreen);
       show_borders (window, set_fullscreen);
       gtk_action_set_stock_id (priv->menu_fullscreen,
-          (set_fullscreen ? "view-restore" : "view-fullscreen"));
+          (set_fullscreen ? "gtk-leave-fullscreen" : "gtk-fullscreen"));
       priv->is_fullscreen = set_fullscreen;
   }
 

@@ -23,9 +23,10 @@
  */
 
 #include "config.h"
-#include "empathy-about-dialog.h"
 
 #include <glib/gi18n.h>
+
+#include "empathy-about-dialog.h"
 
 #define WEB_SITE "http://live.gnome.org/Empathy"
 
@@ -73,14 +74,37 @@ static const char *artists[] = {
 	NULL
 };
 
+static const char *license[] = {
+	N_("Empathy is free software; you can redistribute it and/or modify "
+	   "it under the terms of the GNU General Public License as published by "
+	   "the Free Software Foundation; either version 2 of the License, or "
+	   "(at your option) any later version."),
+	N_("Empathy is distributed in the hope that it will be useful, "
+	   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+	   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+	   "GNU General Public License for more details."),
+	N_("You should have received a copy of the GNU General Public License "
+	   "along with Empathy; if not, write to the Free Software Foundation, Inc., "
+	   "51 Franklin Street, Fifth Floor, Boston, MA 02110-130159 USA"),
+	NULL
+};
+
 void
 empathy_about_dialog_new (GtkWindow *parent)
 {
+	GString *license_trans = g_string_new (NULL);
+	int i;
+
+	for (i = 0; license[i] != NULL; i++) {
+		g_string_append (license_trans, _(license[i]));
+		g_string_append (license_trans, "\n\n");
+
+	}
 	gtk_show_about_dialog (parent,
 			       "artists", artists,
 			       "authors", authors,
 			       "comments", _("An Instant Messaging client for GNOME"),
-			       "license-type", GTK_LICENSE_GPL_2_0,
+			       "license", license_trans->str,
 			       "wrap-license", TRUE,
 			       "copyright", "Imendio AB 2002-2007\nCollabora Ltd 2007-2011",
 			       "documenters", documenters,
@@ -89,4 +113,8 @@ empathy_about_dialog_new (GtkWindow *parent)
 			       "version", PACKAGE_VERSION,
 			       "website", WEB_SITE,
 			       NULL);
+
+	g_string_free (license_trans, TRUE);
 }
+
+

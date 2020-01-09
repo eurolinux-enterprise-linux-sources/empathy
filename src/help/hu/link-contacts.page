@@ -13,10 +13,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>
@@ -28,60 +24,49 @@
     </mal:credit>
   </info>
 
-  <title>Névjegyek összekapcsolása/szétválasztása</title>
-  <p>Ha egy partnere több fiókkal is rendelkezik különböző szolgáltatóknál, akkor ezeket egyesítheti egyetlen partnerbejegyzéssé.</p>
+  <title>Partnerek egyesítése és szétválasztása</title>
+  <p>Ha egy partnere több fiókkal is rendelkezik különböző szolgáltatóknál, akkor ezeket a partnerbejegyzéseket egyesítheti.</p>
   <p>Az eredményül kapott partnert <em>metapartnernek</em> hívjuk: ez egy több önálló partnerbejegyzésből álló partner.</p>
-  <p>Ha például rendelkezik egy Kovács Erzsébet nevű partnerrel, aki három különböző üzenetküldő szolgáltatást használ:</p>
+  <p>Ha rendelkezik egy Kovács Erzsébet nevű partnerrel, aki három különböző üzenetküldő szolgáltatást használ:</p>
   <list>
+    <item>
+      <p>ekovacs@facebook</p>
+    </item>
     <item>
       <p>erzsebet.kovacs@gmail</p>
     </item>
     <item>
       <p>erzsebet_kovacs@hotmail</p>
     </item>
-    <item>
-      <p>ekovacs@yahoo</p>
-    </item>
   </list>
   <p>Ezeket a partnerbejegyzéseket egyetlen Kovács Erzsébet bejegyzéssé egyesítheti.</p>
+  
   <section id="linking">
-  <title>Partnerek összekapcsolása</title>
-  <p>Partnerek összekapcsolásához:</p>
+    <title>Partnerek egyesítése</title>
     <steps>
       <item>
-        <p>Nyomja meg a pipa gombot az összekapcsolni kívánt bejegyzések kijelöléséhez. Ez bekapcsolja a <em>kijelölési módot</em>, és minden bejegyzés mellett megjelenik egy jelölőnégyzet.</p>
+        <p>A <gui>Partnerlista</gui> ablakban kattintson a jobb egérgombbal a különböző fiókokkal rendelkező partnerére, és válassza a <gui style="menuitem">Partnerek összekapcsolása…</gui> menüpontot.</p>
       </item>
       <item>
-        <p>Jelölje be az azonos partnerhez tartozó <app>Névjegyek</app> alkalmazásbeli bejegyzéseket.</p>
+        <p>A <gui>Partnerek összekapcsolása</gui> ablak bal oldalán válassza ki az egyesíteni kívánt partnereket.</p>
       </item>
       <item>
         <p>Nyomja meg az <gui style="button">Összekapcsolás</gui> gombot.</p>
       </item>
     </steps>
-    <p>Ismételje a 3. és 4. lépéseket a további partnerek összekapcsolásához.</p>
+    <note>
+      <p>Metapartner létrehozása esetén az alapértelmezett partner, amellyel dupla kattintással társalgást kezdeményez, a leghosszabb online jelenléttel rendelkező partnerbejegyzés lesz.</p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Partnerek szétválasztása</title>
-  <p>Az összekapcsolt partnerek szétválasztása:</p>
+  <section id="unlinkg">
+    <title>Metapartnerek szétválasztása</title>
     <steps>
       <item>
-        <p>Válassza ki a partnert a partnerlistából.</p>
+        <p>A <gui>Partnerlistában</gui> kattintson a jobb egérgombbal a szétválasztani kívánt metapartnerre, és válassza a <gui style="menuitem">Partnerek összekapcsolása</gui> menüpontot.</p>
       </item>
       <item>
-        <p>Kattintson a <gui style="button">Szerkesztés</gui> gombra a <app>Névjegyek</app> jobb felső sarkában.</p>
-      </item>
-      <item>
-	<p>Nyomja meg az <gui style="button">Összekapcsolt névjegyek</gui> gombot.</p>
-      </item>
-      <item>
-	<p>Nyomja meg az <gui style="button">Eltávolítás</gui> gombot a bejegyzés leválasztásához a névjegyről.</p>
-      </item>
-      <item>
-        <p>Nyomja meg a <gui style="button">Bezárás</gui> gombot, amikor befejezte a partnerek szétválasztását.</p>
-      </item>
-      <item>
-        <p>Végül nyomja meg a <gui style="button">Kész</gui> gombot a szerkesztés befejezéséhez.</p>
+        <p>Nyomja meg a <gui style="button">Szétválasztás</gui> gombot.</p>
       </item>
     </steps>
   </section>

@@ -2,9 +2,11 @@
 
 HELP_ID = empathy
 HELP_MEDIA = \
+	figures/audio-input-microphone.png \
 	figures/available.png \
 	figures/away.png \
 	figures/busy.png \
+	figures/camera-web.png \
 	figures/empathy-main-window.png \
 	figures/empathy-logo.png \
 	figures/gtk-add.png \
@@ -63,4 +65,4 @@ HELP_FILES = \
 	status-icons.page \
 	video-call.page
 
-HELP_LINGUAS = ca cs de el en_GB es eu fi fr gl hu lv id it ja pl pt_BR ru sl sv te zh_CN
+HELP_LINGUAS = ca cs de el en_GB es eu fi fr gl hu lv it ja pl ru sl sv te zh_CN

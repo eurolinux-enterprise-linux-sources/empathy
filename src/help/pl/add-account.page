@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="pl">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="pl">
 
   <info>
     <link type="guide" xref="index#accounts"/>
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -34,45 +33,39 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Dodawanie nowego konta</title>
 
-  <p>Można dodać konta komunikatora każdej obsługiwanej usługi, aby komunikować się wszystkimi kontaktami przy użyciu programu <app>Empathy</app>. W przypadku niektórych dostawców kont można w ten sposób również zarejestrować nowe konto. Aby uzyskać więcej informacji na ten temat, należy zapoznać się z <link xref="create-account"/>.</p>
+  <p>Można dodać konta komunikatora każdej obsługiwanej usługi, aby komunikować się wszystkimi kontaktami przy użyciu programu <app>Empathy</app>. W przypadku niektórych dostawców kont można w ten sposób również zarejestrować nowe konto. Aby uzyskać więcej informacji na ten temat, należy zapoznać się z <link xref="create-account"/>.</p>
 
   <steps>
     <item>
-      <p>Click <guiseq><gui>Empathy</gui><gui>Accounts</gui></guiseq>, or press
-      <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>Należy nacisnąć przycisk <gui style="button">+</gui>.</p>
+      <p>
+        Click <gui style="button">+</gui>.
+      </p>
     </item>
     <item>
-      <p>From the <gui>What kind of chat account do you have?</gui> drop-down
-      list, select the type of account you wish to add.</p>
+      <p>Z rozwijanej listy <gui>Protokół</gui> należy wybrać rodzaj konta, które chcemy dodać.</p>
     </item>
     <item>
-      <p>Należy wprowadzić wymagane informacje. W przypadku większości kont potrzebne będą identyfikator logowania i hasło. Niektóre konta mogą wymagać dodatkowej informacji. Aby uzyskać więcej informacji, należy zobaczyć <link xref="accounts-window#details"/>.</p>
+      <p>W przypadku braku zarejestrowanego konta należy wybrać <gui>Utworzenie nowe konta na serwerze</gui>. Ta funkcja nie jest dostępna dla wszystkich rodzajów kont i może nie być dostępna u niektórych dostawców kont. Aby uzyskać więcej informacji na ten temat, należy zobaczyć <link xref="create-account"/>.</p>
     </item>
     <item>
-      <p>Należy nacisnąć przycisk <gui style="button">Dodaj</gui>.</p>
+      <p>Enter the required information.  For most accounts, you will only need
+      a login ID and a password.  Some accounts may require additional information.
+      See <link xref="accounts-window#details"/>for more information.</p>
+    </item>
+    <item>
+      <p>Należy nacisnąć przycisk <gui style="button">Zastosuj</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Aby zmienić nazwę identyfikującą konto w oknie <gui>Konta komunikatora i VoIP</gui>, należy wybrać konto z listy po lewej stronie i kliknąć nazwę lub nacisnąć przycisk spacji. Po zakończeniu modyfikacji nazwy należy nacisnąć przycisk <key>Enter</key>.</p>
+    <p>Aby zmienić nazwę identyfikującą konto w oknie <gui>Kont</gui>, należy wybrać konto z listy po lewej stronie i kliknąć w nazwę lub nacisnąć przycisk spacji. Po zakończeniu modyfikacji nazwy należy nacisnąć przycisk <key>Enter</key>.</p>
   </note>
 </page>

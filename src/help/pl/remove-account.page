@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#accounts"/>
-    <desc>Zupełne usunięcie konta z programu <app>Empathy</app>.</desc>
+    <desc>Zupełne usunięcie konta z programu <app>Empathy</app>.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review">
@@ -27,36 +27,25 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Usunięcie konta</title>
 
-  <p>Można całkowicie usunąć konto z programu <app>Empathy</app>, jeśli nie będzie ono już więcej używane. Jeśli zajdzie w przyszłości potrzeba użycia konta programu <app>Empathy</app>, konieczne będzie ponowne podanie szczegółowych danych konta.</p>
+  <p>Można całkowicie usunąć konto z programu <app>Empathy</app> jeśli nie będzie ono już więcej używane. Jeśli zajdzie w przyszłości potrzeba użycia konta programu <app>Empathy</app>, konieczne będzie ponowne podanie szczegółowych danych konta.</p>
 
   <steps>
     <item>
-      <p>W oknie <gui>Lista kontaktów</gui> należy wybrać <guiseq><gui>Edycja</gui><gui>Konta</gui></guiseq>, lub nacisnąć <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>Należy zaznaczyć konto, które chcemy usunąć z listy kont po lewej stronie okna.</p>
+      <p>Należy zaznaczyć konto, które chcemy usunąć z listy kont po lewej stronie okna.</p>
     </item>
     <item>
-      <p>Należy nacisnąć przycisk <gui style="button">-</gui>.</p>
+      <p>Click <gui style="button">-</gui>.</p>
     </item>
     <item>
-      <p>Zostanie wyświetlone okno z prośbą o potwierdzenie. Naciśnij przycisk <gui>Usuń</gui>, aby trwale usunąć konto.</p>
+      <p>Zostanie wyświetlone okno z prośbą o potwierdzenie. Naciśnij przycisk <gui>Usuń</gui>, aby trwale usunąć konto.</p>
     </item>
   </steps>
 

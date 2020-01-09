@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <desc>Jak v <gui>seznamu kontatků</gui> skrýt kontakty, které jsou odpojené.</desc>
+    <desc>Hide the offline contacts from your <gui>Contact List</gui>.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-03-11" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
@@ -12,43 +12,28 @@
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>    
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Skrytí odpojených kontatků</title>
+  <title>Hide offline contacts</title>
 
-  <p>Normálně <app>Empathy</app> zobrazuje všechny vaše kontakty – ty které jsou připojeny a můžete s ními navázat konverzaci, i ty, které jsou odpojeny.</p>
-  <p>Když chcete odpojené kontakty skrýt:</p>
+  <p>
+    Normally, <app>Empathy</app> shows all your contacts: those that are online, 
+    with which you can have a conversation, and also those that are offline. 
+  </p>
+  <p>
+    To hide the contacts that are offline:
+  </p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> zvolte <guiseq><gui>Zobrazit</gui> <gui>Odpojené kontakty</gui></guiseq> nebo zmáčkněte <keyseq><key>Ctrl</key> <key>H</key></keyseq>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Offline Contacts</gui></guiseq>, or press <keyseq><key>Ctrl</key>
+      <key>H</key></keyseq>.</p>
     </item>
     <item>
-      <p>Pro opětovné zobrazení zopakujte stejný postup.</p>
+      <p>
+        To show the offline contacts again, repeat the same procedure above.
+      </p>
     </item>
   </steps>
 

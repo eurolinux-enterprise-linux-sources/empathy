@@ -13,103 +13,54 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>
   </info>
 
-  <title>Link and unlink contacts</title>
-  <p>
-    If one or more of your contacts has multiple accounts with different
-    messaging services, you can combine these accounts into a single contact.
-  </p>
+  <title>Unire e dividere contatti</title>
+  <p>Se uno o più dei propri contatti presenta molteplici account con differenti servizi di messaggistica, è possibile unire questi contatti in uno solo.</p>
   <p>Il risultato di questa unione è un nuovo contatto chiamato <em>meta-contatto</em>: un contatto composto da molteplici contatti singoli.</p>
-  <p>
-    Suppose you have a contact called Jane Smith who is using three different
-    messaging services like:
-  </p>
+  <p>Se nell'elenco dei contatti è presente un contatto Mario Rossi che utilizza tre diversi servizi di messaggistica come:</p>
   <list>
+    <item>
+      <p>mario@facebook</p>
+    </item>
     <item>
       <p>mario.rossi@gmail</p>
     </item>
     <item>
       <p>mario_rossi@hotmail</p>
     </item>
-    <item>
-      <p>
-        janes@yahoo
-      </p>
-    </item>
   </list>
   <p>È possibile unire questi contatti in un singolo contatto per Mario Rossi.</p>
+  
   <section id="linking">
-  <title>Link contacts</title>
-  <p>
-    The way you can link your contacts is as follows:
-  </p>
+    <title>Unire i contatti</title>
     <steps>
       <item>
-        <p>
-          Press the tick button to select entries you want to link. This will enable
-          <em>selection mode</em> and you can see a checkbox for each entry.
-        </p>
+        <p>Dalla finestra <gui>Elenco contatti</gui>, fare clic col pulsante destro del mouse su uno dei contatti che presenta molteplici account e selezionare <gui style="menuitem">Unisci contatti...</gui>.</p>
       </item>
       <item>
-        <p>
-	  Tick the checkboxes that correspond to the <app>Contacts</app> entries which
-	  belong to the same contact.
-        </p>
+        <p>Dal riquadro a sinistra nella finestra <gui>Unisci contatti</gui>, selezionare i contatti da unire assieme.</p>
       </item>
       <item>
-        <p>
-          Press <gui style="button">Link</gui>.
-        </p>
+        <p>Fare clic su <gui style="button">Unisci</gui>.</p>
       </item>
     </steps>
-    <p>
-      Repeat steps 3 and 4 in order to link other contacts.
-    </p>
+    <note>
+      <p>Quando viene creato un meta-contatto, l'account del contatto utilizzato in modo predefinito per avere una conversazione è quello con la maggiore presenza online.</p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Unlink contacts</title>
-  <p>
-    To unlink a linked contact:
-  </p>
+  <section id="unlinkg">
+    <title>Dividere i contatti</title>
     <steps>
       <item>
-        <p>
-          Select the contact from your list.
-        </p>
+        <p>Dalla finestra <gui>Elenco contatti</gui>, fare clic col pulsante destro del mouse sul contatto da separare e selezionare  <gui style="menuitem">Unisci contatti...</gui>.</p>
       </item>
       <item>
-        <p>
-          Press <gui style="button">Edit</gui> in the top-right corner of <app>Contacts</app>.
-	</p>
-      </item>
-      <item>
-	<p>
-	  Press <gui style="button">Linked Contacts</gui>.
-        </p>
-      </item>
-      <item>
-	<p>
-	  Press <gui style="button">Remove</gui> to unlink an entry from the linked contact.
-        </p>
-      </item>
-      <item>
-        <p>
-          Press <gui style="button">Close</gui> if you do not want to unlink any more contacts.
-        </p>
-      </item>
-      <item>
-        <p>
-	  Finally, press <gui style="button">Done</gui> to finish editing.
-	</p>
+        <p>Fare clic su <gui style="button">Dividi</gui>.</p>
       </item>
     </steps>
   </section>

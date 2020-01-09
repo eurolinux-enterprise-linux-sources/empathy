@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="video-call" xml:lang="es">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="video-call" xml:lang="es">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -14,17 +14,10 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="3.2" version="0.4" date="2011-12-18" status="review"/>
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
     </license>
@@ -32,7 +25,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Daniel Mustieles</mal:name>
       <mal:email>daniel.mustieles@gmail.com</mal:email>
-      <mal:years>2012 - 2015</mal:years>
+      <mal:years>2012</mal:years>
     </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
@@ -47,20 +40,18 @@
 
   <steps>
     <item>
-      <p>Pulse con el botón derecho sobre el contacto al que quiere llamar y seleccione <gui style="menuitem">Llamada de vídeo</gui>.</p>
+      <p>Desde la ventana <gui>Lista de contactos</gui> pulse el icono de <media type="image" mime="image/png" src="figures/camera-web.png">vídeo llamada</media> junto al nombre del contacto al que quiere llamar y seleccione <gui style="menuitem">Llamada de vídeo</gui>.</p>
     </item>
     <item>
-      <p>Se abrirá una ventana nueva. Cuando se establezca la conexión, verá  el tiempo total de conversación en la parte inferior de la ventana.</p>
+      <p>Se abrirá una ventana nueva. Cuando se establezca la conexión, verá escrito, en la parte inferior de la ventana, <gui>Connectado</gui> y el tiempo total de conversación.</p>
     </item>
     <item>
-      <p>Para finalizar una conversación pulse el botón <gui style="button">Colgar</gui>.</p>
+      <p>Para finalizar una conversación pulse <gui style="button">Colgar</gui>.</p>
     </item>
   </steps>
-
   <note style="tip">
     <p>Para convertir una conversación de vídeo en una de sonido, elija <guiseq><gui style="menu">Vídeo</gui><gui style="menuitem">Vídeo apagado</gui></guiseq>.</p>
   </note>
-
   <section id="video-meta-contact">
     <title>Iniciar una conversación de vídeo con uno de sus metacontactos.</title>
     <steps>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="es">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="es">
 
   <info>
     <link type="guide" xref="index#accounts"/>
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -38,7 +37,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Daniel Mustieles</mal:name>
       <mal:email>daniel.mustieles@gmail.com</mal:email>
-      <mal:years>2012 - 2015</mal:years>
+      <mal:years>2012</mal:years>
     </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
@@ -54,23 +53,26 @@
 
   <steps>
     <item>
-      <p>Pulse <guiseq><gui>Empathy</gui><gui>Cuentas</gui></guiseq>, o pulse <key>F4</key>.</p>
+      <p>Desde la ventana <gui>Lista de contactos</gui> elija <guiseq><gui>Editar</gui><gui>Cuentas</gui></guiseq> o pulse <key>F4</key>.</p>
     </item>
     <item>
       <p>Pulse <gui style="button">+</gui>.</p>
     </item>
     <item>
-      <p>En la lista desplegable <gui>¿Qué tipo de cuenta puede tener?</gui> seleccione el tipo de cuenta que quiere añadir.</p>
+      <p>Desde la lista desplegable <gui>Protocolo</gui> seleccione el tipo de cuenta que quiere añadir.</p>
+    </item>
+    <item>
+      <p>Si aún no tiene una cuenta registrada seleccione <gui>Crear una cuenta nueva en el servidor</gui>. Esta característica no está disponible para todos los tipos de cuentas y puede no funcionar con algunos proveedores de cuentas. Para obtener más información consulte la <link xref="create-account"/>.</p>
     </item>
     <item>
       <p>Introduzca la información requerida. Para la mayoría de cuentas sólo necesitará un ID de inicio de sesión y una contraseña. Algunas cuentas pueden requerir información adicional. Para obtener más información consulte la <link xref="accounts-window#details"/>.</p>
     </item>
     <item>
-      <p>Pulse <gui style="button">Añadir</gui>.</p>
+      <p>Pulse <gui style="button">Aplicar</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Para cambiar el nombre que identifica la cuenta en la ventana <gui>Cuentas de mensajería y Voz IP</gui>, seleccione la cuenta de la lista a la izquierda y pulse en el nombre o la barra espaciadora. Edite el nombre de la cuenta y pulse <key>Intro</key> cuando haya acabado.</p>
+    <p>Para cambiar el nombre que identifica la cuenta en la ventana <gui>Cuentas</gui>, seleccione la cuenta de la lista a la izquierda y pulse en el nombre o la barra espaciadora. Edite el nombre de la cuenta y pulse <key>Intro</key> cuando haya acabado.</p>
   </note>
 </page>

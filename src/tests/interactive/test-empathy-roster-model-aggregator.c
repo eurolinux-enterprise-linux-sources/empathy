@@ -1,9 +1,10 @@
-#include "config.h"
+#include <config.h>
 
-#include "empathy-roster-model-aggregator.h"
-#include "empathy-roster-model.h"
-#include "empathy-roster-view.h"
-#include "empathy-ui-utils.h"
+#include <libempathy-gtk/empathy-roster-model.h>
+#include <libempathy-gtk/empathy-roster-model-aggregator.h>
+
+#include <libempathy-gtk/empathy-roster-view.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
 
 static gboolean show_offline = FALSE;
 static gboolean show_groups = FALSE;
@@ -28,7 +29,6 @@ individual_activated_cb (EmpathyRosterView *self,
 
 static void
 popup_individual_menu_cb (EmpathyRosterView *self,
-    const gchar *group,
     FolksIndividual *individual,
     guint button,
     guint time,
@@ -36,8 +36,8 @@ popup_individual_menu_cb (EmpathyRosterView *self,
 {
   GtkWidget *menu, *item;
 
-  g_print ("'%s' (group: %s) popup menu\n",
-      folks_alias_details_get_alias (FOLKS_ALIAS_DETAILS (individual)), group);
+  g_print ("'%s' popup menu\n",
+      folks_alias_details_get_alias (FOLKS_ALIAS_DETAILS (individual)));
 
   menu = gtk_menu_new ();
 
@@ -137,15 +137,16 @@ main (int argc,
   empathy_roster_view_show_offline (EMPATHY_ROSTER_VIEW (view), show_offline);
   empathy_roster_view_show_groups (EMPATHY_ROSTER_VIEW (view), show_groups);
 
-  search = tpaw_live_search_new (view);
+  search = empathy_live_search_new (view);
   empathy_roster_view_set_live_search (EMPATHY_ROSTER_VIEW (view),
-      TPAW_LIVE_SEARCH (search));
+      EMPATHY_LIVE_SEARCH (search));
 
   scrolled = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
       GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 
-  gtk_container_add (GTK_CONTAINER (scrolled), view);
+  egg_list_box_add_to_scrolled (EGG_LIST_BOX (view),
+      GTK_SCROLLED_WINDOW (scrolled));
 
   gtk_box_pack_start (GTK_BOX (box), search, FALSE, TRUE, 0);
   gtk_box_pack_start (GTK_BOX (box), scrolled, TRUE, TRUE, 0);

@@ -4,7 +4,9 @@
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="status-icons"/>
-    <desc>Jak změnit svůj stav a ukázat svým kontaktům, jestli jste dostupní.</desc>
+    <desc>
+      Change your status to advertise your availability to your contacts.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
       <!--
@@ -30,49 +32,34 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Změna vašeho stavu</title>
+  <title>Change your status</title>
 
-  <p>Můžete nastavit svůj stav a ukázat kontaktům, jestli jste dostupní. <app>Empathy</app> poskytuje výběr ze seznamu předem nastavených stavů.</p>
+  <p>You can set your status to indicate your availability to your contacts.
+  <app>Empathy</app> allows you to select from a list of defined statuses.</p>
 
   <steps>
     <item>
-      <p>Klikněte na rozbalovací seznam ve vrchní části okna <gui>Seznam kontaktů</gui>.</p>
+      <p>
+        Click on the drop-down list at the top of the <gui>Contact List</gui> window.
+      </p>
     </item>
     <item>
-      <p>Vyberte stav ze seznamu.</p>
+      <p>
+        Select a status from the list.
+      </p>
     </item>
   </steps>
 
-  <p>Seznam předem nastavených stavů a jejich významů viz <link xref="status-icons"/>. Můžete také <link xref="set-custom-status">přidat vlastní stavy</link> a poskytnout tak svým kontaktům více informací o své dostupnosti.</p>
+  <p>See <link xref="status-icons"/> for a list of the built-in statuses
+  and what they mean.  You can also <link xref="set-custom-status">add
+  custom status messages</link> to provide more information about your
+  availability to your contacts.</p>
 
   <note>
-    <p>Pokud nějakou dobu nepoužíváte svůj počítač nebo pokud byl zapnut spořič obrazovky, váš stav bude automaticky nastaven na „nepřítomen“.</p>
+    <p>If you do not use your computer for a while, or if the screensaver is on,
+    the status will be automatically set to Away.</p>
   </note>
 
 </page>

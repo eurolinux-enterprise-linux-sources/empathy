@@ -24,16 +24,13 @@
  */
 
 #include "config.h"
+
+#include <libempathy/empathy-utils.h>
+
 #include "empathy-individual-store-channel.h"
 
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-
-#include "empathy-utils.h"
-#include "empathy-ui-utils.h"
-#include "empathy-images.h"
-
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 struct _EmpathyIndividualStoreChannelPriv
 {
@@ -70,7 +67,7 @@ add_members (EmpathyIndividualStoreChannel *self,
       if (g_hash_table_lookup (self->priv->individuals, contact) != NULL)
         continue;
 
-      individual = empathy_ensure_individual_from_tp_contact (contact);
+      individual = empathy_create_individual_from_tp_contact (contact);
       if (individual == NULL)
         return;
 
@@ -128,70 +125,6 @@ group_contacts_changed_cb (TpChannel *channel,
 }
 
 static void
-individual_store_channel_contact_chat_state_changed (TpTextChannel *channel,
-    TpContact *tp_contact,
-    TpChannelChatState state,
-    EmpathyIndividualStoreChannel *self)
-{
-  FolksIndividual *individual;
-  EmpathyContact *contact = NULL;
-  GList *iters, *l;
-  GdkPixbuf *pixbuf;
-
-  contact = empathy_contact_dup_from_tp_contact (tp_contact);
-  if (empathy_contact_is_user (contact))
-    {
-      /* We don't care about our own chat composing states */
-      goto finally;
-    }
-
-  DEBUG ("Contact %s entered chat state %d",
-      tp_contact_get_identifier (tp_contact), state);
-
-  individual = g_hash_table_lookup (self->priv->individuals, tp_contact);
-  if (individual == NULL)
-    {
-      g_warning ("individual is NULL");
-      goto finally;
-    }
-
-  iters = empathy_individual_store_find_contact (
-      EMPATHY_INDIVIDUAL_STORE (self), individual);
-
-  if (state == TP_CHANNEL_CHAT_STATE_COMPOSING)
-    {
-      gchar *icon_filename =
-          tpaw_filename_from_icon_name (EMPATHY_IMAGE_TYPING,
-            GTK_ICON_SIZE_MENU);
-
-      pixbuf = gdk_pixbuf_new_from_file (icon_filename, NULL);
-      g_free (icon_filename);
-    }
-  else
-    {
-       pixbuf = empathy_individual_store_get_individual_status_icon (
-           EMPATHY_INDIVIDUAL_STORE (self), individual);
-
-       /* Take a ref as the 'if' blocks creates a new pixbuf */
-       g_object_ref (pixbuf);
-    }
-
-  for (l = iters; l != NULL; l = l->next)
-    {
-      gtk_tree_store_set (GTK_TREE_STORE (self), l->data,
-          EMPATHY_INDIVIDUAL_STORE_COL_ICON_STATUS, pixbuf,
-          -1);
-    }
-  /* Store takes it's own ref */
-  g_object_unref (pixbuf);
-
-  empathy_individual_store_free_iters (iters);
-
-  finally:
-    g_object_unref (contact);
-}
-
-static void
 individual_store_channel_set_individual_channel (
     EmpathyIndividualStoreChannel *self,
     TpChannel *channel)
@@ -211,10 +144,6 @@ individual_store_channel_set_individual_channel (
 
   tp_g_signal_connect_object (channel, "group-contacts-changed",
       G_CALLBACK (group_contacts_changed_cb), self, 0);
-
-  tp_g_signal_connect_object (channel, "contact-chat-state-changed",
-      G_CALLBACK (individual_store_channel_contact_chat_state_changed),
-      self, 0);
 }
 
 static void

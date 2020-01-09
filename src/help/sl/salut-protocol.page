@@ -28,6 +28,11 @@
 
   <title>Kaj je "Ljudje v bližini"?</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>Storitev ljudje v bližini je storitev sporočanja brez strežnika: za uporabo se vam ni potrebno povezati in overiti s centralnim strežnikom.</p>
   <p>Ta vrsta sistema sporočanja brez strežnika je omejena na krajevno omrežje in dejavna medmrežna povezava ni potrebna.</p>
   <p>Ljudje, ki uporabljajo to storitev znotraj istega krajevnega omrežja, bodo samodejno odkriti in mogoče jim bo poslati sporočila in datoteke kot z ostalimi storitvami. </p>

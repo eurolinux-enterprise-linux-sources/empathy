@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="de">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="de">
 
   <info>
     <desc>Erläuterung der verschiedenen Status und deren Symbole.</desc>
@@ -12,11 +12,11 @@
     </revision>
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Creative Commons Share Alike 3.0</p>
@@ -44,7 +44,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2015</mal:years>
+      <mal:years>2010-2013</mal:years>
     </mal:credit>
   </info>
 
@@ -52,23 +52,23 @@
 
   <terms>
     <item>
-      <title><media type="image" mime="image/png" src="figures/available.png" its:translate="no"><span its:translate="yes">Symbol »Verfügbar«</span></media> <gui>Verfügbar</gui></title>
+      <title><media type="image" mime="image/png" src="figures/available.png">Verfügbar-Symbol</media> <gui>Verfügbar</gui></title>
       <p>Verwenden Sie den Status <em>Verfügbar</em>, wenn Sie sich an Ihrem Rechner befinden und somit Unterhaltungen mit Ihren Kontakten führen können. Sie können für diesen Status eine benutzerdefinierte Nachricht festlegen.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/busy.png" its:translate="no"><span its:translate="yes">Symbol »Beschäftigt«</span></media> <gui>Beschäftigt</gui></title>
+      <title><media type="image" mime="image/png" src="figures/busy.png">Beschäftigt-Symbol</media> <gui>Beschäftigt</gui></title>
       <p>Verwenden Sie den Status <em>Beschäftigt</em>, wenn Sie Ihre Kontakte darüber informieren wollen, dass Sie gerade keine Unterhaltung wünschen. Diese können Sie trotzdem noch kontaktieren, beispielsweise in dringenden Fällen. Per Vorgabe zeigt <app>Empathy</app> keine einblendenden Benachrichtigungen an oder spielt Klänge ab, wenn Sie beschäftigt sind. Sie können für diesen Status eine benutzerdefinierte Nachricht festlegen.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/away.png" its:translate="no"><span its:translate="yes">Symbol »Abwesend«</span></media> <gui>Abwesend</gui></title>
+      <title><media type="image" mime="image/png" src="figures/away.png">Abwesend-Symbol</media> <gui>Abwesend</gui></title>
       <p>Verwenden Sie den Status <em>Beschäftigt</em>, wenn Sie sich von Ihrem Rechner entfernen. <app>Empathy</app> setzt Ihren Status automatisch auf abwesend, wenn Sie Ihren Rechner für einen gewissen Zeitraum nicht bedienen oder wenn der Bildschirmschoner eingeschaltet ist. <app>Empathy</app> zeigt keine einblendenden Benachrichtigungen an oder spielt Klänge ab, wenn Sie abwesend sind. Sie können für diesen Status eine benutzerdefinierte Nachricht festlegen.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">Symbol »Abgemeldet«</span></media> <gui>Unsichtbar</gui></title>
+      <title><media type="image" mime="image/png" src="figures/offline.png">Abgemeldet-Symbol</media> <gui>Unsichtbar</gui></title>
       <p>Wenn Sie Ihren Status auf <em>Unsichtbar</em> setzen, erscheinen Sie für Ihre Kontakte als abgemeldet. Sie sind noch immer mit Ihren Kontakten verbunden. Sie sehen deren Status und können Unterhaltungen mit Ihnen beginnen.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">Symbol »Abgemeldet«</span></media> <gui>Abgemeldet</gui></title>
+      <title><media type="image" mime="image/png" src="figures/offline.png">Abgemeldet-Symbol</media> <gui>Abgemeldet</gui></title>
       <p>Wenn Sie Ihren Status auf <em>Abgemeldet</em> setzen, werden alle Verbindungen zu Ihren Kontakten getrennt.</p>
     </item>
   </terms>

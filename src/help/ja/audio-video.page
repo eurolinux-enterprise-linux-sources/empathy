@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>音声またはビデオの会話はどのようなときに可能かについての情報。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>クリエイティブ・コモンズ・ライセンス 継承 3.0</p>
     </license>    
@@ -25,8 +25,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>音声またはビデオの会話はどのようなときに可能かについての情報。</desc>
-
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Mako N</mal:name>
@@ -37,9 +35,39 @@
 
   <title>音声とビデオのサポート</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>音声およびビデオの会話ができるのは、この機能をサポートしたアプリケーションを使用している相手先のみです。相手先が音声またはビデオの会話をサポートしている場合、相手先の一覧で、相手先の名前の横に次のようなアイコンが表示されます。</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>アイコン</p>
+        </td>
+        <td>
+          <p>説明</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/audio-input-microphone.png"> 音声通話のアイコン </media></p>
+      </td>
+      <td>
+        <p>この相手先は音声会話が可能です。</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/camera-web.png"> ビデオ会話のアイコン </media></p>
+      </td>
+      <td>
+        <p>この相手先はビデオ会話が可能です。</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>音声会話を行うためには、OS がサポートしているサウンドカード、およびマイクロフォンが必要です。</p>
     <p>ビデオ会話を行うためには、OS がサポートしているウェブカメラ、およびマイクロフォンが必要です。</p>
@@ -55,6 +83,22 @@
     <p>アカウントの種類は、プラグインが提供します。次の表のすべてが有効でない、または表にない種類が有効である場合があります。この表でサポートされないとなっているアカウントの種類でも、プラグインを更新すると音声またはビデオの会話が可能となる場合があります。</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -67,6 +111,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>不可</p></td>
+        <td><p>不可</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook Chat</p></td>
         <td><p>不可</p></td>
         <td><p>不可</p></td>
       </tr>
@@ -97,6 +146,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>可</p></td>
+        <td><p>可</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>可</p></td>
         <td><p>可</p></td>
       </tr>

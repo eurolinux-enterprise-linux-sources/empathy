@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Πληροφορίες για τη δυνατότητα πραγματοποίησης φωνητικών κλήσεων και βιντεοκλήσεων.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>    
@@ -25,14 +25,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Πληροφορίες για τη δυνατότητα πραγματοποίησης φωνητικών κλήσεων και βιντεοκλήσεων.</desc>
-
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
@@ -61,8 +53,39 @@
 
   <title>Υποστήριξη ήχου και βίντεο</title>
 
-  <p>Μπορείτε να πραγματοποιείτε κλήσεις με ήχο και βίντεο μόνο αν οι επαφές σας χρησιμοποιούν εφαρμογές που υποστηρίζουν αυτές τις λειτουργίες.</p>
+  <p>Μπορείτε να πραγματοποιείτε κλήσεις με ήχο και βίντεο μόνο αν οι επαφές σας χρησιμοποιούν εφαρμογές που υποστηρίζουν αυτές τις λειτουργίες. Αν οι επαφές σας διαθέτουν υποστήριξη για φωνητικές κλήσεις ή βιντεοκλήσεις, θα εμφανίζονται τα ακόλουθα εικονίδια δίπλα στο όνομά τους στη λίστα επαφών:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Εικονίδιο</p>
+        </td>
+        <td>
+          <p>Περιγραφή</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/audio-input-microphone.png"> Εικονίδιο για φωνητική συνομιλία </media></p>
+      </td>
+      <td>
+        <p>Η επαφή μπορεί να πραγματοποιεί φωνητικές κλήσεις.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/camera-web.png"> Εικονίδιο για συνομιλία με βίντεο </media></p>
+      </td>
+      <td>
+        <p>Η επαφή μπορεί να πραγματοποιεί βιντεοκλήσεις.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Για να πραγματοποιείτε φωνητικές κλήσεις, θα πρέπει να διαθέτετε κάρτα ήχου που να υποστηρίζεται από το λειτουργικό σας σύστημα, καθώς και μικρόφωνο.</p>
     <p>Για να πραγματοποιείτε βιντεοκλήσεις, θα πρέπει να διαθέτετε κάμερα δικτύου που να υποστηρίζεται από το λειτουργικό σας σύστημα, καθώς και μικρόφωνο.</p>
@@ -78,6 +101,22 @@
     <p>Η υποστήριξη για τους διάφορους τύπους λογαριασμών παρέχεται μέσω προσθέτων. Το σύστημά σας μπορεί να μην υποστηρίζει όλους τους τύπους λογαριασμών που περιγράφονται σε αυτό το εγχειρίδιο, ή μπορεί να υποστηρίζει και άλλους τύπους λογαριασμών. Επίσης, μπορεί να διαθέτει ενημερωμένα πρόσθετα που να υποστηρίζουν κλήσεις βίντεο ή ήχου για τύπους λογαριασμών για τους οποίους αναφέρεται ότι δεν υποστηρίζονται.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -90,6 +129,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>Όχι</p></td>
+        <td><p>Όχι</p></td>
+      </tr>
+      <tr>
+        <td><p>Συνομιλία Facebook</p></td>
         <td><p>Όχι</p></td>
         <td><p>Όχι</p></td>
       </tr>
@@ -120,6 +164,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Ναι</p></td>
+        <td><p>Ναι</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Ναι</p></td>
         <td><p>Ναι</p></td>
       </tr>

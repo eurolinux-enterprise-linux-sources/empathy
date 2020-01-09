@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" id="overview" xml:lang="gl">
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="overview" xml:lang="gl">
 
   <info>
     <link type="guide" xref="index"/>
     <revision pkgversion="3.7" version="0.1" date="2012-11-30" status="draft"/>
-    <desc>Que mensaxaría instantánea é e como quer usala.</desc>
+    <desc>
+      What instant messaging is and how you can use it.
+    </desc>
     <credit type="author">
       <name>Aruna S</name>
-      <email its:translate="no">aruna.evam@gmail.com</email>
+      <email>aruna.evam@gmail.com</email>
     </credit>
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
+      <email>kittykat3756@gmail.com</email>
     </credit>
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
@@ -24,23 +26,39 @@
     </mal:credit>
   </info>
 
-  <title>Vista xeral da mensaxaría instantánea</title>
+  <title>Overview of instant messaging</title>
 
-  <p>A mensaxaría instantánea, algunhas veces abreviada como IM, é un medio baseado en texto para comunicarse instantaneamente por internet e nunha rede local. Mentres algúns aplicativos IM funcionan só cun tipo de conta, outros, incluíndo <link xref="introduction">Empathy</link>, fornecen capacidades de IM empregando <link xref="add-account">contas</link> de distintos servizos. Algúns deles incluso permiten chamadas de son e vídeo.</p>
+  <p>
+    Instant messaging, sometimes abbreviated to IM, is a text-based means to
+    communicate instantly over the internet and the local network. While some
+    IM applications work with only one type of account, others, including
+    <link xref="introduction">Empathy</link>, provide IM facilities by using
+    <link xref="add-account">accounts</link> from different service providers.
+    Some of these even support audio and video calling.
+  </p>
 
   <table frame="all" shade="cols">
      <tr>
-       <td><p><media type="image" src="figures/video_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
-       <td><p><media type="image" src="figures/conf_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
-       <td><p><media type="image" src="figures/croom_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
+       <td><p><media type="image" src="figures/video_overview.png" mime="image/png" style="right" width="150" height="150"/></p></td>
+       <td><p><media type="image" src="figures/conf_overview.png" mime="image/png" style="right" width="150" height="150"/></p></td>
+       <td><p><media type="image" src="figures/croom_overview.png" mime="image/png" style="right" width="150" height="150"/></p></td>
      </tr>
      <tr>
-       <td><p>Vídeo conferencia</p></td>
-       <td><p>Conversas de grupo</p></td>
-       <td><p>Salas de conversa</p></td>
+       <td><p>Video Conference</p></td>
+       <td><p>Group chats</p></td>
+       <td><p>Chat rooms</p></td>
       </tr>
   </table>
 
-  <p>Algúns aplicativos de mensaxaría instantánea poden usarse para conectarse a salas de conversa, lugares en liña onde persoas como vostede poden reunirse para conversar. Un dos medios máis populares para conectarse a varias salas de conversa é o Internet Relay Chat, tamén coñeido como <link xref="irc-manage">IRC</link>. o IRC fornece de salas de conversa <link xref="irc-join-room">públicas</link>, onde calquera pode conversar con unha conta de IRC, e salas de conversa privadas, as cales están <link xref="irc-join-pwd">protexidas por contrasinal</link> e están abertas só para algúns poucos.</p>
+  <p>
+    Some instant messaging applications can be used to connect to chat rooms,
+    online places where like-minded people meet to talk. One popular means to
+    connect to several chat rooms is the Internet Relay Chat, also known as
+    <link xref="irc-manage">IRC</link>. IRC provides
+    <link xref="irc-join-room">public</link> chat rooms, which are open to
+    anyone who creates an account on the IRC Server, and private chat rooms,
+    which are <link xref="irc-join-pwd">password protected</link>
+    and open only to a select few.
+  </p>
 
 </page>

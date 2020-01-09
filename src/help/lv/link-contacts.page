@@ -13,69 +13,54 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
       <p>Creative Commons Share Alike 3.0 licence.</p>
     </license>
   </info>
 
-  <title>Saistīt un atsaistīt kontaktus</title>
-  <p>Ja vienam vai vairākiem kontaktiem ir vairāki konti ar dažādiem tērzēšanas servisiem, tu vari apvienot šos kontaktus vienā kontaktā.</p>
+  <title>Apvienot un sadalīt kontaktus</title>
+  <p>Ja vienam vai vairākiem kontaktiem ir vairāki konti ar dažādiem tērzēšanas servisiem, tu vari apvienot šos kontaktus vienā.</p>
   <p>Iegūtais kontakts tiek saukts par <em>meta-kontaktu</em>: kontakts, savienots no vairākiem atsevišķiem kontaktiem.</p>
-  <p>Piemēram, ja jums ir kontakts, kuru sauc Ilze Priede, kura izmanto trīs dažādus ziņojumu servisus, piemēram:</p>
+  <p>Ja tev ir Ilzes Priedes kontakts, kurš izmanto trīs dažādus ziņojumu servisus, piemēram:</p>
   <list>
+    <item>
+      <p>ilze@facebook</p>
+    </item>
     <item>
       <p>ilze.priede@gmail</p>
     </item>
     <item>
       <p>ilze_priede@hotmail</p>
     </item>
-    <item>
-      <p>ilzep@yahoo</p>
-    </item>
   </list>
   <p>Tu vari apvienot šos kontaktus vienā vienīgā Ilzes Priedes kontaktā.</p>
+  
   <section id="linking">
-  <title>Saistīt kontaktus</title>
-  <p>Tālāk ir norādīts veids, kā var saistīt kontaktus:</p>
+    <title>Kontaktu apvienošana</title>
     <steps>
       <item>
-        <p>Spiediet ķekša pogu, lai izvēlētos ierakstus, ko vēlaties saistīt. Tas aktivēs <em>izvēlēšanās režīmu</em> un jūs pie katra ieraksta redzēsiet atzīmes rūtiņu.</p>
+        <p>No <gui>Kontaktu saraksta</gui> loga, spiež labo peles pogu uz kontakta ar dažādiem kontiem un izvēlies <gui style="menuitem">Saistīt kontaktus...</gui>.</p>
       </item>
       <item>
-        <p>Ieķeksējiet atzīmes rūtiņas, kas atbilst <app>Kontaktu</app> ierakstiem, kas atbilst tam pašam kontaktam.</p>
+        <p>No kreisā paneļa, <gui>Saistīt kontaktus</gui> logā, izvēlies kontaktus, kurus vēlies apvienot.</p>
       </item>
       <item>
-        <p>Spiediet <gui style="button">Saistīt</gui>.</p>
+        <p>Spied uz <gui style="button">Saistīt</gui>.</p>
       </item>
     </steps>
-    <p>Atkārtojiet soļus 3 un 4, lai saistītu citus kontaktus.</p>
+    <note>
+      <p>Kad ir izveidots meta-kontakts, noklusētais kontakts, kurš tiks izmantots, lai sazinātos, kad uz tā veic dubultklikšķi, būs kontakts ar augstāko klātbūtnes laiku.</p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Atsaistīt kontaktus</title>
-  <p>Lai atsaistītu vai saistītu kontaktu:</p>
+  <section id="unlinkg">
+    <title>Kontaktu atdalīšana</title>
     <steps>
       <item>
-        <p>No kontaktu saraksta izvēlieties kontaktu.</p>
+        <p><gui>Kontaktu saraksts</gui> logā spiež labo peles pogu uz kontakta, kuru vēlies atdalīt un izvēlies <gui style="menuitem">Saistīt kontaktus...</gui>.</p>
       </item>
       <item>
-        <p>Spiediet <gui style="button">Rediģēt</gui> lietotnes<app>Kontakti</app> augšējā labajā stūrī.</p>
-      </item>
-      <item>
-	<p>Spiediet <gui style="button">Piesaistīt kontaktus</gui>.</p>
-      </item>
-      <item>
-	<p>Spiediet <gui style="button">Izņemt</gui>, lai atsaistītu ierakstu no saistīta kontakta.</p>
-      </item>
-      <item>
-        <p>Spiediet <gui style="button">Aizvērt</gui>, ja vairs nevēlaties atsaistīt kontaktus.</p>
-      </item>
-      <item>
-        <p>Visbeidzot, spiediet <gui style="button">Pabeigt</gui>, lai beigtu rediģēšanu.</p>
+        <p>Spied uz <gui style="button">Atsaistīt</gui>.</p>
       </item>
     </steps>
   </section>

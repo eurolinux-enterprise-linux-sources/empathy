@@ -22,19 +22,21 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
-#include <gnutls/gnutls.h>
-
-#include "empathy-auth-factory.h"
-#include "empathy-bad-password-dialog.h"
-#include "empathy-password-dialog.h"
-#include "empathy-sanity-cleaning.h"
-#include "empathy-server-tls-handler.h"
-#include "empathy-tls-dialog.h"
-#include "empathy-tls-verifier.h"
-#include "empathy-ui-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_TLS
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-auth-factory.h>
+#include <libempathy/empathy-server-tls-handler.h>
+#include <libempathy/empathy-tls-verifier.h>
+
+#include <libempathy-gtk/empathy-bad-password-dialog.h>
+#include <libempathy-gtk/empathy-password-dialog.h>
+#include <libempathy-gtk/empathy-tls-dialog.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "empathy-sanity-cleaning.h"
+
+#include <gnutls/gnutls.h>
 
 #define TIMEOUT 60
 
@@ -302,7 +304,7 @@ main (int argc,
 
   /* Make empathy and empathy-auth-client appear as the same app in
    * gnome-shell */
-  g_set_prgname ("empathy");
+  gdk_set_program_class ("Empathy");
   gtk_window_set_default_icon_name ("empathy");
   textdomain (GETTEXT_PACKAGE);
 

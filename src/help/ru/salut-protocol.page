@@ -30,6 +30,11 @@
 
   <title>What is People Nearby?</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>
     The People Nearby service is a serverless communication service:
     you do not need to connect and authenticate to a central server in

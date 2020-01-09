@@ -25,12 +25,14 @@
  */
 
 #include "config.h"
-#include "empathy-accounts-common.h"
 
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "empathy-accounts-common.h"
 #include "empathy-accounts-dialog.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_ACCOUNT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 gboolean
 empathy_accounts_has_non_salut_accounts (TpAccountManager *manager)

@@ -13,13 +13,13 @@ typedef struct _EmpathyRosterContactPriv EmpathyRosterContactPriv;
 struct _EmpathyRosterContactClass
 {
   /*<private>*/
-  GtkListBoxRowClass parent_class;
+  GtkAlignmentClass parent_class;
 };
 
 struct _EmpathyRosterContact
 {
   /*<private>*/
-  GtkListBoxRow parent;
+  GtkAlignment parent;
   EmpathyRosterContactPriv *priv;
 };
 

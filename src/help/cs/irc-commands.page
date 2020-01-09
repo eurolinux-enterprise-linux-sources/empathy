@@ -3,7 +3,7 @@
       
   <info>
     <link type="guide" xref="irc-manage#manage"/>
-    <desc>Které příkazy IRC jsou podporované.</desc>
+    <desc>The supported IRC commands.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-02-14" status="draft"/>
     <credit type="author">
       <name>Milo Casagrande</name>
@@ -12,35 +12,16 @@
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Podporované příkazy IRC</title>
-  <p>Pro zobrazení seznamu podporovaných příkazů IRC napište v místnosti <input>/help</input> a zmáčkněte <key>Enter</key>.</p>
+  <title>Supported IRC commands</title>
+  <p>
+    To see the list of the supported IRC commands, in a chat room type <input>/help</input>
+    and press <key>Enter</key>.
+  </p>
   <note>
-    <p>U každého příkazu, který je k dispozici, je uveden krátký popis jeho použití.</p>
+    <p>
+      All commands available have a small description on their usage.
+    </p>
   </note>
 </page>

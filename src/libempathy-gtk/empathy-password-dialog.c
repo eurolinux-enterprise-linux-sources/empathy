@@ -18,12 +18,13 @@
  */
 
 #include "config.h"
+
 #include "empathy-password-dialog.h"
 
 #include <glib/gi18n-lib.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_SASL
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 G_DEFINE_TYPE (EmpathyPasswordDialog, empathy_password_dialog,
     EMPATHY_TYPE_BASE_PASSWORD_DIALOG)
@@ -128,8 +129,6 @@ empathy_password_dialog_constructed (GObject *object)
   tp_g_signal_connect_object (self->priv->handler, "invalidated",
       G_CALLBACK (password_dialog_handler_invalidated_cb),
       object, 0);
-
-  gtk_window_set_title (GTK_WINDOW (self), _("Password Required"));
 
   text = g_strdup_printf (_("Enter your password for account\n<b>%s</b>"),
       tp_account_get_display_name (base->account));

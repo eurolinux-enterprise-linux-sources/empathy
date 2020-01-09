@@ -13,7 +13,10 @@ EXTRA_DIST = \
     generic-types.xml \
     misc.xml \
     Logger.xml \
+    Connection_Interface_Renaming.xml \
     Channel_Interface_Credentials_Storage.xml \
+    Channel_Type_Server_TLS_Connection.xml \
+    Chat_Manager.xml \
     $(NULL)
 
 noinst_LTLIBRARIES = libemp-extensions.la
@@ -57,7 +60,7 @@ XSLTPROCFLAGS = --nonet --novalid
 # Generated files which can be generated for all categories simultaneously
 
 _gen/all.xml: all.xml $(wildcard *.xml) $(tools_dir)/xincludator.py
-	@$(MKDIR_P) _gen
+	@$(mkdir_p) _gen
 	$(AM_V_GEN)$(PYTHON) $(tools_dir)/xincludator.py $< > $@
 
 extensions.html: _gen/all.xml $(tools_dir)/doc-generator.xsl
@@ -66,7 +69,7 @@ extensions.html: _gen/all.xml $(tools_dir)/doc-generator.xsl
 		$(tools_dir)/doc-generator.xsl \
 		$< > $@
 
-_gen/gt%pes.h _gen/gt%pes-body.h: _gen/all.xml \
+_gen/gtypes.h _gen/gtypes-body.h: _gen/all.xml \
 	$(top_srcdir)/tools/glib-gtypes-generator.py
 	$(AM_V_GEN)$(PYTHON) $(top_srcdir)/tools/glib-gtypes-generator.py \
 		$< _gen/gtypes Emp
@@ -82,7 +85,7 @@ _gen/enums.h: _gen/all.xml \
 		Emp \
 		$< _gen/enums
 
-_gen/int%rfaces-body.h _gen/int%rfaces.h: _gen/all.xml \
+_gen/interfaces-body.h _gen/interfaces.h: _gen/all.xml \
 	$(tools_dir)/glib-interfaces-gen.py
 	$(AM_V_GEN)$(PYTHON) $(tools_dir)/glib-interfaces-gen.py \
 		Emp _gen/interfaces-body.h _gen/interfaces.h $<
@@ -92,7 +95,7 @@ _gen/int%rfaces-body.h _gen/int%rfaces.h: _gen/all.xml \
 # although you can subdivide further if you want.
 
 _gen/misc.xml: misc.xml $(wildcard *.xml) $(tools_dir)/xincludator.py
-	@$(MKDIR_P) _gen
+	@$(mkdir_p) _gen
 	$(AM_V_GEN)$(PYTHON) $(tools_dir)/xincludator.py $< > $@
 
 _gen/cli-misc-body.h: _gen/cli-misc.h

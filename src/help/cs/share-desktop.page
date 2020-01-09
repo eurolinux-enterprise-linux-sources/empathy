@@ -3,7 +3,9 @@
 
   <info>
     <link type="guide" xref="index#advanced"/>
-    <desc>Ja svému kontaktu zobrazit svoji pracovní plochu.</desc>
+    <desc>
+      Show your desktop to your contacts.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-09-05" status="review"/>
@@ -25,67 +27,77 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Sdílení pracovní plochy</title>
+  <title>Share your desktop</title>
 
-  <p>Existuje možnost sdílet svoji pracovní plochu s některými svými kontakty. To můžete využít k zobrazení své pracovní plochy svému kontaktu například, když ho žádáte o pomoc s řešením problému se svým počítačem.</p>
+  <p>
+    It is possible to share your desktop with some of your contacts. You can
+    use this functionality to show your desktop to your contacts to, for
+    example, ask for help or help your contacts resolve a problem.
+  </p>
 
   <note style="tip">
-    <p>Abyste mohli pracovní plochu sdílet, potřebujete mít ve svém systému nainstalován server VNC, který tuto funkci poskytuje. Lze použít například <app>Vino</app>, což je VNC server z GNOME.</p>
+    <p>
+      To be able to share your desktop, you need to have a VNC server, which
+      has support for the feature, installed on your system. <app>Vino</app>,
+      the GNOME VNC server, has the required support.
+    </p>
   </note>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> udělejte něco z následujícího:</p>
+      <p>
+        From the <gui>Contact List</gui> window, do one of the following:
+      </p>
       <list>
         <item>
-          <p>Vyberte kontakt, se kterým chcete sdílet svoji pracovní plochu, a zvolte <guiseq><gui>Upravit</gui><gui>Kontakt</gui><gui>Sdílet moji plochu</gui></guiseq>.</p>
+          <p>
+            Select the contact you want to share your desktop with and choose
+            <guiseq><gui>Edit</gui><gui>Contact</gui>
+	    <gui>Share My Desktop</gui></guiseq>.
+          </p>
         </item>
         <item>
-          <p>Klikněte pravým tlačítkem na kontaktu, se kterým chcete sdílet pracovní plochu a vyberte <gui>Sdílet moji plochu</gui>.</p>
+          <p>
+            Right-click on the name of the contact you want to share your
+	    desktop with and select <gui>Share My Desktop</gui>.
+          </p>
         </item>
       </list>
     </item>
     <item>
-      <p>Vybranému kontaktu bude zaslána pozvánka k zobrazení vaší pracovní plochy. Aby se mu zobrazila, musí pozvánku odsouhlasit.</p>
+      <p>
+	An invitation to view your desktop will be sent to the contact you have
+	selected. To view your desktop, they will need to accept it.
+      </p>
     </item>
     <item>
-      <p>K odpojení kontaktu od vašeho počítače použijte příslušnou funkci v aplikaci pro sdílení pracovní plochy.</p>
+      <p>
+        You can disconnect the contact from your computer using your desktop
+	sharing application.
+      </p>
       <note>
-        <p>Další informace ohledně používání aplikace ke sdílení vzdálené plochy najdete v její nápovědě.</p>
+        <p>
+	  For more information about how to use the remote desktop sharing
+	  application, refer to its help.
+        </p>
       </note>
     </item>
   </steps>
 
-  <p>V průběhu sdílení své pracovní plochy s někým jiným se můžete podle situace setkat s pomalejší odezvou systému a sníženou rychlostí Internetu.</p>
+  <p>
+    When you share your desktop with someone else, it is possible to experience
+    system performance slowdown and low Internet speed.
+  </p>
 
   <note>
-    <p>Některé z vašich kontaktů nemusí být schopny tuto funkci použít. Je nutné, aby měli <app>Empathy</app> ve verzi aspoň 2.28 nebo novější a nainstalovanou kompatibilní aplikaci pro zobrazování vzdálené plochy.</p>
+    <p>
+      Some of your contacts may not be able to use this feature. It is
+      necessary for them to have version 2.28, or newer, of <app>Empathy</app>
+      and a compatible remote desktop viewer application installed in their
+      system.
+    </p>
   </note>
 
 </page>

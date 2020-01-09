@@ -17,11 +17,7 @@
 
   <title>Uvod</title>
 
-  <p>
-    <app>Empathy</app> is an instant messaging application for the GNOME Desktop.
-    It supports text messaging, voice &amp; video calls, file transfers, and all the
-    most used messaging systems such as Jabber and Google Talk.
-  </p>
+  <p><app>Empathy</app> je program hipnega sporočanja za namizje GNOME. Podpira besedilno sporočanje, zvočne in video klice, prenose datotek in najbolj uporabljene sisteme za sporočanje kot sta MSN in Google Talk.</p>
   <p><app>Empathy</app> vključuje zmožnosti, ki vam pomagajo sodelovati pri delu in zmožnosti, ki vam omogočajo vzdrževanje stikov s svojimi prijatelji.</p>
   <p>Z <app>Empathy</app> lahko vse pogovore združite v eno okno, ali imate več oken za različne vrste pogovorov; enostavno iščete skozi svoje predhodne pogovore in date svoje namizje v souporabo s samo dvema klikoma.</p>
 

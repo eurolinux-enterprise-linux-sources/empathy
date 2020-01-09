@@ -20,12 +20,12 @@
  */
 
 #include "config.h"
-#include "empathy-mic-menu.h"
 
+#include "empathy-mic-menu.h"
 #include "empathy-mic-monitor.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 struct _EmpathyMicMenuPrivate
 {

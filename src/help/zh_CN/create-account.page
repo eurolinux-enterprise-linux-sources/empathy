@@ -1,119 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="zh-CN">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="zh-CN">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>为某种支持的服务注册账户。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>知识共享-相同方式共享 (Creative Commons Share Alike) 3.0</p>
     </license>    
-
-    <desc>Create an account for one of the supported messaging services.</desc>
-
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
-  <title>Register a new account</title>
+  <title>注册一个新账户</title>
 
-  <p>Most account types require you to create an account with a service
-  provider before you can use that account with instant messaging applications.
-  You can use <app>Empathy</app> to register for a new account with some
-  account providers using the same steps as you would to
-  <link xref="add-account">add an account</link>.</p>
+  <p>大多账户类型需要您在使用 <app>Empathy</app> 这样的即时通讯软件连接之前先建立账户。但对于某些账户提供商，您可以使用 <app>Empathy</app> 来注册新账户，使用与 <link xref="add-account">添加账户</link> 相同的步骤。</p>
 
-  <p>Once you create a new account, your account provider should give you a
-  login or a username and a password, as well as any additional information you
-  need to connect using <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>IRC networks require that you specify a nick (nickname) when you connect
-    to the server. Some IRC networks use a service, such as NickServ, to allow
-    users to <link xref="irc-nick-password">protect their nick</link>. If you
-    did not register your nick or are unable to do so and another user is using
-    it, then you will need to choose a different one.</p>
-
-    <p>有些 IRC 服务器是被密码保护的。您需要知道密码才能连接到这些服务器。通常，这样的服务器是私有的。</p>
-
-    <note>
-      <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
-      discussion.</p>
-    </note>
+  <p>这一页是关于建立各种类型的账户的。您应当已经从您的账户提供商那里得到了登录 ID 和密码，以及其他使用 <app>Empathy</app> 连接这个账户需要的信息。</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>Facebook 是最常用的社交网络之一。它允许用户对自己进行个性化的描述并与朋友们交流。</p>
+    <p>要使用 Facebook 与您的朋友们交流，您需要在其网站上建立一个新账户：<link href="http://www.facebook.com">www.facebook.com</link>。</p>
   </section>
 
   <section id="jabber">
     <title>Jabber</title>
 
-    <p>Jabber 是一种开放的即时通讯系统。像 email 一样，Jabber 允许您选择帐号提供商，并与其他 Jabber 用户交流，无论他们使用哪里帐号提供商。</p>
+    <p>Jabber 是一种开放的即时通讯系统。像 email 一样，Jabber 允许您选择账户提供商，并与其他 Jabber 用户交流，无论他们使用哪里账户提供商。</p>
 
-    <p>You will need to create a new account with a Jabber provider. There are
-    many free providers; one popular provider is
-    <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>您需要在某个 Jabber 服务提供商那里建立账户。有许多 Jabber 服务提供商，<link href="http://register.jabber.org/">Jabber.org</link> 是很流行的一个。</p>
 
     <note>
-      <p>If you use Gmail or Google+ Hangouts, you already have a Jabber
-      account. Use your Gmail address and password in <app>Empathy</app> to
-      connect.</p>
+      <p>如果您使用 Google Mail 或者 Google Talk，那么您已经拥有 Jabber 账户了。Google Talk 就是一个 Jabber 服务。您只需要使用您的 Google Mail 地址和密码在 <app>Empathy</app> 中连接。</p>
     </note>
   </section>
 
   <section id="salut">
     <title>附近的人</title>
 
-    <p>This service works whenever you are connected to a local network, such
-    as a wireless hotspot, you do not need to create an account with service
-    providor, just set up your account through <app>Empathy</app>. It
-    automatically finds all other users on the network who are also using this
-    service.</p>
+    <p>要使用这个服务，您并不需要在某个服务提供商那里创建账户，只需要连接到一个本地网络，比如一个无线热点。它会自动发现网络中使用这个服务的其他用户。</p>
 
-    <p>For more information, see the <link xref="salut-protocol">salut
-    protocol</link>.</p>
+    <p>更多信息参见<link xref="salut-protocol"/>。</p>
   </section>
 
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>SIP 是一种允许用户通过互联网进行语音和视频会话的开放系统。您需要在某个 SIP 服务提供商处创建帐号。您可以和其他的 SIP 用户交流，无论他们的 SIP 服务提供商与您是否相同。</p>
+    <p>SIP 是一种允许用户通过互联网进行语音和视频会话的开放系统。您需要在某个 SIP 服务提供商处创建账户。您可以和其他的 SIP 用户交流，无论他们的 SIP 服务提供商与您是否相同。</p>
+
+    <note style="warning">
+      <p>由于技术上的差别，免费的 <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> 服务目前在 <app>Empathy</app> 中还不能使用。</p>
+    </note>
 
     <p>有些 SIP 服务提供商允许用您的计算机呼叫一般的电话。通常，您需要订阅某种付费服务才能使用这个功能。</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>您不需要注册账户就可以使用 IRC。尽管您在 <app>Empathy</app> 中添加 IRC 账户时指定了一个昵称，这个昵称只是您每次连接时才建立。如果有其他用户在使用这个昵称，您需要选择一个其他昵称。</p>
+
+    <p>有些 IRC 网络上有一种叫做 NickServ 的服务，允许用户保护他们的昵称。更多信息参见<link xref="irc-nick-password"/>。</p>
+
+    <p>有些 IRC 服务器是被密码保护的。您需要知道密码才能连接到这些服务器。通常，这样的服务器是私有的。</p>
   </section>
 
   <section id="proprietary-services">
     <title>专有的服务</title>
 
-    <p>There are many proprietary instant messaging services that have been
-    developed by different companies or organizations. <app>Empathy</app>
-    allows you to connect to an existing account for some of these services.
-    To create a new account with one of these services, you will need to
-    visit the website for the service.</p>
+    <p>许多不同的公司或组织开发了一些专营的即时消息服务。<app>Empathy</app> 允许您连接大多常见服务的既存账户。要为这样的服务创建账户，您需要访问其网站并同意其使用条款。</p>
 
     <list>
       <item>
-        <p><link href="http://dashboard.aim.com/aim">AIM</link></p>
+        <p>
+          <link href="http://dashboard.aim.com/aim">AIM</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://www.icq.com/register/">ICQ</link></p>
+        <p>
+          <link href="https://www.icq.com/register/">ICQ</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>
+        <p>
+          <link href="https://accountservices.passport.net">MSN</link>
+        </p>
+      </item>
+      <item>
+        <p>
+          <link href="https://login.yahoo.com/config/login">Yahoo!</link>
+        </p>
       </item>
     </list>
   </section>

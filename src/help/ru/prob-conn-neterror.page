@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" id="prob-conn-neterror" xml:lang="ru">
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="prob-conn-neterror" xml:lang="ru">
 
   <info>
     <link type="guide" xref="prob-conn"/>
@@ -12,11 +12,11 @@
     <revision pkgversion="3.2" version="0.4" date="2011-12-18" status="review"/>
     <credit type="author">
       <name>Phil Bull</name>
-      <email its:translate="no">philbull@gmail.com</email>
+      <email>philbull@gmail.com</email>
     </credit>
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
     <license>
       <p>Creative Commons Share Alike 3.0</p>
@@ -31,6 +31,12 @@
   </info>
 
   <title>I get a message that says “Network error”</title>
+
+  <comment>
+    <cite date="2009-08-27">shaunm</cite>
+    <p>Empathy no longer allows you to create an IRC account without a valid
+    nick.  I've removed the guide link.  Remove the text.</p>
+  </comment>
 
   <p>
     This kind of error happens when <app>Empathy</app> cannot communicate
@@ -48,8 +54,10 @@
       </p>
     </item>
     <item>
-      <p>Click the <media type="image" mime="image/png" src="figures/gtk-edit.png" its:translate="no"><span its:translate="yes">edit</span></media>
-      icon in the error message.</p>
+      <p>
+        Click the <media type="image" mime="image/png" src="figures/gtk-edit.png">edit</media>
+        icon in the error message.
+      </p>
     </item>
     <item>
       <p>

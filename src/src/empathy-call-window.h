@@ -21,10 +21,11 @@
 #ifndef __EMPATHY_CALL_WINDOW_H__
 #define __EMPATHY_CALL_WINDOW_H__
 
+#include <glib-object.h>
 #include <gtk/gtk.h>
 
-#include "empathy-audio-src.h"
 #include "empathy-call-handler.h"
+#include "empathy-audio-src.h"
 #include "empathy-video-src.h"
 
 G_BEGIN_DECLS
@@ -62,10 +63,8 @@ GType empathy_call_window_get_type (void);
     EmpathyCallWindowClass))
 
 EmpathyCallWindow *empathy_call_window_new (EmpathyCallHandler *handler);
-void empathy_call_window_new_handler (EmpathyCallWindow *window,
-  EmpathyCallHandler *handler,
-  gboolean present,
-  guint32 x11_time);
+void empathy_call_window_present (EmpathyCallWindow *window,
+  EmpathyCallHandler *handler);
 void empathy_call_window_start_ringing (EmpathyCallWindow *self,
   TpCallChannel *channel,
   TpChannelDispatchOperation *dispatch_operation,

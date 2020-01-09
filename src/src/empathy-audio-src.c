@@ -19,18 +19,21 @@
  */
 
 #include "config.h"
-#include "empathy-audio-src.h"
 
-#include <tp-account-widgets/tpaw-utils.h>
-
+#ifdef HAVE_GST1
 #include <gst/audio/streamvolume.h>
+#else
+#include <gst/interfaces/streamvolume.h>
+#endif
 
+#include <libempathy/empathy-utils.h>
 #include "empathy-audio-utils.h"
+
+#include "empathy-audio-src.h"
 #include "empathy-mic-monitor.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 G_DEFINE_TYPE(EmpathyGstAudioSrc, empathy_audio_src, GST_TYPE_BIN)
 
@@ -310,6 +313,7 @@ empathy_audio_src_init (EmpathyGstAudioSrc *obj)
   priv->volume_element = gst_element_factory_make ("volume", NULL);
   gst_bin_add (GST_BIN (obj), priv->volume_element);
 
+#ifndef HAVE_GST1
   {
     GstElement *capsfilter;
     GstCaps *caps;
@@ -319,7 +323,7 @@ empathy_audio_src_init (EmpathyGstAudioSrc *obj)
      * transferred and thus improving performance. When moving to GStreamer
      * 0.11/1.0, this should change so that we actually request what the encoder
      * wants downstream. */
-    caps = gst_caps_new_simple ("audio/x-raw",
+    caps = gst_caps_new_simple ("audio/x-raw-int",
         "channels", G_TYPE_INT, 1,
         "width", G_TYPE_INT, 16,
         "depth", G_TYPE_INT, 16,
@@ -331,6 +335,9 @@ empathy_audio_src_init (EmpathyGstAudioSrc *obj)
     gst_element_link (priv->src, capsfilter);
     gst_element_link (capsfilter, priv->volume_element);
   }
+#else
+  gst_element_link (priv->src, priv->volume_element);
+#endif
 
   src = gst_element_get_static_pad (priv->volume_element, "src");
 
@@ -617,7 +624,7 @@ empathy_audio_src_change_microphone_finish (EmpathyGstAudioSrc *src,
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_void (src,
+  empathy_implement_finish_void (src,
       empathy_audio_src_change_microphone_async);
 }
 

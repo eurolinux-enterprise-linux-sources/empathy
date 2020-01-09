@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="audio-call" xml:lang="ja">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="audio-call" xml:lang="ja">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -13,17 +13,10 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="2.32" version="0.4" date="2010-09-09" status="review"/>   
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>クリエイティブ・コモンズ・ライセンス 継承 3.0</p>
     </license>
@@ -37,28 +30,16 @@
 
   <title>音声会話の開始</title>
 
-  <p>You can call your contacts and have an audio conversation with them. This
-  features only works with certain types of accounts and it requires the other
-  person to have an application that supports audio calls.</p>
-
+  <p>相手先と音声会話ができます。この機能は、アカウントの種類が対応しており、相手先が音声通話をサポートしたアプリケーションを使用している場合にのみ働きます。</p>
   <steps>
     <item>
-      <p>
-        Right-click on the contact that you want to call and select
-        <gui style="menuitem">Audio Call</gui>.
-      </p>
+      <p><gui>相手先の一覧</gui>ウィンドウから、通話したい相手先の名前の横にある<media type="image" mime="image/png" src="figures/camera-web.png">video call</media> アイコンをクリックし、<gui style="menuitem">音声通話</gui>を選びます。</p>
     </item>
     <item>
-      <p>
-        A new window will open. When the connection is established, you will
-        see the total conversation time at the bottom of the window.
-      </p>
+      <p>新しいウィンドウが開きます。接続が確立すると、ウィンドウの最下部に<gui>オンライン</gui>と表示され、その脇に会話時間も表示されます。</p>
     </item>
     <item>
-      <p>
-        To end the conversation, click the <gui style="button">hand up</gui>
-        button.
-      </p>
+      <p>会話を終了するには、<gui style="button">接続を切る</gui>をクリックします。</p>
     </item>
   </steps>
   

@@ -20,24 +20,22 @@
  */
 
 #include "config.h"
-#include "empathy-theme-adium.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-images.h>
-#include <tp-account-widgets/tpaw-time.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-gsettings.h"
-#include "empathy-images.h"
-#include "empathy-plist.h"
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-time.h>
+#include <libempathy/empathy-utils.h>
+
+#include "empathy-theme-adium.h"
 #include "empathy-smiley-manager.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-plist.h"
+#include "empathy-images.h"
 #include "empathy-webkit-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CHAT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define BORING_DPI_DEFAULT 96
 
@@ -251,7 +249,7 @@ theme_adium_parse_body (EmpathyThemeAdium *self,
   const gchar *text,
   const gchar *token)
 {
-  TpawStringParser *parsers;
+  EmpathyStringParser *parsers;
   GString *string;
 
   /* Check if we have to parse smileys */
@@ -271,7 +269,7 @@ theme_adium_parse_body (EmpathyThemeAdium *self,
       "<span id=\"message-token-%s\">",
       token);
 
-  tpaw_string_parser_substr (text, -1, parsers, string);
+  empathy_string_parser_substr (text, -1, parsers, string);
 
   if (!tp_str_empty (token))
     g_string_append (string, "</span>");
@@ -650,20 +648,20 @@ theme_adium_add_html (EmpathyThemeAdium *self,
 
           strftime_format = nsdate_to_strftime (self->priv->data, format);
           if (is_backlog)
-            dup_replace = tpaw_time_to_string_local (timestamp,
+            dup_replace = empathy_time_to_string_local (timestamp,
               strftime_format ? strftime_format :
-              TPAW_TIME_DATE_FORMAT_DISPLAY_SHORT);
+              EMPATHY_TIME_DATE_FORMAT_DISPLAY_SHORT);
           else
-            dup_replace = tpaw_time_to_string_local (timestamp,
+            dup_replace = empathy_time_to_string_local (timestamp,
               strftime_format ? strftime_format :
-              TPAW_TIME_FORMAT_DISPLAY_SHORT);
+              EMPATHY_TIME_FORMAT_DISPLAY_SHORT);
 
           replace = dup_replace;
         }
       else if (theme_adium_match (&cur, "%shortTime%"))
         {
-          dup_replace = tpaw_time_to_string_local (timestamp,
-            TPAW_TIME_FORMAT_DISPLAY_SHORT);
+          dup_replace = empathy_time_to_string_local (timestamp,
+            EMPATHY_TIME_FORMAT_DISPLAY_SHORT);
           replace = dup_replace;
         }
       else if (theme_adium_match (&cur, "%service%"))
@@ -732,13 +730,9 @@ theme_adium_add_html (EmpathyThemeAdium *self,
   bytes = g_resources_lookup_data ("/org/gnome/Empathy/Chat/empathy-chat.js",
       G_RESOURCE_LOOKUP_FLAGS_NONE,
       NULL);
-
-  if (bytes != NULL)
-    {
-      js = (const gchar *) g_bytes_get_data (bytes, NULL);
-      g_string_prepend (string, js);
-      g_bytes_unref (bytes);
-    }
+  js = (const gchar *) g_bytes_get_data (bytes, NULL);
+  g_string_prepend (string, js);
+  g_bytes_unref (bytes);
 
   script = g_string_free (string, FALSE);
   webkit_web_view_execute_script (WEBKIT_WEB_VIEW (self), script);
@@ -752,7 +746,7 @@ theme_adium_append_event_escaped (EmpathyThemeAdium *self,
 {
   theme_adium_add_html (self, "appendMessage",
       self->priv->data->status_html, escaped, NULL, NULL, NULL,
-      NULL, "event", tpaw_time_get_current (), FALSE, FALSE, direction);
+      NULL, "event", empathy_time_get_current (), FALSE, FALSE, direction);
 
   /* There is no last contact */
   if (self->priv->last_contact)
@@ -772,7 +766,7 @@ theme_adium_remove_focus_marks (EmpathyThemeAdium *self,
   for (i = 0; i < webkit_dom_node_list_get_length (nodes); i++)
     {
       WebKitDOMNode *node = webkit_dom_node_list_item (nodes, i);
-      WebKitDOMElement *element = WEBKIT_DOM_ELEMENT (node);
+      WebKitDOMHTMLElement *element = WEBKIT_DOM_HTML_ELEMENT (node);
       gchar *class_name;
       gchar **classes, **iter;
       GString *new_class_name;
@@ -781,7 +775,7 @@ theme_adium_remove_focus_marks (EmpathyThemeAdium *self,
       if (element == NULL)
         continue;
 
-      class_name = webkit_dom_element_get_class_name (element);
+      class_name = webkit_dom_html_element_get_class_name (element);
       classes = g_strsplit (class_name, " ", -1);
       new_class_name = g_string_sized_new (strlen (class_name));
 
@@ -798,7 +792,7 @@ theme_adium_remove_focus_marks (EmpathyThemeAdium *self,
             }
         }
 
-      webkit_dom_element_set_class_name (element, new_class_name->str);
+      webkit_dom_html_element_set_class_name (element, new_class_name->str);
 
       g_free (class_name);
       g_strfreev (classes);
@@ -908,7 +902,7 @@ theme_adium_add_message (EmpathyThemeAdium *self,
   /* Get information */
   sender = empathy_message_get_sender (msg);
   account = empathy_contact_get_account (sender);
-  service_name = tpaw_protocol_name_to_display_name
+  service_name = empathy_protocol_name_to_display_name
     (tp_account_get_protocol_name (account));
   if (service_name == NULL)
     service_name = tp_account_get_protocol_name (account);
@@ -959,7 +953,7 @@ theme_adium_add_message (EmpathyThemeAdium *self,
         {
           if (!self->priv->data->default_avatar_filename)
             self->priv->data->default_avatar_filename =
-              tpaw_filename_from_icon_name (TPAW_IMAGE_AVATAR_DEFAULT,
+              empathy_filename_from_icon_name (EMPATHY_IMAGE_AVATAR_DEFAULT,
                        GTK_ICON_SIZE_DIALOG);
 
           avatar_filename = self->priv->data->default_avatar_filename;
@@ -1212,7 +1206,7 @@ empathy_theme_adium_edit_message (EmpathyThemeAdium *self,
     }
 
   /* set a tooltip */
-  timestamp = tpaw_time_to_string_local (
+  timestamp = empathy_time_to_string_local (
     empathy_message_get_timestamp (message),
     "%H:%M:%S");
   tooltip = g_strdup_printf (_("Message edited at %s"), timestamp);
@@ -1249,7 +1243,7 @@ empathy_theme_adium_edit_message (EmpathyThemeAdium *self,
         }
 
       g_free (style);
-      g_object_unref (icon_info);
+      gtk_icon_info_free (icon_info);
     }
 
   goto finally;

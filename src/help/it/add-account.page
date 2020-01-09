@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="it">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="it">
 
   <info>
     <link type="guide" xref="index#accounts"/>
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -42,8 +41,8 @@
 
   <steps>
     <item>
-      <p>Click <guiseq><gui>Empathy</gui><gui>Accounts</gui></guiseq>, or press
-      <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
       <p>
@@ -51,8 +50,10 @@
       </p>
     </item>
     <item>
-      <p>From the <gui>What kind of chat account do you have?</gui> drop-down
-      list, select the type of account you wish to add.</p>
+      <p>Dall'elenco a discesa <gui>Protocollo</gui>, scegliere il tipo di account da aggiungere.</p>
+    </item>
+    <item>
+      <p>Se non si dispone già di un account registrato, selezionare <gui>Creare un nuovo account sul server</gui>. Questa funzionalità non è disponibile con tutte le tipologie di account e potrebbe non funzionare con alcuni fornitori di servizi di messaggistica. Per maggiori informazioni, consultare <link xref="create-account"/>.</p>
     </item>
     <item>
       <p>Enter the required information.  For most accounts, you will only need
@@ -60,14 +61,11 @@
       See <link xref="accounts-window#details"/>for more information.</p>
     </item>
     <item>
-      <p>Fare clic su <gui style="button">Aggiungi</gui>.</p>
+      <p>Fare clic su <gui style="button">Applica</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>To change the name that identifies the account in the <gui>Messaging and
-    VoIP Accounts</gui> window, select the account from the list on the left
-    and either click on the name or press the space bar. Edit the account name
-    and press <key>Enter</key> when you’re finished.</p>
+    <p>Per modificare il nome che identifica un account nelle finestra <gui>Account</gui>, selezionare l'account dall'elenco sulla sinistra e fare clic sul nome oppure premere la barra spaziatrice. Modificare il nome dell'account e premere <key>Invio</key> quando finito.</p>
   </note>
 </page>

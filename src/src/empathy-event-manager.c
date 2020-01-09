@@ -20,27 +20,26 @@
  */
 
 #include "config.h"
-#include "empathy-event-manager.h"
 
 #include <glib/gi18n.h>
-#include <tp-account-widgets/tpaw-images.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
-#include "empathy-call-utils.h"
-#include "empathy-connection-aggregator.h"
-#include "empathy-gsettings.h"
-#include "empathy-images.h"
-#include "empathy-presence-manager.h"
-#include "empathy-sasl-mechanisms.h"
-#include "empathy-sound-manager.h"
-#include "empathy-subscription-dialog.h"
-#include "empathy-tp-chat.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-presence-manager.h>
+#include <libempathy/empathy-connection-aggregator.h>
+#include <libempathy/empathy-tp-chat.h>
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-sasl-mechanisms.h>
+
+#include <libempathy-gtk/empathy-images.h>
+#include <libempathy-gtk/empathy-sound-manager.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-call-utils.h>
+#include <libempathy-gtk/empathy-subscription-dialog.h>
+
+#include "empathy-event-manager.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_DISPATCHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyEventManager)
 
@@ -260,6 +259,21 @@ event_manager_add (EmpathyEventManager *manager,
 }
 
 static void
+handle_with_cb (GObject *source,
+    GAsyncResult *result,
+    gpointer user_data)
+{
+  TpChannelDispatchOperation *cdo = TP_CHANNEL_DISPATCH_OPERATION (source);
+  GError *error = NULL;
+
+  if (!tp_channel_dispatch_operation_handle_with_finish (cdo, result, &error))
+    {
+      DEBUG ("HandleWith failed: %s\n", error->message);
+      g_error_free (error);
+    }
+}
+
+static void
 handle_with_time_cb (GObject *source,
     GAsyncResult *result,
     gpointer user_data)
@@ -270,7 +284,21 @@ handle_with_time_cb (GObject *source,
   if (!tp_channel_dispatch_operation_handle_with_time_finish (cdo, result,
         &error))
     {
-      DEBUG ("HandleWithTime failed: %s\n", error->message);
+      if (g_error_matches (error, TP_ERROR, TP_ERROR_NOT_IMPLEMENTED))
+        {
+          EventManagerApproval *approval = user_data;
+
+          DEBUG ("HandleWithTime() is not implemented, falling back to "
+              "HandleWith(). Please upgrade to telepathy-mission-control "
+              "5.5.0 or later");
+
+          tp_channel_dispatch_operation_handle_with_async (approval->operation,
+              NULL, handle_with_cb, approval);
+        }
+      else
+        {
+          DEBUG ("HandleWithTime failed: %s\n", error->message);
+        }
       g_error_free (error);
     }
 }
@@ -583,7 +611,8 @@ event_manager_approval_done (EventManagerApproval *approval)
 
       channel_type = tp_channel_get_channel_type_id (approval->main_channel);
 
-      if (channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_CALL)
+      if (channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_STREAMED_MEDIA ||
+          channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_CALL)
         {
           priv->ringing--;
           if (priv->ringing == 0)
@@ -767,7 +796,8 @@ find_main_channel (GList *channels)
 
       channel_type = tp_channel_get_channel_type_id (channel);
 
-      if (channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_CALL ||
+      if (channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_STREAMED_MEDIA ||
+          channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_CALL ||
           channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_FILE_TRANSFER ||
           channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_SERVER_AUTHENTICATION)
         return channel;
@@ -798,7 +828,7 @@ approve_text_channel (EmpathyEventManager *self,
         {
           /* We are invited to a room */
           DEBUG ("Have been invited to %s. Ask user if he wants to accept",
-              tp_channel_get_identifier (TP_CHANNEL (tp_chat)));
+              tp_channel_get_identifier (TP_CHANNEL_GROUP_CHANGE_REASON_NONE));
 
           if (inviter != NULL)
             {
@@ -887,19 +917,8 @@ approve_call_channel (EmpathyEventManager *self,
 
   priv->ringing++;
   if (priv->ringing == 1)
-    {
-      TpAccountManager *am = tp_account_manager_dup ();
-      TpConnectionPresenceType presence;
-
-      presence = tp_account_manager_get_most_available_presence (am,
-          NULL, NULL);
-
-      if (presence != TP_CONNECTION_PRESENCE_TYPE_BUSY)
-        empathy_sound_manager_start_playing (priv->sound_mgr, NULL,
-            EMPATHY_SOUND_PHONE_INCOMING, MS_BETWEEN_RING);
-
-      g_object_unref (am);
-    }
+    empathy_sound_manager_start_playing (priv->sound_mgr, NULL,
+        EMPATHY_SOUND_PHONE_INCOMING, MS_BETWEEN_RING);
 }
 
 static void
@@ -1081,7 +1100,7 @@ check_publish_state (EmpathyEventManager *self,
 
   message = tp_contact_get_publish_request (tp_contact);
 
-  if (!TPAW_STR_EMPTY (message))
+  if (!EMP_STR_EMPTY (message))
     event_msg = g_strdup_printf (_("\nMessage: %s"), message);
   else
     event_msg = NULL;
@@ -1106,10 +1125,10 @@ event_manager_publish_state_changed_cb (TpContact *contact,
 }
 
 static void
-check_presence (EmpathyEventManager *manager,
-    EmpathyContact *contact,
+event_manager_presence_changed_cb (EmpathyContact *contact,
     TpConnectionPresenceType current,
-    TpConnectionPresenceType previous)
+    TpConnectionPresenceType previous,
+    EmpathyEventManager *manager)
 {
   EmpathyEventManagerPriv *priv = GET_PRIV (manager);
   TpAccount *account;
@@ -1137,7 +1156,7 @@ check_presence (EmpathyEventManager *manager,
             {
               event_manager_add (manager, NULL, contact,
                   EMPATHY_EVENT_TYPE_PRESENCE_OFFLINE,
-                  TPAW_IMAGE_AVATAR_DEFAULT,
+                  EMPATHY_IMAGE_AVATAR_DEFAULT,
                   empathy_contact_get_alias (contact), _("Disconnected"),
                   NULL, NULL, NULL);
             }
@@ -1158,7 +1177,7 @@ check_presence (EmpathyEventManager *manager,
             {
               event_manager_add (manager, NULL, contact,
                   EMPATHY_EVENT_TYPE_PRESENCE_ONLINE,
-                  TPAW_IMAGE_AVATAR_DEFAULT,
+                  EMPATHY_IMAGE_AVATAR_DEFAULT,
                   empathy_contact_get_alias (contact), _("Connected"),
                   NULL, NULL, NULL);
             }
@@ -1167,15 +1186,6 @@ check_presence (EmpathyEventManager *manager,
 
 out:
   g_object_unref (presence_mgr);
-}
-
-static void
-event_manager_presence_changed_cb (EmpathyContact *contact,
-    TpConnectionPresenceType current,
-    TpConnectionPresenceType previous,
-    EmpathyEventManager *manager)
-{
-  check_presence (manager, contact, current, previous);
 }
 
 static GObject *
@@ -1280,10 +1290,6 @@ contact_list_changed_cb (EmpathyConnectionAggregator *aggregator,
       tp_g_signal_connect_object (contact, "presence-changed",
           G_CALLBACK (event_manager_presence_changed_cb), self, 0);
 
-      check_presence (self, contact,
-          empathy_contact_get_presence (contact),
-          TP_CONNECTION_PRESENCE_TYPE_OFFLINE);
-
       tp_g_signal_connect_object (tp_contact, "notify::publish-state",
           G_CALLBACK (event_manager_publish_state_changed_cb), self, 0);
 
@@ -1346,7 +1352,7 @@ empathy_event_manager_init (EmpathyEventManager *manager)
   g_ptr_array_unref (contacts);
   g_ptr_array_unref (empty);
 
-  am = tp_account_manager_dup ();
+   am = tp_account_manager_dup ();
 
   priv->approver = tp_simple_approver_new_with_am (am, "Empathy.EventManager",
       FALSE, approve_channels, manager, NULL);
@@ -1374,6 +1380,12 @@ empathy_event_manager_init (EmpathyEventManager *manager)
         NULL));
 
   /* Calls */
+  tp_base_client_take_approver_filter (priv->approver,
+      tp_asv_new (
+        TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,
+          TP_IFACE_CHANNEL_TYPE_STREAMED_MEDIA,
+        TP_PROP_CHANNEL_TARGET_HANDLE_TYPE, G_TYPE_UINT, TP_HANDLE_TYPE_CONTACT,
+        NULL));
   tp_base_client_take_approver_filter (priv->approver,
       tp_asv_new (
         TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,

@@ -20,19 +20,18 @@
 */
 
 #include "config.h"
-#include "empathy-debug-window.h"
 
 #include <glib/gi18n.h>
 #include <libsoup/soup.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
-#include "empathy-geometry.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-geometry.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "empathy-debug-window.h"
 
 G_DEFINE_TYPE (EmpathyDebugWindow, empathy_debug_window,
     GTK_TYPE_WINDOW)
@@ -41,7 +40,6 @@ typedef enum
 {
   SERVICE_TYPE_CM = 0,
   SERVICE_TYPE_CLIENT,
-  SERVICE_TYPE_MC,
 } ServiceType;
 
 enum
@@ -323,15 +321,10 @@ proxy_invalidated_cb (TpProxy *proxy,
     gpointer user_data)
 {
   EmpathyDebugWindow *self = (EmpathyDebugWindow *) user_data;
-  GtkTreeModel *service_store;
+  GtkTreeModel *service_store = GTK_TREE_MODEL (self->priv->service_store);
   TpProxy *stored_proxy;
   GtkTreeIter iter;
   gboolean valid_iter;
-
-  if (self->priv->service_store == NULL)
-    return;
-
-  service_store = GTK_TREE_MODEL (self->priv->service_store);
 
   /* Proxy has been invalidated so we find and set it to NULL
    * in service store */
@@ -348,8 +341,6 @@ proxy_invalidated_cb (TpProxy *proxy,
         gtk_list_store_set (self->priv->service_store, &iter,
             COL_PROXY, NULL,
             -1);
-
-      g_object_unref (stored_proxy);
     }
 
   /* Also, we refresh "All" selection's active buffer since it should not
@@ -385,13 +376,16 @@ debug_window_get_messages_cb (GObject *object,
   messages = tp_debug_client_get_messages_finish (debug, result, &error);
   if (messages == NULL)
     {
-      DEBUG ("Failed to get debug messages: %s", error->message);
+      DEBUG ("Failed to get debug messsages: %s", error->message);
       g_error_free (error);
 
       /* We want to set the window sensitivity to false only when proxy for the
        * selected service is unable to fetch debug messages */
       if (!tp_strdiff (active_service_name, proxy_service_name))
         debug_window_set_toolbar_sensitivity (self, FALSE);
+
+      /* We created the proxy for GetMessages call. Now destroy it. */
+      tp_clear_object (&debug);
       return;
     }
 
@@ -412,8 +406,6 @@ debug_window_get_messages_cb (GObject *object,
       DEBUG ("Proxy for service: %s was successful in fetching debug"
           " messages. Saving it.", proxy_service_name);
 
-      /* The store will take its own ref on the proxy preventing it to be
-       * destroyed when leaving this callback. */
       gtk_list_store_set (self->priv->service_store, &iter,
           COL_PROXY, debug,
           -1);
@@ -423,8 +415,8 @@ debug_window_get_messages_cb (GObject *object,
   g_free (proxy_service_name);
 
   /* Connect to "invalidated" signal */
-  g_signal_connect_object (debug, "invalidated",
-      G_CALLBACK (proxy_invalidated_cb), self, 0);
+  g_signal_connect (debug, "invalidated",
+      G_CALLBACK (proxy_invalidated_cb), self);
 
  /* Connect to NewDebugMessage */
   tp_g_signal_connect_object (debug, "new-debug-message",
@@ -497,8 +489,6 @@ create_proxy_to_get_messages (EmpathyDebugWindow *self,
 
   tp_debug_client_get_messages_async (TP_DEBUG_CLIENT (new_proxy),
       debug_window_get_messages_cb, self);
-
-  g_object_unref (new_proxy);
 
 finally:
   g_free (name);
@@ -866,33 +856,6 @@ fill_service_chooser_data_free (FillServiceChooserData *data)
   g_slice_free (FillServiceChooserData, data);
 }
 
-static const gchar *
-service_type_to_string (ServiceType type)
-{
-  switch (type)
-    {
-      case SERVICE_TYPE_CM:
-        return "CM";
-      case SERVICE_TYPE_CLIENT:
-        return "Client";
-      case SERVICE_TYPE_MC:
-        return "MC";
-    }
-
-  return "other";
-}
-
-static gchar *
-service_dup_display_name (EmpathyDebugWindow *self,
-    ServiceType type,
-    const gchar *name)
-{
-  if (type == SERVICE_TYPE_CM)
-    return get_cm_display_name (self, name);
-  else
-    return g_strdup (name);
-}
-
 static void
 debug_window_get_name_owner_cb (TpDBusDaemon *proxy,
     const gchar *out,
@@ -918,10 +881,13 @@ debug_window_get_name_owner_cb (TpDBusDaemon *proxy,
       GtkListStore *active_buffer, *pause_buffer;
 
       DEBUG ("Adding %s to list: %s at unique name: %s",
-          service_type_to_string (data->type),
+          data->type == SERVICE_TYPE_CM? "CM": "Client",
           data->name, out);
 
-      name = service_dup_display_name (self, data->type, data->name);
+      if (data->type == SERVICE_TYPE_CM)
+        name = get_cm_display_name (self, data->name);
+      else
+        name = g_strdup (data->name);
 
       active_buffer = new_list_store_for_service ();
       pause_buffer = new_list_store_for_service ();
@@ -970,6 +936,50 @@ OUT:
 }
 
 static void
+debug_window_list_connection_names_cb (const gchar * const *names,
+    gsize n,
+    const gchar * const *cms,
+    const gchar * const *protocols,
+    const GError *error,
+    gpointer user_data,
+    GObject *weak_object)
+{
+  EmpathyDebugWindow *self = user_data;
+  guint i;
+  TpDBusDaemon *dbus;
+  GError *error2 = NULL;
+
+  if (error != NULL)
+    {
+      DEBUG ("list_connection_names failed: %s", error->message);
+      return;
+    }
+
+  dbus = tp_dbus_daemon_dup (&error2);
+
+  if (error2 != NULL)
+    {
+      DEBUG ("Failed to dup TpDBusDaemon.");
+      g_error_free (error2);
+      return;
+    }
+
+  for (i = 0; cms[i] != NULL; i++)
+    {
+      FillServiceChooserData *data = fill_service_chooser_data_new (
+          self, cms[i], SERVICE_TYPE_CM);
+
+      tp_cli_dbus_daemon_call_get_name_owner (dbus, -1,
+          names[i], debug_window_get_name_owner_cb,
+          data, NULL, NULL);
+
+      self->priv->services_detected ++;
+    }
+
+  g_object_unref (dbus);
+}
+
+static void
 debug_window_name_owner_changed_cb (TpDBusDaemon *proxy,
     const gchar *arg0,
     const gchar *arg1,
@@ -996,12 +1006,15 @@ debug_window_name_owner_changed_cb (TpDBusDaemon *proxy,
       return;
     }
 
-  if (TPAW_STR_EMPTY (arg1) && !TPAW_STR_EMPTY (arg2))
+  if (EMP_STR_EMPTY (arg1) && !EMP_STR_EMPTY (arg2))
     {
       GtkTreeIter *found_at_iter = NULL;
       gchar *display_name;
 
-      display_name = service_dup_display_name (self, type, name);
+      if (type == SERVICE_TYPE_CM)
+        display_name = get_cm_display_name (self, name);
+      else
+        display_name = g_strdup (name);
 
       /* A service joined */
       if (!debug_window_service_is_in_model (user_data, display_name,
@@ -1073,7 +1086,7 @@ debug_window_name_owner_changed_cb (TpDBusDaemon *proxy,
 
       g_free (display_name);
     }
-  else if (!TPAW_STR_EMPTY (arg1) && TPAW_STR_EMPTY (arg2))
+  else if (!EMP_STR_EMPTY (arg1) && EMP_STR_EMPTY (arg2))
     {
       /* A service died */
       GtkTreeIter *iter = NULL;
@@ -1094,17 +1107,18 @@ debug_window_name_owner_changed_cb (TpDBusDaemon *proxy,
 }
 
 static void
-add_service (EmpathyDebugWindow *self,
-    const gchar *bus_name,
-    const gchar *display_name,
-    ServiceType type)
+add_client (EmpathyDebugWindow *self,
+    const gchar *name)
 {
+  const gchar *suffix;
   FillServiceChooserData *data;
 
-  data = fill_service_chooser_data_new (self, display_name, type);
+  suffix = name + strlen (TP_CLIENT_BUS_NAME_BASE);
+
+  data = fill_service_chooser_data_new (self, suffix, SERVICE_TYPE_CLIENT);
 
   tp_cli_dbus_daemon_call_get_name_owner (self->priv->dbus, -1,
-      bus_name, debug_window_get_name_owner_cb, data, NULL, NULL);
+      name, debug_window_get_name_owner_cb, data, NULL, NULL);
 
   self->priv->services_detected ++;
 }
@@ -1129,17 +1143,7 @@ list_names_cb (TpDBusDaemon *bus_daemon,
     {
       if (g_str_has_prefix (names[i], TP_CLIENT_BUS_NAME_BASE))
         {
-          add_service (self, names[i],
-              names[i] + strlen (TP_CLIENT_BUS_NAME_BASE), SERVICE_TYPE_CLIENT);
-        }
-      else if (g_str_has_prefix (names[i], TP_CM_BUS_NAME_BASE))
-        {
-          add_service (self, names[i],
-              names[i] + strlen (TP_CM_BUS_NAME_BASE), SERVICE_TYPE_CM);
-        }
-      else if (!tp_strdiff (names[i], TP_ACCOUNT_MANAGER_BUS_NAME))
-        {
-          add_service (self, names[i], "Mission-Control", SERVICE_TYPE_MC);
+          add_client (self, names[i]);
         }
     }
 }
@@ -1148,6 +1152,8 @@ static void
 debug_window_fill_service_chooser (EmpathyDebugWindow *self)
 {
   GError *error = NULL;
+  GtkTreeIter iter;
+  GtkListStore *active_buffer, *pause_buffer;
 
   self->priv->dbus = tp_dbus_daemon_dup (&error);
 
@@ -1162,6 +1168,26 @@ debug_window_fill_service_chooser (EmpathyDebugWindow *self)
   self->priv->services_detected = 0;
   self->priv->name_owner_cb_count = 0;
 
+  /* Add CMs to list */
+  tp_list_connection_names (self->priv->dbus,
+      debug_window_list_connection_names_cb, self, NULL, NULL);
+
+  /* add Mission Control */
+  active_buffer= new_list_store_for_service ();
+  pause_buffer = new_list_store_for_service ();
+
+  gtk_list_store_insert_with_values (self->priv->service_store, &iter, -1,
+      COL_NAME, "mission-control",
+      COL_UNIQUE_NAME, "org.freedesktop.Telepathy.MissionControl5",
+      COL_GONE, FALSE,
+      COL_ACTIVE_BUFFER, active_buffer,
+      COL_PAUSE_BUFFER, pause_buffer,
+      COL_PROXY, NULL,
+      -1);
+  g_object_unref (active_buffer);
+  g_object_unref (pause_buffer);
+
+  /* add clients */
   tp_dbus_daemon_list_names (self->priv->dbus, 2000,
       list_names_cb, NULL, NULL, G_OBJECT (self));
 
@@ -1272,7 +1298,7 @@ debug_window_menu_copy_activate_cb (GtkMenuItem *menu_item,
 
   message = tp_debug_message_get_message (msg);
 
-  if (TPAW_STR_EMPTY (message))
+  if (EMP_STR_EMPTY (message))
     {
       DEBUG ("Log message is empty");
       return;
@@ -1820,7 +1846,7 @@ am_prepared_cb (GObject *am,
   empathy_set_css_provider (GTK_WIDGET (object));
 
   gtk_window_set_title (GTK_WINDOW (object), _("Debug Window"));
-  gtk_widget_set_size_request (GTK_WIDGET (object), 600, 300);
+  gtk_window_set_default_size (GTK_WINDOW (object), 800, 400);
   empathy_geometry_bind (GTK_WINDOW (object), "debug-window");
 
   g_signal_connect (object, "key-press-event",
@@ -2137,35 +2163,6 @@ debug_window_finalize (GObject *object)
 }
 
 static void
-disable_all_debug_clients (EmpathyDebugWindow *self)
-{
-  GtkTreeIter iter;
-  gboolean valid_iter;
-  GtkTreeModel *model;
-
-  if (self->priv->service_store == NULL)
-    return;
-  model = GTK_TREE_MODEL (self->priv->service_store);
-
-  /* Skipping the first service store iter which is reserved for "All" */
-  gtk_tree_model_get_iter_first (model, &iter);
-  for (valid_iter = gtk_tree_model_iter_next (model, &iter);
-       valid_iter;
-       valid_iter = gtk_tree_model_iter_next (model, &iter))
-    {
-      TpDebugClient *debug;
-
-      gtk_tree_model_get (model, &iter,
-          COL_PROXY, &debug,
-          -1);
-
-      debug_window_set_enabled (debug, FALSE);
-
-      g_object_unref (debug);
-    }
-}
-
-static void
 debug_window_dispose (GObject *object)
 {
   EmpathyDebugWindow *self = EMPATHY_DEBUG_WINDOW (object);
@@ -2173,9 +2170,6 @@ debug_window_dispose (GObject *object)
   if (self->priv->name_owner_changed_signal != NULL)
     tp_proxy_signal_connection_disconnect (
         self->priv->name_owner_changed_signal);
-
-  /* Disable Debug on all proxies */
-  disable_all_debug_clients (self);
 
   g_clear_object (&self->priv->service_store);
   g_clear_object (&self->priv->dbus);

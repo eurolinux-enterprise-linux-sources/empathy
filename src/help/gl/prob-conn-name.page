@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" id="prob-conn-name" xml:lang="gl">
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="prob-conn-name" xml:lang="gl">
 
   <info>
     <link type="guide" xref="prob-conn"/>
@@ -13,7 +13,7 @@
     <revision pkgversion="3.2" version="0.4" date="2011-12-18" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
@@ -39,7 +39,7 @@
 
   <steps>
     <item>
-      <p>Prema a icona <media type="image" mime="image/png" src="figures/gtk-edit.png" its:translate="no"><span its:translate="yes">editar</span></media> no mensaxe de erro.</p>
+      <p><media type="image" mime="image/png" src="figures/empathy-logo.png">Logotipo da mensaxaría instantánea Empathy</media>Mensaxaría instantánea Empathy</p>
     </item>
     <item>
       <list>

@@ -23,32 +23,32 @@
  */
 
 #include "config.h"
-#include "empathy-log-window.h"
 
 #include <glib/gi18n-lib.h>
-#include <telepathy-glib/proxy-subclass.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-images.h>
-#include <tp-account-widgets/tpaw-camera-monitor.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
+#include <webkit/webkit.h>
 
-#include "action-chain-internal.h"
+#include <telepathy-glib/proxy-subclass.h>
+
+#include <extensions/extensions.h>
+
+#include <libempathy/action-chain-internal.h>
+#include <libempathy/empathy-camera-monitor.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-utils.h>
+
+#include "empathy-log-window.h"
 #include "empathy-account-chooser.h"
 #include "empathy-call-utils.h"
-#include "empathy-geometry.h"
-#include "empathy-gsettings.h"
-#include "empathy-images.h"
 #include "empathy-individual-information-dialog.h"
-#include "empathy-request-util.h"
+#include "empathy-images.h"
 #include "empathy-theme-manager.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 #include "empathy-webkit-utils.h"
-#include "extensions.h"
+#include "empathy-geometry.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define EMPATHY_NS "http://live.gnome.org/Empathy"
 
@@ -93,7 +93,7 @@ struct _EmpathyLogWindowPriv
   EmpathyContact *selected_contact;
   EmpathyContact *events_contact;
 
-  TpawCameraMonitor *camera_monitor;
+  EmpathyCameraMonitor *camera_monitor;
   GBinding *button_video_binding;
 
   /* Used to cancel logger calls when no longer needed */
@@ -204,7 +204,7 @@ enum
   COL_EVENTS_COUNT
 };
 
-#define CALENDAR_ICON "x-office-calendar"
+#define CALENDAR_ICON "stock_calendar"
 
 /* Seconds between two messages to be considered one conversation */
 #define MAX_GAP 30*60
@@ -346,7 +346,7 @@ toolbutton_av_clicked (GtkToolButton *toolbutton,
   empathy_call_new_with_streams (
       empathy_contact_get_id (self->priv->selected_contact),
       empathy_contact_get_account (self->priv->selected_contact),
-      video, gtk_get_current_event_time ());
+      TRUE, video, gtk_get_current_event_time ());
 }
 
 static void
@@ -378,7 +378,7 @@ insert_or_change_row (EmpathyLogWindow *self,
       if (icon_info != NULL)
         icon = g_strdup (gtk_icon_info_get_filename (icon_info));
 
-      g_object_unref (icon_info);
+      gtk_icon_info_free (icon_info);
     }
 
   escaped_text = g_string_new (NULL);
@@ -620,7 +620,7 @@ empathy_log_window_init (EmpathyLogWindow *self)
 
   self->priv->chain = _tpl_action_chain_new_async (NULL, NULL, NULL);
 
-  self->priv->camera_monitor = tpaw_camera_monitor_dup_singleton ();
+  self->priv->camera_monitor = empathy_camera_monitor_dup_singleton ();
 
   self->priv->log_manager = tpl_log_manager_dup_singleton ();
 
@@ -633,7 +633,7 @@ empathy_log_window_init (EmpathyLogWindow *self)
   gtk_window_set_default_size (GTK_WINDOW (self), 800, 600);
 
   filename = empathy_file_lookup ("empathy-log-window.ui", "libempathy-gtk");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "vbox1", &self->priv->vbox,
       "toolbutton_profile", &self->priv->button_profile,
       "toolbutton_chat", &self->priv->button_chat,
@@ -651,7 +651,7 @@ empathy_log_window_init (EmpathyLogWindow *self)
       NULL);
   g_free (filename);
 
-  tpaw_builder_connect (gui, self,
+  empathy_builder_connect (gui, self,
       "toolbutton_profile", "clicked", toolbutton_profile_clicked,
       "toolbutton_chat", "clicked", toolbutton_chat_clicked,
       "toolbutton_call", "clicked", toolbutton_av_clicked,
@@ -881,7 +881,8 @@ maybe_refresh_logs (TpChannel *channel,
   if (!tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_TEXT) &&
       !(event_mask & TPL_EVENT_MASK_TEXT))
     goto out;
-  if ((!tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_CALL)) &&
+  if ((!tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_STREAMED_MEDIA) ||
+       !tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_CALL)) &&
       !(event_mask & TPL_EVENT_MASK_CALL))
     goto out;
 
@@ -1023,7 +1024,8 @@ observe_channels (TpSimpleObserver *observer,
           tp_g_signal_connect_object (channel, "invalidated",
               G_CALLBACK (on_channel_ended), self, 0);
         }
-      else if (!tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_CALL))
+      else if (!tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_CALL) ||
+          !tp_strdiff (type, TP_IFACE_CHANNEL_TYPE_STREAMED_MEDIA))
         {
           g_hash_table_insert (self->priv->channels,
               g_object_ref (channel), g_object_ref (account));
@@ -1058,6 +1060,11 @@ log_window_create_observer (EmpathyLogWindow *self)
       tp_asv_new (
           TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,
             TP_IFACE_CHANNEL_TYPE_TEXT,
+          NULL));
+  tp_base_client_take_observer_filter (self->priv->observer,
+      tp_asv_new (
+          TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,
+            TP_IFACE_CHANNEL_TYPE_STREAMED_MEDIA,
           NULL));
   tp_base_client_take_observer_filter (self->priv->observer,
       tp_asv_new (
@@ -1262,7 +1269,7 @@ log_window_append_chat_message (TplEvent *event,
   GtkTreeIter iter, parent;
   gchar *pretty_date, *alias, *body;
   GDateTime *date;
-  TpawStringParser *parsers;
+  EmpathyStringParser *parsers;
   GString *msg;
 
   date = g_date_time_new_from_unix_local (
@@ -1281,7 +1288,7 @@ log_window_append_chat_message (TplEvent *event,
         EMPATHY_PREFS_CHAT_SHOW_SMILEYS));
   msg = g_string_new ("");
 
-  tpaw_string_parser_substr (empathy_message_get_body (message), -1,
+  empathy_string_parser_substr (empathy_message_get_body (message), -1,
       parsers, msg);
 
   if (tpl_text_event_get_message_type (TPL_TEXT_EVENT (event))
@@ -1327,7 +1334,7 @@ log_window_append_call (TplEvent *event,
   GTimeSpan span;
 
   /* If searching, only add the call if the search string appears anywhere */
-  if (!TPAW_STR_EMPTY (log_window->priv->last_find))
+  if (!EMP_STR_EMPTY (log_window->priv->last_find))
     {
       if (strstr (tpl_entity_get_identifier (tpl_event_get_sender (event)),
               log_window->priv->last_find) == NULL &&
@@ -1871,7 +1878,7 @@ add_event_to_store (EmpathyLogWindow *self,
   gtk_list_store_insert_with_values (store, NULL, -1,
       COL_WHO_TYPE, COL_TYPE_NORMAL,
       COL_WHO_ICON, room ? EMPATHY_IMAGE_GROUP_MESSAGE
-                         : TPAW_IMAGE_AVATAR_DEFAULT,
+                         : EMPATHY_IMAGE_AVATAR_DEFAULT,
       COL_WHO_NAME, name,
       COL_WHO_NAME_SORT_KEY, sort_key,
       COL_WHO_ID, tpl_entity_get_identifier (entity),
@@ -2004,7 +2011,7 @@ log_window_find_populate (EmpathyLogWindow *self,
 
   gtk_list_store_clear (store);
 
-  if (TPAW_STR_EMPTY (search_criteria))
+  if (EMP_STR_EMPTY (search_criteria))
     {
       tp_clear_pointer (&self->priv->hits, tpl_log_manager_search_free);
       webkit_web_view_set_highlight_text_matches (

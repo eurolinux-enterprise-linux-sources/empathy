@@ -18,14 +18,13 @@
  */
 
 #include "config.h"
-#include "empathy-search-bar.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
+#include <libempathy/empathy-utils.h>
+
+#include "empathy-search-bar.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathySearchBar)
 
@@ -73,9 +72,9 @@ empathy_search_bar_update_buttons (EmpathySearchBar *self,
       &can_go_backward, &can_go_forward);
 
   gtk_widget_set_sensitive (priv->search_previous,
-      can_go_backward && !TPAW_STR_EMPTY (search));
+      can_go_backward && !EMP_STR_EMPTY (search));
   gtk_widget_set_sensitive (priv->search_next,
-      can_go_forward && !TPAW_STR_EMPTY (search));
+      can_go_forward && !EMP_STR_EMPTY (search));
 }
 
 static void
@@ -159,7 +158,7 @@ empathy_search_bar_search (EmpathySearchBar *self,
 
   /* (don't) display the not found label */
   gtk_widget_set_visible (priv->search_not_found,
-      !(found || TPAW_STR_EMPTY (search)));
+      !(found || EMP_STR_EMPTY (search)));
 
   /* update the buttons */
   empathy_search_bar_update_buttons (self, search, match_case);
@@ -265,7 +264,7 @@ empathy_search_bar_init (EmpathySearchBar * self)
   self->priv = priv;
 
   filename = empathy_file_lookup ("empathy-search-bar.ui", "libempathy-gtk");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "search_widget", &internal,
       "search_close", &priv->search_close,
       "search_entry", &priv->search_entry,
@@ -277,7 +276,7 @@ empathy_search_bar_init (EmpathySearchBar * self)
   g_free (filename);
 
   /* Add the signals */
-  tpaw_builder_connect (gui, self,
+  empathy_builder_connect (gui, self,
       "search_close", "clicked", empathy_search_bar_close_cb,
       "search_entry", "changed", empathy_search_bar_entry_changed,
       "search_previous", "clicked", empathy_search_bar_previous_cb,

@@ -25,17 +25,15 @@
  */
 
 #include "config.h"
-#include "empathy-presence-chooser.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-presence-manager.h"
-#include "empathy-status-presets.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-presence-manager.h>
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-status-presets.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #include "empathy-ui-utils.h"
 #include "empathy-presence-chooser.h"
@@ -273,7 +271,7 @@ get_state_and_status (EmpathyPresenceChooser *self,
 
 	state = tp_account_manager_get_most_available_presence (
 		priv->account_manager, NULL, &tmp);
-	if (TPAW_STR_EMPTY (tmp)) {
+	if (EMP_STR_EMPTY (tmp)) {
 		/* no message, use the default message */
 		g_free (tmp);
 		tmp = g_strdup (empathy_presence_get_default_message (state));
@@ -827,9 +825,6 @@ presence_chooser_constructed (GObject *object)
 	GtkWidget *entry;
 	GtkCellRenderer *renderer;
 	const gchar *status_tooltip;
-
-	if (G_OBJECT_CLASS (empathy_presence_chooser_parent_class)->constructed)
-		G_OBJECT_CLASS (empathy_presence_chooser_parent_class)->constructed (object);
 
 	presence_chooser_create_model (chooser);
 

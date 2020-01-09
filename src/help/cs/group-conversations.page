@@ -3,7 +3,9 @@
 
   <info>
     <link type="guide" xref="index#text-conv"/>
-    <desc>Jak zahájit nebo se přidat ke skupinové konverzaci se svými kontakty.</desc>
+    <desc>
+      Start or join a group conversation with your contacts.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-17" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-17" status="review">
@@ -25,73 +27,85 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Skupinová konverzace</title>
+  <title>Group conversations</title>
   
-  <p>Skupinová konverzace vám dovoluje textově konverzovat s více než jedním kontaktem naráz.</p>
-  <p>Abyste mohli používat skupinovou konverzaci, musíte mít zaregistrovaný účet u služby Jabber nebo Google Tallk nebo mít účet Lidé v okolí.</p>
+  <p>
+    Group conversations permits you to have text conversations with more than one
+    contact at the same time.
+  </p>
+  <p>
+    To have a group conversation you need to have a registered account with either
+    Jabber or Google Talk, or a People Nearby account.
+  </p>
 
   <note>
-    <p>Skupinovou konverzaci můžete provozovat jen s kontakty, které používají stejnou službu jako vy.</p>
+    <p>
+      You can have a group conversation only with the contacts that are using the
+      same service as yours.
+    </p>
   </note>
 
   <section id="start-group-conv">
 
-  <title>Započetí skupinové konverzace</title>
+  <title>Start a group conversation</title>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> zvolte <guiseq><gui>Místnost</gui><gui>Vstoupit</gui></guiseq>.</p>
+      <p>
+        From the <gui>Contact List</gui> window, choose <guiseq><gui>Room</gui><gui>Join</gui></guiseq>.
+      </p>
     </item>
     <item>
-      <p>V rozbalovacím seznamu <gui>Účet</gui> vyberte účet, který chcete použít ke skupinové konverzaci.</p>
+      <p>
+        From the <gui>Account</gui> drop-down list, select the account you want to use
+        for the group conversation.
+      </p>
     </item>
     <item>
-      <p>Do textového pole <gui>Přezdívka</gui> zadejte název serveru, na kterém se bude konverzace konat.</p>
-      <p>Pokud jde o současný server, ponechte pole prázdné.</p>
+      <p>
+        In the <gui>Server</gui> text box, type the name of server in which the conversation
+        will be hosted.
+      </p>
+      <p>
+        Leave it empty if it will be on the current server.
+      </p>
     </item>
     <item>
-      <p>Do textového pole <gui>Místnost</gui> zadejte název, který chcete konverzaci přidělit.</p>
+      <p>
+        In the <gui>Room</gui> text box, type the name you want to give to the conversation.
+      </p>
       <note>
-        <p>Bude se jednat o název místnosti, ve které se bude konverzovat. Název bude veřejně přístupný pro ostatní lidi, aby se mohli připojit. Není možné vytvořit soukromou místnost.</p>
+        <p>
+          This will be the name of the room you are going to have a conversation. This
+          name will be publicly available for other people to join. It is not possible
+          to create a private room.
+        </p>
       </note>
     </item>
     <item>
-      <p>Ostatní kontakty pozvete ke skupinové konverzaci tak, že je vyberete v okně <gui>Seznam kontaktů</gui> a provedete následující:</p>
+      <p>
+        To invite other contacts to join the group conversation, from the
+        <gui>Contact List</gui> window, select the contact you want to invite, 
+        and perform one of the following:
+      </p>
       <list>
         <item>
-          <p>Kliknete pravým tlačítkem na kontakt a zvolíte <gui>Pozvat do diskuzní místnosti</gui>.</p>
+          <p>
+            Right-click on the contact and choose <gui>Invite to chatroom</gui>.
+          </p>
         </item>
         <item>
-          <p>Zvolíte <guiseq><gui>Upravit</gui><gui>Kontakt</gui><gui>Pozvat do diskuzní místnosti</gui></guiseq>.</p>
+          <p>
+            Choose <guiseq><gui>Edit</gui><gui>Contact</gui><gui>Invite to chatroom</gui></guiseq>.
+          </p>
         </item>
       </list> 
-      <p>Pokud máte otevřenu více než jednu skupinovou konverzaci, vyberte tu, do které chcete své kontatky pozvat.</p>
+      <p>
+        If you have more than one group conversation open, select the one you want to invite
+        your contacts.
+      </p>
     </item>
   </steps>
   
@@ -99,21 +113,32 @@
 
   <section id="join-group-conv">
 
-  <title>Přídání se ke skupinové konverzaci</title>
+  <title>Join a group conversation</title>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> zvolte <guiseq><gui>Místnost</gui><gui>Vstoupit</gui></guiseq>.</p>
+      <p>
+        From the <gui>Contact List</gui> window, choose
+        <guiseq><gui>Room</gui><gui>Join</gui></guiseq>.
+      </p>
     </item>
     <item>
-      <p>Rozbalte část <gui>Seznam místností</gui>, abyste viděli existující místnosti.</p>
+      <p>
+        Expand the <gui>Room List</gui> section to see all the existing rooms.
+      </p>
     </item>
     <item>
-      <p>Dvojitě klikněte na název místnosti, do které chcete vstoupit.</p>
+      <p>
+        Double-click on the name of a room to join it.
+      </p>
     </item>
   </steps>
 
-  <p>Ne do všech místností je možné vstoupit. Některé místnosti mohou požadovat heslo nebo mohou být jen na pozvání. <app>Empathy</app> tento druh místností nepodporuje.</p>
+  <p>
+    It is not possible to join all existing rooms. Some of the rooms might require a
+    password, or might be invitation only. <app>Empathy</app> does not support these
+    kind of rooms.
+  </p>
 
   <!-- TODO: find out where the password protected or invitation only icons are
   and create a table. -->

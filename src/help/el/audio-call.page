@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="audio-call" xml:lang="el">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="audio-call" xml:lang="el">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -13,26 +13,13 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="2.32" version="0.4" date="2010-09-09" status="review"/>   
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
@@ -61,22 +48,21 @@
 
   <title>Έναρξη φωνητικής κλήσης</title>
 
-  <p>Μπορείτε να καλείτε τις επαφές σας και να μιλάτε μαζί τους ηχητικά. Αυτή η λειτουργία διατίθεται μόνο για ορισμένους τύπους λογαριασμών και απαιτεί το άλλο άτομο να διαθέτει επίσης εφαρμογή που υποστηρίζει φωνητικές κλήσεις.</p>
-
+  <p>Μπορείτε να καλείτε τις επαφές σας και να μιλάτε μαζί τους. Αυτή η λειτουργία διατίθεται μόνο για ορισμένους τύπους λογαριασμών, και προϋποθέτει ότι η επαφή σας θα διαθέτει επίσης εφαρμογή με υποστήριξη για φωνητικές κλήσεις.</p>
   <steps>
     <item>
-      <p>Δεξιοπατήστε στην επαφή την οποία θέλετε να καλέσετε και επιλέξτε <gui style="menuitem">Φωνητική κλήση</gui>.</p>
+      <p>Από το παράθυρο <gui>Λίστα επαφών</gui>, πατήστε το εικονίδιο <media type="image" mime="image/png" src="figures/camera-web.png">βιντεοκλήση</media> δίπλα από το όνομα της επαφής που επιθυμείτε να καλέσετε, και επιλέξτε <gui style="menuitem">Φωνητική κλήση</gui>.</p>
     </item>
     <item>
-      <p>Θα ανοίξει ένα νέο παράθυρο. Όταν επιτευχθεί η σύνδεση, θα δείτε τον συνολικό χρόνο συζήτησης στο κάτω μέρος του παραθύρου.</p>
+      <p>Θα ανοίξει ένα νέο παράθυρο. Όταν επιτευχθεί η σύνδεση, θα δείτε το μήνυμα <gui>Σε σύνδεση</gui> στο κάτω μέρος του παραθύρου, μαζί με τη διάρκεια της συνομιλίας.</p>
     </item>
     <item>
-      <p>Για να τερματίσετε τη συνομιλία, πατήστε το κουμπί <gui style="button">Κλείσιμο</gui>.</p>
+      <p>Για να τερματίσετε τη συνομιλία, επιλέξτε <gui style="button">Κλείσιμο</gui>.</p>
     </item>
   </steps>
   
   <note style="tip">
-    <p>Για να μετατρέψετε μια φωνητική κλήση σε βιντεοκλήση, επιλέξτε <guiseq><gui style="menu">Βίντεο</gui> <gui style="menuitem">Ενεργό βίντεο</gui></guiseq>.</p>
+    <p>Για να μετατρέψετε μια φωνητική κλήση σε βιντεοκλήση, επιλέξτε <guiseq><gui style="menu">Βίντεο</gui> <gui style="menuitem">Βίντεο ενεργό</gui></guiseq>.</p>
   </note>
   
   <section id="audio-meta-contact">

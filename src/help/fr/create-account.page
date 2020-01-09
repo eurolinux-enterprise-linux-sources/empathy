@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="fr">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="fr">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Enregistrer un compte avec un des services de messagerie instantanée pris en charge.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Paternité - Partage des Conditions Initiales à l'Identique 3.0</p>
     </license>    
-
-    <desc>Créer un compte pour un des services de messagerie instantanée pris en charge.</desc>
-
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Bruno Brouard</mal:name>
@@ -92,20 +91,14 @@
 
   <title>Enregistrement d'un nouveau compte</title>
 
-  <p>Dans la plupart des cas, un compte doit être créé chez un fournisseur de service avant de pouvoir l'utiliser avec une application de messagerie instantanée. Vous pouvez utiliser <app>Empathy</app> pour enregistrer un nouveau compte chez quelques fournisseurs en suivant les mêmes étapes qu'en passant par <link xref="add-account">Ajouter un compte</link>.</p>
+  <p>Dans la plupart des cas, un compte doit être créé chez un fournisseur de compte avant de pouvoir vous connecter sur une application de messagerie instantanée comme <app>Empathy</app>. Avec certains fournisseurs de comptes, vous pouvez utiliser <app>Empathy</app> pour enregistrer un nouveau compte en suivant les mêmes étapes qu'en passant par <link xref="add-account">Ajouter un compte</link>.</p>
 
-  <p>Après avoir créé un nouveau compte, votre fournisseur doit vous fournir un identifiant de connexion ou un nom d'utilisateur et un mot de passe, ainsi que toutes informations supplémentaires requises pour vous connecter avec <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>Pour vous connecter à un serveur de réseaux IRC, vous devez renseigner un pseudonyme. Certains réseaux IRC utilisent un service extérieur tel que NickServ pour permettre aux utilisateurs de <link xref="irc-nick-password">protéger leur pseudo</link>. Si vous n'enregistrez pas votre pseudo, ou ne pouvez le faire parce qu'un autre l'utilise déjà, alors vous devez en changer.</p>
-
-    <p>Certains serveurs IRC sont protégés par mot de passe. Vous devez connaître ce mot de passe pour vous y connecter. En général, ce sont des réseaux IRC privés.</p>
-
-    <note>
-      <p>Beaucoup de projets GNOME sont débattus sur <code>irc.gnome.org</code>.</p>
-    </note>
+  <p>Cette page vous informe sur la création d'un nouveau compte pour divers types de comptes. Votre fournisseur de compte doit vous fournir un identifiant de connexion et un mot de passe, ainsi que toutes les informations supplémentaires nécessaires pour vous connecter en utilisant <app>Empathy</app>.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>Facebook est l'un des réseaux sociaux les plus utilisés. Il permet aux utilisateurs de créer leur propre profil et de communiquer avec leurs amis.</p>
+    <p>Pour communiquer avec vos amis en utilisant Facebook, vous devrez créer un nouveau compte sur leur site Web : <link href="http://www.facebook.com">www.facebook.com</link>.</p>
   </section>
 
   <section id="jabber">
@@ -113,19 +106,19 @@
 
     <p>Jabber est un système de messagerie instantanée libre. Tout comme avec les courriels, Jabber vous permet de choisir votre fournisseur de compte et de communiquer avec tous les autres utilisateurs de Jabber, indépendamment de leur fournisseur de compte.</p>
 
-    <p>Vous devez créer un nouveau compte avec un fournisseur Jabber. Il y a plusieurs fournisseurs gratuits ; un des plus populaires est <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Vous devez créer un nouveau compte avec un fournisseur Jabber. Il y a plusieurs fournisseurs gratuits ; un des plus populaires est <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>Si vous utilisez les Hangouts de Gmail ou Google+, vous avez déjà un compte Jabber. Utilisez votre adresse Gmail et son mot de passe associé dans <app>Empathy</app> pour vous y connecter.</p>
+      <p>Si vous utilisez Google Mail ou Google Talk, vous avez déjà un compte Jabber. Google Talk est un service Jabber. Utilisez simplement votre adresse Google Mail et son mot de passe associé dans <app>Empathy</app> pour vous y connecter.</p>
     </note>
   </section>
 
   <section id="salut">
     <title>Personnes à proximité</title>
 
-    <p>Ce service fonctionne dès que vous êtes connecté à un réseau local, comme à un réseau sans fil. Vous n'avez pas besoin de créer un autre compte avec un fournisseur de services, paramétrez-le tout simplement dans <app>Empathy</app> et il trouvera automatiquement tous les autres utilisateurs du réseau utilisant ce même service.</p>
+    <p>Vous n'avez pas besoin de créer un compte avec un fournisseur de service pour utiliser cette fonctionnalité. Ce service fonctionne dès que vous êtes connecté à un réseau local, comme un réseau sans fil. Il trouve automatiquement les autres utilisateurs sur le réseau qui utilisent déjà ce service.</p>
 
-    <p>Pour plus d'informations, consultez le <link xref="salut-protocol">protocole salut</link>.</p>
+    <p>Pour plus d'informations, consultez <link xref="salut-protocol"/>.</p>
   </section>
 
   <section id="sip-services">
@@ -133,13 +126,27 @@
 
     <p>SIP est un système libre qui permet aux utilisateurs d'avoir des conversations audio et vidéo par Internet. Vous devez créer un compte chez un fournisseur SIP. Vous pouvez communiquer avec tous les autres utilisateurs SIP, indépendamment du fournisseur SIP qu'ils utilisent.</p>
 
+    <note style="warning">
+      <p>En raison de différences techniques, le service gratuit <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> ne fonctionne actuellement pas avec <app>Empathy</app>.</p>
+    </note>
+
     <p>Certains fournisseurs SIP vous permettent de faire des appels vers des téléphones fixes à partir de votre ordinateur. Généralement, vous devez souscrire à un service payant pour utiliser cette fonction.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>Vous n'avez pas besoin d'enregistrer un compte pour utiliser IRC. Même si vous devez spécifier un pseudonyme lorsque vous ajoutez un compte IRC sur <app>Empathy</app>, celui-ci n'est valide que pour la durée de la connexion. Si le même pseudonyme est déjà utilisé, vous devez en choisir un autre.</p>
+
+    <p>Certains réseaux IRC utilisent un service appelé NickServ qui permet aux utilisateurs de protéger leurs pseudonymes. Consultez <link xref="irc-nick-password"/> pour plus d'information.</p>
+
+    <p>Certains serveurs IRC sont protégés par mot de passe. Vous devez connaître ce mot de passe pour vous y connecter. En général, ce sont des réseaux IRC privés.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Services propriétaires</title>
 
-    <p>Il existe plusieurs services de messagerie instantanée propriétaires qui ont été développés par différentes sociétés ou organisations. <app>Empathy</app> vous permet de vous connecter à un compte existant pour la plupart des services. Pour créer un nouveau compte avec un de ces services, vous devez visiter le site Web du service.</p>
+    <p>Il existe plusieurs services de messagerie instantanée propriétaires qui ont été développés par différentes sociétés ou organisations. <app>Empathy</app> vous permet de vous connecter à un compte existant pour la plupart des services. Pour créer un nouveau compte avec un de ces services, vous devez visiter le site Web du service et accepter ses conditions d'utilisation.</p>
 
     <list>
       <item>
@@ -147,6 +154,9 @@
       </item>
       <item>
         <p><link href="https://www.icq.com/register/">ICQ</link></p>
+      </item>
+      <item>
+        <p><link href="https://accountservices.passport.net">MSN</link></p>
       </item>
       <item>
         <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>

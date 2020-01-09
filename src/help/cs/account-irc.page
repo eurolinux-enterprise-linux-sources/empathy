@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="cs">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="cs">
 
   <info>
     <link type="guide" xref="irc-manage#manage"/> 
-    <desc>Další informace potřebné k připojení do sítí IRC.</desc>
+    <desc>Additional information necessary for connecting to IRC networks.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-31" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
@@ -12,7 +12,7 @@
     <revision pkgversion="2.30" version="0.2" date="2010-04-19" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Creative Commons Share Alike 3.0</p>
@@ -24,64 +24,62 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/> 
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Podrobnosti účtu IRC</title>
+  <title>IRC account details</title>
 
-  <p>Účty IRC vyžadují jiné údaje než ostatní typy účtů. Pro vytvoření účtu IRC je nutné uvést minimálně název sítě IRC a přezdívku. Tato stránka popisuje údaje, které je možné u účtu IRC zadat.</p>
+  <p>IRC accounts require different information than many other types of
+  accounts.  To create an IRC account, you must specify at least an IRC
+  network and a nickname.  This page details the information you can
+  provide for an IRC account.</p>
 
   <note style="info package">
-    <p>Pro používání IRC v <app>Empathy</app> je nutné mít nainstalovaný balíček <sys>telepathy-idle</sys>.</p>
+    <p>You must have the <sys>telepathy-idle</sys> package installed to use IRC 
+    in <app>Empathy</app>.</p>
   </note>
 
   <terms>
     <item>
-      <title><gui>Síť</gui></title>
-      <p>IRC je otevřený systém, který umožňuje lidem provozovat oddělené sítě IRC. Každá síť tvoří samostatný celek s vlastními uživateli a místnostmi. Seznam nejpopulárnějších sítí se v <app>Empathy</app> nachází v rozbalovacím seznamu <gui>Síť</gui>. Je možné přidat i další sítě. Viz <link xref="#networks"/> níže.</p>
+      <title><gui>Network</gui></title>
+      <p>IRC is an open system that allows people to run separate IRC
+      networks.  Each network is distinct and has its own users and
+      chat rooms.  <app>Empathy</app> lists the most popular networks
+      in the <gui>Network</gui> drop-down list.  You can add additional
+      networks.  See <link xref="#networks"/> below.</p>
     </item>
     <item>
-      <title><gui>Přezdívka</gui></title>
-      <p>Přezdívka představuje jedinečné jméno v síti IRC. Pouze jeden uživatel v síti může používat danou přezdívku. Pokud se objeví chybové hlášení ve znění <link xref="prob-conn-name" role="error-msg"/>, je nutné přezdívku změnit.</p>
+      <title><gui>Nickname</gui></title>
+      <p>Your nickname is your unique name on the IRC network. Only one
+      person on a network may use a given nickname.  If you get an error
+      message that says <link xref="prob-conn-name" role="error-msg"/>
+      you will need to change your nickname.</p>
     </item>
     <item>
-      <title><gui>Heslo</gui></title>
-      <p>Některé servery, především ty v soukromých sítích, vyžadují pro připojení heslo. Pokud je uživatel oprávněn síť používat, administrátoři sítě by mu měli heslo poskytnout.</p>
+      <title><gui>Password</gui></title>
+      <p>Some servers, particularly those on private networks, require
+      a password to connect.  If you are authorized to use the network,
+      the network administrators should provide you with a password.</p>
       <note>
-        <title>Hesla NickServ</title>
-        <p>V některých sítích mohou být přezdívky registrovány pomocí služby NickServ. <app>Empathy</app> nepodporuje tento typ hesel přímo. Na některých sítích, včetně populární sítě freenode, jsou ale hesla ze serveru automaticky předávána službě NickServ, což umožňuje uživatelům nastavit tento parametr pro identifikaci službou NickServ. Pro podrobnosti viz <link xref="irc-nick-password"/> </p>
+        <title>NickServ Passwords</title>
+        <p>On some networks, nicknames can be registered using a service
+        known as NickServ.  <app>Empathy</app> does not directly support
+        nickname passwords.  On some networks, including the popular
+        freenode network, server passwords are automatically forwarded
+        to NickServ, allowing you to set this field to identify yourself
+        with NickServ.  See <link xref="irc-nick-password"/> for more
+        details.</p>
       </note>
     </item>
     <item>
-      <title><gui>Skutečné jméno</gui></title>
-      <p>Společně s přezdívkou je možné poskytnout skutečné jméno. Bude přístupné ostatním uživatelům při prohlížení informací o účtu.</p>
+      <title><gui>Real name</gui></title>
+      <p>You can provide your real name in addition to your nickname.  Other
+      users will be able to see this when they view your information.</p>
     </item>
     <item>
-      <title><gui>Rozloučení</gui></title>
-      <p>Rozloučení je zpráva, která je odeslána do všech místností, do nichž je uživatel připojen, a všem uživatelům, se kterými vede soukromou konverzaci. Toto pole slouží k zadání vlastní zprávy na rozloučenou.</p>
+      <title><gui>Quit message</gui></title>
+      <p>When you go offline, a quit message is sent to all the chat rooms
+      you’re in and to all the users you’re having a private conversation
+      with.  Use this field to provide a custom quit message.</p>
     </item>
   </terms>
 
@@ -91,40 +89,63 @@ telepathy-idle note
 
   <section id="networks">
     <info>
-      <title type="link">Sítě IRC</title>
+      <title type="link">IRC Networks</title>
     </info>
 
-    <title>Sítě</title>
+    <title>Networks</title>
 
-    <p><app>Empathy</app> obsahuje seznam populárních sítí IRC. Pokud si přejete navštívit jinou síť IRC, můžete ji přidat do seznamu. Sítě můžete také upravit nebo odstranit ze seznamu.</p>
+    <p><app>Empathy</app> includes a list of popular IRC networks.  If you
+    wish to another IRC network, you can add it to the list.  You can also
+    modify networks and remove them from the list.</p>
 
     <list>
-      <item><p>Chcete-li přidat síť do seznamu, klikněte na <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16" its:translate="no"><span its:translate="yes">Přidání</span></media>.</p></item>
-      <item><p>Chcete-li upravit síť na seznamu, vyberte ji a klikněte na <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16" its:translate="no"><span its:translate="yes">Úprava</span></media>.</p></item>
-      <item><p>Chcete-li odstranit síť ze seznamu, vyberte ji a klikněte na <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16" its:translate="no"><span its:translate="yes">Odstranění</span></media>.</p></item>
+      <item><p>To add a network to the list, click <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16">Add</media>.</p></item>
+      <item><p>To modify a network in the list, select the network and click
+      <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16">Edit</media>.</p></item>
+      <item><p>To remove a network from the list, select the network and
+      click <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16">Remove</media>.</p></item>
     </list>
 
-    <p>Při přidávání nebo upravování sítě můžete zadat následující údaje:</p>
+    <p>When adding or modifying a network, you can enter the following
+    information:</p>
 
     <terms>
       <item>
-        <title><gui>Síť</gui></title>
-        <p>Toto je název sítě, který se bude zobrazovat v seznamu sítí.</p>
+        <title><gui>Network</gui></title>
+        <p>This is the name of the network as you want it to appear in
+        the list of networks.</p>
       </item>
       <item>
-        <title><gui>Znaková sada</gui></title>
-        <p>Tímto je určeno kódování znaků, které je obvykle užíváno na této síti. Kódování je způsob zaznamenávání znaků, které používá počítač. Existuje mnoho způsobů kódování a pro správné zobrazování zpráv je nutné používat stejné kódování jako ostatní uživatelé.</p>
+        <title><gui>Charset</gui></title>
+        <p>This specifies the character encoding that is typically used on
+        this network.  A character encoding is a specific way of recording
+        characters internally in a computer.  There are many character
+        encodings, and you need to use the same character encoding as other
+        users to see their messages correctly.</p>
         <!--
             Translators: Recommend character encodings that are common
             for your language.
         -->
-        <p>Ve výchozím nastavení používá <app>Empathy</app> UTF-8, moderní kódování znaků, které dokáže zpracovat text většiny světových jazyků. Dalším obvyklým kódováním pro angličtinu a některé ostatní západní jazyky je ISO-8859-1 a pro češtinu a některé ostatní středoevropské jazyky ISO-8859-2.</p>
+        <p>By default, <app>Empathy</app> uses UTF-8, a modern character
+        encoding that can handle text from most of the world's languages.
+        Another common encoding for English and some other Western languages
+        is ISO-8859-1.</p>
       </item>
       <item>
-        <title><gui>Servery</gui></title>
-        <p>Jedna síť IRC může mít několik serverů, ke kterým je možné se připojit. Pokud jste připojeni k serveru určité sítě, můžete komunikovat se všemi uživateli na všech ostatních serverech této sítě. Je možné přidat nebo odstranit servery dané sítě pomocí tlačítek <gui>Přidat</gui> a <gui>Odstranit</gui>.</p>
-        <p>Po vybrání serveru klikněte do pole pod <gui>Server</gui> nebo <gui>Port</gui> a upravte je. Je také možné použít šipky doleva a doprava k zaměření pole a zmáčknout mezerník k jeho úpravě.</p>
-        <p>Pro šifrování veškeré komunikace se serverem zatrhněte políčko ve sloupci <gui>SSL</gui>. Toto nastavení ale nezabrání ostatním uživatelům na síti vidět, co píšete ve veřejných místnostech.</p>
+        <title><gui>Servers</gui></title>
+        <p>An IRC network may have many servers you can connect to.  When
+        you are connected to a server on a particular network, you can
+        communicate with all users on all other servers on that network.
+        You can add and remove servers for this network using the
+        <gui>Add</gui> and <gui>Remove</gui> buttons.</p>
+        <p>When a server is selected, click the field under <gui>Server</gui>
+        or <gui>Port</gui> to edit it.  Alternatively, use the left and right
+        arrow keys to focus the field, and press the space bar to begin
+        editing.</p>
+        <p>Select the check box in the <gui>SSL</gui> column to encrypt
+        all communication with a server.  Note that this does not prevent
+        other users on the network from seeing what you write on public
+        chat rooms.</p>
       </item>
     </terms>
   </section>

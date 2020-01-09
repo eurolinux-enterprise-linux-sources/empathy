@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="audio-call" xml:lang="fr">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="audio-call" xml:lang="fr">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -13,17 +13,10 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="2.32" version="0.4" date="2010-09-09" status="review"/>   
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Paternité - Partage des Conditions Initiales à l'Identique 3.0</p>
     </license>
@@ -91,17 +84,16 @@
 
   <title>Démarrage d'une conversation audio</title>
 
-  <p>Vous pouvez appeler vos contacts et avoir une conversation audio avec eux. Cette option ne peut fonctionner qu'avec certains types de comptes et il requiert que l'autre personne possède une application compatible avec les appels audio.</p>
-
+  <p>Vous pouvez appeler vos contacts et avoir une conversation audio avec eux. Cette option n'est disponible qu'avec certains types de comptes et il faut que l'autre personne possède une application compatible avec les appels audio.</p>
   <steps>
     <item>
-      <p>Faites un clic droit sur le contact que vous voulez appeler et sélectionnez <gui style="menuitem">Appel audio</gui>.</p>
+      <p>Dans la fenêtre <gui>Liste des contacts</gui>, cliquez sur <media type="image" mime="image/png" src="figures/camera-web.png">appel vidéo</media> à côté du nom de la personne que vous souhaitez contacter et sélectionnez <gui style="menuitem">Appel audio</gui>.</p>
     </item>
     <item>
-      <p>Une nouvelle fenêtre s'ouvre. Lorsque la connexion est établie, le temps total de conversation s'affiche en bas de la fenêtre.</p>
+      <p>Une nouvelle fenêtre s'ouvre. Lorsque la connexion est établie, vous voyez s'afficher <gui>Connecté</gui> au bas de la fenêtre, à côté du temps de conversation total.</p>
     </item>
     <item>
-      <p>Pour terminer la conversation, cliquez sur <gui style="button">Raccrocher</gui>.</p>
+      <p>Pour mettre fin à la conversation, cliquez sur <gui style="button">Raccrocher</gui>.</p>
     </item>
   </steps>
   
@@ -116,7 +108,7 @@
         <p>Dans la fenêtre <gui>Liste des contacts</gui>, faites un clic droit sur le méta-contact.</p>
       </item>
       <item>
-        <p>Sélectionnez le contact avec lequel vous voulez avoir une conversation et choisissez <gui style="menuitem">Appel audio</gui> dans le menu.</p>
+        <p>Sélectionnez le contact avec lequel vous voulez avoir une conversation et sélectionnez <gui style="menuitem">Appel audio</gui> à partir du menu.</p>
       </item>
     </steps>
     <note style="tip">

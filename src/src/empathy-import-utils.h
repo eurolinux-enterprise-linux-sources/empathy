@@ -23,6 +23,7 @@
 #define __EMPATHY_IMPORT_UTILS_H__
 
 #include <telepathy-glib/telepathy-glib.h>
+#include <glib.h>
 
 G_BEGIN_DECLS
 

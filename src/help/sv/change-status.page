@@ -4,7 +4,9 @@
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="status-icons"/>
-    <desc>Ändra status för att informera dina kontakter om din tillgänglighet.</desc>
+    <desc>
+      Change your status to advertise your availability to your contacts.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
       <!--
@@ -21,7 +23,7 @@
       <email>philbull@gmail.com</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>
 <!--
     <copyright>
@@ -30,37 +32,34 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Ändra din status</title>
+  <title>Change your status</title>
 
-  <p>Du kan ställa in din status för att indikera din tillgänglighet för dina kontakter. <app>Empathy</app> låter dig välja från en lista med definierade status.</p>
+  <p>You can set your status to indicate your availability to your contacts.
+  <app>Empathy</app> allows you to select from a list of defined statuses.</p>
 
   <steps>
     <item>
-      <p>Klicka på rullgardinslistan längst upp i fönstret <gui>Kontaktlista</gui>.</p>
+      <p>
+        Click on the drop-down list at the top of the <gui>Contact List</gui> window.
+      </p>
     </item>
     <item>
-      <p>Välj en status i listan.</p>
+      <p>
+        Select a status from the list.
+      </p>
     </item>
   </steps>
 
-  <p>Se <link xref="status-icons"/> för en lista över de statustyper som är standard och vad de betyder. Du kan också <link xref="set-custom-status">lägga till egna statusmeddelanden</link> för att ge mer information om din tillgänglighet till dina kontakter.</p>
+  <p>See <link xref="status-icons"/> for a list of the built-in statuses
+  and what they mean.  You can also <link xref="set-custom-status">add
+  custom status messages</link> to provide more information about your
+  availability to your contacts.</p>
 
   <note>
-    <p>Om du inte använder datorn på ett tag eller om skärmsläckaren är på blir statusen automatiskt Frånvarande.</p>
+    <p>If you do not use your computer for a while, or if the screensaver is on,
+    the status will be automatically set to Away.</p>
   </note>
 
 </page>

@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <link type="seealso" xref="hide-contacts"/>
+    <link type="seealso" xref="offline-contacts"/>
     <desc>添加某人到联系人列表。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-15" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
@@ -35,7 +35,7 @@
       <p>选择<guiseq><gui>聊天</gui><gui>添加联系人</gui></guiseq>。</p>
     </item>
     <item>
-      <p>在 <gui>帐号</gui> 下拉列表中，选择您用来与您的联系人联系的帐号。您的联系人需要使用与您选择的帐号相同的服务。</p>
+      <p>在 <gui>账户</gui> 下拉列表中，选择您用来与您的联系人联系的账户。您的联系人需要使用与您选择的账户相同的服务。</p>
     </item>
     <item>
       <p>在 <gui>标识符</gui> 一栏中，输入这种服务中您的联系人的登录 ID，用户名，显示名或其他合适的标识符。</p>
@@ -49,7 +49,7 @@
   </steps>
 
   <note>
-    <p>要添加联系人到您的联系人列表，您需要连接因特网和您的帐号。</p>
+    <p>要添加联系人到您的联系人列表，您需要连接因特网和您的账户。</p>
   </note>
 
 </page>

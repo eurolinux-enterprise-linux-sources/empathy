@@ -25,7 +25,7 @@
 #ifndef __EMPATHY_IMPORT_DIALOG_H__
 #define __EMPATHY_IMPORT_DIALOG_H__
 
-#include <tp-account-widgets/tpaw-connection-managers.h>
+#include <libempathy/empathy-connection-managers.h>
 
 G_BEGIN_DECLS
 
@@ -59,7 +59,7 @@ GType empathy_import_dialog_get_type (void);
 
 GtkWidget* empathy_import_dialog_new (GtkWindow *parent_window,
     gboolean show_warning,
-    TpawConnectionManagers *cms);
+    EmpathyConnectionManagers *cms);
 
 G_END_DECLS
 

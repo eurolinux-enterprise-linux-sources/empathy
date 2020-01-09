@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="el">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="el">
 
   <info>
     <link type="guide" xref="irc-manage#manage"/> 
@@ -12,7 +12,7 @@
     <revision pkgversion="2.30" version="0.2" date="2010-04-19" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Creative Commons Share Alike 3.0</p>
@@ -24,12 +24,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/> 
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
@@ -61,7 +55,7 @@
   <p>Οι λογαριασμοί IRC χρησιμοποιούν διαφορετικά στοιχεία σε σχέση με τους υπόλοιπους τύπους λογαριασμών. Για να δημιουργήσετε ένα λογαριασμό IRC, θα χρειαστείτε οπωσδήποτε το όνομα ενός δικτύου IRC και ένα ψευδώνυμο. Σε αυτή τη σελίδα αναφέρονται λεπτομερώς τα στοιχεία που μπορείτε να εισάγετε για ένα λογαριασμό IRC.</p>
 
   <note style="info package">
-    <p>Πρέπει να έχετε εγκατεστημένο το πακέτο <sys>telepathy-idle</sys> για να χρησιμοποιήσετε το IRC στο <app>Empathy</app>.</p>
+    <p>Για να χρησιμοποιήσετε το IRC στο <app>Empathy</app>, θα πρέπει να έχετε εγκατεστημένο το πακέτο <sys>telepathy-idle</sys>.</p>
   </note>
 
   <terms>
@@ -105,9 +99,9 @@ telepathy-idle note
     <p>Το <app>Empathy</app> συμπεριλαμβάνει μια λίστα με δημοφιλή δίκτυα IRC. Αν θέλετε να συνδεθείτε σε κάποιο άλλο δίκτυο IRC, μπορείτε να το προσθέσετε στη λίστα. Επίσης, μπορείτε να τροποποιείτε ή να διαγράφετε τα δίκτυα της λίστας.</p>
 
     <list>
-      <item><p>Για να προσθέσετε ένα δίκτυο στον κατάλογο, πατήστε <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16" its:translate="no"><span its:translate="yes">Προσθήκη</span></media>.</p></item>
-      <item><p>Για να τροποποιήσετε ένα δίκτυο του καταλόγου, επιλέξτε το δίκτυο και πατήστε <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16" its:translate="no"><span its:translate="yes">Επεξεργασία</span></media>.</p></item>
-      <item><p>Για να αφαιρέσετε ένα δίκτυο από τον κατάλογο, επιλέξτε το δίκτυο και πατήστε <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16" its:translate="no"><span its:translate="yes">Αφαίρεση</span></media>.</p></item>
+      <item><p>Για να προσθέσετε ένα δίκτυο στη λίστα, πατήστε <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16">Προσθήκη</media>.</p></item>
+      <item><p>Για να τροποποιήσετε ένα δίκτυο της λίστας, επιλέξτε το δίκτυο και μετά πατήστε <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16">Επεξεργασία</media>.</p></item>
+      <item><p>Για να διαγράψετε ένα δίκτυο από τη λίστα, επιλέξτε το δίκτυο και μετά πατήστε <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16">Διαγραφή</media>.</p></item>
     </list>
 
     <p>Όταν προσθέτετε ή τροποποιείτε δίκτυα, μπορείτε να εισάγετε τα ακόλουθα στοιχεία:</p>
@@ -119,12 +113,12 @@ telepathy-idle note
       </item>
       <item>
         <title><gui>Κωδικοποίηση</gui></title>
-        <p>Ορίζει την κωδικοποίηση χαρακτήρων που χρησιμοποιείται συνήθως στο δίκτυο αυτό. Η κωδικοποίηση χαρακτήρων είναι ένας συγκεκριμένος τρόπος με τον οποίο αποθηκεύει χαρακτήρες ο υπολογιστής. Υπάρχουν πολλές διαθέσιμες κωδικοποιήσεις χαρακτήρων και για να βλέπετε τα μηνύματα των άλλων χρηστών χωρίς προβλήματα, θα πρέπει να χρησιμοποιείτε την ίδια κωδικοποίηση με αυτούς.</p>
+        <p>Ορίζει την κωδικοποίηση χαρακτήρων που χρησιμοποιείται συνήθως στο δίκτυο αυτό. Η κωδικοποίηση χαρακτήρων είναι ένας συγκεκριμένος τρόπος με τον οποίο αποθηκεύει χαρακτήρες ο υπολογιστής. Υπάρχουν πολλές διαθέσιμες κωδικοποιήσεις χαρακτήρων. Για να βλέπετε τα μηνύματα των άλλων χρηστών χωρίς προβλήματα, θα πρέπει να χρησιμοποιείτε την ίδια κωδικοποίηση με αυτούς.</p>
         <!--
             Translators: Recommend character encodings that are common
             for your language.
         -->
-        <p>Η προεπιλογή του <app>Empathy</app> χρησιμοποιεί UTF-8, μια σύγχρονη κωδικοποίηση χαρακτήρων που μπορεί να χειριστεί κείμενο από τις περισσότερες γλώσσες του κόσμου. Μια άλλη κοινή κωδικοποίηση για αγγλικά και μερικές άλλες δυτικές γλώσσες είναι η ISO-8859-1.</p>
+        <p>Η προεπιλογή του <app>Empathy</app> είναι η UTF-8, μια σύγχρονη κωδικοποίηση χαρακτήρων που αναγνωρίζει κείμενα γραμμένα στις περισσότερες γλώσσες του κόσμου. Για τα Ελληνικά, μια ακόμη δημοφιλής κωδικοποίηση είναι η ISO-8859-7, ενώ για τα Αγγλικά η ISO-8859-1.</p>
       </item>
       <item>
         <title><gui>Εξυπηρετητές</gui></title>

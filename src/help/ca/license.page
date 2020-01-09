@@ -5,30 +5,6 @@
     <link type="seealso" xref="index"/>
     <revision pkgversion="2.30" version="0.1" date="2009-12-28" status="draft"/>
     <desc>Informació legal.</desc>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
   <title>Llicència</title>
@@ -36,22 +12,22 @@
   <p>Sou lliure de:</p>
   <terms>
     <item>
-      <title><em>Compartir</em></title>
+      <title><em>To share</em></title>
       <p>Copiar, distribuir i transmetre el treball.</p>
     </item>
     <item>
-      <title><em>Fer-ne obres derivades</em></title>
+      <title><em>To remix</em></title>
       <p>Adaptar el treball.</p> 
     </item>
   </terms>
-  <p>Sota les següents condicions:</p>
+  <p>sota les següents condicions:</p>
   <terms>
     <item>
-      <title><em>Reconeixement</em></title>
+      <title><em>Attribution</em></title>
       <p>Cal que reconegueu el treball de la forma especificada per l'autor o el llicenciatari (però no de forma que suggereixi que us dóna suport personal o de l'ús del treball).</p>
     </item>
     <item>
-      <title><em>Compartir igual</em></title>
+      <title><em>Share Alike</em></title>
       <p>Si altereu, transformeu, o construïu a partir d'aquest treball heu de distribuir el treball resultant sota la mateixa llicència o una de compatible.</p>
     </item>
   </terms>

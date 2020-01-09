@@ -28,6 +28,11 @@
 
   <title>Kas ir People Nearby?</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>People Nearby serviss ir bez-servera komunikācijas serviss: tev nevajag savienoties un autentificēties ar centrālo serveri, lai to izmantotu.</p>
   <p>Šāds saziņas veids ir iespējams tikai lokālajā tīklā un tam nav nepieciešams aktīvs interneta savienojums.</p>
   <p>Cilvēki, kuri izmanto šo servisu vienā lokālajā tīklā automātiski tiks parādīti, un tiem varēsi nosūtīt ziņas un failus tieši tā pat, kā izmantojot citus servisus.</p>

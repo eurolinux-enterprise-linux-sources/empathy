@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#advanced"/>
-    <desc>Jak poslat soubor ze svého počítače některému ze svých kontaktů.</desc>
+    <desc>Send a file from your computer to one of your contacts.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-07-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
@@ -29,66 +29,69 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Posílání souborů</title>
+  <title>Send files</title>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> proveďte jedno z následujícího:</p>
+      <p>
+        From the <gui>Contact List</gui> window, perform one of the following:
+      </p>
       <list>
         <item>
-          <p>Klikněte pravým tlačítkem na kontakt, kterému chcete poslat soubor, a zvolte <gui>Poslat soubor</gui></p>
+          <p>
+            Right click on the contact you want to send a file to, and choose <gui>Send file</gui>.
+          </p>
         </item>
         <item>
-          <p>Klikněte na kontakt, kterému chcete poslat soubor a zvolte <guiseq><gui>Upravit</gui> <gui>Kontakt</gui> <gui>Poslat soubor</gui></guiseq>.</p>
+          <p>
+            Click on the contact you want to send a file, and choose <guiseq><gui>Edit</gui>
+            <gui>Contact</gui><gui>Send file</gui></guiseq>.
+          </p>
         </item>
       </list>
     </item>
     <item>
-      <p>Vyberte soubor, který chcete poslat a klikněte na <gui>Odeslat</gui>.</p>
+      <p>
+        Select the file to send, and click on <gui>Send</gui>.
+      </p>
     </item>
     <item>
-      <p>Objeví se okno <gui>Přenosy souborů</gui>.</p>
-      <p>Počkejte, až váš kontakt přenos souboru odsouhlasí nebo jej případně zrušte kliknutím na <gui>Zastavit</gui>.</p>
+      <p>
+        The <gui>File Transfers</gui> window will appear.
+      </p>
+      <p>
+        Wait for your contact to accept the file transfer, or click 
+        <gui>Stop</gui> to halt the transfer.
+      </p>
     </item>
     <item>
-      <p>Až se přenos dokončí, můžete okno <gui>Přenosy souborů</gui> zavřít.</p>
+      <p>
+        Once the transfer is finished, it is possible to close the <gui>File Transfers</gui>
+        window.
+      </p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Když máte v okně vypsáno několik dokončených přenosů, můžete je odmazat kliknutím na <gui>Vymazat</gui>. Tím se odstraní jen ze seznamu, ve vašem počítači zůstanou zachovány.</p>
+    <p>
+      If you have multiple finished transfers listed in the window, click on
+      <gui>Clear</gui> to empty the list. This will only remove the files from the
+      list and will not delete them from your computer.
+    </p>
   </note>
   <note>
-    <p>Soubory je možné posílat jen pomocí následujících služeb: <em>Jabber</em>, <em>Google Talk</em> a <em>Lidé v okolí</em>.</p>
+    <p>
+      It is possible to send files only using the following services: <em>Jabber</em>,
+       <em>Google Talk</em> and <em>People Nearby</em>.
+    </p>
   </note>
   <note>
-    <p>Aby šel soubor odeslat, musíte být samozřejmě připojeni k Internetu nebo k místní síti.</p>
+    <p>
+      In order to send a file to someone, you need to be connected to the Internet, or to
+      a local area network.
+    </p>
   </note>
 
 </page>

@@ -19,6 +19,7 @@
 #ifndef __EMPATHY_CAMERA_MENU_H__
 #define __EMPATHY_CAMERA_MENU_H__
 
+#include <glib-object.h>
 
 #include "empathy-call-window.h"
 

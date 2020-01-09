@@ -1,14 +1,15 @@
 #include "config.h"
-#include "empathy-roster-contact.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-images.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
 
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-roster-contact.h"
 
-G_DEFINE_TYPE (EmpathyRosterContact, empathy_roster_contact, GTK_TYPE_LIST_BOX_ROW)
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-images.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+G_DEFINE_TYPE (EmpathyRosterContact, empathy_roster_contact, GTK_TYPE_ALIGNMENT)
 
 #define AVATAR_SIZE 48
 
@@ -125,8 +126,8 @@ avatar_loaded_cb (GObject *source,
 
   if (pixbuf == NULL)
     {
-      pixbuf = tpaw_pixbuf_from_icon_name_sized (
-          TPAW_IMAGE_AVATAR_DEFAULT, AVATAR_SIZE);
+      pixbuf = empathy_pixbuf_from_icon_name_sized (
+          EMPATHY_IMAGE_AVATAR_DEFAULT, AVATAR_SIZE);
     }
 
   gtk_image_set_from_pixbuf (GTK_IMAGE (self->priv->avatar), pixbuf);
@@ -391,15 +392,11 @@ empathy_roster_contact_class_init (
 static void
 empathy_roster_contact_init (EmpathyRosterContact *self)
 {
-  GtkWidget *alig, *main_box, *box, *first_line_box;
+  GtkWidget *main_box, *box, *first_line_box;
   GtkStyleContext *context;
 
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
       EMPATHY_TYPE_ROSTER_CONTACT, EmpathyRosterContactPriv);
-
-  alig = gtk_alignment_new (0.5, 0.5, 1, 1);
-  gtk_widget_show (alig);
-  gtk_alignment_set_padding (GTK_ALIGNMENT (alig), 4, 4, 4, 12);
 
   main_box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
 
@@ -458,8 +455,7 @@ empathy_roster_contact_init (EmpathyRosterContact *self)
       FALSE, FALSE, 0);
   gtk_widget_show (self->priv->presence_icon);
 
-  gtk_container_add (GTK_CONTAINER (self), alig);
-  gtk_container_add (GTK_CONTAINER (alig), main_box);
+  gtk_container_add (GTK_CONTAINER (self), main_box);
   gtk_widget_show (main_box);
 }
 
@@ -472,6 +468,10 @@ empathy_roster_contact_new (FolksIndividual *individual,
   return g_object_new (EMPATHY_TYPE_ROSTER_CONTACT,
       "individual", individual,
       "group", group,
+      "bottom-padding", 4,
+      "top-padding", 4,
+      "left-padding", 4,
+      "right-padding", 12,
       NULL);
 }
 

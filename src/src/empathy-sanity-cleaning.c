@@ -22,23 +22,24 @@
  */
 
 #include "config.h"
+
 #include "empathy-sanity-cleaning.h"
 
+#include <libempathy/empathy-gsettings.h>
+
+#include <libempathy-gtk/empathy-theme-manager.h>
+
 #ifdef HAVE_UOA
+#include <libempathy/empathy-pkg-kit.h>
+#include <libempathy/empathy-uoa-utils.h>
+
 #include <libaccounts-glib/ag-account-service.h>
 #include <libaccounts-glib/ag-manager.h>
 #include <libaccounts-glib/ag-service.h>
-#include <tp-account-widgets/tpaw-keyring.h>
-#include <tp-account-widgets/tpaw-uoa-utils.h>
-
-#include "empathy-pkg-kit.h"
 #endif
 
-#include "empathy-gsettings.h"
-#include "empathy-theme-manager.h"
-
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /*
  * This number has to be increased each time a new task is added or modified.
@@ -318,7 +319,7 @@ uoa_set_account_password_cb (GObject *source,
   UoaMigrationData *data = user_data;
   GError *error = NULL;
 
-  if (!tpaw_keyring_set_account_password_finish (data->new_account, result,
+  if (!empathy_keyring_set_account_password_finish (data->new_account, result,
           &error))
     {
       DEBUG ("Error setting old account's password on the new one: %s\n",
@@ -338,7 +339,7 @@ uoa_get_account_password_cb (GObject *source,
   const gchar *password;
   GError *error = NULL;
 
-  password = tpaw_keyring_get_account_password_finish (data->old_account,
+  password = empathy_keyring_get_account_password_finish (data->old_account,
       result, &error);
   if (password == NULL)
     {
@@ -349,7 +350,7 @@ uoa_get_account_password_cb (GObject *source,
     }
   else
     {
-      tpaw_keyring_set_account_password_async (data->new_account, password,
+      empathy_keyring_set_account_password_async (data->new_account, password,
           TRUE, uoa_set_account_password_cb, data);
     }
 }
@@ -380,7 +381,7 @@ uoa_account_created_cb (GObject *source,
           tp_account_get_path_suffix (data->old_account));
 
       /* Migrate password as well */
-      tpaw_keyring_get_account_password_async (data->old_account,
+      empathy_keyring_get_account_password_async (data->old_account,
           uoa_get_account_password_cb, data);
     }
 }
@@ -501,7 +502,7 @@ uoa_plugin_installed (AgManager *manager,
   protocol = tp_account_get_protocol_name (account);
   ag_account = ag_manager_create_account (manager, protocol);
 
-  l = ag_account_list_services_by_type (ag_account, TPAW_UOA_SERVICE_TYPE);
+  l = ag_account_list_services_by_type (ag_account, EMPATHY_UOA_SERVICE_TYPE);
   if (l == NULL)
     {
       const gchar *packages[2];
@@ -536,7 +537,7 @@ migrate_accounts_to_uoa (SanityCtx *ctx)
 
   DEBUG ("Start migrating accounts to UOA");
 
-  manager = tpaw_uoa_manager_dup ();
+  manager = empathy_uoa_manager_dup ();
 
   accounts = tp_account_manager_dup_valid_accounts (ctx->am);
   for (l = accounts; l != NULL; l = g_list_next (l))

@@ -22,12 +22,14 @@
  */
 
 #include "config.h"
+
 #include "empathy-roster-model-manager.h"
+
+#include "empathy-roster-model.h"
 
 #include <glib/gi18n-lib.h>
 
-#include "empathy-roster-model.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
 
 static void roster_model_iface_init (EmpathyRosterModelInterface *iface);
 

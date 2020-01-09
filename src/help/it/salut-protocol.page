@@ -28,6 +28,11 @@
 
   <title>Cos'è «Persone nelle vicinanze»?</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>Il servizio «Persone nelle vicinanze» è un servizio di comunicazione privo di server centrale: non è necessario connettersi e autenticarsi a un server centrale per poterlo utilizzare.</p>
   <p>Questa tipologia di sistema di messaggistica priva di server è ristretta a una rete locale e non è necessario disporre di una connessione a Internet.</p>
   <p>Le persone che utilizzano questo servizio all'interno della stessa rete locale vengono rilevate automaticamente ed è possibile inviare messaggi e file come per gli altri servizi.</p>

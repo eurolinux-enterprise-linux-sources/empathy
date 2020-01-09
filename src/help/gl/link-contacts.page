@@ -13,10 +13,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
     </license>
@@ -28,62 +24,49 @@
     </mal:credit>
   </info>
 
-  <title>Ligar e desligar contactos</title>
-  <p>Se un, ou máis, dos seus contactos ten múltiples contas con diferentes servizos de mensaxaría, pode combinar estas contas nun único contacto.</p>
+  <title>Combinar e separar contactos</title>
+  <p>Se un, ou máis, dos seus contactos ten múltiples contas con diferentes servizos de mensaxaría, pode combinar estes contactos nun único.</p>
   <p>O contacto resultante chámase un <em>meta-contacto</em>: un contacto composto por diferentes contactos sinxelos.</p>
-  <p>Supoña que ten un contacto Xoán Souto que está usando tres servizos de mensaxaría diferentes como:</p>
+  <p>Se ten un contacto Xoán Souto que está usando tres servizos de mensaxaría como:</p>
   <list>
+    <item>
+      <p>xoan@facebook</p>
+    </item>
     <item>
       <p>xoan.souto@gmail</p>
     </item>
     <item>
       <p>xoan_souto@hotmail</p>
     </item>
-    <item>
-      <p>
-        janes@yahoo
-      </p>
-    </item>
   </list>
   <p>Pode combinar estes contactos nun só Xoán Souto</p>
+  
   <section id="linking">
-  <title>Ligar contactos</title>
-  <p>A forma de ligar os seus contactos é como segue:</p>
+    <title>Combinar contactos</title>
     <steps>
       <item>
-        <p>Prema o botón de marcado para seleccionar as entradas que quere ligar. Isto activará o <em>modo de selección</em> e pode ver unha caixa de verificación por cada entrada.</p>
+        <p>Desde a xanela <gui>Lista de contactos</gui>, prema co botón dereito un dos contactos que ten diferentes contas, e seleccione <gui style="menuitem">Ligar contactos...</gui>.</p>
       </item>
       <item>
-        <p>Marque as caixas que corresponden ás entradas de <app>Contactos</app> que pertencen ao mesmo contacto.</p>
+        <p>Desde o panel lateral na xanela <gui>Contactos ligados</gui> seleccione os contactos que quere combinar.</p>
       </item>
       <item>
         <p>Prema <gui style="button">Ligar</gui>.</p>
       </item>
     </steps>
-    <p>Repita os pasos 3 e 4 en orde para ligar outros contactos.</p>
+    <note>
+      <p>Cando se cree un meta-contacto, o contacto predeterminado usarase para ter unha conversa con el ao premer dúas veces sobre el, este contacto terá a presencia en liña máis alta.</p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Desligar contactos</title>
-  <p>Para desligar un contacto ligado:</p>
+  <section id="unlinkg">
+    <title>Separar contactos</title>
     <steps>
       <item>
-        <p>Seleccione o estado desde a lista.</p>
+        <p>Desde a <gui>Lista de contactos</gui>, prema co botón dereito para contactar con el de forma separada, e seleccione <gui style="menuitem">Ligar contactos...</gui>.</p>
       </item>
       <item>
-        <p>Prema <gui style="button">Editar</gui> na esquina superior dereita de <app>Contactos</app>.</p>
-      </item>
-      <item>
-	<p>Prema <gui style="button">Ligar contactos</gui>.</p>
-      </item>
-      <item>
-	<p>Prema <gui style="button">Eliminar</gui> para desligar unha entrada do contacto ligado.</p>
-      </item>
-      <item>
-        <p>Prema <gui style="button">Pechar</gui> se non quere desligar ningún contacto máis.</p>
-      </item>
-      <item>
-        <p>Finalmente, prema <gui style="button">Feito</gui> para rematar a edición.</p>
+        <p>Prema <gui style="button">Desligar</gui>.</p>
       </item>
     </steps>
   </section>

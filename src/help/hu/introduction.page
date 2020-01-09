@@ -23,7 +23,7 @@
 
   <title>Bevezetés</title>
 
-  <p>Az <app>Empathy</app> egy üzenetküldő alkalmazás a GNOME asztali környezethez. Támogatja a szöveges üzenetküldést, hang- és videohívásokat, fájlátvitelt és a legtöbbet használt üzenetküldő rendszereket, mint a Jabber és a Google Talk.</p>
+  <p>Az <app>Empathy</app> egy üzenetküldő alkalmazás a GNOME asztali környezethez. Támogatja a szöveges üzenetküldést, hang- és videohívásokat, fájlátvitelt és a legtöbbet használt üzenetküldő rendszereket, mint az MSN és a Google Talk.</p>
   <p>Az <app>Empathy</app> szolgáltatásai segítik a jobb együttműködést munkahelyén, és lehetővé teszik a kapcsolattartást barátaival.</p>
   <p>Az <app>Empathy</app> segítségével összes társalgását egyetlen ablakba csoportosíthatja, több ablakban tarthatja a különböző társalgásokat, egyszerűen kereshet a korábbi társalgásokban, és két kattintással megoszthatja asztalát.</p>
 

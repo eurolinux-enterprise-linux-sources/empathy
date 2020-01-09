@@ -5,7 +5,9 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="change-status"/>
 	  <link type="seealso" xref="status-icons"/>
-    <desc>Jak přidat, upravit nebo smazat osobní zprávy pro své stavy.</desc>
+    <desc>
+      Add, edit or delete personal messages for your status.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-30" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <credit type="author">
@@ -26,97 +28,118 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Nastavení vlastní zprávy</title>
+  <title>Set a custom message</title>
 
-  <p>Jsou situace, kdy se vám může hodit nastavit si vlastní zprávy ke svým stavům. Například, abyste lidem sdělili, že nepřítomni budete do nějaké konkrétní doby.</p>
-  <p>Můžete si nastavit vlastí zprávy lišíci se podle jednotlivých stavů.</p>
+  <p>
+    Sometimes you may want to set a custom message for your status, for example to let
+    people know that you will be unavailable for a certain period of time.
+  </p>
+  <p>
+    It is possible to set a custom message based on the different statuses available.
+  </p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> klikněte na rozbalovací seznam v horní části.</p>
+      <p>
+        From the <gui>Contact List</gui> window, click on the drop-down list at
+        the top.
+      </p>
     </item>
     <item>
-      <p>Vyberte stav, ke kterému chcete přidat vlastní zprávu. Ze dvou stejných vyberte ten, u kterého je napsáno <gui>Vlastní zpráva</gui>.</p>
+      <p>
+        Select the status you want to add a custom message to. You have to select the one
+        identified with the label <gui>Custom Message</gui>.
+      </p>
     </item>
     <item>
-      <p>Do textového pole v horní části okna zadejte vlastní zprávu a zmáčknutím <key>Enter</key> ji nastavte.</p>
+      <p>
+        Enter your custom message in the text box at the top of the window, and
+        press <key>Enter</key> to set the message.
+      </p>
     </item>
     <item>
-      <p>Pokud chcete nastavit vlastní zprávu jako oblíbenou, abyste ji mohli používat znovu, uložte si ji kliknutím na malé srdce vpravo v textovém poli, do kterého zprávu píšete.</p>
-      <p>Pokud vlastní zprávu neuložíte, nebude při příštím spuštění <app>Empathy</app> znovu k dispozici. Normálně se totiž uchovává jen pro aktuální sezení.</p>
+      <p>
+        If you want to set the custom message as a favorite, saving it in order to use it
+        again, click on the little heart on the right of the text box where you wrote your
+        custom message.
+      </p>
+      <p>
+        If you do not do it, the custom message will not be available the next time you
+        use <app>Empathy</app>. It will be saved only for the current session.
+      </p>
     </item>
   </steps>
 
   <section id="edit-custom">
 
-  <title>Úprava a odstranění vlastní zprávy</title>
+  <title>Edit and remove a custom message</title>
 
   <steps>
     <item>
-     <p>V okně <gui>Seznam kontaktů</gui> klikněte na rozbalovací seznam v horní části.</p>
+     <p>
+        From the <gui>Contact List</gui> window, click on the drop-down list at
+        the top.
+      </p>
     </item>
     <item>
-      <p>Vyberte <gui>Upravit vlastní zprávy</gui>.</p>
+      <p>
+        Select <gui>Edit Custom Message</gui>.
+      </p>
     </item>
 	  <item>
 	    <list>
 	      <item>
-	        <p>Když chcete vlastní zprávu upravit:</p>
+	        <p>
+	          To edit a custom message:
+	        </p>
 	        <steps>
 	          <item>
-	            <p>V poli <gui>Uložené přednastavené</gui> vyberte stavovou zprávu, kterou chcete upravit a dvojitě na ni klikněte.</p>
+	            <p>
+	              From the <gui>Saved Presets</gui> box, select the status message
+	              you want to edit and double-click on it.
+              </p>
             </item>
             <item>
-              <p>Zadejte novou vlastní zprávu a zmáčknutím <key>Enter</key> proveďte změnu.</p>
+              <p>
+                Type the new custom message and press <key>Enter</key> to modify it.
+              </p>
             </item>
           </steps>
         </item>
         <item>
-          <p>Když chcete vlastní zprávu odstranit:</p>
+          <p>
+            To remove a custom message:
+          </p>
           <steps>
             <item>
-              <p>V poli <gui>Uložené přednastavené</gui> vyberte stavovou zprávu, kterou chcete odstranit.</p>
+              <p>
+                From the <gui>Saved Presets</gui> box, select the status message you want
+                to remove.
+              </p>
             </item>
             <item>
-              <p>Klikněte na tlačítko <gui>Odstranit</gui>.</p>
+              <p>
+                Click on the <gui>Remove</gui> button.
+              </p>
             </item>
           </steps>
         </item>
       </list>
     </item>
     <item>
-      <p>Pokud jste hotovi, klikněte na <gui>Zavřít</gui>.</p>
+      <p>
+        When finished, click on <gui>Close</gui>.
+      </p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Když vlastní zprávu upravíte, nebud nastavena jako aktuální. Musíte ji ručně vybrat v okně <gui>Seznam kontaktů</gui>.</p>
+    <p>
+      When you edit a custom message, it will not be set as the current
+      status message. You will need to select it from the <gui>Contact List</gui> window.
+    </p>
   </note>
 
   </section>

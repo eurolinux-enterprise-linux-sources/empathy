@@ -28,6 +28,11 @@
 
   <title>Zer da Hurbileko jendea?</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>Hurbileko jendea eginbidea zerbitzaririk gabeko komunikazio-zerbitzu bat da: ez duzu zerbitzari zentral batekin konektatu eta autentifikatu behar, erabili ahal izateko.</p>
   <p>Halako zerbitzaririk gabeko mezularitza-sistemak sare lokaletara mugatzen dira, eta ez da Interneteko konexio aktiborik behar.</p>
   <p>Sare lokal berean zerbitzu hau erabiltzen duen jendea automatikoki detektatuko da, eta mezuak nahiz fitxategiak bidali ahal izango zaizkie, beste zerbitzu batzuekin batera.</p>

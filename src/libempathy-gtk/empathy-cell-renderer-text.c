@@ -22,11 +22,9 @@
  */
 
 #include "config.h"
+
+#include <libempathy/empathy-utils.h>
 #include "empathy-cell-renderer-text.h"
-
-#include <tp-account-widgets/tpaw-utils.h>
-
-#include "empathy-utils.h"
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyCellRendererText)
 typedef struct {
@@ -298,7 +296,7 @@ cell_renderer_text_update_text (EmpathyCellRendererText *cell,
 				gboolean                selected)
 {
 	EmpathyCellRendererTextPriv *priv;
-	PangoFontDescription *font_desc;
+	const PangoFontDescription *font_desc;
 	PangoAttrList              *attr_list;
 	PangoAttribute             *attr_color = NULL, *attr_size;
 	GtkStyleContext            *style;
@@ -330,15 +328,8 @@ cell_renderer_text_update_text (EmpathyCellRendererText *cell,
 
 	attr_list = pango_attr_list_new ();
 
-	gtk_style_context_save (style);
-
-	gtk_style_context_set_state (style, GTK_STATE_FLAG_NORMAL);
-	gtk_style_context_get (style, GTK_STATE_FLAG_NORMAL,
-		"font", &font_desc,
-		NULL);
-
+	font_desc = gtk_style_context_get_font (style, GTK_STATE_FLAG_NORMAL);
 	font_size = pango_font_description_get_size (font_desc);
-	pango_font_description_free (font_desc);
 	attr_size = pango_attr_size_new (font_size / 1.2);
 	attr_size->start_index = strlen (priv->name) + 1;
 	attr_size->end_index = -1;
@@ -347,7 +338,7 @@ cell_renderer_text_update_text (EmpathyCellRendererText *cell,
 	if (!selected) {
 		GdkRGBA color;
 
-		gtk_style_context_get_color (style, GTK_STATE_FLAG_NORMAL, &color);
+		gtk_style_context_get_color (style, 0, &color);
 
 		attr_color = pango_attr_foreground_new (color.red * 0xffff,
 							color.green * 0xffff,
@@ -357,10 +348,8 @@ cell_renderer_text_update_text (EmpathyCellRendererText *cell,
 		pango_attr_list_insert (attr_list, attr_color);
 	}
 
-	gtk_style_context_restore (style);
-
 	if (priv->compact) {
-		if (TPAW_STR_EMPTY (priv->status)) {
+		if (EMP_STR_EMPTY (priv->status)) {
 			str = g_strdup (priv->name);
 		} else {
 			str = g_strdup_printf ("%s %s", priv->name, priv->status);
@@ -369,7 +358,7 @@ cell_renderer_text_update_text (EmpathyCellRendererText *cell,
 		const gchar *status = priv->status;
 		gboolean on_a_phone = FALSE;
 
-		if (TPAW_STR_EMPTY (priv->status)) {
+		if (EMP_STR_EMPTY (priv->status)) {
 			status = empathy_presence_get_default_message (priv->presence_type);
 		}
 

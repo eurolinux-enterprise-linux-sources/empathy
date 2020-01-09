@@ -25,12 +25,6 @@
 -->
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
       <mal:email>dmtrs32@gmail.com</mal:email>
       <mal:years>2013</mal:years>
@@ -59,7 +53,7 @@
 
   <p>Αν οι επαφές σας δεν μπορούν να δουν την τοποθεσία σας, ίσως το <app>Empathy</app> να μη μπορεί να προσδιορίσει τη γεωγραφική σας θέση με αρκετή ακρίβεια.</p>
   <p>Σε αυτήν την περίπτωση, η δική σας τοποθεσία δε δημοσιεύεται, αλλά εξακολουθείτε να βλέπετε τις τοποθεσίες των επαφών σας.</p>
-  <p>Αν θέλετε να δημοσιεύσετε τη γεωγραφική σας θέση, μπορείτε να δοκιμάσετε με μια εξωτερική συσκευή όπως ένα GPS.</p>
+  <p>Αν θέλετε να δημοσιεύσετε τη γεωγραφική σας θέση, μπορείτε να δοκιμάσετε με μια εξωτερική συσκευή, π.χ. GPS.</p>
 
   <note>
     <p>Για να είναι σε θέση να δημοσιεύει τη γεωγραφική σας θέση, ο εξυπηρετητής Jabber που χρησιμοποιείτε θα πρέπει να υποστηρίζει το πρωτόκολλο Personal Eventing Protocol (PEP). Στο διαδίκτυο μπορείτε να βρείτε μία λίστα με τους <link href="http://coccinella.im/servers/servers_by_pubsub_pep.html">εξυπηρετητές με υποστήριξη PEP</link>. Προς το παρόν, το Google Talk δεν υποστηρίζει αυτή τη λειτουργία.</p>

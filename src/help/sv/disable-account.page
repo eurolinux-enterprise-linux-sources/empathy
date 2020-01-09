@@ -4,7 +4,7 @@
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Förhindra <app>Empathy</app> från att automatiskt logga in på ett konto.</desc>
+    <desc>Prevent <app>Empathy</app> from automatically logging in to an account.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review"/>
@@ -24,7 +24,7 @@
       <email>shaunm@gnome.org</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -33,35 +33,31 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Inaktivera ett konto</title>
+  <title>Disable an account</title>
 
-  <p>Du kan inaktivera ett konto för att förhindra <app>Empathy</app> från att logga in på det utan att ta bort kontot helt. Du kanske vill inaktivera samt återaktivera ett konto om du bara vill vara inloggad på kontot vid vissa tillfällen, men du vill fortfarande använda <app>Empathy</app> för andra konton.</p>
+  <p>You can disable an account to prevent <app>Empathy</app> from logging in to
+  it without removing the account entirely.  You may wish to disable and re-enable
+  an account if you only want to be logged in to the account at certain times,
+  but you still want to use <app>Empathy</app> for other accounts.</p>
 
   <steps>
     <item>
-      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Redigera</gui> <gui>Konton</gui></guiseq> eller tryck ned <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>Välj det konto som du vill inaktivera från kontolistan i vänstra sidan av fönstret.</p>
+      <p>Select the account you wish to disable from the accounts list on the left
+      side of the window.</p>
     </item>
     <item>
-      <p>Stäng av den till höger i fönstret.</p>
+      <p>On the right side of the window, switch it off.
+      </p>
     </item>
   </steps>
 
-  <p>För att aktivera kontot igen, slå på det.</p>
+  <p>
+    To re-enable the account, switch it on.
+  </p>
 </page>

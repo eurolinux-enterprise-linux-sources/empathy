@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <link type="seealso" xref="hide-contacts"/>
+    <link type="seealso" xref="offline-contacts"/>
     <desc>Προσθήκη νέας επαφής.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-15" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
@@ -26,12 +26,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>

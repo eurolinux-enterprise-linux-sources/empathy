@@ -4,7 +4,9 @@
   <info>
     <link type="guide" xref="geolocation#geoloc"/>
     <link type="seealso" xref="geolocation-supported"/>
-    <desc>Att förstå geografisk plats.</desc>
+    <desc>
+      Understanding geolocation.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-19" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-09-09" status="deferred"/>
@@ -15,7 +17,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -24,38 +26,39 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Vad är geografisk plats</title>
+  <title>What is geolocation</title>
 
-  <p>Geografisk plats gör det möjligt att identifiera det verkliga geografiska läget för en dator eller en enhet som är ansluten till internet.</p>
-  <p>Med geografisk plats kan du i <app>Empathy</app>:</p>
+  <p>Geolocation allows you to identify the real geographical location of a
+  computer or a device connected to the Internet.</p>
+  <p>
+    With geolocation in <app>Empathy</app> you can:
+  </p>
   <list>
     <item>
-      <p>Offentliggöra din geografiska plats till dina kontakter.</p>
+      <p>
+        Publish your geographical location to your contacts.
+      </p>
     </item>
     <item>
-      <p>Se dina kontakters geografiska plats och snabbt och enkelt kontakta dem.</p>
+      <p>
+        See your contacts’ geographical location and quickly contact them.
+      </p>
     </item>
     <item>
-      <p>Ställa in noggrannhet av din plats och den enhet som används för att upptäcka din position.</p>
+      <p>
+        Set the accuracy of your location and the device used to discover your
+        location.
+      </p>
     </item>
   </list>
 
   <note style="tip">
-    <p>För att kunna se dina kontakters geografiska plats måste de använda en tjänst och ett program som stöder geografisk plats.</p>
+    <p>
+      In order to see your contacts’ geographical locations, they need to use a
+      service and an application that supports geolocation.
+    </p>
   </note>
 
 </page>

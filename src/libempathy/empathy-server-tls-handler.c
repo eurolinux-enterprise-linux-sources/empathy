@@ -19,14 +19,14 @@
  */
 
 #include "config.h"
+
 #include "empathy-server-tls-handler.h"
-
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_TLS
 #include "empathy-debug.h"
+#include "empathy-utils.h"
+
+#include "extensions/extensions.h"
 
 static void async_initable_iface_init (GAsyncInitableIface *iface);
 
@@ -144,7 +144,7 @@ tls_handler_init_async (GAsyncInitable *initable,
   }
 
   g_variant_lookup (properties,
-      TP_IFACE_CHANNEL_TYPE_SERVER_TLS_CONNECTION ".ServerCertificate",
+      EMP_IFACE_CHANNEL_TYPE_SERVER_TLS_CONNECTION ".ServerCertificate",
       "&o", &cert_object_path);
   bus_name = tp_proxy_get_bus_name (TP_PROXY (priv->channel));
 

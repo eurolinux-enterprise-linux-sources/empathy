@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -39,7 +38,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2015</mal:years>
+      <mal:years>2010-2013</mal:years>
     </mal:credit>
   </info>
 
@@ -56,7 +55,7 @@
       <title><gui>Verschlüsselung erforderlich (TLS/SSL)</gui></title>
       <title><gui>SSL-Zertifikatfehler ignorieren</gui></title>
       <p>Wann immer es möglich ist, wird die Kommunikation zwischen <app>Empathy</app> und dem Jabber-Server verschlüsselt. Falls verschlüsselte Kommunikation nicht möglich ist, können Nachrichten unverschlüsselt gesendet werden. Wählen Sie <gui>Verschlüsselung erforderlich</gui>, um eine Kommunikation von <app>Empathy</app> mit dem Jabber-Server zu verhindern, wenn Verschlüsselung nicht möglich ist.</p>
-      <p>Einige Jabber-Server verschlüsseln Daten mit ungültigen Zertifikaten oder Zertifikaten, die von unbekannten Dienststellen signiert wurden. Wählen Sie <gui>SSL-Zertifikatfehler ignorieren</gui>, um verschlüsselten Datenaustausch mit ungültigen Zeichen zu erlauben. Allerdings ermöglicht das einem Angreifer die Kommunikation mit einem Server anzugreifen (einschließlich Ihrem Passwort). Diese Einstellung bietet sich für Testzwecke an oder wenn Ihr Server defekt ist und Datensicherheit keine Rolle spielt.</p>
+      <p>Einige Jabber-Server könnten Daten mit ungültigen Zertifikaten verschlüsseln oder Zertifikate von unbekannten Ausgabestellen verwenden. Falls Sie dem Server vertrauen, mit dem Sie sich verbinden wollen, wählen Sie <gui>SSL-Zertifikat-Fehler ignorieren</gui>, um verschlüsselte Kommunikation mit ungültigen Zertifikaten allgemein zuzulassen.</p>
     </item>
     <item>
       <title><gui>Ressource</gui></title>

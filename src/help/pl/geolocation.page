@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#advanced"/>
-    <desc>Używanie i rozumienie działania geolokalizacji w programie <app>Empathy</app>.</desc>
+    <desc>Używanie i rozumienie działania geolokalizacji w programie <app>Empathy</app>.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-19" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-09-01" status="done"/>
@@ -23,18 +23,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
   
   <title>Położenie geograficzne</title>

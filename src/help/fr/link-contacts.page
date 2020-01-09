@@ -6,16 +6,12 @@
     <link type="seealso" xref="send-message"/>
     <link type="seealso" xref="audio-call"/>
     <link type="seealso" xref="video-call"/>
-    <desc>Lier et séparer différents contacts en un seul.</desc>
+    <desc>Lier et séparer des contacts différents en un seul.</desc>
     <revision pkgversion="2.32" version="0.1" date="2010-09-06" status="draft"/>
     <revision pkgversion="2.32" version="0.2" date="2010-09-09" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
-    </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
     </credit>
     <license>
       <p>Creative Commons Paternité - Partage des Conditions Initiales à l'Identique 3.0</p>
@@ -82,60 +78,49 @@
     </mal:credit>
   </info>
 
-  <title>Association, séparation de contacts</title>
-  <p>Si un ou plusieurs de vos contacts ont plusieurs comptes de différents services de messagerie, vous pouvez lier ces contacts en un seul.</p>
+  <title>Union et séparation de contacts</title>
+  <p>Si un ou plusieurs de vos contacts possèdent plusieurs comptes sur des services de messagerie différents, vous pouvez lier ces contacts en un seul.</p>
   <p>La liaison crée un contact appelé <em>méta-contact</em> : un contact composé de plusieurs contacts distincts.</p>
-  <p>Supposons que vous ayez un contact Jean Bonneau qui utilise trois services de messagerie différents comme :</p>
+  <p>Si vous avez un contact Jean Bonneau qui utilise trois services de messagerie différents comme :</p>
   <list>
+    <item>
+      <p>jean@facebook</p>
+    </item>
     <item>
       <p>jean.bonneau@gmail</p>
     </item>
     <item>
       <p>jean_bonneau@hotmail</p>
     </item>
-    <item>
-      <p>jean@yahoo</p>
-    </item>
   </list>
   <p>vous pouvez lier ces contacts en un seul Jean Bonneau.</p>
+  
   <section id="linking">
-  <title>Association de contacts</title>
-  <p>Pour associer vos contacts :</p>
+    <title>Lien entre contacts</title>
     <steps>
       <item>
-        <p>appuyez sur le bouton à cocher pour sélectionner les entrées que vous voulez associer. Ceci active le <em>mode sélection</em> et ajoute une case à cocher à chaque entrée,</p>
+        <p>Dans la fenêtre <gui>Liste des contacts</gui>, faites un clic droit sur l'un des contacts qui possède différents comptes et sélectionnez <gui style="menuitem">Lier les contacts</gui>.</p>
       </item>
       <item>
-        <p>cochez les cases correspondant aux entrées <app>Contacts</app> qui appartiennent au même contact,</p>
+        <p>Dans le panneau de gauche de la fenêtre <gui>Lier des contacts</gui>, sélectionnez les contacts que vous voulez lier.</p>
       </item>
       <item>
-        <p>appuyez sur <gui style="button">Lier</gui>.</p>
+        <p>Cliquez sur <gui style="button">Lier</gui>.</p>
       </item>
     </steps>
-    <p>Répéter les étapes 3 et 4 dans l'ordre pour lier d'autres contacts.</p>
+    <note>
+      <p>Par défaut, quand un méta contact a été créé et que vous faites un double clic dessus, vous êtes mis en ligne avec le contact qui a la plus forte présence sur le réseau.</p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Dissocier des contacts</title>
-  <p>Pour dissocier un contact lié :</p>
+  <section id="unlinkg">
+    <title>Séparation de contacts</title>
     <steps>
       <item>
-        <p>sélectionnez le contact dans votre liste,</p>
+        <p>Dans la fenêtre <gui>Liste des contacts</gui>, faites un clic droit sur le contact à séparer et sélectionnez <gui style="menuitem">Lier des contacts...</gui>.</p>
       </item>
       <item>
-        <p>appuyez sur <gui style="button">Édition</gui> dans le coin en haut à droite de <app>Contacts</app>,</p>
-      </item>
-      <item>
-	<p>cliquez sur <gui style="button">Contacts liés</gui>,</p>
-      </item>
-      <item>
-	<p>appuyez sur <gui style="button">Supprimer</gui> pour dissocier une entrée du contact lié,</p>
-      </item>
-      <item>
-        <p>appuyez sur <gui style="button">Fermer</gui> si vous ne voulez pas dissocier d'autres contacts,</p>
-      </item>
-      <item>
-        <p>enfin, appuyez sur <gui style="button">Fait</gui> pour finir la modification.</p>
+        <p>Cliquez sur <gui style="button">Séparer</gui>.</p>
       </item>
     </steps>
   </section>

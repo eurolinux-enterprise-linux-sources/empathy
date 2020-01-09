@@ -1,107 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="sv">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="sv">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Register for an account with one of the supported messaging services.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>    
-
-    <desc>Skapa ett konto för en av de understödda meddelandetjänsterna.</desc>
-
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
-  <title>Registrera ett nytt konto</title>
+  <title>Register for a new account</title>
 
-  <p>De flesta typer av konton kräver att du skapar ett konto med en tjänsteleverantör innan du kan använda kontot för snabbmeddelanden. Du kan använda <app>Empathy</app> för att registrera ett nytt konto med vissa kontoleverantörer med samma steg som när du ska <link xref="add-account">lägga till ett konto</link>.</p>
+  <p>Most account types require you to create an account with a account provider
+  before you can connect using instant messaging applications like <app>Empathy</app>.
+  With some account providers, you can use <app>Empathy</app> to register for a new
+  account, using the same steps as you would to <link xref="add-account">add an
+  account</link>.</p>
 
-  <p>När du skapat ett nytt konto, bör din kontoleverantör ge dig en inloggning eller ett användarnamn och ett lösenord, samt eventuellt ytterligare information som du behöver för att ansluta med <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>IRC-nätverk kräver att du anger ett smeknamn när du ansluter till servern. Vissa IRC-nätverk använder en tjänst, exempelvis Nickserv, för att <link xref="irc-nick-password">skydda användarnas smeknamn</link>. Om du inte har registrerat ditt smeknamn eller inte kan göra det och det används av en annan användare, då måste du välja ett annat.</p>
-
-    <p>Vissa IRC-servrar är lösenordsskyddade. Du måste känna till lösenordet för att ansluta till dessa servrar. Dessa IRC-nätverk är i allmänhet privata.</p>
-
-    <note>
-      <p>Många GNOME-projekt använder <code>irc.gnome.org</code> för projektrelaterade diskussioner.</p>
-    </note>
+  <p>This page provides information on creating a new account for various types of
+  accounts.  Your account provider should give you a login ID and a password, as well
+  as any additional information you need to connect using <app>Empathy</app>.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>
+      Facebook is one of the most-used social networks.  It allows users to
+      create their own profile and to communicate with their friends. 
+    </p>
+    <p>
+      To use Facebook to communicate with your friends, you will need 
+      to create a new account from the website: 
+      <link href="http://www.facebook.com">www.facebook.com</link>.
+    </p>
   </section>
 
   <section id="jabber">
     <title>Jabber</title>
 
-    <p>Jabber är ett öppet snabbmeddelandesystem. Likt e-post, ger Jabber dig möjlighet att välja din kontoleverantör och kommunicera med alla andra Jabber-användare, oberoende av deras kontoleverantör.</p>
+    <p>Jabber is an open instant messaging system.  Like email, Jabber allows
+    you to choose your account provider and communicate with all other Jabber
+    users, regardless of their account provider.</p>
 
-    <p>Du kommer att behöva skapa ett nytt konto med en Jabber-kontoleverantör. Det finns många gratis leverantörer; en populär leverantör är <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>You will need to create a new account with a Jabber provider.  There are
+    many free providers; one popular provider is
+    <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>Om du använder Gmail eller Google+ Hangouts har du redan ett Jabber-konto. Använd din Gmail-adress och lösenord i <app>Empathy</app> för att ansluta.</p>
+      <p>If you use Google Mail or Google Talk, you already have a Jabber account.
+      Google Talk is a Jabber service.  Simply use your Google Mail address and
+      password in <app>Empathy</app> to connect.</p>
     </note>
   </section>
 
   <section id="salut">
-    <title>Personer i närheten</title>
+    <title>People Nearby</title>
 
-    <p>Denna tjänst är alltid tillgänglig om du är ansluten till ett lokalt nätverk, till exempel en trådlös surfzon, du behöver inte skapa ett konto med tjänsteleverantören, konfigurera bara ditt konto via <app>Empathy</app>. Den hittar automatiskt alla andra användare i nätverket som också använder den här tjänsten.</p>
+    <p>You do not need to create an account with a service provider to use this
+    feature.  This service works whenever you are connected to a local network,
+    such as a wireless hotspot.  It automatically finds all other users on the
+    network who are also using this service.</p>
 
-    <p>För mera information, se <link xref="salut-protocol">salut-protokollet</link>.</p>
+    <p>For more information, see <link xref="salut-protocol"/>.</p>
   </section>
 
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>SIP är ett öppet system som gör det möjligt för användare att ha ljud- och videokonversationer över Internet. Du måste skapa ett konto med en SIP-leverantör. Du kan kommunicera med alla andra SIP-användare, oavsett vilken SIP-leverantör de använder.</p>
+    <p>SIP is an open system which allows users to have audio and video
+    conversations over the Internet.  You need to create an account with
+    a SIP provider.  You can communicate with all other SIP users,
+    regardless of which SIP provider they use.</p>
 
-    <p>Med vissa SIP-leverantörer kan du ringa till vanliga telefoner från din dator. Generellt måste du abonnera på en betaltjänst för den här funktionen.</p>
+    <note style="warning">
+      <p>Due to technical differences, the free <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link>
+      service does not currently work with <app>Empathy</app>.</p>
+    </note>
+
+    <p>Some SIP providers allow you to call normal phones from your computer.
+    Generally, you will need to subscribe to a paid service for this feature.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>You do not need to register for an account to use IRC.  Although you specify
+    a nickname when you add an IRC account to <app>Empathy</app>, this nickname is
+    only established each time you connect.  If another user is using the nickname,
+    you will need to choose a new nickname.</p>
+
+    <p>Some IRC networks use a service called NickServ to allow users to protect
+    their nicknames.  See <link xref="irc-nick-password"/> for more information.</p>
+
+    <p>Some IRC servers are password protected.  You will need to know the password
+    to connect to these servers.  Generally, these are private IRC networks.</p>
   </section>
 
   <section id="proprietary-services">
-    <title>Proprietära tjänster</title>
+    <title>Proprietary Services</title>
 
-    <p>Det finns många proprietära snabbmeddelandetjänster som har utvecklats av olika företag eller organisationer. <app>Empathy</app> låter dig ansluta till ett befintligt konto för vissa av dessa tjänster. För att skapa ett nytt konto med en av dessa tjänster måste du besöka webbplatsen för tjänsten.</p>
+    <p>There are many proprietary instant messaging services that have been
+    developed by different companies or organizations.  <app>Empathy</app>
+    allows you to connect to an existing account for most popular services.
+    To create a new account with one of these services, you will need to
+    visit the service’s web site and agree to its terms of use.</p>
 
     <list>
       <item>
-        <p><link href="http://dashboard.aim.com/aim">AIM</link></p>
+        <p>
+          <link href="http://dashboard.aim.com/aim">AIM</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://www.icq.com/register/">ICQ</link></p>
+        <p>
+          <link href="https://www.icq.com/register/">ICQ</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>
+        <p>
+          <link href="https://accountservices.passport.net">MSN</link>
+        </p>
+      </item>
+      <item>
+        <p>
+          <link href="https://login.yahoo.com/config/login">Yahoo!</link>
+        </p>
       </item>
     </list>
   </section>

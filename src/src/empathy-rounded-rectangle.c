@@ -19,9 +19,10 @@
  */
 
 #include "config.h"
-#include "empathy-rounded-rectangle.h"
 
 #include <math.h>
+
+#include "empathy-rounded-rectangle.h"
 
 G_DEFINE_TYPE (EmpathyRoundedRectangle,
     empathy_rounded_rectangle,

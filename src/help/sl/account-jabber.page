@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -38,13 +37,7 @@
       <title><gui>Zahtevano je šifriranje (TLS/SSL)</gui></title>
       <title><gui>Prezri napake potrdil SSL</gui></title>
       <p>Kadar je mogoče je sporazumevanje med <app>Empathy</app> in strežnikom Jabber šifrirana. V primeru da šifrirana komunikacija ni mogoča, morda morda sporočila poslana nešifrirano. Izberite <gui>Zahtevano šifriranj</gui> za preprečitev komunikacije <app>Empathy</app> s strežniki Jabber, ko šifriranje ni mogoče.</p>
-      <p>Some Jabber servers may encrypt data using invalid certificates,
-      or using certificates signed by unknown authorities.  You can select
-      <gui>Ignore SSL certificate errors</gui> to allow encrypted communication
-      with invalid certificates, but this allows an attacker to intercept your
-      communication with the server (including your password). You might want to
-      use this option for testing purposes, or if your server is broken and you
-      do not care about the security of your communication.</p>
+      <p>Nekateri strežniki Jabber lahko šifrirajo podatke z neveljavnimi potrdili ali s potrdili neznanih overiteljev potrdil. V primeru da strežniku na katerega se povezujete zaupate, izberite <gui>Prezri napake potrdil SSL</gui> za omogočitev šifriranja sporazumevanja z neveljavnimi potrdili.</p>
     </item>
     <item>
       <title><b>Vir</b></title>

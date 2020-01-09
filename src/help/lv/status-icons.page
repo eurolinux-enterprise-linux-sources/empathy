@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="lv">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="lv">
 
   <info>
     <desc>Dažādo statusu un statusu ikonu izprašana.</desc>
@@ -12,11 +12,11 @@
     </revision>
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Creative Commons Share Alike 3.0 licence.</p>
@@ -34,23 +34,23 @@
 
   <terms>
     <item>
-      <title><media type="image" mime="image/png" src="figures/available.png" its:translate="no"><span its:translate="yes">'Pieejams' ikona</span></media> <gui>Pieejams</gui></title>
+      <title><media type="image" mime="image/png" src="figures/available.png">"Pieejams" ikona</media> <gui>Pieejams</gui></title>
       <p>Izmanto <em>Pieejams</em> statusu kad atrodies pie sava datora un esi spējīgs sazināties ar kontaktiem. Šim statusam var iestatīt paša izvēlētu ziņojumu.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/busy.png" its:translate="no"><span its:translate="yes">'Aizņemts' ikona</span></media> <gui>Aizņemts</gui></title>
+      <title><media type="image" mime="image/png" src="figures/busy.png">"Aizņemts" ikona</media> <gui>Aizņemts</gui></title>
       <p>Izmanto <em>Aizņemts</em> statusu, lai darītu saviem kontaktiem zināmu, ka nevēlies pašlaik sazināties. Viņi joprojām var ar tevi sazināties, piemēram, ja ir jāpasaka kas steidzams. Pēc noklusējuma, <app>Empathy</app> neizmantos paziņojumu burbuļus un skaņas, kad ir uzlikts šis statuss. Šim statusam vari iestatīt paša izvēlētu ziņojumu.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/away.png" its:translate="no"><span its:translate="yes">'Prom' ikona</span></media> <gui>Projām</gui></title>
+      <title><media type="image" mime="image/png" src="figures/away.png">"Prom" ikona</media> <gui>Prom</gui></title>
       <p>Izmanto <em>Prom</em> statusu, kad dodies prom no datora. <app>Empathy</app> automātiski jums uzliks šo statusu, ja kādu laiku nebūsi izmantojis datoru, vai, ja ekrānsaudzētājs būs aktīvs. Pēc noklusējuma, <app>Empathy</app> neizmantos paziņojumu burbuļus un skaņas, kad ir uzlikts šis statuss. Šim statusam var uzstādīt paša izvēlētu ziņojumu.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">'Nesaistē' ikona</span></media> <gui>Neredzams</gui></title>
+      <title><media type="image" mime="image/png" src="figures/offline.png">"Nesaistē" ikona</media> <gui>Neredzams</gui></title>
       <p>Kad statuss ir <em>Neredzams</em>, tavi kontakti redzēs, ka esi nesaistē.Tajā pat laikā tu vēl joprojām būsi savienots ar visiem kontiem, un tu varēsi redzēt savu kontaktu statusus, kā arī ar viņiem sazināties.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">'Nesaistē' ikona</span></media> <gui>Nesaistē</gui></title>
+      <title><media type="image" mime="image/png" src="figures/offline.png">"Nesaistē" ikona</media> <gui>Nesaistē</gui></title>
       <p>Savu konta statusu iestatīšana uz <em>Nesaistē</em>, atvieno tevi no visiem taviem kontiem.</p>
     </item>
   </terms>

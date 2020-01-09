@@ -21,20 +21,19 @@
  *
  * Authors: Danielle Madeley <danielle.madeley@collabora.co.uk>
  */
-
 #include "config.h"
-#include "empathy-contact-blocking-dialog.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
-#include "empathy-account-chooser.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-account-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "empathy-contact-blocking-dialog.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define GET_PRIVATE(o) (EMPATHY_CONTACT_BLOCKING_DIALOG (o)->priv)
 #define DECLARE_CALLBACK(func) \
@@ -616,7 +615,7 @@ empathy_contact_blocking_dialog_init (EmpathyContactBlockingDialog *self)
   filename = empathy_file_lookup ("empathy-contact-blocking-dialog.ui",
       "libempathy-gtk");
 
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "contents", &contents,
       "account-hbox", &account_hbox,
       "add-button", &self->priv->add_button,
@@ -628,7 +627,7 @@ empathy_contact_blocking_dialog_init (EmpathyContactBlockingDialog *self)
       "remove-toolbar", &remove_toolbar,
       NULL);
 
-  tpaw_builder_connect (gui, self,
+  empathy_builder_connect (gui, self,
       "add-button", "clicked", contact_blocking_dialog_add_contact,
       "add-contact-entry", "activate", contact_blocking_dialog_add_contact,
       "remove-button", "clicked", contact_blocking_dialog_remove_contacts,

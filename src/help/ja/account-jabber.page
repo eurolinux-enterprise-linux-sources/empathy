@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -44,13 +43,7 @@
       <title><gui>TLS/SSL での暗号化が必要</gui></title>
       <title><gui>SSL の証明書に関連するエラーは無視</gui></title>
       <p>可能な限り、<app>Empathy</app> と Jabber サーバーの通信は暗号化されます。暗号化通信ができない場合、メッセージは暗号化されずに送られます。<gui>暗号化が必要</gui>を指定すると、暗号化ができない場合には <app>Empathy</app> と Jabber サーバーとの通信を行いません。</p>
-      <p>Some Jabber servers may encrypt data using invalid certificates,
-      or using certificates signed by unknown authorities.  You can select
-      <gui>Ignore SSL certificate errors</gui> to allow encrypted communication
-      with invalid certificates, but this allows an attacker to intercept your
-      communication with the server (including your password). You might want to
-      use this option for testing purposes, or if your server is broken and you
-      do not care about the security of your communication.</p>
+      <p>Jabber サーバーのなかには、有効でない証明書や不明の認証局の証明書を使って暗号化するものがあります。そのサーバーを信頼して接続するには、<gui>SSL の証明書に関連するエラーは無視</gui>を指定し、有効でない証明書で暗号化通信を行えます。</p>
     </item>
     <item>
       <title><gui>リソース</gui></title>

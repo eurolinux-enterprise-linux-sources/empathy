@@ -24,33 +24,14 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
   <title>Què és la «Gent propera»?</title>
+
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
 
   <p>El servei de «Gent propera» és un servei de comunicació descentralitzat: no us cal estar connectat ni autenticar-vos amb un servidor central per utilitzar-lo.</p>
   <p>Aquest tipus de sistema de missatgeria descentralitzat està restringit a una xarxa local i no cal una connexió a Internet activa.</p>

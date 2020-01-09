@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="fr">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="fr">
 
   <info>
     <link type="guide" xref="irc-manage#manage"/> 
@@ -12,7 +12,7 @@
     <revision pkgversion="2.30" version="0.2" date="2010-04-19" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Creative Commons Paternité - Partage des Conditions Initiales à l'Identique 3.0</p>
@@ -97,7 +97,7 @@
   <terms>
     <item>
       <title><gui>Réseau</gui></title>
-      <p>IRC est un système ouvert qui permet aux utilisateurs de faire fonctionner des réseaux IRC séparés. Chaque réseau est distinct et possède ses propres utilisateurs et salons de discussions. <app>Empathy</app> dresse une liste des réseaux les plus populaires dans la liste déroulante <gui>Réseaux</gui>. Vous pouvez y ajouter des réseaux supplémentaires. Consultez <link xref="#networks"/> ci-dessous.</p>
+      <p>IRC est un système ouvert qui permet aux utilisateurs de faire fonctionner des réseaux IRC séparés. Chaque réseau est distinct et possède ses propres utilisateurs et salons de discussions. <app>Empathy</app> dresse une liste des réseaux les plus populaires dans la liste déroulante <gui>Réseaux</gui>. Vous pouvez ajouter des réseaux supplémentaires. Consultez <link xref="#networks"/> ci-dessous.</p>
     </item>
     <item>
       <title><gui>Pseudonyme</gui></title>
@@ -108,16 +108,16 @@
       <p>Quelques serveurs, en particulier ceux des réseau privés, nécessitent un mot de passe pour vous y connecter. Si vous êtes autorisé à utiliser le réseau, son administrateur doit vous fournir un mot de passe.</p>
       <note>
         <title>Mots de passe NickServ</title>
-        <p>Sur certains réseaux, les pseudonymes peuvent être enregistrés en utilisant un service nommé NickServ. <app>Empathy</app> ne prend pas directement en charge les mots de passe des pseudonymes. Sur certains réseaux, incluant le populaire Freenode, les mots de passe du serveur sont automatiquement transférés vers NickServ, vous permettant ainsi de vous authentifier. Consultez <link xref="irc-nick-password"/> pour plus de détails.</p>
+        <p>Sur certains réseaux, les pseudonymes peuvent être enregistrés en utilisant un service nommé NickServ. <app>Empathy</app> ne prend pas directement en charge les mots de passe de pseudonyme. Sur certains réseaux, incluant le populaire Freenode, les mots de passe du serveur sont automatiquement transférés vers NickServ, vous permettant ainsi de vous authentifier. Consultez <link xref="irc-nick-password"/> pour plus de détails.</p>
       </note>
     </item>
     <item>
       <title><gui>Nom réel</gui></title>
-      <p>Vous pouvez donner votre vrai nom en plus de votre pseudonyme. Les autres utilisateurs peuvent ainsi le voir lorsqu'ils affichent vos informations.</p>
+      <p>Vous pouvez fournir votre vrai nom en plus de votre pseudonyme. Les autres utilisateurs peuvent ainsi le voir lorsqu'ils affichent vos informations.</p>
     </item>
     <item>
-      <title><gui>Message de déconnexion</gui></title>
-      <p>Lorsque vous vous déconnectez, un message est envoyé dans tous les salons de discussion où vous êtes présent et à tous les utilisateurs avec qui vous êtes en conversation. Renseignez ce champ pour personnaliser votre message de déconnexion.</p>
+      <title><gui>Message de départ</gui></title>
+      <p>Lorsque vous vous déconnectez, un message de départ est envoyé dans tous les salons de discussion où vous êtes présent et à tous les utilisateurs avec qui vous êtes en conversation. Renseignez ce champ pour personnaliser votre message de déconnexion.</p>
     </item>
   </terms>
 
@@ -132,12 +132,12 @@ telepathy-idle note
 
     <title>Réseaux</title>
 
-    <p><app>Empathy</app> contient une liste des réseaux IRC les plus populaires. Si vous souhaitez vous connecter à un autre réseau IRC, vous pouvez l'ajouter à la liste. Vous pouvez aussi modifier les réseaux existants et les supprimer de la liste.</p>
+    <p><app>Empathy</app> comprend une liste des réseaux IRC les plus populaires. Si vous souhaitez vous connecter à un autre réseau IRC, vous pouvez l'ajouter à la liste. Vous pouvez aussi modifier les réseaux existants et les supprimer de la liste.</p>
 
     <list>
-      <item><p>Pour ajouter un réseau à la liste, cliquez sur <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16" its:translate="no"><span its:translate="yes">Ajouter</span></media>.</p></item>
-      <item><p>Pour modifier un réseau de la liste, sélectionnez le réseau et cliquez sur <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16" its:translate="no"><span its:translate="yes">Modifier</span></media>.</p></item>
-      <item><p>Pour supprimer un réseau de la liste, sélectionnez le réseau et cliquez sur <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16" its:translate="no"><span its:translate="yes">Supprimer</span></media>.</p></item>
+      <item><p>Pour ajouter un réseau à la liste, cliquez sur <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16">Ajouter</media>.</p></item>
+      <item><p>Pour modifier un réseau de la liste, sélectionnez le réseau et cliquez sur <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16">Modifier</media>.</p></item>
+      <item><p>Pour supprimer un réseau de la liste, sélectionnez le réseau et cliquez sur <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16">Supprimer</media>.</p></item>
     </list>
 
     <p>Lorsque vous ajoutez ou modifiez un réseau, vous pouvez saisir les informations suivantes :</p>
@@ -159,7 +159,7 @@ telepathy-idle note
       <item>
         <title><gui>Serveurs</gui></title>
         <p>Un réseau IRC peut avoir plusieurs serveurs auxquels vous pouvez vous connecter. Lorsque vous êtes connecté à un serveur sur un réseau en particulier, vous pouvez communiquer avec tous les utilisateurs de tous les autres serveurs sur ce réseau. Vous pouvez ajouter et enlever des serveurs de ce réseau avec les boutons <gui>Ajouter</gui> et <gui>Enlever</gui>.</p>
-        <p>Lorsqu'un serveur est sélectionné, cliquez sur le champ au-dessous de <gui>Serveur</gui> ou <gui>Port</gui> pour le modifier. Vous pouvez aussi utiliser les flèches droite et gauche pour sélectionner le champ et ensuite appuyer sur la barre d'espace pour commencer la modification.</p>
+        <p>Lorsqu'un serveur est sélectionné, cliquez sur le champ au-dessous de <gui>Serveur</gui> ou <gui>Port</gui> pour le modifier. Vous pouvez aussi utiliser les flèches droite et gauche pour sélectionner le champ et ensuite appuyer sur la barre d'espace pour commencer l'édition.</p>
         <p>Sélectionnez la case à cocher dans la colonne <gui>SSL</gui> pour chiffrer toutes les communications avec un serveur. Il est à noter que ceci n'empêche pas les autres utilisateurs de voir ce que vous écrivez dans les salons de discussion publics.</p>
       </item>
     </terms>

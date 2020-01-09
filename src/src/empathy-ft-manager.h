@@ -25,9 +25,11 @@
 #ifndef __EMPATHY_FT_MANAGER_H__
 #define __EMPATHY_FT_MANAGER_H__
 
+#include <gtk/gtk.h>
 #include <glib-object.h>
+#include <glib.h>
 
-#include "empathy-ft-handler.h"
+#include <libempathy/empathy-ft-handler.h>
 
 G_BEGIN_DECLS
 

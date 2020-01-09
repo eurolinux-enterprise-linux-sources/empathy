@@ -6,100 +6,98 @@
     <link type="seealso" xref="send-message"/>
     <link type="seealso" xref="audio-call"/>
     <link type="seealso" xref="video-call"/>
-    <desc>Jak sloučit a rozdělit různé kontakty do jednoho.</desc>
+    <desc>Merge and separate different contacts into a single one.</desc>
     <revision pkgversion="2.32" version="0.1" date="2010-09-06" status="draft"/>
     <revision pkgversion="2.32" version="0.2" date="2010-09-09" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>
+        Creative Commons Share Alike 3.0
+      </p>
     </license>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Propojování a rozpojování kontaktů</title>
-  <p>V případě, že má některý z vašich kontaktů více účtů k různým službám rychlé komunikace, můžete je všechny zkombinovat do jediného kontaktu.</p>
-  <p>Výsledkem bude kontakt nazývaný <em>metakontakt</em>, tj. kontakt složený s několika jednotlivých kontaktů.</p>
-  <p>Předpokládejme, že máte kontakt nazývaný Jan Novák, který používá tyto tři různé služby pro rychlou komunikaci:</p>
+  <title>Combine and separate contacts</title>
+  <p>
+    If one, or more, of your contacts has multiple accounts with different
+    messaging services, you can combine these contacts into a single one.
+  </p>
+  <p>
+    The resulting contact is called a <em>meta-contact</em>: a contact composed
+    from different single contacts.
+  </p>
+  <p>
+    If you have a Jane Smith contact that is using three different messaging
+    services like:
+  </p>
   <list>
     <item>
-      <p>jan.novak@gmail</p>
+      <p>
+        janes@facebook
+      </p>
     </item>
     <item>
-      <p>jan_novak@hotmail</p>
+      <p>
+        jane.smith@gmail
+      </p>
     </item>
     <item>
-      <p>honza@yahoo</p>
+      <p>
+        jane_smith@hotmail
+      </p>
     </item>
   </list>
-  <p>Tyto tři kontakty můžete zkombinovat do jediného kontaktu Jan Novák.</p>
+  <p>
+    You can combine these contacts into a single Jane Smith one.
+  </p>
+  
   <section id="linking">
-  <title>Propojení kontaktů</title>
-  <p>Způsoby, kterými můžete kontakty propojit, jsou následující:</p>
+    <title>Combining contacts</title>
     <steps>
       <item>
-        <p>Zmáčkněte zaškrtávátko, abyste mohli vybrat kontakty, které chcete pospojovat. Zapne se tím <em>režim výběru</em>, kdy u každé položky uvidíte zaškrtávací políčko.</p>
+        <p>
+          From the <gui>Contact List</gui> window, right-click one of the contact
+          that has different accounts, and select
+          <gui style="menuitem">Link Contacts...</gui>.
+        </p>
       </item>
       <item>
-        <p>Zaškrtněte ta políčka, která odpovídají položkám v <app>Kontaktech</app>, které náleží tomu samému kontaktu.</p>
+        <p>
+          From the left pane in the <gui>Link Contacts</gui> window,
+          select the contacts you want to combine.
+        </p>
       </item>
       <item>
-        <p>Zmáčkněte tlačítko <gui style="button">Propojit</gui>.</p>
+        <p>
+          Click <gui style="button">Link</gui>.
+        </p>
       </item>
     </steps>
-    <p>Opakujte kroky 3 a 4 u dalších kontaktů, které chcete propojit.</p>
+    <note>
+      <p>
+        When a meta-contact has been created, the default contact that will be used
+        to have a conversation with when you double-click on it, is the contact with
+        the highest presence on-line.
+      </p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Rozpojení kontaktů</title>
-  <p>Propojený kontakt rozpojíte následovně:</p>
+  <section id="unlinkg">
+    <title>Separating contacts</title>
     <steps>
       <item>
-        <p>Vyberte kontakt v seznamu.</p>
+        <p>
+          From the <gui>Contact List</gui>, right-click the contact
+          to separate, and select <gui style="menuitem">Link Contacts...</gui>.
+        </p>
       </item>
       <item>
-        <p>Zmáčkněte <gui style="button">Upravit</gui> v pravém horním rohu okna <app>Kontakty</app>.</p>
-      </item>
-      <item>
-	<p>Zmáčkněte <gui style="button">Propojené kontakty</gui>.</p>
-      </item>
-      <item>
-	<p>Zmáčknutím <gui style="button">Odstranit</gui> položku v propojených kontaktech rozpojíte.</p>
-      </item>
-      <item>
-        <p>Jestli už nechcete rozpojit žádné další kontakty, klikněte na <gui style="button">Zavřít</gui>.</p>
-      </item>
-      <item>
-        <p>Vše dokončíte zmáčknutím tlačítka <gui style="button">Hotovo</gui>.</p>
+        <p>
+          Click <gui style="button">Unlink</gui>.
+        </p>
       </item>
     </steps>
   </section>

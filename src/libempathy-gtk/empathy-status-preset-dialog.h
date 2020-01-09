@@ -28,7 +28,7 @@
 #ifndef __EMPATHY_STATUS_PRESET_DIALOG_H__
 #define __EMPATHY_STATUS_PRESET_DIALOG_H__
 
-#include <gtk/gtk.h>
+#include <glib.h>
 
 G_BEGIN_DECLS
 

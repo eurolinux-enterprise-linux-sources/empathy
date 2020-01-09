@@ -1,12 +1,18 @@
-#include "config.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#include <libempathy/empathy-tls-verifier.h>
+#include "test-helper.h"
+#include "mock-pkcs11.h"
+
+#include <gcr/gcr.h>
 
 #include <gnutls/gnutls.h>
-#include <telepathy-glib/telepathy-glib.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
-#include "empathy-tls-verifier.h"
-#include "mock-pkcs11.h"
-#include "test-helper.h"
+#include <telepathy-glib/telepathy-glib.h>
+#include <telepathy-glib/svc-tls.h>
+#include <telepathy-glib/svc-generic.h>
 
 #define MOCK_TLS_CERTIFICATE_PATH "/mock/certificate"
 
@@ -52,8 +58,7 @@ mock_tls_certificate_init (MockTLSCertificate *self)
 {
   self->state = TP_TLS_CERTIFICATE_STATE_PENDING;
   self->cert_type = g_strdup ("x509");
-  self->cert_data = g_ptr_array_new_with_free_func ((GDestroyNotify)
-      g_array_unref);
+  self->cert_data = g_ptr_array_new_with_free_func((GDestroyNotify) g_array_unref);
   self->rejections = g_ptr_array_new ();
 }
 
@@ -129,7 +134,7 @@ mock_tls_certificate_class_init (MockTLSCertificateClass *klass)
   pspec = g_param_spec_uint ("state",
       "State of this certificate",
       "The state of this TLS certificate.",
-      0, TP_NUM_TLS_CERTIFICATE_STATES - 1,
+      0, NUM_TP_TLS_CERTIFICATE_STATES - 1,
       TP_TLS_CERTIFICATE_STATE_PENDING,
       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
   g_object_class_install_property (oclass, PROP_STATE, pspec);
@@ -186,7 +191,7 @@ mock_tls_certificate_iface_init (gpointer g_iface,
         gpointer iface_data)
 {
   TpSvcAuthenticationTLSCertificateClass *klass =
-    (TpSvcAuthenticationTLSCertificateClass *) g_iface;
+    (TpSvcAuthenticationTLSCertificateClass*)g_iface;
 
   tp_svc_authentication_tls_certificate_implement_accept (klass,
       mock_tls_certificate_accept);
@@ -228,7 +233,7 @@ mock_tls_certificate_assert_rejected (MockTLSCertificate *self,
 }
 #endif
 
-static MockTLSCertificate *
+static MockTLSCertificate*
 mock_tls_certificate_new_and_register (TpDBusDaemon *dbus,
         const gchar *path,
         ...)

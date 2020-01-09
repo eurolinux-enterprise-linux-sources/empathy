@@ -2,36 +2,37 @@ include $(top_srcdir)/tools/flymake.mk
 
 AM_CPPFLAGS =                                           \
 	$(ERROR_CFLAGS)					\
-	-I$(top_srcdir)/extensions                      \
+	-I.                                             \
+	-I$(top_srcdir)                                 \
 	-I$(top_builddir)                               \
 	-DDATADIR=\""$(datadir)"\"              	\
 	-DLOCALEDIR=\""$(datadir)/locale"\"		\
 	-DG_LOG_DOMAIN=\"empathy\"			\
 	-DGCR_API_SUBJECT_TO_CHANGE			\
 	$(EMPATHY_CFLAGS)				\
-	$(TPAW_CFLAGS)					\
 	$(GEOCLUE_CFLAGS)				\
 	$(GEOCODE_CFLAGS)				\
 	$(NETWORK_MANAGER_CFLAGS)			\
 	$(CONNMAN_CFLAGS)				\
+	$(UDEV_CFLAGS)					\
 	$(GOA_CFLAGS)					\
 	$(UOA_CFLAGS)					\
 	$(WARN_CFLAGS)					\
 	$(DISABLE_DEPRECATED)
 
 BUILT_SOURCES = 					\
-	empathy-dtd-resources.c				\
-	empathy-dtd-resources.h				\
 	empathy-enum-types.h				\
 	empathy-enum-types.c
 
 libempathy_headers =				\
 	action-chain-internal.h			\
+	empathy-account-settings.h		\
 	empathy-auth-factory.h			\
-	empathy-bus-names.h			\
+	empathy-camera-monitor.h		\
 	empathy-chatroom-manager.h		\
 	empathy-chatroom.h			\
 	empathy-client-factory.h \
+	empathy-connection-managers.h		\
 	empathy-connection-aggregator.h		\
 	empathy-contact-groups.h		\
 	empathy-contact.h			\
@@ -41,6 +42,10 @@ libempathy_headers =				\
 	empathy-gsettings.h			\
 	empathy-presence-manager.h				\
 	empathy-individual-manager.h		\
+	empathy-irc-network-manager.h		\
+	empathy-irc-network.h			\
+	empathy-irc-server.h			\
+	empathy-keyring.h 			\
 	empathy-location.h			\
 	empathy-message.h			\
 	empathy-pkg-kit.h		\
@@ -49,6 +54,7 @@ libempathy_headers =				\
 	empathy-server-sasl-handler.h		\
 	empathy-server-tls-handler.h		\
 	empathy-status-presets.h		\
+	empathy-time.h				\
 	empathy-tls-verifier.h			\
 	empathy-tp-chat.h			\
 	empathy-types.h				\
@@ -57,10 +63,13 @@ libempathy_headers =				\
 libempathy_handwritten_source =				\
 	$(libempathy_headers)				\
 	action-chain.c					\
+	empathy-account-settings.c			\
 	empathy-auth-factory.c				\
+	empathy-camera-monitor.c			\
 	empathy-chatroom-manager.c			\
 	empathy-chatroom.c				\
 	empathy-client-factory.c \
+	empathy-connection-managers.c			\
 	empathy-connection-aggregator.c		\
 	empathy-contact-groups.c			\
 	empathy-contact.c				\
@@ -69,6 +78,10 @@ libempathy_handwritten_source =				\
 	empathy-ft-handler.c				\
 	empathy-presence-manager.c					\
 	empathy-individual-manager.c			\
+	empathy-irc-network-manager.c			\
+	empathy-irc-network.c				\
+	empathy-irc-server.c				\
+	empathy-keyring.c				\
 	empathy-message.c				\
 	empathy-pkg-kit.c		\
 	empathy-request-util.c				\
@@ -76,6 +89,7 @@ libempathy_handwritten_source =				\
 	empathy-server-sasl-handler.c			\
 	empathy-server-tls-handler.c			\
 	empathy-status-presets.c			\
+	empathy-time.c					\
 	empathy-tls-verifier.c				\
 	empathy-tp-chat.c				\
 	empathy-utils.c
@@ -90,6 +104,8 @@ goa_sources = \
 uoa_sources = \
 	empathy-uoa-auth-handler.c \
 	empathy-uoa-auth-handler.h \
+	empathy-uoa-utils.c \
+	empathy-uoa-utils.h \
 	$(NULL)
 
 pkglib_LTLIBRARIES = libempathy.la
@@ -103,13 +119,12 @@ libempathy_la_LDFLAGS = \
 
 libempathy_la_SOURCES = \
 	$(libempathy_handwritten_source) \
-	$(NULL)
+	cheese-camera-device-monitor.c cheese-camera-device-monitor.h
 
 libempathy_la_LIBADD =		\
 	$(top_builddir)/extensions/libemp-extensions.la \
 	$(GCR_LIBS) \
 	$(EMPATHY_LIBS) \
-	$(TPAW_LIBS) \
 	$(GEOCLUE_LIBS) \
 	$(GEOCODE_LIBS) \
 	$(NETWORK_MANAGER_LIBS) \
@@ -119,24 +134,20 @@ libempathy_la_LIBADD =		\
 	$(UOA_LIBS) \
 	$(LIBM)
 
-dtd_resources_files =				\
+dtddir = $(datadir)/empathy
+dtd_DATA = 					\
 	empathy-status-presets.dtd		\
 	empathy-contact-groups.dtd		\
 	empathy-chatroom-manager.dtd		\
-	$(NULL)
+	empathy-irc-networks.dtd
 
-dtd_resource_files: $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/empathy-dtd.gresource.xml)
+ircnetworksdir = $(datadir)/empathy
+ircnetworks_DATA =		\
+	irc-networks.xml
 
-empathy-dtd-resources.c: empathy-dtd.gresource.xml $(dtd_resource_files)
-	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $<
-
-empathy-dtd-resources.h: empathy-dtd.gresource.xml $(dtd_resource_files)
-	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header $<
-
-EXTRA_DIST = 				\
-	empathy-dtd.gresource.xml	\
-	$(dtd_resources_files)		\
-	$(NULL)
+EXTRA_DIST = 			\
+	$(dtd_DATA)		\
+	$(ircnetworks_DATA)
 
 CLEANFILES = 				\
 	$(BUILT_SOURCES)		\
@@ -178,7 +189,7 @@ stamp-empathy-enum-types.h: $(libempathy_headers) Makefile
 			--fhead "G_BEGIN_DECLS\n\n" \
 			--ftail "G_END_DECLS\n\n" \
 			--ftail "#endif /* __LIBEMPATHY_ENUM_TYPES_H__ */\n" \
-			--fprod '#include "@filename@"\n' \
+			--fprod "#include <libempathy/@filename@>\n" \
 			--eprod "#define EMPATHY_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
 		$(libempathy_headers) ) > xgen-gth \

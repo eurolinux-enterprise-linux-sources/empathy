@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="video-call" xml:lang="de">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="video-call" xml:lang="de">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -14,17 +14,10 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="3.2" version="0.4" date="2011-12-18" status="review"/>
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>
@@ -44,7 +37,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2015</mal:years>
+      <mal:years>2010-2013</mal:years>
     </mal:credit>
   </info>
   <title>Eine Video-Unterhaltung beginnen</title>
@@ -53,20 +46,18 @@
 
   <steps>
     <item>
-      <p>Wählen Sie mit der rechten Maustaste den Kontakt aus, den Sie eine anrufen wollen, und wählen Sie im Menü  <gui style="menuitem">Videoanruf</gui>.</p>
+      <p>Klicken Sie im <gui>Kontaktlisten</gui>-Fenster auf das <media type="image" mime="image/png" src="figures/camera-web.png">Videoanruf</media>-Symbol neben dem Namen des Kontakts, den Sie anrufen wollen, und wählen Sie <gui style="menuitem">Videoanruf</gui>.</p>
     </item>
     <item>
-      <p>Ein neues Fenster wird geöffnet. Sobald die Verbindung aufgebaut wurde, sehen Sie am unteren Rand des Fensters die Gesamtzeit der Unterhaltung.</p>
+      <p>Ein neues Fenster wird geöffnet. Sobald die Verbindung aufgebaut wurde, sehen Sie am unteren Rand des Fensters <gui>Verbunden</gui> und die Gesamtzeit der Unterhaltung.</p>
     </item>
     <item>
       <p>Um eine Unterhaltung zu beenden, klicken Sie auf <gui style="button">Auflegen</gui>.</p>
     </item>
   </steps>
-
   <note style="tip">
-    <p>Um eine Video-Unterhaltung in eine Sprachunterhaltung umzuwandeln, wählen Sie <guiseq><gui style="menu">Video</gui><gui style="menuitem">Video aus</gui></guiseq>.</p>
+    <p>Um eine Video-Unterhaltung in eine Audio-Unterhaltung umzuwandeln, wählen Sie <guiseq><gui style="menu">Video</gui><gui style="menuitem">Video aus</gui></guiseq>.</p>
   </note>
-
   <section id="video-meta-contact">
     <title>Beginnen einer Videounterhaltung mit einem Meta-Kontakt</title>
     <steps>

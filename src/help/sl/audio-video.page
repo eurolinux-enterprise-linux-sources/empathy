@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Podatki kdaj je mogoče imeti zvočni ali video pogovor.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Dovoljenje Creative Commons - deljenje pod istimi pogoji 3.0</p>
     </license>    
@@ -25,15 +25,43 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Podatki kdaj je mogoče imeti zvočni ali video pogovor.</desc>
-
   </info>
 
   <title>Podpora za zvok in video</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Zvočne in video pogovor imate lahko le s stiki, ki uporabljajo program s podporo te zmožnosti. V primeru da vaši stiki podpirajo zvočne ali video pogovore lahko vidite naslednje ikone poleg njihovih imen na seznamu stikov:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Ikona</p>
+        </td>
+        <td>
+          <p>Opis</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/audio-input-microphone.png"> Ikona za zvočni pogovor </media></p>
+      </td>
+      <td>
+        <p>Stik lahko ima zvočni pogovor.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>V sporočilu napake kliknite na ikono <media type="image" mime="image/png" src="figures/camera-web.png">Ikona za video pogovor</media>.</p>
+      </td>
+      <td>
+        <p>Stik lahko ima video pogovor.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Za zvočni pogovor morate imeti zvočno kartico, ki jo vaš operacijski sistem podpira, in delujoči mikrofon. </p>
     <p>Za video pogovor morate imeti spletno kamero, ki jo vaš operacijski sistem podpira, in delujoči mikrofon.</p>
@@ -49,6 +77,22 @@
     <p>Vrste računov zagotavljajo vstavki. Vaš sistem morda nima na voljo vseh sledečih vrst, ali morda vsebuje vrste, ki tukaj niso naštete. Posodobljeni vstavki lahko omogočijo zvočni ali video klepet na vrstah računov, ki so tukaj naštete kot nepodprte.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -61,6 +105,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>Ne</p></td>
+        <td><p>Ne</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook klepet</p></td>
         <td><p>Ne</p></td>
         <td><p>Ne</p></td>
       </tr>
@@ -91,6 +140,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Da</p></td>
+        <td><p>Da</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Da</p></td>
         <td><p>Da</p></td>
       </tr>

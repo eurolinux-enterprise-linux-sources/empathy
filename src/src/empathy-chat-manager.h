@@ -20,9 +20,9 @@
 #ifndef __EMPATHY_CHAT_MANAGER_H__
 #define __EMPATHY_CHAT_MANAGER_H__
 
+#include <glib-object.h>
 
-#include "empathy-chat.h"
-#include "chat-manager-interface.h"
+#include <libempathy-gtk/empathy-chat.h>
 
 G_BEGIN_DECLS
 
@@ -31,12 +31,12 @@ typedef struct _EmpathyChatManagerClass EmpathyChatManagerClass;
 
 struct _EmpathyChatManagerClass
 {
-  EmpathyGenChatManagerSkeletonClass parent_class;
+  GObjectClass parent_class;
 };
 
 struct _EmpathyChatManager
 {
-  EmpathyGenChatManagerSkeleton parent;
+  GObject parent;
 };
 
 GType empathy_chat_manager_get_type (void);

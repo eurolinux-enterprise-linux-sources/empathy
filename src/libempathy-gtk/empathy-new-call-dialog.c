@@ -19,19 +19,21 @@
  */
 
 #include "config.h"
-#include "empathy-new-call-dialog.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-camera-monitor.h>
 
-#include "empathy-call-utils.h"
-#include "empathy-contact-chooser.h"
-#include "empathy-images.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-camera-monitor.h>
+#include <libempathy/empathy-utils.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+
+#include <libempathy-gtk/empathy-contact-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-images.h>
+
+#include "empathy-new-call-dialog.h"
+#include "empathy-call-utils.h"
 
 static EmpathyNewCallDialog *dialog_singleton = NULL;
 
@@ -43,7 +45,7 @@ struct _EmpathyNewCallDialogPriv {
   GtkWidget *button_audio;
   GtkWidget *button_video;
 
-  TpawCameraMonitor *monitor;
+  EmpathyCameraMonitor *monitor;
 };
 
 /* Re-use the accept and ok Gtk response so we are sure they won't be used
@@ -84,7 +86,7 @@ empathy_new_call_dialog_response (GtkDialog *dialog,
   g_assert (contact != NULL);
 
   empathy_call_new_with_streams (empathy_contact_get_id (contact),
-      empathy_contact_get_account (contact),
+      empathy_contact_get_account (contact), TRUE,
       response_id == RESPONSE_VIDEO, empathy_get_current_action_time ());
 
   g_object_unref (individual);
@@ -182,7 +184,7 @@ empathy_new_call_dialog_init (EmpathyNewCallDialog *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
       EMPATHY_TYPE_NEW_CALL_DIALOG, EmpathyNewCallDialogPriv);
 
-  self->priv->monitor = tpaw_camera_monitor_dup_singleton ();
+  self->priv->monitor = empathy_camera_monitor_dup_singleton ();
 
   content = gtk_dialog_get_content_area (GTK_DIALOG (self));
 

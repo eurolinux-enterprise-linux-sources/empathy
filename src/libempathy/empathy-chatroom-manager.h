@@ -25,6 +25,7 @@
 #define __EMPATHY_CHATROOM_MANAGER_H__
 
 #include <glib-object.h>
+
 #include <telepathy-glib/telepathy-glib.h>
 
 #include "empathy-chatroom.h"

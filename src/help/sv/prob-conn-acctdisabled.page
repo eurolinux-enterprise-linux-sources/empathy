@@ -3,7 +3,10 @@
 
   <info>
     <link type="guide" xref="prob-conn"/>
-    <desc>Chattkontot som du vill använda är inte aktiverat i listan över konton.</desc>
+    <desc>
+        The instant messaging account that you want to use is not enabled in
+        the list of accounts.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-17" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review"/>
     <revision pkgversion="3.2" version="0.3" date="2011-12-18" status="review"/>
@@ -16,7 +19,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>
 <!--
     <copyright>
@@ -25,39 +28,43 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Mitt konto är inte aktiverat</title>
+  <title>My account is not enabled</title>
 
-  <p>Om chattkontot som du vill använda när du försöker starta ett nytt samtal eller gå in i ett rum inte är aktiverat i rullgardinslistan för konton kan dina kontouppgifter vara felaktiga.</p>
+  <p>
+    If the instant messaging account that you want to use is not enabled in the
+    drop-down account list when you try to start a new conversation or join a
+    room, your account details may not be correct.
+  </p>
 
   <steps>
     <item>
-      <p>Försäkra dig om att du är ansluten till internet eller till ett lokalt nätverk.</p>
+      <p>
+        Make sure that you are connected to the Internet, or to a local area network.
+      </p>
     </item>
     <item>
-      <p>Välj <guiseq><gui>Redigera</gui><gui>Konton</gui></guiseq> och välj det konto som inte fungerar.</p>
+      <p>
+        Choose <guiseq><gui>Edit</gui><gui>Accounts</gui></guiseq> and select the account
+        that is not working.
+      </p>
     </item>
     <item>
-      <p>Skriv in ditt användarnamn och lösenord igen för att kontrollera att de är korrekta.</p>
+      <p>
+        Type your username and password again to make sure that they are correct.
+      </p>
     </item>
     <item>
-      <p>Kontrollera att uppgifterna är rätt under avdelningen <gui>Avancerat</gui>. Du bör kunna hitta dessa uppgifter från meddelandetjänstens hemsida.</p>
+      <p>
+        Check in the <gui>Advanced</gui> section that all the details are correct.
+        You should be able to find these details from the website of the messaging service.
+      </p>
     </item>
     <item>
-      <p>Kontrollera att kontot är påslaget.</p>
+      <p>
+        Check that the account is switched on.
+      </p>
     </item>
   </steps>
 

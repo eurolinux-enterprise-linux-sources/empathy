@@ -22,6 +22,7 @@
 #define __EMPATHY_APP_PLUGIN_H__
 
 #include <glib-object.h>
+
 #include <libaccount-plugin/application-plugin.h>
 
 G_BEGIN_DECLS

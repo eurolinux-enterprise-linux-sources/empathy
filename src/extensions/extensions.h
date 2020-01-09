@@ -1,6 +1,7 @@
 #ifndef __EMP_EXTENSIONS_H__
 #define __EMP_EXTENSIONS_H__
 
+#include <glib-object.h>
 #include <telepathy-glib/telepathy-glib.h>
 
 #include "extensions/_gen/enums.h"

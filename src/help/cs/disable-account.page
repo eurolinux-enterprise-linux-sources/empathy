@@ -4,7 +4,7 @@
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Jak zabránit <app>Empathy</app> v automatickém přihlašování k účtu.</desc>
+    <desc>Prevent <app>Empathy</app> from automatically logging in to an account.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review"/>
@@ -33,47 +33,31 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Zakázání účtu</title>
+  <title>Disable an account</title>
 
-  <p>Jednotlivé účty můžete zakázat, abyste <app>Empathy</app> zabránili v přihlašování k nim, aniž byste je museli smazat. Zakázání a opětovné povolení účtu se vám může hodit například, když se k účtu chcete přihlašovat jen v určitou dobu, ale ostatní účty v <app>Empathy</app> chcete používat pořád.</p>
+  <p>You can disable an account to prevent <app>Empathy</app> from logging in to
+  it without removing the account entirely.  You may wish to disable and re-enable
+  an account if you only want to be logged in to the account at certain times,
+  but you still want to use <app>Empathy</app> for other accounts.</p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> vyberte <guiseq><gui>Upravit</gui> <gui>Účty</gui></guiseq> nebo zmáčkněte <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>V seznamu v levé části okna vyberte účet, který chcete zakázat.</p>
+      <p>Select the account you wish to disable from the accounts list on the left
+      side of the window.</p>
     </item>
     <item>
-      <p>Vypněte jej přepínačem na pravé straně okna.</p>
+      <p>On the right side of the window, switch it off.
+      </p>
     </item>
   </steps>
 
-  <p>Pro opětovnou aktivaci účtu jej přepínačem zapněte.</p>
+  <p>
+    To re-enable the account, switch it on.
+  </p>
 </page>

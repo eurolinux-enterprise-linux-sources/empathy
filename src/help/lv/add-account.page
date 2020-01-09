@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="lv">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="lv">
 
   <info>
     <link type="guide" xref="index#accounts"/>
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -42,23 +41,26 @@
 
   <steps>
     <item>
-      <p>Klikšķiniet <guiseq><gui>Empathy</gui><gui>Konti</gui></guiseq>, vai spiediet <key>F4</key>.</p>
+      <p><gui>Kontaktu saraksta</gui> logā izvēlies <guiseq><gui>Rediģēt </gui><gui>Konti</gui></guiseq>, vai nospied <key>F4</key>.</p>
     </item>
     <item>
-      <p>Spiediet <gui style="button">+</gui>.</p>
+      <p>Spied <gui style="button">+</gui>.</p>
     </item>
     <item>
-      <p><gui>Kāda veida tērzēšanas konts jums ir?</gui> sarakstā, izvēlies konta tipu, kuru vēlies pievienot.</p>
+      <p><gui>Protokola</gui> sarakstā, izvēlies konta tipu, kuru vēlies pievienot.</p>
+    </item>
+    <item>
+      <p>Ja tev vēl nav izveidots konts, izvēlies <gui>Izveidot jaunu kontu uz šī servera</gui>. Šī iespēja nav pieejama visiem kontu tipiem un var nedarboties ar dažiem kontu sniedzējiem. Plašākai informācijai, lasi <link xref="create-account"/>.</p>
     </item>
     <item>
       <p>Ievadi vajadzīgo informāciju. Vairumam kontu vajag norādīt tikai lietotāja ID un paroli. Dažiem kontiem vajag norādīt papildu informāciju. Skati <link xref="accounts-window#details"/>, lai uzzinātu vairāk.</p>
     </item>
     <item>
-      <p>Spiediet <gui style="button">Pievienot</gui>.</p>
+      <p>Spied <gui style="button">Pielietot</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Lai nomainītu vārdu, kurš identificē kontu, <gui>Ziņojumapmaiņas un IP balss pārraides kontu</gui> logā, izvēlies kontu no saraksta kreisajā pusē un vai nu nospied uz vārda, vai nospied atstarpes taustiņu. Rediģē konta vārdu un spied <key>Enter</key>, kad esi pabeidzis.</p>
+    <p>Lai nomainītu vārdu, kurš identificē kontu, <gui>Kontu</gui> logā, izvēlies kontu no saraksta kreisajā pusē un vai nu nospied uz vārda, vai nospied atstarpes taustiņu. Rediģē konta vārdu un spied <key>Enter</key>, kad esi pabeidzis.</p>
   </note>
 </page>

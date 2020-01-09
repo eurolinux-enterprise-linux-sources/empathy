@@ -4,7 +4,7 @@
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>使 <app>Empathy</app> 不要自动登录一个帐号。</desc>
+    <desc>使 <app>Empathy</app> 不要自动登录一个账户。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review"/>
@@ -35,9 +35,9 @@
 -->
   </info>
 
-  <title>禁用一个帐号</title>
+  <title>禁用一个账户</title>
 
-  <p>您可以禁用一个帐号以阻止 <app>Empathy</app> 自动登录这个帐号而不必将其彻底删除。您可能想要禁用、启用某个帐号如果您只想偶尔登录这个帐号，但又想使用 <app>Empathy</app> 中的其他帐号。</p>
+  <p>您可以禁用一个账户以阻止 <app>Empathy</app> 自动登录这个账户而不必将其彻底删除。您可能想要禁用、启用某个账户如果您只想偶尔登录这个账户，但又想使用 <app>Empathy</app> 中的其他账户。</p>
 
   <steps>
     <item>
@@ -45,12 +45,15 @@
       <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>在窗口左侧的帐号列表中，选择您想要禁用的帐号。</p>
+      <p>在窗口左侧的账户列表中，选择您想要禁用的账户。</p>
     </item>
     <item>
-      <p>在窗口的右侧关闭它。</p>
+      <p>On the right side of the window, switch it off.
+      </p>
     </item>
   </steps>
 
-  <p>要重新启用这个帐号，则开启它。</p>
+  <p>
+    To re-enable the account, switch it on.
+  </p>
 </page>

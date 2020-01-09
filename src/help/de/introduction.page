@@ -29,13 +29,13 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2015</mal:years>
+      <mal:years>2010-2013</mal:years>
     </mal:credit>
   </info>
 
   <title>Einführung</title>
 
-  <p><app>Empathy</app> ist eine Sofortnachrichten-Anwendung für die GNOME-Arbeitsumgebung. Textnachrichten, Sprach- und Videoanrufe, Dateiübertragungen sowie alle gängigen Nachrichtensysteme wie Jabber und Google Talk werden unterstützt.</p>
+  <p><app>Empathy</app> ist eine Sofortnachrichten-Anwendung für die GNOME-Arbeitsumgebung. Textnachrichten, Sprach- und Videoanrufe, Dateiübertragungen sowie alle gängigen Nachrichtensysteme wie MSN und GoogleTalk werden unterstützt.</p>
   <p><app>Empathy</app> bietet Funktionsmerkmale, die Ihnen einerseits die berufliche Zusammenarbeit erleichtern, aber es auch ermöglichen, mit Ihren Freunden in Verbindung zu bleiben.</p>
   <p>In <app>Empathy</app> können Sie alle Unterhaltungen in einem einzigen Fenster anordnen oder mehrere Fenster für die verschiedenen Arten von Unterhaltungen verwenden, frühere Unterhaltungen durchsuchen und Ihre Arbeitsumgebung mit nur zwei Klicks freigeben.</p>
 

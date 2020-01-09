@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="irc-manage#manage" group="one"/>
-    <desc>Jak vstoupit do diskuzní místnosti IRC.</desc>
+    <desc>Join an IRC channel.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-07-26" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
       <!--
@@ -24,52 +24,43 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Vstup do místnosti IRC</title>
+  <title>Join an IRC chat room</title>
 
-  <p>Vstupovat můžete do diskuzních místností IRC (nazývaných také kanály IRC) na libovolné síti IRC, ke které jste připojeni. Jak se připojit k síti IRC se dozvíte v <link xref="add-account"/> a <link xref="account-irc"/>.</p>
+  <p>You can join IRC chat rooms (also known as IRC channels) on any IRC network you’re
+  connected to.  To connect to an IRC network, see <link xref="add-account"/> and
+  <link xref="account-irc"/>.</p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> zvolte <guiseq><gui>Místnost</gui><gui>Vstoupit</gui></guiseq>.</p>
+      <p>
+        From the <gui>Contact List</gui> window, choose
+        <guiseq><gui>Room</gui><gui>Join</gui></guiseq>.
+      </p>
     </item>
     <item>
-      <p>V rozbalovacím seznamu <gui>Účet</gui> vyberte účet IRC, který odpovídá síti, kterou chcete používat.</p>
+      <p>
+        From the <gui>Account</gui> drop-down list, select the IRC account that
+        corresponds to the network you want to use.
+      </p>
     </item>
     <item>
-      <p>Do textového pole <gui>Místnost</gui> napište název místnosti, do které chcete vstoupit. Názvy místností IRC začínají znakem mřížky (<sys>#</sys>).</p>
+      <p>
+        In the <gui>Room</gui> text box, type the name of the channel you want to
+        join. IRC channel names start with the hash character (<sys>#</sys>).
+      </p>
     </item>
     <item>
-      <p>Kliknutím na <gui>Vstoupit</gui> vstoupíte do místnosti.</p>
+      <p>
+        Click <gui>Join</gui> to enter the room.
+      </p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Pokud chcete vstoupit do více místností, musíte tento postup opakovat pro každou zvlášť.</p>
+    <p>
+      To join multiple rooms, you need to repeat the steps above for each room.
+    </p>
   </note>
 </page>

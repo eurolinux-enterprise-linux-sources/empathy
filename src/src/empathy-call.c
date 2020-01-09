@@ -23,24 +23,26 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+
 #include <clutter-gtk/clutter-gtk.h>
 #include <clutter-gst/clutter-gst.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
 #ifdef CLUTTER_WINDOWING_X11
 #include <X11/Xlib.h>
 #endif
 
-#include "empathy-bus-names.h"
-#include "empathy-call-factory.h"
+#include <libempathy-gtk/empathy-ui-utils.h>
+
 #include "empathy-call-window.h"
-#include "empathy-ui-utils.h"
+#include "empathy-call-factory.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Exit after $TIMEOUT seconds if not displaying any call window */
 #define TIMEOUT 60
+
+#define EMPATHY_CALL_DBUS_NAME "org.gnome.Empathy.Call"
 
 static GtkApplication *app = NULL;
 static gboolean activated = FALSE;
@@ -127,13 +129,11 @@ call_window_inhibit_cb (EmpathyCallWindow *window,
 static void
 new_call_handler_cb (EmpathyCallFactory *factory,
     EmpathyCallHandler *handler,
-    gint64 user_action_time,
+    gboolean outgoing,
     gpointer user_data)
 {
   EmpathyCallWindow *window;
   EmpathyContact *contact;
-  guint32 x11_time;
-  gboolean present;
 
   DEBUG ("Show the call window");
 
@@ -141,12 +141,9 @@ new_call_handler_cb (EmpathyCallFactory *factory,
 
   window = g_hash_table_lookup (call_windows, contact);
 
-  present = tp_user_action_time_should_present (user_action_time,
-      &x11_time);
-
   if (window != NULL)
     {
-      empathy_call_window_new_handler (window, handler, present, x11_time);
+      empathy_call_window_present (window, handler);
     }
   else
     {
@@ -160,9 +157,6 @@ new_call_handler_cb (EmpathyCallFactory *factory,
           G_CALLBACK (call_window_inhibit_cb), NULL);
 
       gtk_widget_show (GTK_WIDGET (window));
-
-      if (present)
-        tpaw_window_present_with_time (GTK_WINDOW (window), x11_time);
     }
 }
 
@@ -247,14 +241,14 @@ main (int argc,
   g_set_application_name (_("Empathy Audio/Video Client"));
 
   /* Make empathy and empathy-call appear as the same app in gnome-shell */
-  g_set_prgname ("empathy");
+  gdk_set_program_class ("Empathy");
   gtk_window_set_default_icon_name ("empathy");
 
   gtk_settings = gtk_settings_get_default ();
   g_object_set (G_OBJECT (gtk_settings), "gtk-application-prefer-dark-theme",
       TRUE, NULL);
 
-  app = gtk_application_new (EMPATHY_CALL_BUS_NAME, G_APPLICATION_FLAGS_NONE);
+  app = gtk_application_new (EMPATHY_CALL_DBUS_NAME, G_APPLICATION_FLAGS_NONE);
   g_signal_connect (app, "activate", G_CALLBACK (activate_cb), NULL);
 
 #ifdef ENABLE_DEBUG

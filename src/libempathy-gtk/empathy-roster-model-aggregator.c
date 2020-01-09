@@ -22,9 +22,10 @@
  */
 
 #include "config.h"
-#include "empathy-roster-model-aggregator.h"
 
 #include <folks/folks-telepathy.h>
+
+#include "empathy-roster-model-aggregator.h"
 
 /**
  * SECTION: empathy-roster-model-aggregator
@@ -175,9 +176,7 @@ populate_individuals (EmpathyRosterModelAggregator *self)
   iter = gee_map_map_iterator (individuals);
   while (gee_map_iterator_next (iter))
     {
-      FolksIndividual *individual = gee_map_iterator_get_value (iter);
-      add_individual (self, individual);
-      g_object_unref (individual);
+      add_individual (self, gee_map_iterator_get_value (iter));
     }
   g_clear_object (&iter);
 }
@@ -197,9 +196,7 @@ aggregator_individuals_changed_cb (FolksIndividualAggregator *aggregator,
 
       while (iter != NULL && gee_iterator_next (iter))
         {
-          FolksIndividual *individual = gee_iterator_get (iter);
-          add_individual (self, individual);
-          g_object_unref (individual);
+          add_individual (self, gee_iterator_get (iter));
         }
       g_clear_object (&iter);
     }
@@ -210,9 +207,7 @@ aggregator_individuals_changed_cb (FolksIndividualAggregator *aggregator,
 
       while (iter != NULL && gee_iterator_next (iter))
         {
-          FolksIndividual *individual = gee_iterator_get (iter);
-          remove_individual (self, individual);
-          g_object_unref (individual);
+          remove_individual (self, gee_iterator_get (iter));
         }
       g_clear_object (&iter);
     }
@@ -282,7 +277,7 @@ empathy_roster_model_aggregator_constructed (GObject *object)
     chain_up (object);
 
   if (self->priv->aggregator == NULL)
-    self->priv->aggregator = folks_individual_aggregator_dup ();
+    self->priv->aggregator = folks_individual_aggregator_new ();
 
   g_assert (FOLKS_IS_INDIVIDUAL_AGGREGATOR (self->priv->aggregator));
 
@@ -411,7 +406,6 @@ empathy_roster_model_aggregator_dup_groups_for_individual (
 
       while (iter != NULL && gee_iterator_next (iter))
         {
-          /* Transfer ownership: */
           groups_list = g_list_prepend (groups_list, gee_iterator_get (iter));
         }
       g_clear_object (&iter);

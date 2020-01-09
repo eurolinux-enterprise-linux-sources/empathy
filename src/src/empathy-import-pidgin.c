@@ -20,17 +20,16 @@
  * */
 
 #include "config.h"
-#include "empathy-import-pidgin.h"
 
 #include <glib/gstdio.h>
 #include <dbus/dbus-protocol.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
 #include "empathy-import-utils.h"
-#include "empathy-utils.h"
+#include "empathy-import-pidgin.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-utils.h>
 
 /* Pidgin to CM map */
 typedef struct
@@ -357,7 +356,7 @@ empathy_import_pidgin_load (void)
            * http://bugzilla.gnome.org/show_bug.cgi?id=579992 */
           if (!tp_strdiff (data->protocol, "jabber"))
             {
-              if (TPAW_STR_EMPTY (tp_asv_get_string (data->settings, "server")))
+              if (EMP_STR_EMPTY (tp_asv_get_string (data->settings, "server")))
                 {
                   g_hash_table_remove (data->settings, "port");
                   g_hash_table_remove (data->settings, "server");

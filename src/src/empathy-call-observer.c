@@ -19,16 +19,16 @@
  */
 
 #include "config.h"
-#include "empathy-call-observer.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-images.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
-#include "empathy-notify-manager.h"
+#include <libempathy-gtk/empathy-images.h>
+#include <libempathy-gtk/empathy-notify-manager.h>
+
+#include "empathy-call-observer.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 struct _EmpathyCallObserverPriv {
   EmpathyNotifyManager *notify_mgr;
@@ -116,7 +116,7 @@ display_reject_notification (EmpathyCallObserver *self,
 
   emp_contact = empathy_contact_dup_from_tp_contact (contact);
   pixbuf = empathy_notify_manager_get_pixbuf_for_notification (
-      self->priv->notify_mgr, emp_contact, TPAW_IMAGE_AVATAR_DEFAULT);
+      self->priv->notify_mgr, emp_contact, EMPATHY_IMAGE_AVATAR_DEFAULT);
 
   if (pixbuf != NULL)
     {
@@ -147,7 +147,8 @@ find_main_channel (GList *channels)
 
       channel_type = tp_channel_get_channel_type_id (channel);
 
-      if (channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_CALL)
+      if (channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_STREAMED_MEDIA ||
+          channel_type == TP_IFACE_QUARK_CHANNEL_TYPE_CALL)
         return channel;
     }
 
@@ -219,7 +220,7 @@ observe_channels (TpSimpleObserver *observer,
       GError err = { TP_ERROR, TP_ERROR_INVALID_ARGUMENT,
           "Unknown channel type" };
 
-      DEBUG ("Didn't find any Call channel; ignoring");
+      DEBUG ("Didn't find any Call or StreamedMedia channel; ignoring");
 
       tp_observe_channels_context_fail (context, &err);
       return;
@@ -323,7 +324,14 @@ empathy_call_observer_init (EmpathyCallObserver *self)
       "Empathy.CallObserver", FALSE,
       observe_channels, self, NULL);
 
-  /* Observe Call channels */
+  /* Observe Call and StreamedMedia channels */
+  tp_base_client_take_observer_filter (self->priv->observer,
+      tp_asv_new (
+        TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,
+          TP_IFACE_CHANNEL_TYPE_STREAMED_MEDIA,
+        TP_PROP_CHANNEL_TARGET_HANDLE_TYPE, G_TYPE_UINT,
+          TP_HANDLE_TYPE_CONTACT,
+        NULL));
   tp_base_client_take_observer_filter (self->priv->observer,
       tp_asv_new (
         TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,

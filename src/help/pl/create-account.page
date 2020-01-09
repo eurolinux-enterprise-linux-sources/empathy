@@ -1,123 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="pl">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="pl">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Należy zarejestrować konto jednej z obsługiwanych usług komunikatora.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>    
-
-    <desc>Należy utworzyć konto jednej z obsługiwanych usług komunikatora.</desc>
-
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
   <title>Rejestracja nowego konta</title>
 
-  <p>Most account types require you to create an account with a service
-  provider before you can use that account with instant messaging applications.
-  You can use <app>Empathy</app> to register for a new account with some
-  account providers using the same steps as you would to
-  <link xref="add-account">add an account</link>.</p>
+  <p>Większość rodzajów kont wymaga stworzenia konta u dostawcy usługi przed połączeniem za pomocą komunikatora takiego jak program <app>Empathy</app>. Niektórzy dostawcy kont pozwalają na użycie programu <app>Empathy</app> do rejestracji nowego konta przy użyciu tych samych kroków jak te potrzebne przy <link xref="add-account">dodawaniu konta</link>.</p>
 
-  <p>Once you create a new account, your account provider should give you a
-  login or a username and a password, as well as any additional information you
-  need to connect using <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>IRC networks require that you specify a nick (nickname) when you connect
-    to the server. Some IRC networks use a service, such as NickServ, to allow
-    users to <link xref="irc-nick-password">protect their nick</link>. If you
-    did not register your nick or are unable to do so and another user is using
-    it, then you will need to choose a different one.</p>
-
-    <p>Niektóre serwery IRC są chronione hasłem. Aby połączyć się z tymi serwerami konieczna jest znajomość hasła. Zasadniczo, są to prywatne sieci IRC.</p>
-
-    <note>
-      <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
-      discussion.</p>
-    </note>
+  <p>This page provides information on creating a new account for various types of
+  accounts.  Your account provider should give you a login ID and a password, as well
+  as any additional information you need to connect using <app>Empathy</app>.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>
+      Facebook is one of the most-used social networks.  It allows users to
+      create their own profile and to communicate with their friends. 
+    </p>
+    <p>
+      To use Facebook to communicate with your friends, you will need 
+      to create a new account from the website: 
+      <link href="http://www.facebook.com">www.facebook.com</link>.
+    </p>
   </section>
 
   <section id="jabber">
     <title>Jabber</title>
 
-    <p>Jabber jest otwartym systemem komunikacyjnym. Podobnie jak e-mail Jabber pozwala na wybór dostawcy konta i komunikację z innymi użytkownikami Jabbera niezależnie od ich dostawcy konta.</p>
+    <p>Jabber jest otwartym systemem komunikacyjnym. Podobnie jak e-mail Jabber pozwala na wybór dostawcy konta i komunikację z innymi użytkownikami Jabbera niezależnie od ich dostawcy konta.</p>
 
-    <p>Należy stworzyć nowe konto u jednego z dostawców usług Jabber. Istnieje wielu dostawców niepobierających opłat; jednym z popularnych dostawców jest <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Należy stworzyć nowe konto u jednego z dostawców usług Jabber. Istnieje wielu dostawców niepobierających opłat; jednym z popularnych dostawców jest <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>Gmail i Google+ Hangouts są usługami zawierającymi w sobie konto Jabbera. Należy użyć swojego adresu Gmail i hasła, aby połączyć się za pomocą programu <app>Empathy</app>.</p>
+      <p>Google Mail i Google Talk są usługami zawierającymi w sobie konto Jabbera. Google Talk jest usługą Jabbera. Należy użyć swojego adresu Google Mail i hasła, aby połączyć się za pomocą programu <app>Empathy</app>.</p>
     </note>
   </section>
 
   <section id="salut">
-    <title>Osoby w pobliżu</title>
+    <title>Osoby w pobliżu</title>
 
-    <p>This service works whenever you are connected to a local network, such
-    as a wireless hotspot, you do not need to create an account with service
-    providor, just set up your account through <app>Empathy</app>. It
-    automatically finds all other users on the network who are also using this
-    service.</p>
+    <p>Nie ma potrzeby tworzenia konta u dostawcy usług, aby korzystać z tej funkcji. Usługa ta działa po podłączeniu do dowolnej sieci lokalnej, takiej jak bezprzewodowy punkt dostępowy. Usługa automatycznie wykrywa w sieci innych użytkowników, którzy korzystają z tej usługi.</p>
 
-    <p>For more information, see the <link xref="salut-protocol">salut
-    protocol</link>.</p>
+    <p>Aby uzyskać więcej informacji,należy zobaczyć <link xref="salut"/>.</p>
   </section>
 
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>SIP jest otwartym systemem pozwalającym użytkownikom na nawiązywanie połączeń głosowych i wideorozmów w sieci Internet. Należy utworzyć konto u usługodawcy SIP. Można łączyć się z innymi użytkownikami SIP niezależnie od tego, z jakiego usługodawcy SIP korzystają.</p>
+    <p>SIP jest otwartym systemem pozwalającym użytkownikom na nawiązywanie połączeń głosowych i wideorozmów w sieci Internet. Należy utworzyć konto u usługodawcy SIP. Można łączyć się z innymi użytkownikami SIP niezależnie od tego z jakiego usługodawcy SIP korzystają.</p>
 
-    <p>Niektórzy dostawcy usług SIP umożliwiają wykonywanie połączeń ze zwykłymi telefonami. Zasadniczo, aby korzystać z tej funkcji należy zakupić odpowiednią usługę.</p>
+    <note style="warning">
+      <p>Z powodu różnic technicznych bezpłatne usługi <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> nie są obsługiwane przez obecną wersją programu <app>Empathy</app>.</p>
+    </note>
+
+    <p>Niektórzy dostawcy usług SIP umożliwiają wykonywanie połączeń ze zwykłymi telefonami. Zasadniczo, aby korzystać z tej funkcji należy zakupić odpowiednią usługę.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>Aby używać IRC nie potrzeba rejestrować konta. Chociaż pseudonim jest określony podczas dodawania konta IRC do <app>Empathy</app>, to pseudonim ten jest ustalany każdorazowo podczas połączenia. Jeśli inny użytkownik używa tego samego pseudonimu w danej chwili, należy wybrać inny pseudonim.</p>
+
+    <p>Some IRC networks use a service called NickServ to allow users to protect
+    their nicknames.  See <link xref="irc-nick-password"/> for more information.</p>
+
+    <p>Niektóre serwery IRC są chronione hasłem. Aby połączyć się z tymi serwerami konieczna jest znajomość hasła. Zasadniczo, są to prywatne sieci IRC.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Usługi własnościowe</title>
 
-    <p>Istnieje wiele własnościowych komunikatorów, które zostały stworzone przez różne firmy i instytucje. Program <app>Empathy</app> pozwala na połączenie z istniejącym kontem w niektórych sieciach. Aby utworzyć nowe konto w jednym z tych komunikatorów należy odwiedzić jego stronę.</p>
+    <p>Istnieje wiele własnościowych komunikatorów, które zostały stworzone przez różne firmy i instytucje. Program <app>Empathy</app> pozwala na połączenie z istniejącym kontem w większości najpopularniejszych sieci. Aby utworzyć nowe konto w jednym z tych komunikatorów należy odwiedzić stronę komunikatora i wyrazić zgodę na warunki użytkowania.</p>
 
     <list>
       <item>
-        <p><link href="http://dashboard.aim.com/aim">AIM</link></p>
+        <p>
+          <link href="http://dashboard.aim.com/aim">AIM</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://www.icq.com/register/">ICQ</link></p>
+        <p>
+          <link href="https://www.icq.com/register/">ICQ</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>
+        <p>
+          <link href="https://accountservices.passport.net">MSN</link>
+        </p>
+      </item>
+      <item>
+        <p>
+          <link href="https://login.yahoo.com/config/login">Yahoo!</link>
+        </p>
       </item>
     </list>
   </section>

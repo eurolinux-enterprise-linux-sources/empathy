@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Informació sobre quan és possible realitzar una conversa d'àudio o de vídeo.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Reconeixement-Compartir Igual 3.0</p>
     </license>    
@@ -25,41 +25,53 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Informació sobre quan és possible realitzar una conversa de veu o de vídeo.</desc>
-
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
   <title>Àudio i vídeo</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Només podeu realitzar converses d'àudio i de vídeo amb els contactes que utilitzin una aplicació que permeti aquestes característiques. Si les aplicacions dels contactes permeten realitzar converses d'àudio o de vídeo, veureu les icones següents al costat del seu nom a la llista de contactes:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Icona</p>
+        </td>
+        <td>
+          <p>Descripció</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/audio-input-microphone.png">
+            Icon for audio conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>El contacte pot realitzar converses d'àudio.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/camera-web.png">
+            Icon for video conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>El contacte pot realitzar converses de vídeo.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
-    <p>Per realitzar una conversa de veu heu de tenir una targeta de so reconeguda pel sistema operatiu i un micròfon que funcioni.</p>
+    <p>Per realitzar una conversa d'àudio heu de tenir una targeta de so reconeguda pel sistema operatiu i un micròfon que funcioni.</p>
     <p>Per realitzar una conversa de vídeo heu de tenir una càmera web reconeguda pel sistema operatiu i un micròfon que funcioni.</p>
   </note>
 
@@ -67,12 +79,28 @@
   
   <title>Tipus de comptes permesos</title>
 
-  <p>Només podeu realitzar converses de veu i de vídeo en comptes d'alguns proveïdors de serveis. La taula següent mostra si els tipus de compte permeten converses de veu i de vídeo.</p>
+  <p>Només podeu realitzar converses d'àudio i de vídeo en comptes d'alguns proveïdors de serveis. La taula següent mostra si els tipus de compte permeten converses d'àudio i de vídeo.</p>
 
   <note>
-    <p>Els tipus de comptes es proporcionen els connectors. El sistema pot no disposar de tots el tipus llistats aquí, o pot disposar de tipus de comptes que no estiguin llistats. Versions més noves dels connectors poden fer possible les converses de veu i de vídeo en tipus de comptes que estan classificats com que no ho permeten.</p>
+    <p>Els tipus de comptes es proporcionen els connectors. El sistema pot no disposar de tots el tipus llistats aquí, o pot disposar de tipus de comptes que no estiguin llistats. Versions més noves dels connectors poden fer possible les converses d'àudio i de vídeo en tipus de comptes que estan classificats com que no ho permeten.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -85,6 +113,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>No</p></td>
+        <td><p>No</p></td>
+      </tr>
+      <tr>
+        <td><p>Xat de Facebook</p></td>
         <td><p>No</p></td>
         <td><p>No</p></td>
       </tr>
@@ -115,6 +148,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Sí</p></td>
+        <td><p>Sí</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Sí</p></td>
         <td><p>Sí</p></td>
       </tr>

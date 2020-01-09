@@ -3,6 +3,7 @@
 
   <info>
     <link type="topic" xref="add-account"/>
+    <link type="topic" xref="create-account"/>
     <link type="topic" xref="disable-account"/>
     <link type="topic" xref="remove-account"/>
     <desc>Προσθήκη, τροποποίηση και διαγραφή λογαριασμών.</desc>
@@ -25,12 +26,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>

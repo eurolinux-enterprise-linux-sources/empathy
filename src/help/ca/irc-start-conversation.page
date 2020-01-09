@@ -23,33 +23,9 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Xategeu amb algú a l'IRC</title>
+  <title>Xatejeu amb algú a l'IRC</title>
 
   <p>Podeu mantenir converses privades amb altres usuaris de l'IRC fora de la sala pública de l'IRC. Per iniciar una conversa amb un altre usuari de l'IRC:</p>
 
@@ -61,7 +37,7 @@
 
   <list>
     <item>
-      <p>La llista de contactes de la sala de l'IRC no és la mateixa que la llista de contactes de l'<app>Empathy</app>. Aquesta conté la llista d'usuaris de la sala de l'IRC a la qual us heu unit. Cada sala tindrà una llista de contactes diferent.</p>
+      <p>La llista de contactes de la sala de l'IRC no és la mateixa que la llista de contactes de l'<app>Empathy</app>. Aquesta conté la llista d'usuaris de la sala de l'IRC a la qual us heu unit. Cada sala tindrà un llista de contactes diferent.</p>
     </item>
     <item>
       <p>La llista de contactes de la sala de l'IRC normalment està a la part dreta de la finestra de la sala de l'IRC. Si no la veieu, escolliu <guiseq><gui>Conversa</gui><gui>Mostra la llista de contacte</gui></guiseq>.</p>

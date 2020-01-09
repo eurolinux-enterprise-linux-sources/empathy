@@ -1,119 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="cs">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="cs">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Register for an account with one of the supported messaging services.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>    
-
-    <desc>Jak vytvořit účet u jedné z podporovaných komunikačních služeb.</desc>
-
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
-  <title>Registrace nového účtu</title>
+  <title>Register for a new account</title>
 
-  <p>Většina typů účtů vyžaduje vytvoření účtu u poskytovatele služby, než je možné používat tento účet s aplikacemi rychlé komunikace. <app>Empathy</app> můžete použít k registraci nového účtu u některých poskytovatelů pomocí stejných kroků jako při <link xref="add-account">přidávání účtu</link>.</p>
+  <p>Most account types require you to create an account with a account provider
+  before you can connect using instant messaging applications like <app>Empathy</app>.
+  With some account providers, you can use <app>Empathy</app> to register for a new
+  account, using the same steps as you would to <link xref="add-account">add an
+  account</link>.</p>
 
-  <p>Jakmile je nový účet vytvořen, měli byste mít od poskytovatele k dispozici přihlašovací nebo uživatelské jméno, heslo a další údaje potřebné pro připojení pomocí <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>Sítě IRC vyžadují pro připojení k serveru zadání přezdívky. Některé sítě IRC používají služby, jako například NickServ, aby umožnily uživatelům <link xref="irc-nick-password">chránit svoji přezdívku</link>. Pokud jste nezaregistrovali svoji přezdívku nebo ji zaregistrovat nemůžete, protože ji používá jiný uživatel, budete muset zvolit jinou.</p>
-
-    <p>Některé servery IRC jsou chráněny heslem. Pokud se chcete k takovým serverům připojit, musíte heslo znát. Obecně se jedná o soukromé sítě IRC.</p>
-
-    <note>
-      <p>Mnoho projektů GNOME používá <code>irc.gnome.org</code> pro komunikaci týkající se těchto projektů.</p>
-    </note>
+  <p>This page provides information on creating a new account for various types of
+  accounts.  Your account provider should give you a login ID and a password, as well
+  as any additional information you need to connect using <app>Empathy</app>.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>
+      Facebook is one of the most-used social networks.  It allows users to
+      create their own profile and to communicate with their friends. 
+    </p>
+    <p>
+      To use Facebook to communicate with your friends, you will need 
+      to create a new account from the website: 
+      <link href="http://www.facebook.com">www.facebook.com</link>.
+    </p>
   </section>
 
   <section id="jabber">
     <title>Jabber</title>
 
-    <p>Jabber je otevřený systém pro rychlou komunikaci. Podobně jako email, Jabber vám umožňuje výběr poskytovatele účtu a komunikaci se všemi ostatními uživateli Jabberu bez ohledu na to, jakého poskytovatele mají.</p>
+    <p>Jabber is an open instant messaging system.  Like email, Jabber allows
+    you to choose your account provider and communicate with all other Jabber
+    users, regardless of their account provider.</p>
 
-    <p>Pro používání Jabberu je nutné si založit účet u jednoho z poskytovatelů. Existuje mnoho poskytovatelů, kteří tuto službu provozují zdarma. Mezi oblíbených patří <link href="http://register.jabber.org/">jabber.org</link> nebo v česku <link href="https://secure.jabbim.com/reg/">Jabbim</link>.</p>
+    <p>You will need to create a new account with a Jabber provider.  There are
+    many free providers; one popular provider is
+    <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>Pokud používáte Gmail nebo Google+ Hangouts, máte již účet Jabber vytvořený. Pro jeho připojení v <app>Empathy</app> použijte svoji adresu z Gmailu a příslušné heslo.</p>
+      <p>If you use Google Mail or Google Talk, you already have a Jabber account.
+      Google Talk is a Jabber service.  Simply use your Google Mail address and
+      password in <app>Empathy</app> to connect.</p>
     </note>
   </section>
 
   <section id="salut">
     <title>People Nearby</title>
 
-    <p>Tato služba funguje kdykoli jste připojeni k místní síti, například přes Wi-Fi hotspot. Nemusíte si zakládat účet u poskytovatele, stačí si nastavit účet v <app>Empathy</app>. Všichni ostatní uživatelé na síti používající tuto službu budou automaticky vyhledáni.</p>
+    <p>You do not need to create an account with a service provider to use this
+    feature.  This service works whenever you are connected to a local network,
+    such as a wireless hotspot.  It automatically finds all other users on the
+    network who are also using this service.</p>
 
-    <p>Více informací viz <link xref="salut-protocol">protokol salut</link>.</p>
+    <p>For more information, see <link xref="salut-protocol"/>.</p>
   </section>
 
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>SIP je otevřený systém, který umožňuje uživatelům hlasové a videoknoverzace přes Internet. Je nutné si založit účet u poskytovatele SIP. Budete pak moci komunikovat se všemi ostatními uživateli SIP bez ohledu na to, jakého poskytovatele používají.</p>
+    <p>SIP is an open system which allows users to have audio and video
+    conversations over the Internet.  You need to create an account with
+    a SIP provider.  You can communicate with all other SIP users,
+    regardless of which SIP provider they use.</p>
 
-    <p>Někteří poskytovatelé SIP vám umožňují volat z počítače i na telefon. Tato funkce je ale většinou poskytována v rámci placených služeb.</p>
+    <note style="warning">
+      <p>Due to technical differences, the free <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link>
+      service does not currently work with <app>Empathy</app>.</p>
+    </note>
+
+    <p>Some SIP providers allow you to call normal phones from your computer.
+    Generally, you will need to subscribe to a paid service for this feature.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>You do not need to register for an account to use IRC.  Although you specify
+    a nickname when you add an IRC account to <app>Empathy</app>, this nickname is
+    only established each time you connect.  If another user is using the nickname,
+    you will need to choose a new nickname.</p>
+
+    <p>Some IRC networks use a service called NickServ to allow users to protect
+    their nicknames.  See <link xref="irc-nick-password"/> for more information.</p>
+
+    <p>Some IRC servers are password protected.  You will need to know the password
+    to connect to these servers.  Generally, these are private IRC networks.</p>
   </section>
 
   <section id="proprietary-services">
-    <title>Proprietární služby</title>
+    <title>Proprietary Services</title>
 
-    <p>Existuje mnoho proprietárních služeb pro rychlou komunikaci, které byly vyvinuty různými společnostmi nebo organizacemi. <app>Empathy</app> vám umožňuje připojit se k existujícímu účtu některých z těchto služeb. K založení účtu u těchto služeb budete muset navštívit jejich webové stránky.</p>
+    <p>There are many proprietary instant messaging services that have been
+    developed by different companies or organizations.  <app>Empathy</app>
+    allows you to connect to an existing account for most popular services.
+    To create a new account with one of these services, you will need to
+    visit the service’s web site and agree to its terms of use.</p>
 
     <list>
       <item>
-        <p><link href="http://dashboard.aim.com/aim">AIM</link></p>
+        <p>
+          <link href="http://dashboard.aim.com/aim">AIM</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://www.icq.com/register/">ICQ</link></p>
+        <p>
+          <link href="https://www.icq.com/register/">ICQ</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>
+        <p>
+          <link href="https://accountservices.passport.net">MSN</link>
+        </p>
+      </item>
+      <item>
+        <p>
+          <link href="https://login.yahoo.com/config/login">Yahoo!</link>
+        </p>
       </item>
     </list>
   </section>

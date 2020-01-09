@@ -1,62 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="sl">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="sl">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Ustvarjanje računa z eno od podprtih storitev sporočanja.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Dovoljenje Creative Commons - deljenje pod istimi pogoji 3.0</p>
     </license>    
-
-    <desc>Create an account for one of the supported messaging services.</desc>
-
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
-  <title>Register a new account</title>
+  <title>Ustvarjanje novega računa</title>
 
-  <p>Most account types require you to create an account with a service
-  provider before you can use that account with instant messaging applications.
-  You can use <app>Empathy</app> to register for a new account with some
-  account providers using the same steps as you would to
-  <link xref="add-account">add an account</link>.</p>
+  <p>Večina vrst računov pred povezovanjem s programom hipnega sporočanja kot je <app>Empathy</app> zahteva ustvarjanje računa s ponudnikom računa. Za nekatere ponudnike računov je mogoče za ustvarjanje novega računa uporabiti <app>Empathy</app> z uporabo enakih korakov kot za  <link xref="add-account">dodajanje računa</link>.</p>
 
-  <p>Once you create a new account, your account provider should give you a
-  login or a username and a password, as well as any additional information you
-  need to connect using <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>IRC networks require that you specify a nick (nickname) when you connect
-    to the server. Some IRC networks use a service, such as NickServ, to allow
-    users to <link xref="irc-nick-password">protect their nick</link>. If you
-    did not register your nick or are unable to do so and another user is using
-    it, then you will need to choose a different one.</p>
-
-    <p>Nekateri strežniki IRC so zaščiteni z geslom. Za povezavo s temi strežniki boste morali poznati geslo. V splošnem so to zasebna omrežja IRC.</p>
-
-    <note>
-      <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
-      discussion.</p>
-    </note>
+  <p>Ta stran zagotavlja podatke o ustvarjanju novih računov za različne vrste računov. Vaš ponudnik računa vam bi moral dati ID prijave in geslo ter morebitne dodatne podatke, ki jih potrebujete za povezavo z <app>Empathy</app>.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>Facebook je eno od najbolj uporabljanih družabnih omrežij. Uporabnikom dovoljuje ustvarjanje njihovega lastnega profila in komunikacijo s prijatelji.</p>
+    <p>Za uporabo Facebooka za komunikacijo s prijatelji boste morali ustvariti nov račun na spletni strani: <link href="http://www.facebook.com">www.facebook.com</link>.</p>
   </section>
 
   <section id="jabber">
@@ -64,28 +46,19 @@
 
     <p>Jabber je odprt sistem takojšnjega sporočanja. Tako kot elektronska pošta, vam Jabber omogoča izbiro vašega ponudnika računa in sporočanje z vsemi drugimi uporabniki Jabber ne glede na njihovega ponudnika računa. </p>
 
-    <p>You will need to create a new account with a Jabber provider. There are
-    many free providers; one popular provider is
-    <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>S ponudnikom Jabber boste morali ustvariti nov račun. Obstaja veliko brezplačnih podudnikov; en priljubljen ponudnik je <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>If you use Gmail or Google+ Hangouts, you already have a Jabber
-      account. Use your Gmail address and password in <app>Empathy</app> to
-      connect.</p>
+      <p>V primeru da uporabljate GMail ali Google Talk že imate račun Jabber. Google Talk je storitev Jabber. Za povezavo v <app>Empathy</app> enostavno uporabite svoj GMail naslov in geslo.  </p>
     </note>
   </section>
 
   <section id="salut">
     <title>Ljudje v bližini</title>
 
-    <p>This service works whenever you are connected to a local network, such
-    as a wireless hotspot, you do not need to create an account with service
-    providor, just set up your account through <app>Empathy</app>. It
-    automatically finds all other users on the network who are also using this
-    service.</p>
+    <p>Za uporabo te zmožnosti vam ni treba ustvariti računa s ponudnikom storitve. Ta storitev deluje kadarkoli ste povezani na krajevno omrežje kot je brezžična vroča točka. Samodejno najde ostale uporabnike na omrežju, ki tudi uporabljajo to storitev.</p>
 
-    <p>For more information, see the <link xref="salut-protocol">salut
-    protocol</link>.</p>
+    <p>Za več podrobnosti si oglejte <link xref="salut-protocol"/>.</p>
   </section>
 
   <section id="sip-services">
@@ -93,17 +66,27 @@
 
     <p>SIP je odprt sistem, ki uporabnikom omogoča zvočne in video pogovore preko medmrežja. S ponudnikom SIP morate ustvariti račun. Sporazumevate se lahko z vsemi drugimi uporabniki SIP, ne glede na to katerega ponudnika SIP uporabljajo.</p>
 
+    <note style="warning">
+      <p>Zaradi tehničnih razlik brezplačna storitev <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> ne deluje z <app>Empathy</app>.</p>
+    </note>
+
     <p>Nekateri podnudniki SIP vam z vašega računalnika omogočajo klic na običajne telefone. V splošnem se morate za uporabo te zmožnosti naroči na plačljivo storitev. </p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>Za uporabo IRC-a vam ni treba ustvariti računa. Čeprav ob dodajanju računa IRC v <app>Empathy</app> navedete vzdevek, je vzdevek vzpostavljen ob vsaki povezavi. V primeru da vzdevek uporablja drug uporabnik, boste morali izbrati nov vzdevek. </p>
+
+    <p>Nekatera omrežja IRC uporabljajo storitev z imenom NickServ, ki uporabnikom omogoča zaščito njihovih vzdevkov. Za več podrobnosti si oglejte <link xref="irc-nick-password"/>.</p>
+
+    <p>Nekateri strežniki IRC so zaščiteni z geslom. Za povezavo s temi strežniki boste morali poznati geslo. V splošnem so to zasebna omrežja IRC.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Lastniške storitve</title>
 
-    <p>There are many proprietary instant messaging services that have been
-    developed by different companies or organizations. <app>Empathy</app>
-    allows you to connect to an existing account for some of these services.
-    To create a new account with one of these services, you will need to
-    visit the website for the service.</p>
+    <p>Različna podjetja in organizacije so razvile veliko lastniških storitev hipnega sporočanja. <app>Empathy</app> vam omogoča povezavo z obstoječim računom za večino priljubljenih storitev. Za ustvarjanje novega računa z eno od teh storitev boste morali obiskati spletišče storitve in se strinjati s pogoji uporabe.</p>
 
     <list>
       <item>
@@ -111,6 +94,9 @@
       </item>
       <item>
         <p><link href="https://www.icq.com/register/">ICQ</link></p>
+      </item>
+      <item>
+        <p><link href="https://accountservices.passport.net">MSN</link></p>
       </item>
       <item>
         <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>

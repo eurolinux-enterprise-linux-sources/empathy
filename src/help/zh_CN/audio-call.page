@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="audio-call" xml:lang="zh-CN">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="audio-call" xml:lang="zh-CN">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -13,17 +13,10 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="2.32" version="0.4" date="2010-09-09" status="review"/>   
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>知识共享-相同方式共享 (Creative Commons Share Alike) 3.0</p>
     </license>
@@ -31,28 +24,16 @@
 
   <title>开始语音聊天</title>
 
-  <p>You can call your contacts and have an audio conversation with them. This
-  features only works with certain types of accounts and it requires the other
-  person to have an application that supports audio calls.</p>
-
+  <p>您可以呼叫您的联系人，与他们进行语音聊天。这个功能仅对于一些特定类型的账户可用，并且需要另一个人使用的应用程序也支持语音呼叫。</p>
   <steps>
     <item>
-      <p>
-        Right-click on the contact that you want to call and select
-        <gui style="menuitem">Audio Call</gui>.
-      </p>
+      <p>在 <gui>联系人列表</gui> 窗口，点击您想呼叫的联系人的名字旁的 <media type="image" mime="image/png" src="figures/camera-web.png">视频呼叫</media> 图标并选择 <gui style="menuitem">语音呼叫</gui>。</p>
     </item>
     <item>
-      <p>
-        A new window will open. When the connection is established, you will
-        see the total conversation time at the bottom of the window.
-      </p>
+      <p>一个新窗口会被打开。连接建立后，您将在窗口底部看到<gui>已连接</gui>，以及总会话时间。</p>
     </item>
     <item>
-      <p>
-        To end the conversation, click the <gui style="button">hand up</gui>
-        button.
-      </p>
+      <p>点击<gui style="button">挂断</gui>以结束会话。</p>
     </item>
   </steps>
   

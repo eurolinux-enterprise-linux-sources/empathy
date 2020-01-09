@@ -20,9 +20,10 @@
  */
 
 #include "config.h"
+
 #include "empathy-dialpad-widget.h"
 
-#include "empathy-dialpad-button.h"
+#include <libempathy-gtk/empathy-dialpad-button.h>
 
 G_DEFINE_TYPE (EmpathyDialpadWidget, empathy_dialpad_widget, GTK_TYPE_BOX);
 

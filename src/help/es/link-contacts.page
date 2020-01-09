@@ -13,10 +13,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
     </license>
@@ -24,7 +20,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Daniel Mustieles</mal:name>
       <mal:email>daniel.mustieles@gmail.com</mal:email>
-      <mal:years>2012 - 2015</mal:years>
+      <mal:years>2012</mal:years>
     </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
@@ -34,60 +30,49 @@
     </mal:credit>
   </info>
 
-  <title>Enlazar y desenlazar contactos</title>
-  <p>Si uno o más de sus contactos tienen varias cuentas con diferentes servicios de mensajería, puede combinar esas cuentas en uno sola.</p>
+  <title>Combinar y separar contactos</title>
+  <p>Si uno o más de sus contactos tiene múltiples cuentas con diferentes servicios de mensajería, puede combinar esos contactos en uno solo.</p>
   <p>Al contacto resultante se le llama <em>metacontacto</em>: un contacto compuesto de diferentes contactos simples.</p>
-  <p>Suponga que tiene un contacto llamado Juan Pérez que usa tres servicios de mensajería de contactos como:</p>
+  <p>Si tiene un contacto Juan Pérez que usa tres servicios de mensajería de contactos como:</p>
   <list>
+    <item>
+      <p>juan@facebook</p>
+    </item>
     <item>
       <p>juan.perez@gmail</p>
     </item>
     <item>
       <p>juan_perez@hotmail</p>
     </item>
-    <item>
-      <p>juan@yahoo</p>
-    </item>
   </list>
   <p>Puede combinar estos contactos en un solo Juan Pérez.</p>
+  
   <section id="linking">
-  <title>Enlazar contactos</title>
-  <p>Puede enlazar sus contactos de la siguiente manera:</p>
+    <title>Combinar contactos</title>
     <steps>
       <item>
-        <p>Pulse el botón para seleccionar las entradas que quiere enlazar. Esto activará el <em>modo de selección</em> y verá una casilla por cada entrada.</p>
+        <p>Desde la ventana <gui>Lista de contactos</gui> pulse con el botón derecho uno de los contactos que tiene diferentes cuentas y seleccione <gui style="menuitem">Enlazar contactos...</gui>.</p>
       </item>
       <item>
-        <p>Marque las casillas que corresponden a las entradas de <app>Contactos</app> que pertenecen al mismo contacto.</p>
+        <p>Desde el panel izquierdo, en la ventana <gui>Enlazar contatos</gui>, seleccione los contactos que quiere combinar.</p>
       </item>
       <item>
         <p>Pulse <gui style="button">Enlazar</gui>.</p>
       </item>
     </steps>
-    <p>Repita los pasos 3 y 4 para enlazar otros contactos.</p>
+    <note>
+      <p>Cuando se ha creado un metacontacto, el contacto predeterminado que se usará para tener una conversación al pulsar dos veces sobre él, es el último contacto con presencia en línea.</p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Desenlazar contactos</title>
-  <p>Para desenlazar un contacto enlazado:</p>
+  <section id="unlinkg">
+    <title>Separar contactos</title>
     <steps>
       <item>
-        <p>Seleccione el contacto de su lista.</p>
+        <p>Desde la ventana <gui>Lista de contactos</gui> pulse con el botón derecho del ratón para separar, y seleccione <gui style="menuitem">Enlazar contactos...</gui>.</p>
       </item>
       <item>
-        <p>Pulse <gui style="button">Editar</gui> en la esquina superior derecha de <app>Contactos</app>.</p>
-      </item>
-      <item>
-	<p>Pulse <gui style="button">Contactos enlazados</gui>.</p>
-      </item>
-      <item>
-	<p>Pulse <gui style="button">Quitar</gui> para desenlazar una entrada de un contacto enlazado.</p>
-      </item>
-      <item>
-        <p>Pulse <gui style="button">Cerrar</gui> si no quiere desenlazar más contactos.</p>
-      </item>
-      <item>
-        <p>Finalmente, pulse <gui style="button">Hecho</gui> para terminar la edición.</p>
+        <p>Pulse <gui style="button">Desenlazar</gui>.</p>
       </item>
     </steps>
   </section>

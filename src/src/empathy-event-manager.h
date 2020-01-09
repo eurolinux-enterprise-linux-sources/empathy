@@ -22,9 +22,10 @@
 #ifndef __EMPATHY_EVENT_MANAGER_H__
 #define __EMPATHY_EVENT_MANAGER_H__
 
+#include <glib.h>
 #include <glib-object.h>
 
-#include "empathy-contact.h"
+#include <libempathy/empathy-contact.h>
 
 G_BEGIN_DECLS
 

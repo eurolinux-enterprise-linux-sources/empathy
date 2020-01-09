@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="el">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="el">
 
   <info>
     <link type="guide" xref="index#accounts"/>
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -34,12 +33,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
@@ -68,27 +61,30 @@
 
   <title>Προσθήκη νέου λογαριασμού</title>
 
-  <p>Μπορείτε να προσθέτετε λογαριασμούς άμεσων μηνυμάτων από οποιαδήποτε υποστηριζόμενη υπηρεσία για επικοινωνία με όλες τις επαφές σας στο <app>Empathy</app>. Για μερικούς παρόχους λογαριασμών, αυτά τα βήματα θα σας επιτρέψουν επίσης να καταχωρίσετε έναν νέο λογαριασμό. Για περισσότερες λεπτομέρειες, δείτε το <link xref="create-account"/>.</p>
+  <p>Μπορείτε να προσθέτετε λογαριασμούς άμεσων μηνυμάτων για όλες τις υποστηριζόμενες υπηρεσίες. Έτσι, θα μπορείτε να επικοινωνείτε με όλες τις επαφές σας μέσω του <app>Empathy</app>. Τα παρακάτω βήματα σας επιτρέπουν να δημιουργήσετε λογαριασμούς σε ορισμένους παρόχους λογαριασμών. Για περισσότερες λεπτομέρειες, δείτε την <link xref="create-account"/>.</p>
 
   <steps>
     <item>
-      <p>Κάντε κλικ στο <guiseq><gui>Empathy</gui><gui>Λογαριασμοί</gui></guiseq>, ή πατήστε το <key>F4</key>.</p>
+      <p>Από το παράθυρο <gui>Λίστα επαφών</gui>, επιλέξτε <guiseq><gui>Επεξεργασία</gui> <gui>Λογαριασμοί</gui></guiseq>, ή πατήστε <key>F4</key>.</p>
     </item>
     <item>
       <p>Πατήστε <gui style="button">+</gui>.</p>
     </item>
     <item>
-      <p>Από την αναδιπλούμενη λίστα <gui>Τι είδους λογαριασμό έχετε;</gui>, επιλέξτε τον τύπο του λογαριασμού που θέλετε να προσθέσετε.</p>
+      <p>Από την αναδιπλούμενη λίστα <gui>Πρωτόκολλο</gui>, επιλέξτε τον τύπο του λογαριασμού που θέλετε να προσθέσετε.</p>
+    </item>
+    <item>
+      <p>Αν δε διαθέτετε ήδη λογαριασμό αυτού του τύπου, επιλέξτε <gui>Δημιουργία νέου λογαριασμού στον εξυπηρετητή</gui>. Αυτή η λειτουργία δεν είναι διαθέσιμη για όλους τους τύπους λογαριασμών, και ενδεχομένως να μη λειτουργήσει για ορισμένους παρόχους. Δείτε τη <link xref="create-account"/> για περισσότερες λεπτομέρειες.</p>
     </item>
     <item>
       <p>Εισάγετε τις απαιτούμενες πληροφορίες. Για τους περισσότερους τύπους λογαριασμών, αρκούν το όνομα χρήστη και το συνθηματικό. Ωστόσο, ορισμένοι τύποι μπορεί να απαιτούν και επιπλέον στοιχεία. Δείτε την <link xref="accounts-window#details"/>για περισσότερες πληροφορίες.</p>
     </item>
     <item>
-      <p>Κάντε κλικ στην <gui style="button">Προσθήκη</gui>.</p>
+      <p>Πατήστε <gui style="button">Εφαρμογή</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Για να αλλάξετε το όνομα που χρησιμοποιείται για το λογαριασμό στο παράθυρο <gui>Λογαριασμοί μηνυμάτων και τηλεφωνίας</gui>, επιλέξτε το λογαριασμό από τη λίστα στα αριστερά και μετά πατήστε το όνομα ή πιέστε το πλήκτρο διαστήματος. Αλλάξτε το όνομα του λογαριασμού και πιέστε <key>Enter</key> όταν τελειώσετε.</p>
+    <p>Για να αλλάξετε το όνομα που χρησιμοποιείται για το λογαριασμό στο παράθυρο <gui>Λογαριασμοί</gui>, επιλέξτε το λογαριασμό από τη λίστα στα αριστερά, και μετά πατήστε το όνομα ή πιέστε το πλήκτρο «Διάστημα». Αλλάξτε το όνομα του λογαριασμού και πιέστε <key>Enter</key> όταν τελειώσετε.</p>
   </note>
 </page>

@@ -22,14 +22,13 @@
  */
 
 #include "config.h"
-#include "empathy-avatar-image.h"
 
 #include <glib/gi18n-lib.h>
 #include <gdk/gdkx.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
 
+#include <libempathy/empathy-utils.h>
+#include "empathy-avatar-image.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 /**
  * SECTION:empathy-avatar-image
@@ -119,19 +118,6 @@ avatar_image_finalize (GObject *object)
 	G_OBJECT_CLASS (empathy_avatar_image_parent_class)->finalize (object);
 }
 
-#ifdef GDK_WINDOWING_X11
-static gboolean
-running_in_x11 (void)
-{
-	GdkDisplay *display;
-
-	display = gdk_display_get_default ();
-	if (!display)
-		return FALSE;
-
-	return GDK_IS_X11_DISPLAY (display);
-}
-
 static GdkFilterReturn
 avatar_image_filter_func (GdkXEvent  *gdkxevent,
 			  GdkEvent   *event,
@@ -140,9 +126,6 @@ avatar_image_filter_func (GdkXEvent  *gdkxevent,
 	XEvent                *xevent = gdkxevent;
 	Atom                   atom;
 	EmpathyAvatarImagePriv *priv;
-
-	if (!running_in_x11 ())
-		return GDK_FILTER_CONTINUE;
 
 	priv = GET_PRIV (data);
 
@@ -167,9 +150,6 @@ avatar_image_add_filter (EmpathyAvatarImage *avatar_image)
 	gint       mask;
 	XWindowAttributes attrs;
 
-	if (!running_in_x11 ())
-		return;
-
 	mask = PropertyChangeMask;
 
 	window = gdk_x11_get_default_root_xwindow ();
@@ -186,20 +166,6 @@ avatar_image_add_filter (EmpathyAvatarImage *avatar_image)
 
 	gdk_window_add_filter (NULL, avatar_image_filter_func, avatar_image);
 }
-#else
-static GdkFilterReturn
-avatar_image_filter_func (GdkXEvent  *gdkxevent,
-			  GdkEvent   *event,
-			  gpointer    data)
-{
-	return GDK_FILTER_CONTINUE;
-}
-
-static void
-avatar_image_add_filter (EmpathyAvatarImage *avatar_image)
-{
-}
-#endif
 
 static void
 avatar_image_remove_filter (EmpathyAvatarImage *avatar_image)
@@ -245,7 +211,7 @@ avatar_image_button_press_event (GtkWidget *widget, GdkEventButton *event)
 		return TRUE;
 	}
 
-	pixbuf = tpaw_pixbuf_scale_down_if_necessary (priv->pixbuf, MAX_LARGE);
+	pixbuf = empathy_pixbuf_scale_down_if_necessary (priv->pixbuf, MAX_LARGE);
 	popup_width = gdk_pixbuf_get_width (pixbuf);
 	popup_height = gdk_pixbuf_get_height (pixbuf);
 
@@ -336,7 +302,7 @@ empathy_avatar_image_set (EmpathyAvatarImage *avatar_image,
 	}
 
 	if (avatar) {
-		priv->pixbuf = tpaw_pixbuf_from_data ((gchar *) avatar->data,
+		priv->pixbuf = empathy_pixbuf_from_data ((gchar *) avatar->data,
 				avatar->len);
 	}
 
@@ -345,7 +311,7 @@ empathy_avatar_image_set (EmpathyAvatarImage *avatar_image,
 		return;
 	}
 
-	scaled_pixbuf = tpaw_pixbuf_scale_down_if_necessary (priv->pixbuf, MAX_SMALL);
+	scaled_pixbuf = empathy_pixbuf_scale_down_if_necessary (priv->pixbuf, MAX_SMALL);
 	gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), scaled_pixbuf);
 
 	if (scaled_pixbuf != priv->pixbuf) {

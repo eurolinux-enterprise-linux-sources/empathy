@@ -20,7 +20,8 @@
 #ifndef __EMPATHY_SEARCH_BAR_H__
 #define __EMPATHY_SEARCH_BAR_H__
 
-#include <gtk/gtk.h>
+#include <glib.h>
+#include <glib-object.h>
 
 #include "empathy-theme-adium.h"
 

@@ -18,17 +18,18 @@
  */
 
 #include "config.h"
-#include "empathy-notify-manager.h"
 
 #include <libnotify/notify.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
 
-#include "empathy-gsettings.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-ui-utils.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+
+#include "empathy-notify-manager.h"
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyNotifyManager)
 
@@ -175,7 +176,7 @@ empathy_notify_manager_get_pixbuf_for_notification (EmpathyNotifyManager *self,
     pixbuf = empathy_pixbuf_avatar_from_contact_scaled (contact, 48, 48);
 
   if (pixbuf == NULL)
-    pixbuf = tpaw_pixbuf_from_icon_name_sized (icon_name, 48);
+    pixbuf = empathy_pixbuf_from_icon_name_sized (icon_name, 48);
 
   return pixbuf;
 }
@@ -190,7 +191,7 @@ empathy_notify_manager_notification_is_enabled  (EmpathyNotifyManager *self)
         EMPATHY_PREFS_NOTIFICATIONS_ENABLED))
     return FALSE;
 
-  if (!tp_proxy_is_prepared (priv->account_manager,
+  if (!tp_account_manager_is_prepared (priv->account_manager,
         TP_ACCOUNT_MANAGER_FEATURE_CORE))
     {
       DEBUG ("account manager is not ready yet; display the notification");

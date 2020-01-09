@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="sv">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="sv">
 
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Lägga till ett nytt konto i <app>Empathy</app>.</desc>
+    <desc>Add a new account to <app>Empathy</app>.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-24" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-27" status="review">
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -25,7 +24,7 @@
       <email>shaunm@gnome.org</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>
 <!--
     <copyright>
@@ -34,43 +33,52 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Lägga till nytt konto</title>
+  <title>Add a new account</title>
 
-  <p>Du kan skapa snabbmeddelandekonton för valfri tjänst som stöds för att kommunicera med dina kontakter i <app>Empathy</app>. För vissa kontoleverantörer inbegriper dessa steg även registrering av ett nytt konto. För mer information, se <link xref="create-account"/>.</p>
+  <p>You can add instant messaging accounts from any supported service to communicate
+  with all of your contacts in <app>Empathy</app>.  For some account providers,
+  these steps will also allow you to register for a new account.  For more details,
+  see <link xref="create-account"/>.</p>
 
   <steps>
     <item>
-      <p>Klicka <guiseq><gui>Empathy</gui><gui>Konton</gui></guiseq> eller tryck ned <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>Klicka <gui style="button">+</gui>.</p>
+      <p>
+        Click <gui style="button">+</gui>.
+      </p>
     </item>
     <item>
-      <p>Från rullgardinslistan <gui>Vilken typ av chattkonto har du?</gui>, välj den typ av konto som du vill lägga till.</p>
+      <p>From the <gui>Protocol</gui> drop-down list, select the type of account you wish
+      to add.</p>
     </item>
     <item>
-      <p>Ange den information som krävs. För de flesta konton behöver du bara ett inloggnings-ID och ett lösenord. Vissa konton kan kräva ytterligare information. Se <link xref="accounts-window#details"/> för mer information.</p>
+      <p>If you do not already have a registered account, select
+      <gui>Create a new account on the server</gui>.
+      This feature is not available for all account types, and may not work with
+      some account providers.  See <link xref="create-account"/> for more
+      information.</p>
     </item>
     <item>
-      <p>Klicka <gui style="button">Lägg till</gui>.</p>
+      <p>Enter the required information.  For most accounts, you will only need
+      a login ID and a password.  Some accounts may require additional information.
+      See <link xref="accounts-window#details"/>for more information.</p>
+    </item>
+    <item>
+      <p>
+        Click <gui style="button">Apply</gui>.
+      </p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>För att ändra namnet som identifierar kontot i <gui>Meddelande och VoIP-konto</gui>fönstret, välj kontot från listan till vänster och klicka antingen på namnet eller tryck på blankstegstangenten. Redigera kontonamnet och tryck på <key>Retur</key> efter att du är färdig.</p>
+    <p>To change the name that identifies the account in the <gui>Accounts</gui>
+    window, select the account from the list on the left and either click on the
+    name or press the space bar.  Edit the account name and press <key>Enter</key>
+    when you’re finished.</p>
   </note>
 </page>

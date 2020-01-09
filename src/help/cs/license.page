@@ -4,56 +4,55 @@
   <info>
     <link type="seealso" xref="index"/>
     <revision pkgversion="2.30" version="0.1" date="2009-12-28" status="draft"/>
-    <desc>Právní informace.</desc>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
+    <desc>Legal information.</desc>
   </info>
 
-  <title>Licence</title>
-  <p>Tato práce je šířena pod licencí CreativeCommons Attribution-Share Alike 3.0 Unported license.</p>
-  <p>Můžete volně:</p>
+  <title>License</title>
+  <p>
+    <!-- 
+    Translators: try to use the same translation as the one provided by the CreativeCommons website. 
+    If there is no translation for your language, consider providing one to CreativeCommons.
+    -->
+    This work is distributed under a CreativeCommons Attribution-Share Alike
+    3.0 Unported license.
+  </p>
+  <p>
+    You are free:
+  </p>
   <terms>
     <item>
-      <title><em>Sdílet</em></title>
-      <p>Kopírovat, šířit a rozesílat dílo.</p>
+      <title><em>To share</em></title>
+      <p>To copy, distribute and transmit the work.</p>
     </item>
     <item>
-      <title><em>Měnit</em></title>
-      <p>Přizpůsobovat dílo.</p> 
+      <title><em>To remix</em></title>
+      <p>To adapt the work.</p> 
     </item>
   </terms>
-  <p>Za následujících podmínek:</p>
+  <p>
+    Under the following conditions:
+  </p>
   <terms>
     <item>
-      <title><em>Označení</em></title>
-      <p>Musíte dílo označit v souladu s požadavky autora nebo licence (ale ne žádným způsobem, který předpokládá, že podporují vás nebo vaše použití díla).</p>
+      <title><em>Attribution</em></title>
+      <p>
+        You must attribute the work in the manner specified by the author or 
+        licensor (but not in any way that suggests that they endorse you or 
+        your use of the work).  
+      </p>
     </item>
     <item>
-      <title><em>Stejné sdílení</em></title>
-      <p>Pokud dílo změníte, převedete nebo na něm založíte jiné, můžete výsledek této práce šířit pouze pod stejnou, podobnou nebo kompatibilní licencí.</p>
+      <title><em>Share Alike</em></title>
+      <p>
+        If you alter, transform, or build upon this work, you may distribute the 
+        resulting work only under the same, similar or a compatible license.  
+      </p>
     </item>
   </terms>
-  <p>Text licence v plném znění najdete na <link href="http://creativecommons.org/licenses/by-sa/3.0/legalcode">webových stránkách CreativeCommons</link> nebo si přečtěte <link href="http://creativecommons.org/licenses/by-sa/3.0/">výtah dokumentu pro neprávníky</link>.</p>
+  <p>
+    <!-- Translators: there are no official localized versions of the legal code, only the deed is localized. -->
+    For the full text of the license, see the 
+    <link href="http://creativecommons.org/licenses/by-sa/3.0/legalcode">CreativeCommons website</link>, 
+    or read the full <link href="http://creativecommons.org/licenses/by-sa/3.0/">Commons Deed</link>. 
+  </p>
 </page>

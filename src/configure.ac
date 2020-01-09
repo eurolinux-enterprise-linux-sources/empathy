@@ -2,8 +2,8 @@ dnl If not 1, append datestamp to the version number
 m4_define(empathy_released, 1)
 
 m4_define([empathy_major_version], [3])
-m4_define([empathy_minor_version], [12])
-m4_define([empathy_micro_version], [13])
+m4_define([empathy_minor_version], [8])
+m4_define([empathy_micro_version], [4])
 m4_define([empathy_nano_version], [0])
 
 dnl Display the nano_version only if it's not '0'
@@ -34,16 +34,16 @@ AC_COPYRIGHT([
 # Minimal version required
 
 # Hardp deps
-FOLKS_REQUIRED=0.9.5
+FOLKS_REQUIRED=0.9.0
 GNUTLS_REQUIRED=2.8.5
 
-GLIB_REQUIRED=2.37.6
+GLIB_REQUIRED=2.33.3
 AC_DEFINE(GLIB_VERSION_MIN_REQUIRED, GLIB_VERSION_2_30, [Ignore post 2.30 deprecations])
-AC_DEFINE(GLIB_VERSION_MAX_ALLOWED, GLIB_VERSION_2_38, [Prevent post 2.38 APIs])
+AC_DEFINE(GLIB_VERSION_MAX_ALLOWED, GLIB_VERSION_2_34, [Prevent post 2.34 APIs])
 
-GTK_REQUIRED=3.9.4
-AC_DEFINE(GDK_VERSION_MIN_REQUIRED, GDK_VERSION_3_8, [Ignore post 3.8 deprecations])
-AC_DEFINE(GDK_VERSION_MAX_ALLOWED, GDK_VERSION_3_10, [Prevent post 3.10 APIs])
+GTK_REQUIRED=3.5.1
+AC_DEFINE(GDK_VERSION_MIN_REQUIRED, GDK_VERSION_3_4, [Ignore post 3.4 deprecations])
+AC_DEFINE(GDK_VERSION_MAX_ALLOWED, GDK_VERSION_3_4, [Prevent post 3.4 APIs])
 
 CLUTTER_REQUIRED=1.10.0
 AC_DEFINE(CLUTTER_VERSION_MIN_REQUIRED, CLUTTER_VERSION_1_8, [Ignore post 1.8 deprecations])
@@ -51,15 +51,11 @@ AC_DEFINE(CLUTTER_VERSION_MAX_ALLOWED, CLUTTER_VERSION_1_10, [Prevent post 1.10 
 
 CLUTTER_GTK_REQUIRED=1.1.2
 
-TELEPATHY_GLIB_REQUIRED=0.23.2
+TELEPATHY_GLIB_REQUIRED=0.19.9
 AC_DEFINE(TP_VERSION_MIN_REQUIRED, TP_VERSION_0_20, [Ignore post 0.20 deprecations])
-AC_DEFINE(TP_VERSION_MAX_ALLOWED, TP_VERSION_0_24, [Prevent post 0.24 APIs])
+AC_DEFINE(TP_VERSION_MAX_ALLOWED, TP_VERSION_0_20, [Prevent post 0.20 APIs])
 AC_DEFINE(TP_SEAL_ENABLE, 1, [Prevent to use sealed variables])
 AC_DEFINE(TP_DISABLE_SINGLE_INCLUDE, 1, [Disable single include header])
-
-COGL_REQUIRED=1.14
-AC_DEFINE(COGL_VERSION_MIN_REQUIRED, COGL_VERSION_1_14, [Ignore post 1.14 deprecations])
-AC_DEFINE(COGL_VERSION_MAX_ALLOWED, COGL_VERSION_1_14, [Ignore post 1.14 deprecations])
 
 GSTREAMER_REQUIRED=0.10.32
 TP_FS_REQUIRED=0.6.0
@@ -73,7 +69,7 @@ GOA_REQUIRED=3.5.1
 
 # Optional deps
 ENCHANT_REQUIRED=1.2.0
-GEOCLUE_REQUIRED=2.1.0
+GEOCLUE_REQUIRED=0.12
 GEOCODE_GLIB_REQUIRED=0.99.1
 ISO_CODES_REQUIRED=0.35
 NAUTILUS_SENDTO_REQUIRED=2.90.0
@@ -81,7 +77,7 @@ NETWORK_MANAGER_REQUIRED=0.7.0
 CHAMPLAIN_REQUIRED=0.12.1
 CHEESE_GTK_REQUIRED=3.4.0
 LIBACCOUNTS_REQUIRED=1.4
-LIBSIGNON_REQUIRED=1.8
+LIBSIGNON_REQUIRED=1.1
 MC_PLUGINS_REQUIRED=5.13.1
 
 # Use --enable-maintainer-mode to disable deprecated symbols,
@@ -91,27 +87,15 @@ MC_PLUGINS_REQUIRED=5.13.1
 #ifelse(empathy_released, 1, [], [enable_maintainer_mode="yes"])
 #GNOME_MAINTAINER_MODE_DEFINES
 
-PKG_PROG_PKG_CONFIG([0.25])
-
-# tp-account-widgets
+# egg-list-box
 prev_top_build_prefix=$ac_top_build_prefix
 prev_ac_configure_args=$ac_configure_args
-ac_configure_args="$ac_configure_args --with-pkgdatadir=${datadir}/empathy"
-ac_configure_args="$ac_configure_args --with-gettext-package=empathy-tpaw"
-ifelse(empathy_released, 1, [],
-    [
-        ac_configure_args="$ac_configure_args --enable-unreleased-checks"
-    ])
-AX_CONFIG_DIR([telepathy-account-widgets])
+AX_CONFIG_DIR([libempathy-gtk/egg-list-box])
 ac_top_build_prefix=$prev_top_build_prefix
 ac_configure_args=$prev_ac_configure_args
 
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"$ac_top_build_prefix"telepathy-account-widgets/
-PKG_CHECK_MODULES(TPAW, telepathy-account-widgets)
-
-EMPATHY_UOA_PROVIDER=`$PKG_CONFIG --variable=uoa_provider telepathy-account-widgets`
-AC_DEFINE_UNQUOTED(EMPATHY_UOA_PROVIDER, "$EMPATHY_UOA_PROVIDER",
-   [Name of provider for accounts imported from libaccounts])
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"$ac_top_build_prefix"libempathy-gtk/egg-list-box
+PKG_CHECK_MODULES(EGGLISTBOX, egg-list-box)
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
@@ -128,7 +112,7 @@ AM_SILENT_RULES([yes])
 # Check for programs
 AC_PROG_CC
 AC_HEADER_STDC
-AC_PROG_MKDIR_P
+AM_PROG_MKDIR_P
 AM_PATH_GLIB_2_0
 AC_PATH_XTRA
 
@@ -241,21 +225,58 @@ PKG_CHECK_MODULES(EMPATHY,
 # -----------------------------------------------------------
 # GStreamer
 # -----------------------------------------------------------
-PKG_CHECK_MODULES(EMPATHY_CALL,
-[
-   farstream-0.2
-   telepathy-farstream >= $TP_FS_REQUIRED
-   clutter-1.0 >= $CLUTTER_REQUIRED
-   clutter-gtk-1.0 >= $CLUTTER_GTK_REQUIRED
-   clutter-gst-2.0
-   gstreamer-1.0
-   gstreamer-audio-1.0
-   gstreamer-video-1.0
-   cogl-1.0 >= $COGL_REQUIRED
-])
+AC_ARG_ENABLE(gst-1.0,
+              AS_HELP_STRING([--enable-gst-1.0=@<:@no/yes/auto@:>@],
+                             [build with GStreamer 1.0]),
+                             enable_gst1=$enableval,
+                             enable_gst1=auto)
+
+# Try to use GStreamer 1.0 if available
+have_gst1="no"
+if test "x$enable_gst1" != "xno"; then
+  PKG_CHECK_MODULES(EMPATHY_CALL,
+  [
+     farstream-0.2
+     telepathy-farstream >= $TP_FS_REQUIRED
+     clutter-1.0 >= $CLUTTER_REQUIRED
+     clutter-gtk-1.0 >= $CLUTTER_GTK_REQUIRED
+     clutter-gst-2.0
+     gstreamer-1.0
+     gstreamer-audio-1.0
+     gstreamer-video-1.0
+     cogl-1.0
+  ], have_gst1="yes", have_gst1="no")
+
+  if test "x$have_gst1" = "xyes"; then
+    AC_DEFINE(HAVE_GST1, 1, [Build with GStreamer 1.0])
+  fi
+fi
+
+if test "x$enable_gst1" = "xyes" -a "x$have_gst1" != "xyes"; then
+   AC_MSG_ERROR([Could not find GStreamer 1.0 dependencies:
+
+$EMPATHY_CALL_PKG_ERRORS])
+fi
+
+if test "x$have_gst1" != "xyes"; then
+  PKG_CHECK_MODULES(EMPATHY_CALL,
+  [
+     farstream-0.1
+     telepathy-farstream >= $TP_FS_REQUIRED
+     clutter-1.0 >= $CLUTTER_REQUIRED
+     clutter-gtk-1.0 >= $CLUTTER_GTK_REQUIRED
+     clutter-gst-1.0 >= 1.5.2
+     gstreamer-0.10 >= $GSTREAMER_REQUIRED
+     gstreamer-interfaces-0.10
+  ])
+fi
 
 AC_DEFINE(EMPATHY_GOA_PROVIDER, "org.gnome.OnlineAccounts",
    [Name of provider for accounts imported from GOA])
+
+AC_DEFINE(EMPATHY_UOA_PROVIDER,
+    "im.telepathy.Account.Storage.UOA",
+   [Name of provider for accounts imported from libaccounts])
 
 # -----------------------------------------------------------
 # Enable debug
@@ -389,18 +410,11 @@ AC_ARG_ENABLE(location,
 if test "x$enable_location" != "xno"; then
    PKG_CHECK_MODULES(GEOCLUE,
    [
-      geoclue-2.0 >= $GEOCLUE_REQUIRED
+      geoclue >= $GEOCLUE_REQUIRED
    ], have_geoclue="yes", have_geoclue="no")
 
    if test "x$have_geoclue" = "xyes"; then
-      GEOCLUE_XML_FILE=`$PKG_CONFIG --variable=dbus_interface geoclue-2.0`
-      if test "x$GEOCLUE_XML_FILE" = "x"; then
-        echo "Can't find dbus_interface variable in geoclue-2.0.pc"
-        have_geoclue="no"
-      else
-        AC_DEFINE(HAVE_GEOCLUE, 1, [Define if you have geoclue-2])
-        AC_SUBST(GEOCLUE_XML_FILE)
-      fi
+      AC_DEFINE(HAVE_GEOCLUE, 1, [Define if you have geoclue])
    fi
 else
    have_geoclue="no"
@@ -427,7 +441,7 @@ AC_ARG_ENABLE(geocode,
 if test "x$enable_geocode" != "xno"; then
    PKG_CHECK_MODULES(GEOCODE,
    [
-      geocode-glib-1.0 >= $GEOCODE_GLIB_REQUIRED
+      geocode-glib >= $GEOCODE_GLIB_REQUIRED
    ], have_geocode="yes", have_geocode="no")
 
    if test "x$have_geocode" = "xyes"; then
@@ -446,6 +460,31 @@ fi
 AM_CONDITIONAL(HAVE_GEOCODE, test "x$have_geocode" = "xyes")
 AC_SUBST(GEOCODE_CFLAGS)
 AC_SUBST(GEOCODE_LIBS)
+
+# -----------------------------------------------------------
+# nautilus-sendto
+# -----------------------------------------------------------
+AC_ARG_ENABLE(nautilus-sendto,
+              AS_HELP_STRING([--enable-nautilus-sendto=@<:@no/yes/auto@:>@],
+                             [build nautilus-sendto plugin]), ,
+                             enable_nautilus_sendto=auto)
+
+if test "x$enable_nautilus_sendto" != "xno"; then
+   PKG_CHECK_MODULES(NST,
+    [
+       nautilus-sendto >= $NAUTILUS_SENDTO_REQUIRED
+    ], have_nst="yes", have_nst="no")
+else
+   have_nst=no
+fi
+
+if test "x$enable_nautilus_sendto" = "xyes" -a "x$have_nst" != "xyes"; then
+   AC_MSG_ERROR([Could not find nautilus-sendto dependencies:
+
+$NST_PKG_ERRORS])
+fi
+
+AM_CONDITIONAL(HAVE_NST, test "x$have_nst" = "xyes")
 
 # -----------------------------------------------------------
 # goa-mc-plugin
@@ -517,35 +556,35 @@ if test "x$enable_ubuntu_online_accounts" != "xno"; then
 
    # provider plugin dir
    AC_MSG_CHECKING([Accounts provider plugin dir])
-   ACCOUNTS_PROVIDER_PLUGIN_DIR=`$PKG_CONFIG --variable=provider_plugindir account-plugin`
+   ACCOUNTS_PROVIDER_PLUGIN_DIR=`pkg-config --variable=provider_plugindir account-plugin`
 
    AC_MSG_RESULT([$ACCOUNTS_PROVIDER_PLUGIN_DIR])
    AC_SUBST(ACCOUNTS_PROVIDER_PLUGIN_DIR)
 
    # app plugin dir
    AC_MSG_CHECKING([Accounts provider app plugin dir])
-   ACCOUNTS_APP_PLUGIN_DIR=`$PKG_CONFIG --variable=application_plugindir account-plugin`
+   ACCOUNTS_APP_PLUGIN_DIR=`pkg-config --variable=application_plugindir account-plugin`
 
    AC_MSG_RESULT([$ACCOUNTS_APP_PLUGIN_DIR])
    AC_SUBST(ACCOUNTS_APP_PLUGIN_DIR)
 
    # provider files dir
    AC_MSG_CHECKING([Accounts provider files dir])
-   ACCOUNTS_PROVIDER_FILES_DIR=`$PKG_CONFIG --variable=providerfilesdir libaccounts-glib`
+   ACCOUNTS_PROVIDER_FILES_DIR=`pkg-config --variable=providerfilesdir libaccounts-glib`
 
    AC_MSG_RESULT([$ACCOUNTS_PROVIDER_FILES_DIR])
    AC_SUBST(ACCOUNTS_PROVIDER_FILES_DIR)
 
    # service files dir
    AC_MSG_CHECKING([Accounts service files dir])
-   ACCOUNTS_SERVICE_FILES_DIR=`$PKG_CONFIG --variable=servicefilesdir libaccounts-glib`
+   ACCOUNTS_SERVICE_FILES_DIR=`pkg-config --variable=servicefilesdir libaccounts-glib`
 
    AC_MSG_RESULT([$ACCOUNTS_SERVICE_FILES_DIR])
    AC_SUBST(ACCOUNTS_SERVICE_FILES_DIR)
 
    # application files dir
    AC_MSG_CHECKING([Accounts applications files dir])
-   ACCOUNTS_APPLICATION_FILES_DIR=`$PKG_CONFIG --variable=applicationfilesdir libaccounts-glib`
+   ACCOUNTS_APPLICATION_FILES_DIR=`pkg-config --variable=applicationfilesdir libaccounts-glib`
 
    AC_MSG_RESULT([$ACCOUNTS_APPLICATION_FILES_DIR])
    AC_SUBST(ACCOUNTS_APPLICATION_FILES_DIR)
@@ -568,7 +607,7 @@ AM_CONDITIONAL(HAVE_UOA, test "x$have_uoa" = "xyes")
 
 if test "x$have_uoa" = "xyes" -o "x$have_goa" = "xyes"; then
    AC_MSG_CHECKING([Mission Control plugins dir])
-   MISSION_CONTROL_PLUGINS_DIR=`$PKG_CONFIG --define-variable=libdir='${libdir}' --variable=plugindir mission-control-plugins`
+   MISSION_CONTROL_PLUGINS_DIR=${libdir}/mission-control-plugins.`pkg-config --variable=MCP_ABI_VERSION mission-control-plugins`
 
    AC_MSG_RESULT([$MISSION_CONTROL_PLUGINS_DIR])
    AC_SUBST(MISSION_CONTROL_PLUGINS_DIR)
@@ -601,6 +640,7 @@ AC_CONFIG_FILES([
    libempathy/Makefile
    libempathy-gtk/Makefile
    src/Makefile
+   nautilus-sendto-plugin/Makefile
    goa-mc-plugin/Makefile
    ubuntu-online-accounts/Makefile
    ubuntu-online-accounts/mc-plugin/Makefile
@@ -626,6 +666,7 @@ Configure summary:
 	Linker Flags................:  ${LDFLAGS}
 	Prefix......................:  ${prefix}
 	Coding style checks.........:  ${ENABLE_CODING_STYLE_CHECKS}
+	Use GStreamer 1.0...........:  ${have_gst1}
 
     Features:
 	Spell checking (enchant)....:  ${have_enchant}
@@ -636,6 +677,7 @@ Configure summary:
 	Camera monitoring...........:  ${have_gudev}
 
     Extras:
+	Nautilus-sendto plugin......:  ${have_nst}
 	GOA MC plugin...............:  ${have_goa}
 	Ubuntu Online plugins.......:  ${have_uoa}
 "

@@ -33,47 +33,27 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Inhabiliteu un compte</title>
+  <title>Com inhabilitar un compte</title>
 
   <p>Podeu inhabilitar un compte per evitar que l'<app>Empathy</app> es connecti sense esborrar completament el compte. Podeu desactivar i reactivar el compte si només voleu connectar-vos al compte esporàdicament, però encara voleu utilitzar l'<app>Empathy</app> per altres comptes.</p>
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> seleccioneu <guiseq><gui>Edita</gui><gui>Comptes</gui></guiseq> o premeu la tecla <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>Seleccioneu el compte que voleu inhabilitar del llistat de comptes al quadre de l'esquerra de la finestra.</p>
+      <p>Seleccioneu el compte que voleu desactivar del llistat de comptes al quadre de l'esquerra de la finestra.</p>
     </item>
     <item>
-      <p>A la part dreta de la finestra, inhabiliteu-lo.</p>
+      <p>On the right side of the window, switch it off.
+      </p>
     </item>
   </steps>
 
-  <p>Per tornar a activar el compte, habiliteu-lo.</p>
+  <p>
+    To re-enable the account, switch it on.
+  </p>
 </page>

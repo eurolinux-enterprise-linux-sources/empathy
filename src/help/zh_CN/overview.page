@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" id="overview" xml:lang="zh-CN">
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="overview" xml:lang="zh-CN">
 
   <info>
     <link type="guide" xref="index"/>
@@ -9,11 +9,11 @@
     </desc>
     <credit type="author">
       <name>Aruna S</name>
-      <email its:translate="no">aruna.evam@gmail.com</email>
+      <email>aruna.evam@gmail.com</email>
     </credit>
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
+      <email>kittykat3756@gmail.com</email>
     </credit>
     <license>
       <p>知识共享-相同方式共享 (Creative Commons Share Alike) 3.0</p>
@@ -33,9 +33,9 @@
 
   <table frame="all" shade="cols">
      <tr>
-       <td><p><media type="image" src="figures/video_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
-       <td><p><media type="image" src="figures/conf_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
-       <td><p><media type="image" src="figures/croom_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
+       <td><p><media type="image" src="figures/video_overview.png" mime="image/png" style="right" width="150" height="150"/></p></td>
+       <td><p><media type="image" src="figures/conf_overview.png" mime="image/png" style="right" width="150" height="150"/></p></td>
+       <td><p><media type="image" src="figures/croom_overview.png" mime="image/png" style="right" width="150" height="150"/></p></td>
      </tr>
      <tr>
        <td><p>Video Conference</p></td>

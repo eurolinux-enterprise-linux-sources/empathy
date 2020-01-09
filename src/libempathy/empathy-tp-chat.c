@@ -19,11 +19,8 @@
  */
 
 #include "config.h"
+
 #include "empathy-tp-chat.h"
-
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
 #include "empathy-request-util.h"
 #include "empathy-utils.h"
 
@@ -196,31 +193,39 @@ empathy_tp_chat_add (EmpathyTpChat *self,
   else if (self->priv->can_upgrade_to_muc)
     {
       TpAccountChannelRequest *req;
-      const gchar *channels[2] = { NULL, };
+      GHashTable *props;
+      const char *object_path;
+      GPtrArray channels = { (gpointer *) &object_path, 1 };
       const char *invitees[2] = { NULL, };
       TpAccount *account;
 
       invitees[0] = empathy_contact_get_id (contact);
-      channels[0] = tp_proxy_get_object_path (self);
+      object_path = tp_proxy_get_object_path (self);
+
+      props = tp_asv_new (
+          TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,
+              TP_IFACE_CHANNEL_TYPE_TEXT,
+          TP_PROP_CHANNEL_TARGET_HANDLE_TYPE, G_TYPE_UINT,
+              TP_HANDLE_TYPE_NONE,
+          TP_PROP_CHANNEL_INTERFACE_CONFERENCE_INITIAL_CHANNELS,
+              TP_ARRAY_TYPE_OBJECT_PATH_LIST, &channels,
+          TP_PROP_CHANNEL_INTERFACE_CONFERENCE_INITIAL_INVITEE_IDS,
+              G_TYPE_STRV, invitees,
+          /* FIXME: InvitationMessage ? */
+          NULL);
 
       account = empathy_tp_chat_get_account (self);
 
-      req = tp_account_channel_request_new_text (account,
+      req = tp_account_channel_request_new (account, props,
         TP_USER_ACTION_TIME_NOT_USER_ACTION);
-
-      tp_account_channel_request_set_conference_initial_channels (req,
-          channels);
-
-      tp_account_channel_request_set_initial_invitee_ids (req, invitees);
-
-      /* FIXME: InvitationMessage ? */
 
       /* Although this is a MUC, it's anonymous, so CreateChannel is
        * valid. */
       tp_account_channel_request_create_and_observe_channel_async (req,
-          EMPATHY_CHAT_TP_BUS_NAME, NULL, create_conference_cb, NULL);
+          EMPATHY_CHAT_BUS_NAME, NULL, create_conference_cb, NULL);
 
       g_object_unref (req);
+      g_hash_table_unref (props);
     }
   else
     {
@@ -959,14 +964,13 @@ static const TpProxyFeature *
 tp_chat_list_features (TpProxyClass *cls G_GNUC_UNUSED)
 {
   static TpProxyFeature features[N_FEAT + 1] = { { 0 } };
-  static GQuark need[3] = {0, 0, 0};
+  static GQuark need[2] = {0, 0};
 
   if (G_LIKELY (features[0].name != 0))
     return features;
 
   features[FEAT_READY].name = EMPATHY_TP_CHAT_FEATURE_READY;
   need[0] = TP_TEXT_CHANNEL_FEATURE_INCOMING_MESSAGES;
-  need[1] = TP_CHANNEL_FEATURE_CONTACTS;
   features[FEAT_READY].depends_on = need;
   features[FEAT_READY].prepare_async =
     tp_chat_prepare_ready_async;
@@ -1111,7 +1115,7 @@ empathy_tp_chat_get_id (EmpathyTpChat *self)
   g_return_val_if_fail (EMPATHY_IS_TP_CHAT (self), NULL);
 
   id = tp_channel_get_identifier ((TpChannel *) self);
-  if (!TPAW_STR_EMPTY (id))
+  if (!EMP_STR_EMPTY (id))
     return id;
   else if (self->priv->remote_contact)
     return empathy_contact_get_id (self->priv->remote_contact);

@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -90,7 +89,7 @@
   <p>La plupart des comptes Jabber n'ont besoin que d'un identifiant de connexion et d'un mot de passe pour se connecter. Pour certains comptes ou sur certains types de réseaux, il vous faudra peut-être saisir des informations supplémentaires dans la section <gui>Avancé</gui>. Normalement, vous n'avez pas à utiliser les options avancées ci-dessous. Pour des instructions générales sur la façon d'ajouter un compte, consultez <link xref="add-account"/>.</p>
 
   <note>
-    <p>Google Talk est un compte de type Jabber. Ces instructions sont donc aussi valables pour les comptes Google Talk.</p>
+    <p>Google Talk est un type de compte Jabber. Ces instructions sont donc aussi valables pour les comptes Google Talk.</p>
   </note>
 
   <terms>
@@ -98,7 +97,7 @@
       <title><gui>Chiffrement requis (TLS/SSL)</gui></title>
       <title><gui>Ignorer les erreurs de certificat SSL</gui></title>
       <p>Chaque fois que possible, la communication entre <app>Empathy</app> et le serveur Jabber est chiffrée. Si le chiffrement n'est pas possible, le message sera envoyé en clair. Sélectionnez <gui>Chiffrement requis</gui> pour empêcher <app>Empathy</app> de communiquer avec le serveur Jabber lorsque le chiffrement n'est pas possible.</p>
-      <p>Certains serveurs Jabber peuvent chiffrer les données en utilisant des certificats non valides ou signés par des autorités inconnues. Vous pouvez sélectionner <gui>Ignorer les erreurs de certificat SSL</gui> pour autoriser les communications chiffrées avec des certificats non valides, mais cela permet aux pirates informatiques d'intercepter vos communications avec le serveur (y compris votre mot de passe). Vous pouvez vouloir utiliser cette option à des fins de test ou si votre serveur est cassé et que vous ne vous souciez pas de la sécurité de votre communication.</p>
+      <p>Certains serveurs Jabber peuvent chiffrer les données en utilisant des certificats non valides ou provenant d'autorités non reconnues. Si vous faites confiance au serveur sur lequel vous êtes connecté, vous pouvez sélectionner <gui>Ignorer les erreurs de certificat SSL</gui> pour autoriser les communications chiffrées avec des certificats non valides.</p>
     </item>
     <item>
       <title><gui>Ressource</gui></title>
@@ -108,7 +107,7 @@
     </item>
     <item>
       <title><gui>Outrepasser les paramètres du serveur</gui></title>
-      <p><app>Empathy</app> utilise les paramètres par défaut pour se connecter au serveur Jabber avec vos informations de connexion. Pour certains serveurs Jabber, vous devez saisir manuellement des paramètres personnalisés. Ces paramètres doivent vous être remis par votre fournisseur Jabber.</p>
+      <p><app>Empathy</app> utilise les paramètres par défaut pour se connecter au serveur Jabber selon vos informations de connexions. Pour certains serveurs Jabber, vous devez saisir manuellement des paramètres personnalisés. Ces paramètres doivent vous être remis par votre fournisseur Jabber.</p>
     </item>
   </terms>
 

@@ -14,11 +14,17 @@
  *
  * You should have received a copy of the GNU Lesser General
  * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
+
 #include "mock-pkcs11.h"
+
+#include <gcr/gcr.h>
+
+#include <glib.h>
 
 #include <string.h>
 
@@ -69,7 +75,7 @@ typedef struct {
 static void
 free_session (gpointer data)
 {
-  Session *sess = (Session *) data;
+  Session *sess = (Session*)data;
   g_list_free (sess->matches);
   g_free (sess);
 }
@@ -118,7 +124,7 @@ mock_C_Initialize (CK_VOID_PTR init_args)
   args = (CK_C_INITIALIZE_ARGS_PTR)init_args;
   if (args)
     {
-      g_return_val_if_fail (
+      g_return_val_if_fail(
           (args->CreateMutex == NULL && args->DestroyMutex == NULL &&
            args->LockMutex == NULL && args->UnlockMutex == NULL) ||
           (args->CreateMutex != NULL && args->DestroyMutex != NULL &&
@@ -146,13 +152,13 @@ mock_C_Finalize (CK_VOID_PTR reserved)
 
   initialized = FALSE;
 
-  g_hash_table_unref (the_certificates);
+  g_hash_table_destroy (the_certificates);
   the_certificates = NULL;
 
-  g_hash_table_unref (the_assertions);
+  g_hash_table_destroy (the_assertions);
   the_assertions = NULL;
 
-  g_hash_table_unref (the_sessions);
+  g_hash_table_destroy (the_sessions);
   the_sessions = NULL;
 
   return CKR_OK;

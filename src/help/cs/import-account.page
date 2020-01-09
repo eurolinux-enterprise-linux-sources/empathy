@@ -5,7 +5,7 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="add-account"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Jak naimportovat účty z jiné aplikace pro rychlou komunikaci.</desc>
+    <desc>Import an account from another instant messaging application.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-22" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-22" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-09-02" status="review">
@@ -35,53 +35,34 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Import stávajících účtů</title>
+  <title>Import an existing account</title>
 
-  <p>Při prvním spuštění <app>Empathy</app> nabídne import vašich účtů z jiných aplikací pro rychlou komunikaci. Jedinou zatím podporovanou je <app>Pidgin</app>.</p>
+  <p>The first time you run <app>Empathy</app>, it will offer to import your
+  accounts from other instant messaging applications.  Currently, the only
+  supported application is <app>Pidgin</app>.</p>
 
   <steps>
     <item>
-      <p>Spusťte <app>Empathy</app> poprvé. Průvodce vám nabídne několik voleb k vytvoření nových účtů.</p>
+      <p>Run <app>Empathy</app> for the first time.  An assistant will offer
+      you a number of options to create new accounts.</p>
     </item>
     <item>
-      <p>Vyberte <gui>Ano, importovat mé účty z</gui> a klikněte na <gui>Vpřed</gui>.</p>
+      <p>Select <gui>Yes, import my account details from</gui> and click
+      <gui>Forward</gui>.</p>
     </item>
     <item>
-      <p>Zaškrtněte políčko vedle každého účtu, který si přejete importovat.</p>
+      <p>Select the check box next to each account you wish to import.</p>
     </item>
     <item>
-      <p>Klikněte na <gui style="button">Použít</gui>.</p>
+      <p>Click <gui style="button">Apply</gui>.</p>
     </item>
   </steps>
 
   <note>
-    <p>V současnosti není možné importovat účty po té, co jste průvodce prvním spuštěním dokončili.</p>
+    <p>It is not currently possible to import accounts after you have completed
+    the first-run assistant.</p>
   </note>
 
 </page>

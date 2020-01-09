@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="guide" style="task" id="add-account" xml:lang="de">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="add-account" xml:lang="de">
 
   <info>
     <link type="guide" xref="index#accounts"/>
@@ -15,7 +15,6 @@
     <revision pkgversion="2.30" version="0.3" date="2010-02-03" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-04-19" status="review"/>
     <revision pkgversion="3.2" version="0.5" date="2011-12-19" status="review"/>
-    <revision pkgversion="3.12.6" date="2014-10-07" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
@@ -50,7 +49,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2015</mal:years>
+      <mal:years>2010-2013</mal:years>
     </mal:credit>
   </info>
 
@@ -60,23 +59,26 @@
 
   <steps>
     <item>
-      <p>Wählen Sie auf <guiseq><gui>Empathy</gui><gui>Konten</gui></guiseq> oder drücken Sie <key>F4</key>.</p>
+      <p>Wählen Sie im <gui>Kontaktlisten</gui>-Fenster <guiseq><gui>Bearbeiten</gui><gui>Konten</gui></guiseq> oder drücken Sie <key>F4</key>.</p>
     </item>
     <item>
       <p>Klicken Sie auf <gui style="button">+</gui>.</p>
     </item>
     <item>
-      <p>Wählen Sie aus der Aufklappliste <gui>Welche Art Chat-Konto haben Sie</gui> den Kontentyp, welchen Sie hinzufügen wollen.</p>
+      <p>Aus der <gui>Protokoll</gui>-Aufklappliste wählen Sie den Kontentyp, welchen Sie hinzufügen wollen.</p>
+    </item>
+    <item>
+      <p>Falls Sie noch kein Konto registriert haben, wählen Sie <gui>Ein neues Konto auf dem Server anlegen</gui>. Dieses Funktionsmerkmal ist nicht für alle Kontentypen verfügbar und funktioniert möglicherweise nicht mit allen Dienstanbietern. Weitere Informationen hierzu finden Sie in <link xref="create-account"/>.</p>
     </item>
     <item>
       <p>Geben Sie die benötigten Informationen ein. Für die meisten Konten wird die Eingabe einer Anmeldekennung und eines Passworts genügen. Einige Konten könnten zusätzliche Angaben erfordern. Weitere Informationen hierzu finden Sie in <link xref="accounts-window#details"/>.</p>
     </item>
     <item>
-      <p>Klicken Sie auf <gui style="button">Hinzufügen</gui>.</p>
+      <p>Klicken Sie auf <gui style="button">Anwenden</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>Um den Namen zu ändern, der das Konto im <gui>Sofortnachrichten- und VoIP-Konten</gui>-Fenster identifiziert, wählen Sie das Konto aus der linken Liste aus und klicken Sie anschließend entweder auf den Namen oder drücken Sie die Leertaste. Ändern Sie den Namen des Kontos und drücken Sie die <key>Eingabetaste</key>, sobald Sie fertig sind.</p>
+    <p>Um den Namen zu ändern, der das Konto im <gui>Konten</gui>-Fenster identifiziert, wählen Sie das Konto aus der linken Liste aus und klicken Sie anschließend entweder auf den Namen oder drücken Sie die <key>Leertaste</key>. Ändern Sie den Namen und drücken Sie die <key>Eingabetaste</key>, sobald Sie fertig sind.</p>
   </note>
 </page>

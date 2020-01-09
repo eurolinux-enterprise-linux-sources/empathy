@@ -21,12 +21,17 @@
  */
 
 #include "config.h"
+
+#include <string.h>
+
+#include <gtk/gtk.h>
+
+#include <libempathy/empathy-gsettings.h>
+
 #include "empathy-theme-manager.h"
 
-#include "empathy-gsettings.h"
-
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 struct _EmpathyThemeManagerPriv
 {

@@ -19,7 +19,6 @@
  */
 
 #include "config.h"
-#include "empathy-uoa-auth-handler.h"
 
 #include <libaccounts-glib/ag-account.h>
 #include <libaccounts-glib/ag-account-service.h>
@@ -30,14 +29,13 @@
 #include <libsignon-glib/signon-identity.h>
 #include <libsignon-glib/signon-auth-session.h>
 
-#include <tp-account-widgets/tpaw-keyring.h>
-#include <tp-account-widgets/tpaw-uoa-utils.h>
-
-#include "empathy-utils.h"
-#include "empathy-sasl-mechanisms.h"
-
 #define DEBUG_FLAG EMPATHY_DEBUG_SASL
 #include "empathy-debug.h"
+#include "empathy-keyring.h"
+#include "empathy-utils.h"
+#include "empathy-uoa-auth-handler.h"
+#include "empathy-uoa-utils.h"
+#include "empathy-sasl-mechanisms.h"
 
 struct _EmpathyUoaAuthHandlerPriv
 {
@@ -52,7 +50,7 @@ empathy_uoa_auth_handler_init (EmpathyUoaAuthHandler *self)
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
       EMPATHY_TYPE_UOA_AUTH_HANDLER, EmpathyUoaAuthHandlerPriv);
 
-  self->priv->manager = tpaw_uoa_manager_dup ();
+  self->priv->manager = empathy_uoa_manager_dup ();
 }
 
 static void
@@ -145,24 +143,18 @@ auth_context_done (AuthContext *ctx)
 }
 
 static void
-request_password_session_process_cb (GObject *source,
-    GAsyncResult *result,
+request_password_session_process_cb (SignonAuthSession *session,
+    GHashTable *session_data,
+    const GError *error,
     gpointer user_data)
 {
-  SignonAuthSession *session = (SignonAuthSession *) source;
   AuthContext *ctx = user_data;
-  GVariant *variant;
-  GError *error = NULL;
 
-  variant = signon_auth_session_process_finish (session, result, &error);
   if (error != NULL)
     {
       DEBUG ("Error processing the session to request user's attention: %s",
           error->message);
-      g_clear_error (&error);
     }
-
-  g_variant_unref (variant);
 
   auth_context_done (ctx);
 }
@@ -170,23 +162,25 @@ request_password_session_process_cb (GObject *source,
 static void
 request_password (AuthContext *ctx)
 {
-  GVariantBuilder builder;
+  GHashTable *extra_params;
 
   DEBUG ("Invalid credentials, request user action");
 
   /* Inform SSO that the access token (or password) didn't work and it should
    * ask user to re-grant access (or retype password). */
-  g_variant_builder_init (&builder, G_VARIANT_TYPE_VARDICT);
-  g_variant_builder_add (&builder, "{sv}",
-      SIGNON_SESSION_DATA_UI_POLICY,
-      g_variant_new_int32 (SIGNON_POLICY_REQUEST_PASSWORD));
+  extra_params = tp_asv_new (
+      SIGNON_SESSION_DATA_UI_POLICY, G_TYPE_INT,
+          SIGNON_POLICY_REQUEST_PASSWORD,
+      NULL);
 
-  signon_auth_session_process_async (ctx->session,
-      ag_auth_data_get_login_parameters (ctx->auth_data,
-          g_variant_builder_end (&builder)),
+  ag_auth_data_insert_parameters (ctx->auth_data, extra_params);
+
+  signon_auth_session_process (ctx->session,
+      ag_auth_data_get_parameters (ctx->auth_data),
       ag_auth_data_get_mechanism (ctx->auth_data),
-      NULL,
       request_password_session_process_cb, ctx);
+
+  g_hash_table_unref (extra_params);
 }
 
 static void
@@ -213,34 +207,25 @@ auth_cb (GObject *source,
 }
 
 static void
-session_process_cb (GObject *source,
-    GAsyncResult *result,
+session_process_cb (SignonAuthSession *session,
+    GHashTable *session_data,
+    const GError *error,
     gpointer user_data)
 {
-  SignonAuthSession *session = (SignonAuthSession *) source;
   AuthContext *ctx = user_data;
-  GVariant *session_data;
   const gchar *access_token;
   const gchar *client_id;
-  const gchar *secret;
-  GVariant *params;
-  GError *error = NULL;
 
-  session_data = signon_auth_session_process_finish (session, result, &error);
   if (error != NULL)
     {
       DEBUG ("Error processing the session: %s", error->message);
       auth_context_done (ctx);
-      g_clear_error (&error);
       return;
     }
 
-  params = g_variant_ref_sink (
-      ag_auth_data_get_login_parameters (ctx->auth_data, NULL));
-
-  g_variant_lookup (params, "ClientId", "&s", &client_id);
-  g_variant_lookup (session_data, "AccessToken", "&s", &access_token);
-  g_variant_lookup (session_data, "Secret", "&s", &secret);
+  access_token = tp_asv_get_string (session_data, "AccessToken");
+  client_id = tp_asv_get_string (ag_auth_data_get_parameters (ctx->auth_data),
+      "ClientId");
 
   switch (empathy_sasl_channel_select_mechanism (ctx->channel))
     {
@@ -264,15 +249,13 @@ session_process_cb (GObject *source,
 
       case EMPATHY_SASL_MECHANISM_PASSWORD:
         empathy_sasl_auth_password_async (ctx->channel,
-            secret,
+            tp_asv_get_string (session_data, "Secret"),
             auth_cb, ctx);
         break;
 
       default:
         g_assert_not_reached ();
     }
-
-  g_variant_unref (params);
 }
 
 static void
@@ -292,10 +275,9 @@ identity_query_info_cb (SignonIdentity *identity,
 
   ctx->username = g_strdup (signon_identity_info_get_username (info));
 
-  signon_auth_session_process_async (ctx->session,
-      ag_auth_data_get_login_parameters (ctx->auth_data, NULL),
+  signon_auth_session_process (ctx->session,
+      ag_auth_data_get_parameters (ctx->auth_data),
       ag_auth_data_get_mechanism (ctx->auth_data),
-      NULL,
       session_process_cb,
       ctx);
 }
@@ -310,7 +292,7 @@ set_account_password_cb (GObject *source,
   AuthContext *new_ctx;
   GError *error = NULL;
 
-  if (!tpaw_keyring_set_account_password_finish (tp_account, result, &error))
+  if (!empathy_keyring_set_account_password_finish (tp_account, result, &error))
     {
       DEBUG ("Failed to set empty password on UOA account: %s", error->message);
       auth_context_done (ctx);
@@ -356,7 +338,7 @@ empathy_uoa_auth_handler_start (EmpathyUoaAuthHandler *self,
 
   account = ag_manager_get_account (self->priv->manager, id);
   if (account != NULL)
-    l = ag_account_list_services_by_type (account, TPAW_UOA_SERVICE_TYPE);
+    l = ag_account_list_services_by_type (account, EMPATHY_UOA_SERVICE_TYPE);
   if (l == NULL)
     {
       DEBUG ("Couldn't find IM service for AgAccountId %u", id);
@@ -377,7 +359,7 @@ empathy_uoa_auth_handler_start (EmpathyUoaAuthHandler *self,
        * To ask user to type his password SSO needs a SignonIdentity bound to
        * our account. Let's store an empty password. */
       DEBUG ("Couldn't create a signon session");
-      tpaw_keyring_set_account_password_async (tp_account, "", FALSE,
+      empathy_keyring_set_account_password_async (tp_account, "", FALSE,
           set_account_password_cb, ctx);
     }
   else

@@ -3,7 +3,9 @@
 
   <info>
     <link type="guide" xref="geolocation#problems"/>
-    <desc><app>Empathy</app> publicerar inte min geografiska plats.</desc>
+    <desc>
+      <app>Empathy</app> does not publish my geographical position.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-19" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-09-09" status="deferred"/>
@@ -14,7 +16,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -23,28 +25,29 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Den geografiska positionen är inte publicerad</title>
+  <title>Geographical position not published</title>
 
-  <p>Om dina kontakter inte kan se din position kanske <app>Empathy</app> inte kan upptäcka din geografiska plats med en god precision.</p>
-  <p>I detta fall kommer din position inte att publiceras men du kommer fortfarande att kunna se dina kontakters position.</p>
-  <p>Om du vill publicera din geografiska position kan du försöka använda en extern enhet såsom en GPS.</p>
+  <p>
+    If your contacts cannot see your location, <app>Empathy</app> might not be able
+    to discover with a good margin of precision your geographical position.
+  </p>
+  <p>
+    In this case, your position will not be published, but you are still able to
+    see the location of your contacts.
+  </p>
+  <p>
+    If you want to publish your geographical position, you can try to use an
+    external device such as a GPS.
+  </p>
 
   <note>
-    <p>För att publicera din geografiska plats behöver din Jabber-server stödja protokollet "Personal Eventing Protocal" (PEP). En lista över <link href="http://coccinella.im/servers/servers_by_pubsub_pep.html">servrar som stöder PEP</link> upprätthålls på internet. Google Talk stöder inte den här funktionen för tillfället.</p>
+    <p>In order to publish your geographical location, your Jabber server
+    needs to support the Personal Eventing Protocal (PEP).  A list of
+    <link href="http://coccinella.im/servers/servers_by_pubsub_pep.html">servers
+    which support PEP</link> is maintained online.  Google Talk
+    does not support this feature at this time.</p>
   </note>
 
 </page>

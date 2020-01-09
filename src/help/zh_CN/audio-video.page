@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>语音或视频会话的条件。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>知识共享-相同方式共享 (Creative Commons Share Alike) 3.0</p>
     </license>    
@@ -25,15 +25,51 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>语音或视频会话的条件。</desc>
-
   </info>
 
   <title>语音和视频支持</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>您的联系人也在使用支持语音和视频会话的程序时，您才可以和他们进行语音、视频会话。如果您的联系人可以进行语音或视频会话，您将在联系人列表中他们的姓名旁看到下列图标：</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>图标</p>
+        </td>
+        <td>
+          <p>描述</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/audio-input-microphone.png">
+            Icon for audio conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>联系人可以进行语音聊天。</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/camera-web.png">
+            Icon for video conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>联系人可以进行视频聊天。</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>要进行语音聊天，您需要有一块声卡，且您的操作系统必需支持它，还需要一个能正常工作的麦克风。</p>
     <p>要进行视频聊天，您需要操作系统支持的摄像头，及可以正常工作的麦克风。</p>
@@ -41,14 +77,30 @@
 
   <section id="services">
   
-  <title>支持的帐号类型</title>
+  <title>支持的账户类型</title>
 
-  <p>只有一些特定类型的帐号支持语音或视频聊天。下表列出了每种类型的帐号的语音、视频支持情况。</p>
+  <p>只有一些特定类型的账户支持语音或视频聊天。下表列出了每种类型的账户的语音、视频支持情况。</p>
 
   <note>
-    <p>帐号类型是由插件提供的。您的系统上不一定有以下列出的全部类型，也可能有一些类型没有在下面列出。插件的升级可能使下表中不支持语音或视频的帐号类型获得支持。</p>
+    <p>账户类型是由插件提供的。您的系统上不一定有以下列出的全部类型，也可能有一些类型没有在下面列出。插件的升级可能使下表中不支持语音或视频的账户类型获得支持。</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -61,6 +113,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>否</p></td>
+        <td><p>否</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook 聊天</p></td>
         <td><p>否</p></td>
         <td><p>否</p></td>
       </tr>
@@ -91,6 +148,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>是</p></td>
+        <td><p>是</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>是</p></td>
         <td><p>是</p></td>
       </tr>

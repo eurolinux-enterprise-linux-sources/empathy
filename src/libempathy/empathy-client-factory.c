@@ -20,10 +20,8 @@
  */
 
 #include "config.h"
-#include "empathy-client-factory.h"
 
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
+#include "empathy-client-factory.h"
 
 #include "empathy-tp-chat.h"
 #include "empathy-utils.h"
@@ -277,6 +275,6 @@ empathy_client_factory_dup_contact_by_id_finish (
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_return_copy_pointer (self,
+  empathy_implement_finish_return_copy_pointer (self,
       empathy_client_factory_dup_contact_by_id_async, g_object_ref);
 }

@@ -17,10 +17,14 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include "config.h"
-#include "test-helper.h"
+#include <stdlib.h>
+#include <glib.h>
+#include <glib-object.h>
+#include <gtk/gtk.h>
 
-#include "empathy-ui-utils.h"
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "test-helper.h"
 
 void
 test_init (int argc,

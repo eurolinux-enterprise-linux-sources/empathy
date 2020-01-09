@@ -24,15 +24,16 @@
  */
 
 #include "config.h"
-#include "empathy-chatrooms-window.h"
 
 #include <glib/gi18n.h>
-#include <tp-account-widgets/tpaw-builder.h>
 
-#include "empathy-account-chooser.h"
-#include "empathy-chatroom-manager.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-chatroom-manager.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-account-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include "empathy-chatrooms-window.h"
 
 typedef struct {
 	EmpathyChatroomManager *manager;
@@ -101,16 +102,16 @@ empathy_chatrooms_window_show (GtkWindow *parent)
 	window = g_new0 (EmpathyChatroomsWindow, 1);
 
 	filename = empathy_file_lookup ("empathy-chatrooms-window.ui", "src");
-	gui = tpaw_builder_get_file (filename,
-				     "chatrooms_window", &window->window,
-				     "hbox_account", &window->hbox_account,
-				     "label_account", &window->label_account,
-				     "sw_room_list", &sw,
-				     "treeview", &window->treeview,
-				     "toolbar_remove", &toolbar,
-				     "button_remove", &window->button_remove,
-				     "button_close", &window->button_close,
-				     NULL);
+	gui = empathy_builder_get_file (filename,
+				       "chatrooms_window", &window->window,
+				       "hbox_account", &window->hbox_account,
+				       "label_account", &window->label_account,
+				       "sw_room_list", &sw,
+				       "treeview", &window->treeview,
+				       "toolbar_remove", &toolbar,
+				       "button_remove", &window->button_remove,
+				       "button_close", &window->button_close,
+				       NULL);
 	g_free (filename);
 
 	/* join the remove toolbar to the treeview */
@@ -119,7 +120,7 @@ empathy_chatrooms_window_show (GtkWindow *parent)
 	context = gtk_widget_get_style_context (toolbar);
 	gtk_style_context_set_junction_sides (context, GTK_JUNCTION_TOP);
 
-	tpaw_builder_connect (gui, window,
+	empathy_builder_connect (gui, window,
 			      "chatrooms_window", "destroy", chatrooms_window_destroy_cb,
 			      "button_remove", "clicked", chatrooms_window_button_remove_clicked_cb,
 			      "button_close", "clicked", chatrooms_window_button_close_clicked_cb,

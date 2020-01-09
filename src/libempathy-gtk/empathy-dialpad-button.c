@@ -20,7 +20,9 @@
  *          Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
  */
 
+
 #include "config.h"
+
 #include "empathy-dialpad-button.h"
 
 G_DEFINE_TYPE (EmpathyDialpadButton, empathy_dialpad_button, GTK_TYPE_BUTTON)

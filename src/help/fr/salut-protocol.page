@@ -88,6 +88,11 @@
 
   <title>Personnes à proximité</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>Le service « Personnes à proximité » est un service de communication sans serveur : vous n'avez pas besoin de vous connecter et de vous authentifier auprès d'un serveur central pour l'utiliser.</p>
   <p>Ce type de système de messagerie sans serveur est limité à un réseau local et donc une connexion active à Internet n'est pas nécessaire.</p>
   <p>Les personnes utilisant ce service à l'intérieur d'un même réseau local sont découvertes automatiquement et il est possible de leur envoyer des messages et des fichiers comme avec d'autres services.</p>

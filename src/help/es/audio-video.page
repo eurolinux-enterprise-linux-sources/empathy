@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Información acerca de cuándo es posible tener una conversación de vídeo o sonido.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
     </license>    
@@ -25,13 +25,11 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Información acerca de cuándo es posible tener una conversación de vídeo o sonido.</desc>
-
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Daniel Mustieles</mal:name>
       <mal:email>daniel.mustieles@gmail.com</mal:email>
-      <mal:years>2012 - 2015</mal:years>
+      <mal:years>2012</mal:years>
     </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
@@ -43,8 +41,39 @@
 
   <title>Soporte de sonido y vídeo</title>
 
-  <p>Sólo puede tener conversaciones de sonido y vídeo con contactos que estén usando una aplicación que también soporte esta característica.</p>
+  <p>Sólo puede tener conversaciones de sonido y vídeo con contactos que estén usando una aplicación que también soporte la característica. Cuando las aplicaciones de sus contactos soportan conversaciones de sonido o vídeo lo verá en forma de iconos junto a sus nombres, en la lista de contactos:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Icono</p>
+        </td>
+        <td>
+          <p>Descripción</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/audio-input-microphone.png"> Icono para conversación de sonido </media></p>
+      </td>
+      <td>
+        <p>El contacto puede tener conversaciones de sonido.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/camera-web.png"> Icono para conversación de vídeo </media></p>
+      </td>
+      <td>
+        <p>El contacto puede tener conversaciones de vídeo.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Para poder tener una conversación de sonido debe tener una tarjeta de sonido soportada por el sistema operativo y un micrófono que funcione.</p>
     <p>Para poder tener una conversación de vídeo debe tener una cámara web soportada por el sistema operativo y un micrófono que funcione.</p>
@@ -60,6 +89,22 @@
     <p>Los complementos proporcionan los tipos de cuentas. Puede que su sistema no tenga disponible todos los siguientes tipos, o puede tener tipos no listados aquí. Las actualizaciones de complementos pueden hacer posibles conversaciones de sonido o vídeo en tipos de cuentas que aquí se muestran como no soportadas.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -72,6 +117,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>No</p></td>
+        <td><p>No</p></td>
+      </tr>
+      <tr>
+        <td><p>Chat de Facebook</p></td>
         <td><p>No</p></td>
         <td><p>No</p></td>
       </tr>
@@ -102,6 +152,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Sí</p></td>
+        <td><p>Sí</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Sí</p></td>
         <td><p>Sí</p></td>
       </tr>

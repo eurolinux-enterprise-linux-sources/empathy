@@ -22,18 +22,19 @@
  */
 
 #include "config.h"
-#include "empathy-individual-information-dialog.h"
 
 #include <glib/gi18n-lib.h>
 
-#include "empathy-individual-manager.h"
+#include <libempathy/empathy-individual-manager.h>
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-pkg-kit.h>
+
+#include "empathy-individual-information-dialog.h"
 #include "empathy-individual-widget.h"
-#include "empathy-pkg-kit.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyIndividualInformationDialog)
 typedef struct {
@@ -370,11 +371,7 @@ start_gnome_contacts (FolksIndividual *individual,
 
   args = g_strdup_printf ("-i %s", folks_individual_get_id (individual));
 
-  /* First try the old desktop name */
-  if (empathy_launch_external_app ("gnome-contacts.desktop", args, NULL))
-    goto out;
-
-  if (!empathy_launch_external_app ("org.gnome.Contacts.desktop", args, &error))
+  if (!empathy_launch_external_app ("gnome-contacts.desktop", args, &error))
     {
       if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
         {
@@ -394,7 +391,6 @@ start_gnome_contacts (FolksIndividual *individual,
         }
     }
 
-out:
   g_free (args);
 }
 

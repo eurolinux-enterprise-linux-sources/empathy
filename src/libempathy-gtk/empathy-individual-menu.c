@@ -21,96 +21,76 @@
  */
 
 #include "config.h"
-#include "empathy-individual-menu.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-camera-monitor.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
+
+#include <libempathy/empathy-camera-monitor.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-individual-manager.h>
+#include <libempathy/empathy-chatroom-manager.h>
+#include <libempathy/empathy-utils.h>
 
 #include "empathy-account-selector-dialog.h"
-#include "empathy-call-utils.h"
-#include "empathy-chatroom-manager.h"
-#include "empathy-gtk-enum-types.h"
 #include "empathy-images.h"
+#include "empathy-log-window.h"
 #include "empathy-individual-dialogs.h"
+#include "empathy-gtk-enum-types.h"
 #include "empathy-individual-dialogs.h"
 #include "empathy-individual-edit-dialog.h"
-#include "empathy-individual-information-dialog.h"
-#include "empathy-individual-manager.h"
-#include "empathy-individual-store-channel.h"
-#include "empathy-log-window.h"
-#include "empathy-request-util.h"
-#include "empathy-share-my-desktop.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-share-my-desktop.h"
+#include "empathy-call-utils.h"
+#include "empathy-individual-store-channel.h"
+#include "empathy-individual-information-dialog.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyIndividualMenu)
 
 typedef struct {
-  gchar *active_group; /* may be NULL */
   FolksIndividual *individual; /* owned */
   EmpathyIndividualFeatureFlags features;
   EmpathyIndividualStore *store; /* may be NULL */
 } EmpathyIndividualMenuPriv;
 
 enum {
-  PROP_ACTIVE_GROUP = 1,
-  PROP_INDIVIDUAL,
+  PROP_INDIVIDUAL = 1,
   PROP_FEATURES,
   PROP_STORE,
 };
 
-enum {
-  MENU_ITEM_ACTIVATED,
-  LAST_SIGNAL
-};
-
-static guint signals [LAST_SIGNAL] = { 0 };
-
 G_DEFINE_TYPE (EmpathyIndividualMenu, empathy_individual_menu, GTK_TYPE_MENU);
 
-static GtkWidget * chat_menu_item_new_individual (EmpathyIndividualMenu *self,
+static GtkWidget * empathy_individual_chat_menu_item_new (
     FolksIndividual *individual);
-static GtkWidget * chat_menu_item_new_contact (EmpathyIndividualMenu *self,
-    EmpathyContact *contact);
-static GtkWidget * sms_menu_item_new_individual (EmpathyIndividualMenu *self,
+static GtkWidget * empathy_individual_sms_menu_item_new (
     FolksIndividual *individual);
-static GtkWidget * sms_menu_item_new_contact (EmpathyIndividualMenu *self,
+static GtkWidget * empathy_individual_log_menu_item_new  (
+    FolksIndividual *individual);
+static GtkWidget * empathy_individual_info_menu_item_new (
+    FolksIndividual *individual);
+static GtkWidget * empathy_individual_edit_menu_item_new (
+    FolksIndividual *individual);
+static GtkWidget * empathy_individual_invite_menu_item_new (
+    FolksIndividual *individual,
     EmpathyContact *contact);
-static GtkWidget * audio_call_menu_item_new_contact (
+static GtkWidget * empathy_individual_file_transfer_menu_item_new (
+    FolksIndividual *individual);
+static GtkWidget * empathy_individual_share_my_desktop_menu_item_new (
+    FolksIndividual *individual);
+static GtkWidget * empathy_individual_favourite_menu_item_new (
+    FolksIndividual *individual);
+static GtkWidget * empathy_individual_add_menu_item_new (
     EmpathyIndividualMenu *self,
-    EmpathyContact *contact);
-static GtkWidget * video_call_menu_item_new_contact (
-    EmpathyIndividualMenu *self,
-    EmpathyContact *contact);
-static GtkWidget * log_menu_item_new_individual  (FolksIndividual *individual);
-static GtkWidget * log_menu_item_new_contact (EmpathyContact *contact);
-static GtkWidget * info_menu_item_new_individual (FolksIndividual *individual);
-static GtkWidget * edit_menu_item_new_individual (FolksIndividual *individual);
-static GtkWidget * invite_menu_item_new (FolksIndividual *individual,
-    EmpathyContact *contact);
-static GtkWidget * file_transfer_menu_item_new_individual (EmpathyIndividualMenu *self,
     FolksIndividual *individual);
-static GtkWidget * file_transfer_menu_item_new_contact (
-    EmpathyIndividualMenu *self,
-    EmpathyContact *contact);
-static GtkWidget * share_my_desktop_menu_item_new_individual (EmpathyIndividualMenu *self,
+static GtkWidget * empathy_individiual_block_menu_item_new (
     FolksIndividual *individual);
-static GtkWidget * share_my_desktop_menu_item_new_contact (
-    EmpathyIndividualMenu *self,
-    EmpathyContact *contact);
-static GtkWidget * favourite_menu_item_new_individual (FolksIndividual *individual);
-static GtkWidget * add_menu_item_new_individual (EmpathyIndividualMenu *self,
+static GtkWidget * empathy_individiual_remove_menu_item_new (
     FolksIndividual *individual);
-static GtkWidget * block_menu_item_new_individual (FolksIndividual *individual);
-static GtkWidget * remove_menu_item_new_individual (EmpathyIndividualMenu *self);
 
 static void
-individual_menu_add_personas (EmpathyIndividualMenu *self,
-    GtkMenuShell *menu,
+individual_menu_add_personas (GtkMenuShell *menu,
     FolksIndividual *individual,
     EmpathyIndividualFeatureFlags features)
 {
@@ -138,8 +118,6 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
       g_clear_object (&persona);
     }
 
-  g_clear_object (&iter);
-
   /* return early if these entries would add nothing beyond the "quick" items */
   if (persona_count <= 1)
     goto out;
@@ -162,6 +140,8 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
       FolksPersonaStore *store;
       const gchar *account;
       GtkWidget *action;
+      /* Individual containing only persona */
+      FolksIndividual *single_individual;
 
       if (!empathy_folks_persona_is_interesting (FOLKS_PERSONA (persona)))
         goto while_finish;
@@ -171,6 +151,13 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
         goto while_finish;
 
       contact = empathy_contact_dup_from_tp_contact (tp_contact);
+      single_individual = empathy_create_individual_from_tp_contact (
+          tp_contact);
+
+      /* Pretty hacky. Creating single_individual had a side effect to change
+       * persona.individual from individual to single_individual which is not
+       * what we want so we set it back. See bgo#684971 for details. */
+      g_object_set (persona, "individual", individual, NULL);
 
       store = folks_persona_get_store (FOLKS_PERSONA (persona));
       account = folks_persona_store_get_display_name (store);
@@ -194,7 +181,7 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
       /* Chat */
       if (features & EMPATHY_INDIVIDUAL_FEATURE_CHAT)
         {
-          action = chat_menu_item_new_contact (self, contact);
+          action = empathy_individual_chat_menu_item_new (single_individual);
           gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
           gtk_widget_show (action);
         }
@@ -202,7 +189,7 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
       /* SMS */
       if (features & EMPATHY_INDIVIDUAL_FEATURE_SMS)
         {
-          action = sms_menu_item_new_contact (self, contact);
+          action = empathy_individual_sms_menu_item_new (single_individual);
           gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
           gtk_widget_show (action);
         }
@@ -210,12 +197,14 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
       if (features & EMPATHY_INDIVIDUAL_FEATURE_CALL)
         {
           /* Audio Call */
-          action = audio_call_menu_item_new_contact (self, contact);
+          action = empathy_individual_audio_call_menu_item_new (
+              single_individual);
           gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
           gtk_widget_show (action);
 
           /* Video Call */
-          action = video_call_menu_item_new_contact (self, contact);
+          action = empathy_individual_video_call_menu_item_new (
+              single_individual);
           gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
           gtk_widget_show (action);
         }
@@ -223,34 +212,51 @@ individual_menu_add_personas (EmpathyIndividualMenu *self,
       /* Log */
       if (features & EMPATHY_INDIVIDUAL_FEATURE_LOG)
         {
-          action = log_menu_item_new_contact (contact);
+          action = empathy_individual_log_menu_item_new (single_individual);
           gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
           gtk_widget_show (action);
         }
 
       /* Invite */
-      action = invite_menu_item_new (NULL, contact);
+      action = empathy_individual_invite_menu_item_new (NULL, contact);
       gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
       gtk_widget_show (action);
 
       /* File transfer */
       if (features & EMPATHY_INDIVIDUAL_FEATURE_FILE_TRANSFER)
         {
-          action = file_transfer_menu_item_new_contact (self, contact);
+          action = empathy_individual_file_transfer_menu_item_new (
+              single_individual);
           gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
           gtk_widget_show (action);
         }
 
       /* Share my desktop */
-      action = share_my_desktop_menu_item_new_contact (self, contact);
+      action = empathy_individual_share_my_desktop_menu_item_new (
+          single_individual);
       gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), action);
       gtk_widget_show (action);
+
+      /* Block */
+      if (features & EMPATHY_INDIVIDUAL_FEATURE_BLOCK &&
+          (item = empathy_individiual_block_menu_item_new (single_individual))
+          != NULL) {
+        GtkWidget *sep;
+
+        sep = gtk_separator_menu_item_new ();
+        gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), sep);
+        gtk_widget_show (sep);
+
+        gtk_menu_shell_append (GTK_MENU_SHELL (contact_submenu), item);
+        gtk_widget_show (item);
+      }
 
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), contact_item);
       gtk_widget_show (contact_item);
 
       g_free (label);
       g_object_unref (contact);
+      g_object_unref (single_individual);
 
 while_finish:
       g_clear_object (&persona);
@@ -288,7 +294,7 @@ find_phone_accounts (void)
           TP_CONNECTION_STATUS_CONNECTED)
         continue;
 
-      if (!tp_account_associated_with_uri_scheme (account, "tel"))
+      if (!empathy_account_has_uri_scheme_tel (account))
         continue;
 
       found = g_list_prepend (found, g_object_ref (account));
@@ -318,15 +324,11 @@ static void
 call_phone_number (FolksPhoneFieldDetails *details,
     TpAccount *account)
 {
-  gchar *number;
+  DEBUG ("Try to call %s", folks_phone_field_details_get_normalised (details));
 
-  number = folks_phone_field_details_get_normalised (details);
-  DEBUG ("Try to call %s", number);
-
-  empathy_call_new_with_streams (number,
-      account, FALSE, empathy_get_current_action_time ());
-
-  g_free (number);
+  empathy_call_new_with_streams (
+      folks_phone_field_details_get_normalised (details),
+      account, TRUE, FALSE, empathy_get_current_action_time ());
 }
 
 static void
@@ -395,7 +397,6 @@ find_phone_type (FolksPhoneFieldDetails *details)
 {
   GeeCollection *types;
   GeeIterator *iter;
-  const gchar *retval = NULL;
 
   types = folks_abstract_field_details_get_parameter_values (
       FOLKS_ABSTRACT_FIELD_DETAILS (details), "type");
@@ -406,24 +407,17 @@ find_phone_type (FolksPhoneFieldDetails *details)
   iter = gee_iterable_iterator (GEE_ITERABLE (types));
   while (gee_iterator_next (iter))
     {
-      gchar *type = gee_iterator_get (iter);
+      const gchar *type = gee_iterator_get (iter);
 
       if (!tp_strdiff (type, "CELL"))
-        retval = _("Mobile");
+        return _("Mobile");
       else if (!tp_strdiff (type, "WORK"))
-        retval = _("Work");
+        return _("Work");
       else if (!tp_strdiff (type, "HOME"))
-        retval = _("HOME");
-
-      g_free (type);
-
-      if (retval != NULL)
-        break;
+        return _("HOME");
     }
 
-  g_object_unref (iter);
-
-  return retval;
+  return NULL;
 }
 
 static void
@@ -444,25 +438,22 @@ add_phone_numbers (EmpathyIndividualMenu *self)
     {
       FolksPhoneFieldDetails *details = gee_iterator_get (iter);
       GtkWidget *item, *image;
-      gchar *tmp, *number;
+      gchar *tmp;
       const gchar *type;
 
       type = find_phone_type (details);
-      number = folks_phone_field_details_get_normalised (details);
 
       if (type != NULL)
         {
-          /* translators: first argument is a phone number like +32123456 and
-           * the second one is something like 'home' or 'work'. */
-          tmp = g_strdup_printf (_("Call %s (%s)"), number, type);
+          tmp = g_strdup_printf ("Call %s (%s)",
+              folks_phone_field_details_get_normalised (details),
+              type);
         }
       else
         {
-          /* translators: argument is a phone number like +32123456 */
-          tmp = g_strdup_printf (_("Call %s"), number);
+          tmp = g_strdup_printf ("Call %s",
+              folks_phone_field_details_get_normalised (details));
         }
-
-      g_free (number);
 
       item = gtk_image_menu_item_new_with_mnemonic (tmp);
       g_free (tmp);
@@ -480,8 +471,6 @@ add_phone_numbers (EmpathyIndividualMenu *self)
 
       gtk_menu_shell_append (GTK_MENU_SHELL (self), item);
       gtk_widget_show (item);
-
-      g_object_unref (details);
     }
 
   g_object_unref (iter);
@@ -505,20 +494,17 @@ get_contacts_supporting_blocking (FolksIndividual *individual)
       TpConnection *conn;
 
       if (!TPF_IS_PERSONA (persona))
-        goto while_next;
+        continue;
 
       contact = tpf_persona_get_contact (persona);
       if (contact == NULL)
-        goto while_next;
+        continue;
 
       conn = tp_contact_get_connection (contact);
 
       if (tp_proxy_has_interface_by_id (conn,
         TP_IFACE_QUARK_CONNECTION_INTERFACE_CONTACT_BLOCKING))
         result = g_list_prepend (result, contact);
-
-while_next:
-      g_clear_object (&persona);
     }
 
   g_clear_object (&iter);
@@ -660,7 +646,7 @@ contact_blocked_changed_cb (TpContact *contact,
 }
 
 static GtkWidget *
-block_menu_item_new_individual (FolksIndividual *individual)
+empathy_individiual_block_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GList *contacts, *l;
@@ -699,16 +685,13 @@ enum
   REMOVE_DIALOG_RESPONSE_CANCEL = 0,
   REMOVE_DIALOG_RESPONSE_DELETE,
   REMOVE_DIALOG_RESPONSE_DELETE_AND_BLOCK,
-  REMOVE_DIALOG_RESPONSE_REMOVE_FROM_GROUP
 };
 
 static int
 remove_dialog_show (const gchar *message,
     const gchar *secondary_text,
-    gboolean show_remove_from_group,
     gboolean block_button,
-    GdkPixbuf *avatar,
-    const gchar *active_group)
+    GdkPixbuf *avatar)
 {
   GtkWidget *dialog;
   gboolean res;
@@ -721,23 +704,6 @@ remove_dialog_show (const gchar *message,
       GtkWidget *image = gtk_image_new_from_pixbuf (avatar);
       gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
       gtk_widget_show (image);
-    }
-
-  if (show_remove_from_group)
-    {
-      GtkWidget *button;
-      gchar *button_text = g_strdup_printf (_("Remove from _Group \'%s\'"),
-          active_group);
-
-      /* gtk_dialog_add_button() doesn't allow us to pass a string with a
-       * mnemonic so we have to create the button manually. */
-      button = gtk_button_new_with_mnemonic (button_text);
-      g_free (button_text);
-
-      gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button,
-          REMOVE_DIALOG_RESPONSE_REMOVE_FROM_GROUP);
-
-      gtk_widget_show (button);
     }
 
   if (block_button)
@@ -770,31 +736,11 @@ remove_dialog_show (const gchar *message,
 }
 
 static void
-individual_removed_from_group_cb (GObject *source_object,
-    GAsyncResult *res,
-    gpointer user_data)
-{
-  GError *error = NULL;
-  FolksIndividual *individual = FOLKS_INDIVIDUAL (source_object);
-
-  folks_group_details_change_group_finish (
-      FOLKS_GROUP_DETAILS (individual), res, &error);
-  if (error != NULL)
-    {
-      DEBUG ("Individual could not be removed from group: %s",
-          error->message);
-      g_error_free (error);
-    }
-}
-
-static void
 remove_got_avatar (GObject *source_object,
     GAsyncResult *result,
     gpointer user_data)
 {
   FolksIndividual *individual = FOLKS_INDIVIDUAL (source_object);
-  EmpathyIndividualMenu *self = EMPATHY_INDIVIDUAL_MENU (user_data);
-  EmpathyIndividualMenuPriv *priv = GET_PRIV (self);
   GdkPixbuf *avatar;
   EmpathyIndividualManager *manager;
   gchar *text;
@@ -803,8 +749,6 @@ remove_got_avatar (GObject *source_object,
   gboolean can_block;
   GError *error = NULL;
   gint res;
-  gboolean show_remove_from_group;
-  GeeSet *groups;
 
   avatar = empathy_pixbuf_avatar_from_individual_scaled_finish (individual,
       result, &error);
@@ -817,10 +761,6 @@ remove_got_avatar (GObject *source_object,
 
   /* We couldn't retrieve the avatar, but that isn't a fatal error,
    * so we still display the remove dialog. */
-
-  groups = folks_group_details_get_groups (FOLKS_GROUP_DETAILS (individual));
-  show_remove_from_group =
-      gee_collection_get_size (GEE_COLLECTION (groups)) > 1;
 
   personas = folks_individual_get_personas (individual);
 
@@ -855,15 +795,7 @@ remove_got_avatar (GObject *source_object,
   manager = empathy_individual_manager_dup_singleton ();
   can_block = empathy_individual_manager_supports_blocking (manager,
       individual);
-  res = remove_dialog_show (_("Removing contact"), text,
-      show_remove_from_group, can_block, avatar, priv->active_group);
-
-  if (res == REMOVE_DIALOG_RESPONSE_REMOVE_FROM_GROUP)
-    {
-      folks_group_details_change_group (FOLKS_GROUP_DETAILS (individual),
-          priv->active_group, false, individual_removed_from_group_cb, NULL);
-      goto finally;
-    }
+  res = remove_dialog_show (_("Removing contact"), text, can_block, avatar);
 
   if (res == REMOVE_DIALOG_RESPONSE_DELETE ||
       res == REMOVE_DIALOG_RESPONSE_DELETE_AND_BLOCK)
@@ -886,33 +818,29 @@ remove_got_avatar (GObject *source_object,
  finally:
   g_free (text);
   g_object_unref (manager);
-  g_object_unref (self);
 }
 
 static void
 remove_activate_cb (GtkMenuItem *menuitem,
-    EmpathyIndividualMenu *self)
+    FolksIndividual *individual)
 {
-  EmpathyIndividualMenuPriv *priv = GET_PRIV (self);
-
-  empathy_pixbuf_avatar_from_individual_scaled_async (priv->individual,
-      48, 48, NULL, remove_got_avatar, g_object_ref (self));
+  empathy_pixbuf_avatar_from_individual_scaled_async (individual,
+      48, 48, NULL, remove_got_avatar, NULL);
 }
 
 static GtkWidget *
-remove_menu_item_new_individual (EmpathyIndividualMenu *self)
+empathy_individiual_remove_menu_item_new (FolksIndividual *individual)
 {
   GeeSet *personas;
   GeeIterator *iter;
   gboolean can_remove = FALSE;
   GtkWidget *item, *image;
-  EmpathyIndividualMenuPriv *priv = GET_PRIV (self);
 
   /* If any of the Individual's personas can be removed, add an option to
    * remove. This will act as a best-effort option. If any Personas cannot be
    * removed from the server, then this option will just be inactive upon
    * subsequent menu openings */
-  personas = folks_individual_get_personas (priv->individual);
+  personas = folks_individual_get_personas (individual);
   iter = gee_iterable_iterator (GEE_ITERABLE (personas));
   while (!can_remove && gee_iterator_next (iter))
     {
@@ -937,7 +865,7 @@ remove_menu_item_new_individual (EmpathyIndividualMenu *self)
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
 
   g_signal_connect (item, "activate",
-      G_CALLBACK (remove_activate_cb), self);
+      G_CALLBACK (remove_activate_cb), individual);
 
   return item;
 }
@@ -945,7 +873,7 @@ remove_menu_item_new_individual (EmpathyIndividualMenu *self)
 static void
 constructed (GObject *object)
 {
-  EmpathyIndividualMenu *self = EMPATHY_INDIVIDUAL_MENU (object);
+  EmpathyIndividualMenu *self = (EmpathyIndividualMenu *) object;
   EmpathyIndividualMenuPriv *priv = GET_PRIV (object);
   GtkMenuShell *shell;
   GtkWidget *item;
@@ -960,7 +888,7 @@ constructed (GObject *object)
   /* Add contact */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_ADD_CONTACT)
     {
-      item = add_menu_item_new_individual (self, individual);
+      item = empathy_individual_add_menu_item_new (self, individual);
       if (item != NULL)
         {
           gtk_menu_shell_append (GTK_MENU_SHELL (shell), item);
@@ -971,7 +899,7 @@ constructed (GObject *object)
   /* Chat */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_CHAT)
     {
-      item = chat_menu_item_new_individual (self, individual);
+      item = empathy_individual_chat_menu_item_new (individual);
       if (item != NULL)
         {
           gtk_menu_shell_append (shell, item);
@@ -982,7 +910,7 @@ constructed (GObject *object)
   /* SMS */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_SMS)
     {
-      item = sms_menu_item_new_individual (self, individual);
+      item = empathy_individual_sms_menu_item_new (individual);
       if (item != NULL)
         {
           gtk_menu_shell_append (shell, item);
@@ -993,14 +921,12 @@ constructed (GObject *object)
   if (features & EMPATHY_INDIVIDUAL_FEATURE_CALL)
     {
       /* Audio Call */
-      item = empathy_individual_audio_call_menu_item_new_individual (self,
-          individual);
+      item = empathy_individual_audio_call_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
 
       /* Video Call */
-      item = empathy_individual_video_call_menu_item_new_individual (self,
-          individual);
+      item = empathy_individual_video_call_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
     }
@@ -1009,14 +935,14 @@ constructed (GObject *object)
     add_phone_numbers (self);
 
   /* Invite */
-  item = invite_menu_item_new (individual, NULL);
+  item = empathy_individual_invite_menu_item_new (individual, NULL);
   gtk_menu_shell_append (shell, item);
   gtk_widget_show (item);
 
   /* File transfer */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_FILE_TRANSFER)
     {
-      item = file_transfer_menu_item_new_individual (self, individual);
+      item = empathy_individual_file_transfer_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
     }
@@ -1024,13 +950,12 @@ constructed (GObject *object)
   /* Share my desktop */
   /* FIXME we should add the "Share my desktop" menu item if Vino is
   a registered handler in MC5 */
-  item = share_my_desktop_menu_item_new_individual (self, individual);
+  item = empathy_individual_share_my_desktop_menu_item_new (individual);
   gtk_menu_shell_append (shell, item);
   gtk_widget_show (item);
 
   /* Menu items to target specific contacts */
-  individual_menu_add_personas (self, GTK_MENU_SHELL (object),
-      individual, features);
+  individual_menu_add_personas (GTK_MENU_SHELL (object), individual, features);
 
   /* Separator */
   if (features & (EMPATHY_INDIVIDUAL_FEATURE_EDIT |
@@ -1045,7 +970,7 @@ constructed (GObject *object)
   /* Edit */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_EDIT)
     {
-      item = edit_menu_item_new_individual (individual);
+      item = empathy_individual_edit_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
     }
@@ -1053,7 +978,7 @@ constructed (GObject *object)
   /* Log */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_LOG)
     {
-      item = log_menu_item_new_individual (individual);
+      item = empathy_individual_log_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
     }
@@ -1061,7 +986,7 @@ constructed (GObject *object)
   /* Info */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_INFO)
     {
-      item = info_menu_item_new_individual (individual);
+      item = empathy_individual_info_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
     }
@@ -1069,14 +994,14 @@ constructed (GObject *object)
   /* Favorite checkbox */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_FAVOURITE)
     {
-      item = favourite_menu_item_new_individual (individual);
+      item = empathy_individual_favourite_menu_item_new (individual);
       gtk_menu_shell_append (shell, item);
       gtk_widget_show (item);
     }
 
   /* Separator & Block */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_BLOCK &&
-      (item = block_menu_item_new_individual (individual)) != NULL) {
+      (item = empathy_individiual_block_menu_item_new (individual)) != NULL) {
     GtkWidget *sep;
 
     sep = gtk_separator_menu_item_new ();
@@ -1089,7 +1014,7 @@ constructed (GObject *object)
 
   /* Separator & Remove */
   if (features & EMPATHY_INDIVIDUAL_FEATURE_REMOVE &&
-      (item = remove_menu_item_new_individual (self)) != NULL) {
+      (item = empathy_individiual_remove_menu_item_new (individual)) != NULL) {
     GtkWidget *sep;
 
     sep = gtk_separator_menu_item_new ();
@@ -1113,9 +1038,6 @@ get_property (GObject *object,
 
   switch (param_id)
     {
-      case PROP_ACTIVE_GROUP:
-        g_value_set_string (value, priv->active_group);
-        break;
       case PROP_INDIVIDUAL:
         g_value_set_object (value, priv->individual);
         break;
@@ -1143,10 +1065,6 @@ set_property (GObject *object,
 
   switch (param_id)
     {
-      case PROP_ACTIVE_GROUP:
-        g_assert (priv->active_group == NULL); /* construct only */
-        priv->active_group = g_value_dup_string (value);
-        break;
       case PROP_INDIVIDUAL:
         priv->individual = g_value_dup_object (value);
         break;
@@ -1174,16 +1092,6 @@ dispose (GObject *object)
 }
 
 static void
-finalize (GObject *object)
-{
-  EmpathyIndividualMenuPriv *priv = GET_PRIV (object);
-
-  g_free (priv->active_group);
-
-  G_OBJECT_CLASS (empathy_individual_menu_parent_class)->finalize (object);
-}
-
-static void
 empathy_individual_menu_class_init (EmpathyIndividualMenuClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -1192,19 +1100,6 @@ empathy_individual_menu_class_init (EmpathyIndividualMenuClass *klass)
   object_class->get_property = get_property;
   object_class->set_property = set_property;
   object_class->dispose = dispose;
-  object_class->finalize = finalize;
-
-  /**
-   * gchar *:active-group:
-   *
-   * The group the selected roster-contact widget belongs, or NULL.
-   */
-  g_object_class_install_property (object_class, PROP_ACTIVE_GROUP,
-      g_param_spec_string ("active-group",
-          "Active group",
-          "The group the selected roster-contact widget belongs, or NULL",
-          NULL,
-          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
   /**
    * EmpathyIndividualMenu:individual:
@@ -1238,22 +1133,11 @@ empathy_individual_menu_class_init (EmpathyIndividualMenuClass *klass)
           EMPATHY_TYPE_INDIVIDUAL_STORE,
           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
-  signals[MENU_ITEM_ACTIVATED] =
-      g_signal_new ("menu-item-activated",
-          G_TYPE_FROM_CLASS (klass),
-          G_SIGNAL_RUN_LAST,
-          0,
-          NULL, NULL,
-          g_cclosure_marshal_generic,
-          G_TYPE_NONE,
-          0);
-
   g_type_class_add_private (object_class, sizeof (EmpathyIndividualMenuPriv));
 }
 
 GtkWidget *
 empathy_individual_menu_new (FolksIndividual *individual,
-    const gchar *active_group,
     EmpathyIndividualFeatureFlags features,
     EmpathyIndividualStore *store)
 {
@@ -1263,7 +1147,6 @@ empathy_individual_menu_new (FolksIndividual *individual,
   g_return_val_if_fail (features != EMPATHY_INDIVIDUAL_FEATURE_NONE, NULL);
 
   return g_object_new (EMPATHY_TYPE_INDIVIDUAL_MENU,
-      "active-group", active_group,
       "individual", individual,
       "features", features,
       "store", store,
@@ -1322,31 +1205,22 @@ menu_item_set_first_contact (GtkWidget *item,
 }
 
 static void
-emit_menu_item_activated (GtkMenuItem *item)
-{
-  EmpathyIndividualMenu *self;
-
-  self = EMPATHY_INDIVIDUAL_MENU (g_object_get_data (G_OBJECT (item),
-      "individual-menu"));
-  g_signal_emit (self, signals [MENU_ITEM_ACTIVATED], 0);
-}
-
-static void
 empathy_individual_chat_menu_item_activated (GtkMenuItem *item,
   EmpathyContact *contact)
 {
   g_return_if_fail (EMPATHY_IS_CONTACT (contact));
 
   empathy_chat_with_contact (contact, empathy_get_current_action_time ());
-
-  emit_menu_item_activated (item);
 }
 
 static GtkWidget *
-chat_menu_item_new (EmpathyIndividualMenu *self)
+empathy_individual_chat_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual) &&
+      empathy_folks_individual_contains_contact (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (_("_Chat"));
   image = gtk_image_new_from_icon_name (EMPATHY_IMAGE_MESSAGE,
@@ -1354,40 +1228,7 @@ chat_menu_item_new (EmpathyIndividualMenu *self)
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
 
-  g_object_set_data (G_OBJECT (item), "individual-menu", self);
-
-  return item;
-}
-
-static GtkWidget *
-chat_menu_item_new_individual (EmpathyIndividualMenu *self,
-    FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual) &&
-      empathy_folks_individual_contains_contact (individual), NULL);
-
-  item = chat_menu_item_new (self);
-
   menu_item_set_first_contact (item, individual,
-      G_CALLBACK (empathy_individual_chat_menu_item_activated),
-      EMPATHY_ACTION_CHAT);
-
-  return item;
-}
-
-static GtkWidget *
-chat_menu_item_new_contact (EmpathyIndividualMenu *self,
-    EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = chat_menu_item_new (self);
-
-  menu_item_set_contact (item, contact,
       G_CALLBACK (empathy_individual_chat_menu_item_activated),
       EMPATHY_ACTION_CHAT);
 
@@ -1405,15 +1246,16 @@ empathy_individual_sms_menu_item_activated (GtkMenuItem *item,
       empathy_contact_get_id (contact),
       empathy_get_current_action_time (),
       NULL, NULL);
-
-  emit_menu_item_activated (item);
 }
 
 static GtkWidget *
-sms_menu_item_new (EmpathyIndividualMenu *self)
+empathy_individual_sms_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual) &&
+      empathy_folks_individual_contains_contact (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (_("_SMS"));
   image = gtk_image_new_from_icon_name (EMPATHY_IMAGE_SMS,
@@ -1421,46 +1263,12 @@ sms_menu_item_new (EmpathyIndividualMenu *self)
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
 
-  g_object_set_data (G_OBJECT (item), "individual-menu", self);
-
-  return item;
-}
-
-static GtkWidget *
-sms_menu_item_new_individual (EmpathyIndividualMenu *self,
-    FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual) &&
-      empathy_folks_individual_contains_contact (individual), NULL);
-
-  item = sms_menu_item_new (self);
-
   menu_item_set_first_contact (item, individual,
       G_CALLBACK (empathy_individual_sms_menu_item_activated),
       EMPATHY_ACTION_SMS);
 
   return item;
 }
-
-static GtkWidget *
-sms_menu_item_new_contact (EmpathyIndividualMenu *self,
-    EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = sms_menu_item_new (self);
-
-  menu_item_set_contact (item, contact,
-      G_CALLBACK (empathy_individual_sms_menu_item_activated),
-      EMPATHY_ACTION_SMS);
-
-  return item;
-}
-
 
 static void
 empathy_individual_audio_call_menu_item_activated (GtkMenuItem *item,
@@ -1470,37 +1278,22 @@ empathy_individual_audio_call_menu_item_activated (GtkMenuItem *item,
 
   empathy_call_new_with_streams (empathy_contact_get_id (contact),
       empathy_contact_get_account (contact),
-      FALSE, empathy_get_current_action_time ());
-
-  emit_menu_item_activated (item);
+      TRUE, FALSE,
+      empathy_get_current_action_time ());
 }
 
-static GtkWidget *
-audio_call_menu_item_new (EmpathyIndividualMenu *self)
+GtkWidget *
+empathy_individual_audio_call_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (C_("menu item", "_Audio Call"));
   image = gtk_image_new_from_icon_name (EMPATHY_IMAGE_VOIP, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
-
-  g_object_set_data (G_OBJECT (item), "individual-menu", self);
-
-  return item;
-}
-
-GtkWidget *
-empathy_individual_audio_call_menu_item_new_individual (
-    EmpathyIndividualMenu *self,
-    FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
-
-  item = audio_call_menu_item_new (self);
 
   menu_item_set_first_contact (item, individual,
       G_CALLBACK (empathy_individual_audio_call_menu_item_activated),
@@ -1508,25 +1301,6 @@ empathy_individual_audio_call_menu_item_new_individual (
 
   return item;
 }
-
-static GtkWidget *
-audio_call_menu_item_new_contact (
-    EmpathyIndividualMenu *self,
-    EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = audio_call_menu_item_new (self);
-
-  menu_item_set_contact (item, contact,
-      G_CALLBACK (empathy_individual_audio_call_menu_item_activated),
-      EMPATHY_ACTION_AUDIO_CALL);
-
-  return item;
-}
-
 
 static void
 empathy_individual_video_call_menu_item_activated (GtkMenuItem *item,
@@ -1536,16 +1310,18 @@ empathy_individual_video_call_menu_item_activated (GtkMenuItem *item,
 
   empathy_call_new_with_streams (empathy_contact_get_id (contact),
       empathy_contact_get_account (contact),
-      TRUE, empathy_get_current_action_time ());
-
-  emit_menu_item_activated (item);
+      TRUE, TRUE,
+      empathy_get_current_action_time ());
 }
 
-static GtkWidget *
-video_call_menu_item_new (EmpathyIndividualMenu *self)
+GtkWidget *
+empathy_individual_video_call_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+  EmpathyCameraMonitor *monitor;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (C_("menu item", "_Video Call"));
   image = gtk_image_new_from_icon_name (EMPATHY_IMAGE_VIDEO_CALL,
@@ -1553,62 +1329,19 @@ video_call_menu_item_new (EmpathyIndividualMenu *self)
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
 
-  g_object_set_data (G_OBJECT (item), "individual-menu", self);
-
-  return item;
-}
-
-static void
-check_camera_available (GtkWidget *item)
-{
-  TpawCameraMonitor *monitor;
+  menu_item_set_first_contact (item, individual,
+      G_CALLBACK (empathy_individual_video_call_menu_item_activated),
+      EMPATHY_ACTION_VIDEO_CALL);
 
   /* Only follow available cameras if the contact can do Video calls */
   if (gtk_widget_get_sensitive (item))
     {
-      monitor = tpaw_camera_monitor_dup_singleton ();
+      monitor = empathy_camera_monitor_dup_singleton ();
       g_object_set_data_full (G_OBJECT (item),
           "monitor", monitor, g_object_unref);
       g_object_bind_property (monitor, "available", item, "sensitive",
           G_BINDING_SYNC_CREATE);
     }
-}
-
-GtkWidget *
-empathy_individual_video_call_menu_item_new_individual (
-    EmpathyIndividualMenu *self,
-    FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
-
-  item = video_call_menu_item_new (self);
-
-  menu_item_set_first_contact (item, individual,
-      G_CALLBACK (empathy_individual_video_call_menu_item_activated),
-      EMPATHY_ACTION_VIDEO_CALL);
-
-  check_camera_available (item);
-
-  return item;
-}
-
-GtkWidget *
-video_call_menu_item_new_contact (EmpathyIndividualMenu *self,
-    EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = video_call_menu_item_new (self);
-
-  menu_item_set_contact (item, contact,
-      G_CALLBACK (empathy_individual_video_call_menu_item_activated),
-      EMPATHY_ACTION_VIDEO_CALL);
-
-  check_camera_available (item);
 
   return item;
 }
@@ -1624,45 +1357,19 @@ empathy_individual_log_menu_item_activated (GtkMenuItem *item,
 }
 
 static GtkWidget *
-log_menu_item_new (void)
+empathy_individual_log_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (_("_Previous Conversations"));
   image = gtk_image_new_from_icon_name (EMPATHY_IMAGE_LOG, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
 
-  return item;
-}
-
-static GtkWidget *
-log_menu_item_new_individual (FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
-
-  item = log_menu_item_new ();
-
   menu_item_set_first_contact (item, individual,
-      G_CALLBACK (empathy_individual_log_menu_item_activated),
-      EMPATHY_ACTION_VIEW_LOGS);
-
-  return item;
-}
-
-static GtkWidget *
-log_menu_item_new_contact (EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = log_menu_item_new ();
-
-  menu_item_set_contact (item, contact,
       G_CALLBACK (empathy_individual_log_menu_item_activated),
       EMPATHY_ACTION_VIEW_LOGS);
 
@@ -1676,15 +1383,15 @@ empathy_individual_file_transfer_menu_item_activated (GtkMenuItem *item,
   g_return_if_fail (EMPATHY_IS_CONTACT (contact));
 
   empathy_send_file_with_file_chooser (contact);
-
-  emit_menu_item_activated (item);
 }
 
 static GtkWidget *
-file_transfer_menu_item_new (EmpathyIndividualMenu *self)
+empathy_individual_file_transfer_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (_("Send File"));
   image = gtk_image_new_from_icon_name (EMPATHY_IMAGE_DOCUMENT_SEND,
@@ -1692,39 +1399,7 @@ file_transfer_menu_item_new (EmpathyIndividualMenu *self)
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
 
-  g_object_set_data (G_OBJECT (item), "individual-menu", self);
-
-  return item;
-}
-
-static GtkWidget *
-file_transfer_menu_item_new_individual (EmpathyIndividualMenu *self,
-    FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
-
-  item = file_transfer_menu_item_new (self);
-
   menu_item_set_first_contact (item, individual,
-      G_CALLBACK (empathy_individual_file_transfer_menu_item_activated),
-      EMPATHY_ACTION_SEND_FILE);
-
-  return item;
-}
-
-static GtkWidget *
-file_transfer_menu_item_new_contact (EmpathyIndividualMenu *self,
-    EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = file_transfer_menu_item_new (self);
-
-  menu_item_set_contact (item, contact,
       G_CALLBACK (empathy_individual_file_transfer_menu_item_activated),
       EMPATHY_ACTION_SEND_FILE);
 
@@ -1738,54 +1413,22 @@ empathy_individual_share_my_desktop_menu_item_activated (GtkMenuItem *item,
   g_return_if_fail (EMPATHY_IS_CONTACT (contact));
 
   empathy_share_my_desktop_share_with_contact (contact);
-
-  emit_menu_item_activated (item);
 }
 
 static GtkWidget *
-share_my_desktop_menu_item_new (EmpathyIndividualMenu *self)
+empathy_individual_share_my_desktop_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
+
+  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
 
   item = gtk_image_menu_item_new_with_mnemonic (_("Share My Desktop"));
   image = gtk_image_new_from_icon_name (GTK_STOCK_NETWORK, GTK_ICON_SIZE_MENU);
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
   gtk_widget_show (image);
 
-  g_object_set_data (G_OBJECT (item), "individual-menu", self);
-
-  return item;
-}
-
-static GtkWidget *
-share_my_desktop_menu_item_new_individual (EmpathyIndividualMenu *self,
-    FolksIndividual *individual)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (FOLKS_IS_INDIVIDUAL (individual), NULL);
-
-  item = share_my_desktop_menu_item_new (self);
-
   menu_item_set_first_contact (item, individual,
-      G_CALLBACK (empathy_individual_share_my_desktop_menu_item_activated),
-      EMPATHY_ACTION_SHARE_MY_DESKTOP);
-
-  return item;
-}
-
-static GtkWidget *
-share_my_desktop_menu_item_new_contact (EmpathyIndividualMenu *self,
-    EmpathyContact *contact)
-{
-  GtkWidget *item;
-
-  g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), NULL);
-
-  item = share_my_desktop_menu_item_new (self);
-
-  menu_item_set_contact (item, contact,
       G_CALLBACK (empathy_individual_share_my_desktop_menu_item_activated),
       EMPATHY_ACTION_SHARE_MY_DESKTOP);
 
@@ -1802,7 +1445,7 @@ favourite_menu_item_toggled_cb (GtkCheckMenuItem *item,
 }
 
 static GtkWidget *
-favourite_menu_item_new_individual (FolksIndividual *individual)
+empathy_individual_favourite_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
 
@@ -1826,7 +1469,7 @@ individual_info_menu_item_activate_cb (GtkMenuItem *item,
 }
 
 static GtkWidget *
-info_menu_item_new_individual (FolksIndividual *individual)
+empathy_individual_info_menu_item_new (FolksIndividual *individual)
 {
   GtkWidget *item;
   GtkWidget *image;
@@ -1855,7 +1498,7 @@ individual_edit_menu_item_activate_cb (FolksIndividual *individual)
 }
 
 static GtkWidget *
-edit_menu_item_new_individual (FolksIndividual *individual)
+empathy_individual_edit_menu_item_new (FolksIndividual *individual)
 {
   EmpathyIndividualManager *manager;
   GtkWidget *item;
@@ -2024,7 +1667,7 @@ create_room_sub_menu (FolksIndividual *individual,
 }
 
 static GtkWidget *
-invite_menu_item_new (FolksIndividual *individual,
+empathy_individual_invite_menu_item_new (FolksIndividual *individual,
     EmpathyContact *contact)
 {
   GtkWidget *item;
@@ -2166,7 +1809,7 @@ add_menu_item_activated (GtkMenuItem *item,
 }
 
 static GtkWidget *
-add_menu_item_new_individual (EmpathyIndividualMenu *self,
+empathy_individual_add_menu_item_new (EmpathyIndividualMenu *self,
     FolksIndividual *individual)
 {
   EmpathyIndividualMenuPriv *priv = GET_PRIV (self);

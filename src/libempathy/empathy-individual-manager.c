@@ -21,11 +21,8 @@
  */
 
 #include "config.h"
+
 #include "empathy-individual-manager.h"
-
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
 #include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
@@ -394,7 +391,7 @@ aggregator_individuals_changed_cb (FolksIndividualAggregator *aggregator,
 
       /* Make sure we handle each added individual only once. */
       if (ind == NULL || g_list_find (added_set, ind) != NULL)
-        goto while_next;
+        continue;
       added_set = g_list_prepend (added_set, ind);
 
       g_signal_connect (ind, "notify::personas",
@@ -406,7 +403,6 @@ aggregator_individuals_changed_cb (FolksIndividualAggregator *aggregator,
           added_filtered = g_list_prepend (added_filtered, ind);
         }
 
-while_next:
       g_clear_object (&ind);
     }
   g_clear_object (&iter);
@@ -585,7 +581,7 @@ empathy_individual_manager_init (EmpathyIndividualManager *self)
 
   priv->individuals_pop = g_sequence_new (g_object_unref);
 
-  priv->aggregator = folks_individual_aggregator_dup ();
+  priv->aggregator = folks_individual_aggregator_new ();
   tp_g_signal_connect_object (priv->aggregator, "individuals-changed-detailed",
       G_CALLBACK (aggregator_individuals_changed_cb), self, 0);
   tp_g_signal_connect_object (priv->aggregator, "notify::is-quiescent",
@@ -830,21 +826,19 @@ empathy_individual_manager_set_blocked (EmpathyIndividualManager *self,
 
           tp_contact = tpf_persona_get_contact (persona);
           if (tp_contact == NULL)
-            goto while_next;
+            continue;
 
           conn = tp_contact_get_connection (tp_contact);
 
           if (!tp_proxy_has_interface_by_id (conn,
                 TP_IFACE_QUARK_CONNECTION_INTERFACE_CONTACT_BLOCKING))
-            goto while_next;
+            continue;
 
           if (blocked)
             tp_contact_block_async (tp_contact, abusive, NULL, NULL);
           else
             tp_contact_unblock_async (tp_contact, NULL, NULL);
         }
-
-while_next:
       g_clear_object (&persona);
     }
   g_clear_object (&iter);
@@ -952,6 +946,6 @@ empathy_individual_manager_unprepare_finish (
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_void (self,
+  empathy_implement_finish_void (self,
       empathy_individual_manager_unprepare_async)
 }

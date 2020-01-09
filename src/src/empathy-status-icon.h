@@ -22,7 +22,7 @@
 #ifndef __EMPATHY_STATUS_ICON_H__
 #define __EMPATHY_STATUS_ICON_H__
 
-#include <gtk/gtk.h>
+#include <glib.h>
 
 G_BEGIN_DECLS
 

@@ -17,11 +17,7 @@
 
   <title>Sarrera</title>
 
-  <p>
-    <app>Empathy</app> is an instant messaging application for the GNOME Desktop.
-    It supports text messaging, voice &amp; video calls, file transfers, and all the
-    most used messaging systems such as Jabber and Google Talk.
-  </p>
+  <p><app>Empathy</app> berehalako mezularitza-aplikazioa da GNOME mahaigainerako. Testu-mezularitza, ahots- eta bideo-deiak, fitxategi-transferentziak, eta gehien erabilitako mezularitza-sistemak, MSN eta Google Talk, esate baterako.</p>
   <p><app>Empathy</app>-k lanean zaudenean elkarlanean aritzen lagunduko dizuten eginbideak dauzka, lagunekin harremanetan errazago egoteko.</p>
   <p><app>Empathy</app> erabiliz gero, solasaldi guztiak leiho bakar batean taldeka ditzakezu, hainbat leiho eduki hainbat solasaldi motatarako, lehenagoko solasaldietan erraz bilatu, eta zure mahaigaina partekatu bi klik bakarrik eginez.</p>
 

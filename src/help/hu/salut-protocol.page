@@ -34,6 +34,11 @@
 
   <title>Mi az a Közeli emberek?</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>A Közeli emberek egy kiszolgáló nélküli kommunikációs szolgáltatás: használatához nincs szükség központi kiszolgálóhoz való csatlakozásra és bejelentkezésre.</p>
   <p>Ez a fajta kiszolgáló nélküli üzenetküldő rendszer a helyi hálózatra van korlátozva, és használatához nincs szükség internetkapcsolatra.</p>
   <p>Az azonos helyi hálózaton ezt a szolgáltatást használó embereket a program automatikusan megtalálja, és ugyanúgy küldhet nekik üzeneteket és fájlokat, mint más szolgáltatások esetén.</p>

@@ -23,18 +23,17 @@
 /* empathy-import-widget.c */
 
 #include "config.h"
+
+#include "empathy-import-dialog.h"
 #include "empathy-import-widget.h"
 
-#include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
-
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-ui-utils.h>
+
+#include <glib/gi18n-lib.h>
 
 G_DEFINE_TYPE (EmpathyImportWidget, empathy_import_widget, G_TYPE_OBJECT)
 
@@ -63,7 +62,7 @@ typedef struct {
   GList *accounts;
   EmpathyImportApplication app_id;
 
-  TpawConnectionManagers *cms;
+  EmpathyConnectionManagers *cms;
 
   gboolean dispose_run;
 } EmpathyImportWidgetPriv;
@@ -172,7 +171,7 @@ import_widget_create_account_cb (GObject *source,
   if (tp_account_is_enabled (account))
     {
       account_manager = tp_account_manager_dup ();
-      tpaw_connect_new_account (account, account_manager);
+      empathy_connect_new_account (account, account_manager);
       g_object_unref (account_manager);
     }
 
@@ -433,14 +432,14 @@ do_constructed (GObject *obj)
   gchar *filename;
 
   filename = empathy_file_lookup ("empathy-import-dialog.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "widget_vbox", &priv->vbox,
       "treeview", &priv->treeview,
       "scrolledwindow", &priv->scrolledwindow,
       NULL);
 
   g_free (filename);
-  tpaw_builder_unref_and_keep_widget (gui, priv->vbox);
+  empathy_builder_unref_and_keep_widget (gui, priv->vbox);
 
   g_signal_connect (priv->vbox, "destroy",
       G_CALLBACK (import_widget_destroy_cb), self);
@@ -467,8 +466,8 @@ empathy_import_widget_class_init (EmpathyImportWidgetClass *klass)
   g_object_class_install_property (oclass, PROP_APPLICATION_ID, param_spec);
 
   param_spec = g_param_spec_object ("cms",
-      "TpawConnectionManagers", "TpawConnectionManagers",
-      TPAW_TYPE_CONNECTION_MANAGERS,
+      "EmpathyConnectionManagers", "EmpathyConnectionManager",
+      EMPATHY_TYPE_CONNECTION_MANAGERS,
       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT_ONLY);
   g_object_class_install_property (oclass, PROP_CMS, param_spec);
 
@@ -487,9 +486,9 @@ empathy_import_widget_init (EmpathyImportWidget *self)
 
 EmpathyImportWidget *
 empathy_import_widget_new (EmpathyImportApplication id,
-    TpawConnectionManagers *cms)
+    EmpathyConnectionManagers *cms)
 {
-  g_return_val_if_fail (TPAW_IS_CONNECTION_MANAGERS (cms), NULL);
+  g_return_val_if_fail (EMPATHY_IS_CONNECTION_MANAGERS (cms), NULL);
 
   return g_object_new (EMPATHY_TYPE_IMPORT_WIDGET,
       "application-id", id,

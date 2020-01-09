@@ -18,15 +18,14 @@
  */
 
 #include "config.h"
+
 #include "empathy-base-password-dialog.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-utils.h>
-
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_SASL
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-utils.h>
 
 G_DEFINE_TYPE (EmpathyBasePasswordDialog, empathy_base_password_dialog,
     GTK_TYPE_MESSAGE_DIALOG)
@@ -109,10 +108,10 @@ password_entry_changed_cb (GtkEditable *entry,
   str = gtk_entry_get_text (GTK_ENTRY (entry));
 
   gtk_entry_set_icon_sensitive (GTK_ENTRY (entry),
-      GTK_ENTRY_ICON_SECONDARY, !TPAW_STR_EMPTY (str));
+      GTK_ENTRY_ICON_SECONDARY, !EMP_STR_EMPTY (str));
 
   gtk_widget_set_sensitive (self->ok_button,
-      !TPAW_STR_EMPTY (str));
+      !EMP_STR_EMPTY (str));
 }
 
 static void

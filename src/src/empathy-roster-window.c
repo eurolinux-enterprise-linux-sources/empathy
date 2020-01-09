@@ -22,44 +22,44 @@
  */
 
 #include "config.h"
-#include "empathy-roster-window.h"
 
 #include <sys/stat.h>
 #include <glib/gi18n.h>
-#include <tp-account-widgets/tpaw-builder.h>
 
-#include "empathy-about-dialog.h"
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-chatroom-manager.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-status-presets.h>
+#include <libempathy/empathy-presence-manager.h>
+
+#include <libempathy-gtk/empathy-contact-blocking-dialog.h>
+#include <libempathy-gtk/empathy-contact-search-dialog.h>
+#include <libempathy-gtk/empathy-geometry.h>
+#include <libempathy-gtk/empathy-gtk-enum-types.h>
+#include <libempathy-gtk/empathy-individual-dialogs.h>
+#include <libempathy-gtk/empathy-roster-model-manager.h>
+#include <libempathy-gtk/empathy-roster-view.h>
+#include <libempathy-gtk/empathy-new-message-dialog.h>
+#include <libempathy-gtk/empathy-new-call-dialog.h>
+#include <libempathy-gtk/empathy-log-window.h>
+#include <libempathy-gtk/empathy-presence-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
 #include "empathy-accounts-dialog.h"
 #include "empathy-call-observer.h"
 #include "empathy-chat-manager.h"
-#include "empathy-chatroom-manager.h"
+#include "empathy-roster-window.h"
+#include "empathy-preferences.h"
+#include "empathy-about-dialog.h"
+#include "empathy-new-chatroom-dialog.h"
 #include "empathy-chatrooms-window.h"
-#include "empathy-client-factory.h"
-#include "empathy-contact-blocking-dialog.h"
-#include "empathy-contact-search-dialog.h"
 #include "empathy-event-manager.h"
 #include "empathy-ft-manager.h"
-#include "empathy-geometry.h"
-#include "empathy-gsettings.h"
-#include "empathy-gsettings.h"
-#include "empathy-gtk-enum-types.h"
-#include "empathy-individual-dialogs.h"
-#include "empathy-log-window.h"
-#include "empathy-new-call-dialog.h"
-#include "empathy-new-chatroom-dialog.h"
-#include "empathy-new-message-dialog.h"
-#include "empathy-preferences.h"
-#include "empathy-presence-chooser.h"
-#include "empathy-presence-manager.h"
-#include "empathy-request-util.h"
-#include "empathy-roster-model-manager.h"
-#include "empathy-roster-view.h"
-#include "empathy-status-presets.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Flashing delay for icons (milliseconds). */
 #define FLASH_TIMEOUT 500
@@ -332,14 +332,6 @@ roster_window_load_events_idle_cb (gpointer user_data)
 }
 
 static void
-hide_search_bar (EmpathyRosterWindow *roster_window)
-{
-  if (TPAW_IS_LIVE_SEARCH (roster_window->priv->search_bar) &&
-      gtk_widget_is_visible (roster_window->priv->search_bar))
-    gtk_widget_hide (roster_window->priv->search_bar);
-}
-
-static void
 individual_activated_cb (EmpathyRosterView *self,
     FolksIndividual *individual,
     gpointer user_data)
@@ -357,9 +349,6 @@ individual_activated_cb (EmpathyRosterView *self,
   empathy_chat_with_contact (contact, gtk_get_current_event_time ());
 
   g_object_unref (contact);
-
-  /* Hide the search-bar upon hitting "Enter" on an individual */
-  hide_search_bar (EMPATHY_ROSTER_WINDOW (user_data));
 }
 
 static void
@@ -369,9 +358,6 @@ event_activated_cb (EmpathyRosterView *self,
     gpointer user_data)
 {
   empathy_event_activate (event);
-
-  /* Hide the search-bar upon an event activation */
-  hide_search_bar (EMPATHY_ROSTER_WINDOW (user_data));
 }
 
 static void
@@ -491,7 +477,7 @@ static void
 display_page_no_account (EmpathyRosterWindow *self)
 {
   display_page_message (self,
-      _("You need to set up an account to see contacts here."),
+      _("You need to setup an account to see contacts here."),
       PAGE_MESSAGE_FLAG_ACCOUNTS);
 }
 
@@ -745,7 +731,7 @@ roster_window_error_display (EmpathyRosterWindow *self,
        tp_account_get_detailed_error (account, NULL)))
     {
       roster_window_error_add_stock_button (GTK_INFO_BAR (info_bar),
-          GTK_STOCK_REFRESH, _("Update software…"),
+          GTK_STOCK_REFRESH, _("Update software..."),
           ERROR_RESPONSE_RETRY);
     }
   else
@@ -789,7 +775,7 @@ roster_window_update_status (EmpathyRosterWindow *self)
   for (l = self->priv->actions_connected; l; l = l->next)
     g_simple_action_set_enabled (l->data, connected);
 
-  action = g_action_map_lookup_action (G_ACTION_MAP (self), "chat-add-contact");
+  action = g_action_map_lookup_action (G_ACTION_MAP (self), "chat_add_contact");
   if (!can_add_contact (self))
     g_simple_action_set_enabled (G_SIMPLE_ACTION (action), FALSE);
 }
@@ -1273,43 +1259,19 @@ roster_window_favorite_chatroom_join (EmpathyChatroom *chatroom)
 }
 
 static void
-roster_window_join_chatroom_menu_activate_cb (GSimpleAction *action,
+roster_window_favorite_chatroom_menu_activate_cb (GAction *action,
     GVariant *parameter,
-    gpointer user_data)
+    EmpathyChatroom *chatroom)
 {
-  EmpathyRosterWindow *self = user_data;
-  const gchar *room, *path;
-  EmpathyClientFactory *factory;
-  TpAccount *account;
-  GError *error = NULL;
-  EmpathyChatroom *chatroom;
-
-  g_variant_get (parameter, "(&s&s)", &room, &path);
-
-  factory = empathy_client_factory_dup ();
-
-  account = tp_simple_client_factory_ensure_account (
-      TP_SIMPLE_CLIENT_FACTORY (factory), path, NULL, &error);
-  if (account == NULL)
-    {
-      DEBUG ("Failed to get account '%s': %s", path, error->message);
-      g_error_free (error);
-      goto out;
-    }
-
-  chatroom = empathy_chatroom_manager_find (self->priv->chatroom_manager,
-      account, room);
-  if (chatroom == NULL)
-    {
-      DEBUG ("Failed to get chatroom '%s' on '%s'",
-          room, path);
-      goto out;
-    }
-
   roster_window_favorite_chatroom_join (chatroom);
+}
 
-out:
-  g_object_unref (factory);
+static gchar *
+dup_join_action_name (EmpathyChatroom *chatroom,
+    gboolean prefix)
+{
+  return g_strconcat (prefix ? "win." : "", "join-",
+      empathy_chatroom_get_name (chatroom), NULL);
 }
 
 static void
@@ -1317,26 +1279,35 @@ roster_window_favorite_chatroom_menu_add (EmpathyRosterWindow *self,
     EmpathyChatroom *chatroom)
 {
   GMenuItem *item;
-  const gchar *name, *account_name, *account_path;
-  TpAccount *account;
-  gchar *label;
-
-  account = empathy_chatroom_get_account (chatroom);
+  const gchar *name, *account_name;
+  gchar *label, *action_name;
+  GAction *action;
 
   name = empathy_chatroom_get_name (chatroom);
-  account_name = tp_account_get_display_name (account);
-  account_path = tp_proxy_get_object_path (account);
+  account_name = tp_account_get_display_name (
+      empathy_chatroom_get_account (chatroom));
 
   label = g_strdup_printf ("%s (%s)", name, account_name);
+  action_name = dup_join_action_name (chatroom, FALSE);
 
-  item = g_menu_item_new (label, NULL);
-  g_menu_item_set_action_and_target (item, "win.join", "(ss)",
-      name, account_path);
+  action = (GAction *) g_simple_action_new (action_name, NULL);
+  g_free (action_name);
+
+  g_signal_connect (action, "activate",
+      G_CALLBACK (roster_window_favorite_chatroom_menu_activate_cb),
+      chatroom);
+
+  g_action_map_add_action (G_ACTION_MAP (self), action);
+
+  action_name = dup_join_action_name (chatroom, TRUE);
+
+  item = g_menu_item_new (label, action_name);
   g_menu_item_set_attribute (item, "room-name", "s", name);
-  g_menu_item_set_attribute (item, "account-path", "s", account_path);
   g_menu_append_item (self->priv->rooms_section, item);
 
   g_free (label);
+  g_free (action_name);
+  g_object_unref (action);
 }
 
 static void
@@ -1354,46 +1325,26 @@ roster_window_favorite_chatroom_menu_removed_cb (
     EmpathyRosterWindow *self)
 {
   GList *chatrooms;
-  guint i, n;
-  TpAccount *account;
-  const gchar *account_path;
+  gchar *act;
+  gint i;
 
-  account = empathy_chatroom_get_account (chatroom);
-  account_path = tp_proxy_get_object_path (account);
+  act = dup_join_action_name (chatroom, TRUE);
 
-  n = g_menu_model_get_n_items (G_MENU_MODEL (self->priv->rooms_section));
+  g_action_map_remove_action (G_ACTION_MAP (self), act);
 
-  for (i = 0; i < n; i++)
+  for (i = 0; i < g_menu_model_get_n_items (
+        G_MENU_MODEL (self->priv->rooms_section)); i++)
     {
-      gchar *tmp;
+      const gchar *name;
 
-      if (!g_menu_model_get_item_attribute (
-            G_MENU_MODEL (self->priv->rooms_section), i,
-            "room-name", "s", &tmp))
-        continue;
-
-      if (tp_strdiff (tmp, empathy_chatroom_get_name (chatroom)))
+      if (g_menu_model_get_item_attribute (
+            G_MENU_MODEL (self->priv->rooms_section), i, "room-name",
+            "s", &name)
+          && !tp_strdiff (name, empathy_chatroom_get_name (chatroom)))
         {
-          g_free (tmp);
-          continue;
+          g_menu_remove (self->priv->rooms_section, i);
+          break;
         }
-
-      g_free (tmp);
-
-      if (!g_menu_model_get_item_attribute (
-            G_MENU_MODEL (self->priv->rooms_section), i,
-            "account-path", "s", &tmp))
-        continue;
-
-      if (tp_strdiff (tmp, account_path))
-        {
-          g_free (tmp);
-          continue;
-        }
-
-      g_menu_remove (self->priv->rooms_section, i);
-      g_free (tmp);
-      break;
     }
 
   chatrooms = empathy_chatroom_manager_get_chatrooms (
@@ -1725,7 +1676,7 @@ set_notebook_page (EmpathyRosterWindow *self)
         {
           if (g_settings_get_boolean (self->priv->gsettings_ui,
                 EMPATHY_PREFS_UI_SHOW_OFFLINE))
-            display_page_message (self, _("You haven't added any contacts yet"),
+            display_page_message (self, _("You haven't added any contact yet"),
                 PAGE_MESSAGE_FLAG_ADD_CONTACT);
           else
             display_page_message (self, _("No online contacts"),
@@ -1759,13 +1710,13 @@ roster_window_connection_items_setup (EmpathyRosterWindow *self)
 {
   guint i;
   const gchar *actions_connected[] = {
-      "room-join-new",
-      "room-join-favorites",
-      "chat-new-message",
-      "chat-new-call",
-      "chat-search-contacts",
-      "chat-add-contact",
-      "edit-blocked-contacts",
+      "room_join_new",
+      "room_join_favorites",
+      "chat_new_message",
+      "chat_new_call",
+      "chat_search_contacts",
+      "chat_add_contact",
+      "edit_blocked_contacts",
   };
 
   for (i = 0; i < G_N_ELEMENTS (actions_connected); i++)
@@ -1790,14 +1741,6 @@ account_enabled_cb (TpAccountManager *manager,
 
 static void
 account_disabled_cb (TpAccountManager *manager,
-    TpAccount *account,
-    EmpathyRosterWindow *self)
-{
-  set_notebook_page (self);
-}
-
-static void
-account_removed_cb (TpAccountManager *manager,
     TpAccount *account,
     EmpathyRosterWindow *self)
 {
@@ -1832,8 +1775,6 @@ account_manager_prepared_cb (GObject *source_object,
 
   g_signal_connect (manager, "account-validity-changed",
       G_CALLBACK (roster_window_account_validity_changed_cb), self);
-  tp_g_signal_connect_object (manager, "account-removed",
-      G_CALLBACK (account_removed_cb), self, 0);
   tp_g_signal_connect_object (manager, "account-disabled",
       G_CALLBACK (account_disabled_cb), self, 0);
   tp_g_signal_connect_object (manager, "account-enabled",
@@ -1876,26 +1817,25 @@ empathy_roster_window_constructor (GType type,
 }
 
 static GActionEntry menubar_entries[] = {
-  {"chat-new-message", roster_window_chat_new_message_cb},
-  {"chat-new-call", roster_window_chat_new_call_cb},
-  {"chat-add-contact", roster_window_chat_add_contact_cb},
-  {"chat-search-contacts", roster_window_chat_search_contacts_cb},
-  {"chat-quit", roster_window_chat_quit_cb},
+  { "chat_new_message", roster_window_chat_new_message_cb, NULL, NULL, NULL },
+  { "chat_new_call", roster_window_chat_new_call_cb, NULL, NULL, NULL },
+  { "chat_add_contact", roster_window_chat_add_contact_cb, NULL, NULL, NULL },
+  { "chat_search_contacts", roster_window_chat_search_contacts_cb, NULL, NULL, NULL },
+  { "chat_quit", roster_window_chat_quit_cb, NULL, NULL, NULL },
 
-  {"edit-accounts", roster_window_edit_accounts_cb},
-  {"edit-blocked-contacts", roster_window_edit_blocked_contacts_cb},
-  {"edit-preferences", roster_window_edit_preferences_cb},
+  { "edit_accounts", roster_window_edit_accounts_cb, NULL, NULL, NULL },
+  { "edit_blocked_contacts", roster_window_edit_blocked_contacts_cb, NULL, NULL, NULL },
+  { "edit_preferences", roster_window_edit_preferences_cb, NULL, NULL, NULL },
 
-  {"view-history", roster_window_view_history_cb},
-  {"view-show-ft-manager", roster_window_view_show_ft_manager},
+  { "view_history", roster_window_view_history_cb, NULL, NULL, NULL },
+  { "view_show_ft_manager", roster_window_view_show_ft_manager, NULL, NULL, NULL },
 
-  {"room-join-new", roster_window_room_join_new_cb},
-  {"room-join-favorites", roster_window_room_join_favorites_cb},
-  {"join", roster_window_join_chatroom_menu_activate_cb, "(ss)"},
-  {"room-manage-favorites", roster_window_room_manage_favorites_cb},
+  { "room_join_new", roster_window_room_join_new_cb, NULL, NULL, NULL },
+  { "room_join_favorites", roster_window_room_join_favorites_cb, NULL, NULL, NULL },
+  { "room_manage_favorites", roster_window_room_manage_favorites_cb, NULL, NULL, NULL },
 
-  {"help-contents", roster_window_help_contents_cb},
-  {"help-about", roster_window_help_about_cb},
+  { "help_contents", roster_window_help_contents_cb, NULL, NULL, NULL },
+  { "help_about", roster_window_help_about_cb, NULL, NULL, NULL },
 };
 
 static void
@@ -2000,17 +1940,7 @@ menu_deactivate_cb (GtkMenuShell *menushell,
 }
 
 static void
-menu_item_activated_cb (GtkMenuShell *menushell,
-    gpointer user_data)
-{
-    EmpathyRosterWindow *roster_window = EMPATHY_ROSTER_WINDOW (user_data);
-
-    hide_search_bar (roster_window);
-}
-
-static void
 popup_individual_menu_cb (EmpathyRosterView *view,
-    const gchar *active_group,
     FolksIndividual *individual,
     guint button,
     guint time,
@@ -2027,8 +1957,7 @@ popup_individual_menu_cb (EmpathyRosterView *view,
     EMPATHY_INDIVIDUAL_FEATURE_REMOVE |
     EMPATHY_INDIVIDUAL_FEATURE_FILE_TRANSFER;
 
-  menu = empathy_individual_menu_new (individual, active_group,
-      features, NULL);
+  menu = empathy_individual_menu_new (individual, features, NULL);
 
   /* menu is initially unowned but gtk_menu_attach_to_widget() takes its
    * floating ref. We can either wait for the view to release its ref
@@ -2038,8 +1967,6 @@ popup_individual_menu_cb (EmpathyRosterView *view,
    * during the whole lifetime of Empathy. */
   g_signal_connect (menu, "deactivate", G_CALLBACK (menu_deactivate_cb),
       NULL);
-  g_signal_connect (menu, "menu-item-activated",
-      G_CALLBACK (menu_item_activated_cb), user_data);
 
   gtk_menu_attach_to_widget (GTK_MENU (menu), GTK_WIDGET (view), NULL);
   gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, button, time);
@@ -2174,22 +2101,22 @@ view_drag_motion_cb (GtkWidget *widget,
     {
       /* Check if contact supports FT */
       FolksIndividual *individual;
-      GtkListBoxRow *row;
+      GtkWidget *child;
 
       individual = empathy_roster_view_get_individual_at_y (self->priv->view,
-          y, &row);
+          y, &child);
       if (individual == NULL)
         goto no_hl;
 
       if (!individual_supports_ft (individual))
         goto no_hl;
 
-      gtk_list_box_drag_highlight_row (GTK_LIST_BOX (widget), row);
+      egg_list_box_drag_highlight_widget (EGG_LIST_BOX (widget), child);
       return FALSE;
     }
 
 no_hl:
-  gtk_list_box_drag_unhighlight_row (GTK_LIST_BOX (widget));
+  egg_list_box_drag_unhighlight_widget (EGG_LIST_BOX (widget));
   return FALSE;
 }
 
@@ -2308,7 +2235,7 @@ empathy_roster_window_init (EmpathyRosterWindow *self)
 
   /* Set up interface */
   filename = empathy_file_lookup ("empathy-roster-window.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "main_vbox", &self->priv->main_vbox,
       "balance_vbox", &self->priv->balance_vbox,
       "errors_vbox", &self->priv->errors_vbox,
@@ -2353,7 +2280,7 @@ empathy_roster_window_init (EmpathyRosterWindow *self)
   roster_window_setup_actions (self);
 
   filename = empathy_file_lookup ("empathy-roster-window-menubar.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "appmenu", &self->priv->menumodel,
       "rooms", &self->priv->rooms_section,
       NULL);
@@ -2403,7 +2330,8 @@ empathy_roster_window_init (EmpathyRosterWindow *self)
 
   gtk_widget_show (GTK_WIDGET (self->priv->view));
 
-  gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (self->priv->view));
+  egg_list_box_add_to_scrolled (EGG_LIST_BOX (self->priv->view),
+      GTK_SCROLLED_WINDOW (sw));
 
   g_signal_connect (self->priv->view, "individual-activated",
       G_CALLBACK (individual_activated_cb), self);
@@ -2433,10 +2361,10 @@ empathy_roster_window_init (EmpathyRosterWindow *self)
   gtk_widget_set_has_tooltip (GTK_WIDGET (self->priv->view), TRUE);
 
   /* Set up search bar */
-  self->priv->search_bar = tpaw_live_search_new (
+  self->priv->search_bar = empathy_live_search_new (
       GTK_WIDGET (self->priv->view));
   empathy_roster_view_set_live_search (self->priv->view,
-      TPAW_LIVE_SEARCH (self->priv->search_bar));
+      EMPATHY_LIVE_SEARCH (self->priv->search_bar));
   gtk_box_pack_start (GTK_BOX (search_vbox), self->priv->search_bar,
       FALSE, TRUE, 0);
 

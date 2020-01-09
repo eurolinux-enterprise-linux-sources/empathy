@@ -21,12 +21,12 @@
 #include "empathy-new-account-dialog.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-account-widget.h>
-
-#include "empathy-protocol-chooser.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_ACCOUNT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+
+#include <libempathy-gtk/empathy-account-widget.h>
+#include <libempathy-gtk/empathy-protocol-chooser.h>
 
 G_DEFINE_TYPE (EmpathyNewAccountDialog, empathy_new_account_dialog, \
     GTK_TYPE_DIALOG)
@@ -34,15 +34,15 @@ G_DEFINE_TYPE (EmpathyNewAccountDialog, empathy_new_account_dialog, \
 struct _EmpathyNewAccountDialogPrivate
 {
   GtkWidget *chooser;
-  TpawAccountWidget *current_account_widget;
+  EmpathyAccountWidget *current_account_widget;
   GtkWidget *main_vbox;
   GtkWidget *connect_button;
 
-  TpawAccountSettings *settings;
+  EmpathyAccountSettings *settings;
 };
 
 static void
-close_cb (TpawAccountWidget *widget,
+close_cb (EmpathyAccountWidget *widget,
     GtkResponseType response,
     EmpathyNewAccountDialog *self)
 {
@@ -53,8 +53,8 @@ static void
 protocol_changed_cb (GtkComboBox *chooser,
     EmpathyNewAccountDialog *self)
 {
-  TpawAccountSettings *settings;
-  TpawAccountWidget *account_widget;
+  EmpathyAccountSettings *settings;
+  EmpathyAccountWidget *account_widget;
   gchar *password = NULL, *account = NULL;
 
   settings = empathy_protocol_chooser_create_account_settings (
@@ -66,17 +66,16 @@ protocol_changed_cb (GtkComboBox *chooser,
   /* Save "account" and "password" parameters */
   if (self->priv->settings != NULL)
     {
-      account = tpaw_account_settings_dup_string (
+      account = empathy_account_settings_dup_string (
             self->priv->settings, "account");
 
-      password = tpaw_account_settings_dup_string (
+      password = empathy_account_settings_dup_string (
             self->priv->settings, "password");
 
       g_object_unref (self->priv->settings);
     }
 
-  account_widget = tpaw_account_widget_new_for_protocol (settings,
-      NULL, TRUE);
+  account_widget = empathy_account_widget_new_for_protocol (settings, TRUE);
 
   if (self->priv->current_account_widget != NULL)
     {
@@ -96,13 +95,13 @@ protocol_changed_cb (GtkComboBox *chooser,
   /* Restore "account" and "password" parameters in the new widget */
   if (account != NULL)
     {
-      tpaw_account_widget_set_account_param (account_widget, account);
+      empathy_account_widget_set_account_param (account_widget, account);
       g_free (account);
     }
 
   if (password != NULL)
     {
-      tpaw_account_widget_set_password_param (account_widget, password);
+      empathy_account_widget_set_password_param (account_widget, password);
       g_free (password);
     }
 
@@ -149,7 +148,7 @@ empathy_new_account_dialog_init (EmpathyNewAccountDialog *self)
   /* trigger show the first account widget */
   protocol_changed_cb (GTK_COMBO_BOX (self->priv->chooser), self);
 
-  gtk_window_set_title (GTK_WINDOW (self), _("Add new account"));
+  gtk_window_set_title (GTK_WINDOW (self), _("Adding new account"));
 }
 
 static void
@@ -191,7 +190,7 @@ empathy_new_account_dialog_new (GtkWindow *parent)
   return result;
 }
 
-TpawAccountSettings *
+EmpathyAccountSettings *
 empathy_new_account_dialog_get_settings (EmpathyNewAccountDialog *self)
 {
   return self->priv->settings;

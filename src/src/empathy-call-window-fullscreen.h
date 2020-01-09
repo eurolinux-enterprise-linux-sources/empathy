@@ -20,6 +20,8 @@
 #ifndef __EMPATHY_CALL_WINDOW_FULLSCREEN_H__
 #define __EMPATHY_CALL_WINDOW_FULLSCREEN_H__
 
+#include <glib-object.h>
+#include <gtk/gtk.h>
 
 #include "empathy-call-window.h"
 

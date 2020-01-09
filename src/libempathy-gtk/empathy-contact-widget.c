@@ -20,21 +20,20 @@
  */
 
 #include "config.h"
-#include "empathy-contact-widget.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-string-parser.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-client-factory.h>
+
+#include "empathy-contact-widget.h"
 #include "empathy-avatar-image.h"
-#include "empathy-client-factory.h"
 #include "empathy-groups-widget.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-string-parser.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /**
  * SECTION:empathy-contact-widget
@@ -360,7 +359,7 @@ contact_widget_presence_notify_cb (EmpathyContactWidget *self)
 
   status = empathy_contact_get_status (self->priv->contact);
   if (status != NULL)
-    markup_text = tpaw_add_link_markup (status);
+    markup_text = empathy_add_link_markup (status);
   gtk_label_set_markup (GTK_LABEL (self->priv->label_status), markup_text);
   g_free (markup_text);
 
@@ -506,7 +505,7 @@ contact_widget_change_contact (EmpathyContactWidget *self)
       return;
 
   id = gtk_entry_get_text (GTK_ENTRY (self->priv->widget_id));
-  if (!TPAW_STR_EMPTY (id))
+  if (!EMP_STR_EMPTY (id))
     {
       EmpathyClientFactory *factory;
 
@@ -662,7 +661,7 @@ empathy_contact_widget_new (EmpathyContact *contact)
 
   filename = empathy_file_lookup ("empathy-contact-widget.ui",
       "libempathy-gtk");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
        "vbox_contact_widget", &main_vbox,
        "hbox_presence", &self->priv->hbox_presence,
        "label_alias", &self->priv->label_alias,

@@ -5,7 +5,7 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="add-account"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Importowanie konta z innego komunikatora.</desc>
+    <desc>Importowanie konta z innego komunikatora.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-22" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-22" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-09-02" status="review">
@@ -35,30 +35,18 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Importowanie istniejącego konta</title>
 
-  <p>Podczas pierwszego uruchomienia programu <app>Empathy</app> można zaimportować konta z innych komunikatorów. Obecnie jedynym obsługiwanym programem jest <app>Pidgin</app>.</p>
+  <p>Podczas pierwszego uruchomienia programu <app>Empathy</app> można zaimportować konta z innych komunikatorów. Obecnie jedynym obsługiwanym programem jest <app>Pidgin</app>.</p>
 
   <steps>
     <item>
       <p>Należy uruchomić program <app>Empathy</app> po raz pierwszy. Asystent zaproponuje kilka opcji utworzenia nowych kont.</p>
     </item>
     <item>
-      <p>Należy wybrać <gui>Tak, zaimportuj szczegóły konta z</gui> i nacisnąć <gui>Dalej</gui>.</p>
+      <p>Należy wybrać <gui>Tak, zaimportuj szczegóły konta z</gui> i nacisnąć <gui>Dalej</gui>.</p>
     </item>
     <item>
       <p>Należy zaznaczyć pole obok każdego konta przeznaczonego do importu.</p>

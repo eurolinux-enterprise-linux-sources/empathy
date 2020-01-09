@@ -1,50 +1,48 @@
 ## Minimum required versions.
-%global	gtk3_min_version	3.9.4
-%global	glib2_min_version	2.48.0
+%global	gtk3_min_version	3.5.1
+%global	glib2_min_version	2.33.3
 %global	tp_mc_min_version	5.12.0
-%global	tp_glib_min_version	0.23.2
+%global	tp_glib_min_version	0.19.9
 %global	enchant_version		1.2.0
 %global network_manager_version 0.7.0
 %global libcanberra_version	0.4
-%global webkit_version		1.9.1
+%global webkit_version		1.3.13
 %global goa_version		3.5.1
 %global libnotify_version	0.7.0
 %global libchamplain_version	0.12.1
-%global folks_version		0.9.5
+%global folks_version		0.9.0
 %global gstreamer_version	0.10.32
 %global libsecret_version	0.5
 %global gcr_version		2.91.4
 
 Name:		empathy
-Version:	3.12.13
-Release:	1%{?dist}
+Version:	3.8.4
+Release:	3%{?dist}
 Summary:	Instant Messaging Client for GNOME
 
 License:	GPLv2+
-URL:		https://wiki.gnome.org/Apps/Empathy
+URL:		http://live.gnome.org/Empathy
 
-Source0:	http://download.gnome.org/sources/%{name}/3.12/%{name}-%{version}.tar.xz
+Source0:	http://download.gnome.org/sources/%{name}/3.8/%{name}-%{version}.tar.xz
 Source1:	%{name}-README.ConnectionManagers
 
-# https://bugzilla.redhat.com/show_bug.cgi?id=1142832
-Patch0:		0001-help-Remove-IRC-content.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=920080
+Patch0:		0001-protocol-chooser-skip-Haze-s-IRC-implementation.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=1025727
+Patch1:		SASL-fix-facebook-mechanism.patch
 
-# https://bugzilla.redhat.com/show_bug.cgi?id=1386616
-Patch1:		%{name}-fix-certificate-validation.patch
-
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
 BuildRequires:	enchant-devel >= %{enchant_version}
 BuildRequires:	iso-codes-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 BuildRequires:	glib2-devel >= %{glib2_min_version}
+BuildRequires:	gnome-doc-utils >= 0.17.3
 BuildRequires:	libcanberra-devel >= %{libcanberra_version}
 BuildRequires:	webkitgtk3-devel >= %{webkit_version}
 BuildRequires:	gtk3-devel >= %{gtk3_min_version}
 BuildRequires:	intltool
 BuildRequires:	libxml2-devel
+BuildRequires:	scrollkeeper
 BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	telepathy-glib-devel >= %{tp_glib_min_version}
 BuildRequires:	telepathy-farstream-devel >= 0.2.1
@@ -52,8 +50,7 @@ BuildRequires:	libnotify-devel >= %{libnotify_version}
 BuildRequires:	NetworkManager-glib-devel >= %{network_manager_version}
 BuildRequires:	libchamplain-gtk-devel >= %{libchamplain_version}
 BuildRequires:	clutter-gtk-devel >= 1.1.2
-BuildRequires:	geoclue2-devel
-BuildRequires:	geocode-glib-devel
+BuildRequires:	geoclue-devel >= 0.12
 BuildRequires:	telepathy-logger-devel >= 0.8.0
 BuildRequires:	folks-devel >= 1:%{folks_version}
 BuildRequires:	clutter-gst2-devel
@@ -68,56 +65,64 @@ BuildRequires:	libsecret-devel >= %{libsecret_version}
 BuildRequires:	gcr-devel >= %{gcr_version}
 BuildRequires:	pkgconfig(gee-0.8)
 BuildRequires:	itstool
-BuildRequires:	yelp-tools
+# hack to conserve space on the live cd
+BuildRequires:	/usr/bin/convert
 
 Requires:	telepathy-filesystem
 Requires:	telepathy-mission-control >= %{tp_mc_min_version}
-
 ## We install the following connection managers by default.
 Requires:	telepathy-gabble >= 0.16.0
 Requires:	telepathy-salut >= 0.8.0
 Requires:	telepathy-haze >= 0.6.0
-%if 0%{?fedora}
-Requires:	telepathy-idle
-Requires:	telepathy-rakia
-%endif
+
+Requires(post): /usr/bin/gtk-update-icon-cache
+Requires(postun): /usr/bin/gtk-update-icon-cache
+
 
 %description
-Empathy is a powerful multi-protocol instant messaging client which supports
-Jabber, GTalk, MSN, Salut, and other protocols. It is built on top of the
-Telepathy framework.
+Empathy is powerful multi-protocol instant messaging client which
+supports Jabber, GTalk, MSN, IRC, Salut, and other protocols.
+It is built on top of the Telepathy framework.
 
 
 %prep
-%autosetup -p1
+%setup -q
+# force this to be regenerated
+rm data/empathy.desktop
+
+%patch0 -p1
+%patch1 -p1
 
 
 %build
-autoreconf -f -i
-%configure \
-  --disable-schemas-compile \
-  --disable-silent-rules \
-  --disable-static \
-  --enable-ubuntu-online-accounts=no
-
-%make_build
+## GCC complains about some unused functions, so we forcibly show those as
+## simple warnings instead of build-halting errors.
+%configure --disable-static
+# Parallel builds are broken.
+make
 install -m 0644 %{SOURCE1} ./README.ConnectionManagers
 
 
 %install
-%make_install
-find $RPM_BUILD_ROOT -name '*.la' -delete
+make install DESTDIR=$RPM_BUILD_ROOT
+find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %find_lang %{name} --with-gnome
-%find_lang empathy-tpaw
 
 desktop-file-install --delete-original			\
 	--dir %{buildroot}%{_datadir}/applications	\
 	%{buildroot}%{_datadir}/applications/%{name}.desktop
 
+# hack to conserve space on the live image
+for f in video_overview.png conf_overview.png croom_overview.png; do
+  convert %{buildroot}%{_datadir}/help/C/empathy/figures/$f -resize 150x150 $f
+  mv $f %{buildroot}%{_datadir}/help/C/empathy/figures
+done
+
 
 %post
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
+/sbin/ldconfig
 
 
 %postun
@@ -126,6 +131,7 @@ if [ $1 -eq 0 ]; then
    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
    glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 fi
+/sbin/ldconfig
 
 
 %posttrans
@@ -133,9 +139,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor >&/dev/null || :
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
-%files -f %{name}.lang -f empathy-tpaw.lang
-%doc AUTHORS README README.ConnectionManagers NEWS
-%license COPYING COPYING-DOCS COPYING.LGPL COPYING.SHARE-ALIKE
+%files -f %{name}.lang
+%doc AUTHORS COPYING README README.ConnectionManagers NEWS
+%doc COPYING-DOCS COPYING.LGPL COPYING.SHARE-ALIKE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-accounts
 %{_bindir}/%{name}-debugger
@@ -145,18 +151,15 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/%{name}/libempathy-gtk.so
 %{_libdir}/%{name}/libempathy.so
 %{_libdir}/mission-control-plugins.0/mcp-account-manager-goa.so
-%{_datadir}/appdata/%{name}.appdata.xml
 %{_datadir}/empathy/
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.png
-%{_datadir}/icons/hicolor/scalable/apps/%{name}-symbolic.svg
+%{_datadir}/icons/hicolor/*/apps/%{name}*
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.Call.service
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.Chat.service
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.Auth.service
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.FileTransfer.service
 %{_datadir}/GConf/gsettings/empathy.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.Empathy.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnome.telepathy-account-widgets.gschema.xml
 %{_datadir}/telepathy/clients/Empathy.Call.client
 %{_datadir}/telepathy/clients/Empathy.Chat.client
 %{_datadir}/telepathy/clients/Empathy.Auth.client
@@ -199,49 +202,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/adium/message-styles/PlanetGNOME.AdiumMessageStyle/Contents/Resources/main.css
 
 %changelog
-* Thu Jun 07 2018 Debarshi Ray <rishi@fedoraproject.org> - 3.12.13-1
-- Update to 3.12.13
-- Resolves: #1569812
-
-* Tue Mar 21 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-4
-- Fix certificate validation (use reference identities, handle validation
-  failures correctly, fixed the test suite)
-- Resolves: #1386616
-
-* Thu Mar 16 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-3
-- Fix certificate validation
-- Resolves: #1386616
-
-* Mon Mar 13 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-2
-- Remove IRC from %%description
-- Resolves: #1358824
-
-* Mon Mar 13 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-1
-- Update to 3.12.12
-- Resolves: #1386848
-
-* Tue May 26 2015 Debarshi Ray <rishi@fedoraproject.org> - 3.12.10-2
-- Remove IRC docs
-- Resolves: #1142832
-
-* Wed May 13 2015 Debarshi Ray <rishi@fedoraproject.org> - 3.12.10-1
-- Update to 3.12.10
-- Resolves: #1174588
-
-* Mon Mar 23 2015 Richard Hughes <rhughes@redhat.com> - 3.12.8-1
-- Update to 3.12.8
-- Resolves: #1174588
-
-* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 3.8.4-6
-- Mass rebuild 2014-01-24
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 3.8.4-5
-- Mass rebuild 2013-12-27
-
-* Mon Dec 16 2013 Matthias Clasen <mclasen@redhat.com> - 3.8.4-4
-- Update translations
-- Resolves: #1030324
-
 * Fri Nov  1 2013 Debarshi Ray <rishi@fedoraproject.org> - 3.8.4-3
 - Can not log into Facebook Chat using X-FACEBOOK-PLATFORM (Red Hat #1025727)
 
@@ -545,7 +505,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 * Fri Jul 29 2011 Brian Pepple <bpepple@fedoraproject.org> - 3.1.4-2
 - Rebuild.
 
-* Wed Jul 27 2011 Matthias Clasen <mclasen@redhat.com> - 3.1.4-1
+* Tue Jul 27 2011 Matthias Clasen <mclasen@redhat.com> - 3.1.4-1
 - Update to 3.1.4
 
 * Mon Jul 25 2011 Matthias Clasen <mclasen@redhat.com> - 3.1.3-4
@@ -602,7 +562,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 - Update to 2.91.93.
 - Bump minimum tp-glib version.
 
-* Thu Mar 24 2011 Dan Williams <dcbw@redhat.com> 2.91.92-2
+* Wed Mar 24 2011 Dan Williams <dcbw@redhat.com> 2.91.92-2
 - Rebuild for NM 0.9
 
 * Wed Mar 23 2011 Ray Strode <rstrode@redhat.com> 2.91.92-1
@@ -1170,5 +1130,5 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 * Fri Jun  1 2007 David Nielsen <david@lovesunix.net> - 0.5-2
 - Let Empathy own the directory and not just the files in it
 
-* Wed May 30 2007 David Nielsen <david@lovesunix.net> - 0.5-1
+* Tue May 30 2007 David Nielsen <david@lovesunix.net> - 0.5-1
 - Initial package

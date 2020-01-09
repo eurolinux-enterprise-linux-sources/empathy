@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#accounts"/>
-    <desc>从 <app>Empathy</app> 中完全地删除一个帐号。</desc>
+    <desc>从 <app>Empathy</app> 中完全地删除一个账户。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review">
@@ -29,9 +29,9 @@
 -->
   </info>
 
-  <title>删除帐号</title>
+  <title>删除账户</title>
 
-  <p>如果你不想再使用某个帐号，您可以从 <app>Empathy</app> 中完全地删除这个帐号。如果您将来又希望在 <app>Empathy</app> 中使用这个帐号了，您可以再添加这个账户。</p>
+  <p>如果你不想再使用某个账户，您可以从 <app>Empathy</app> 中完全地删除这个账户。如果您将来又希望在 <app>Empathy</app> 中使用这个账户了，您可以再添加这个账户。</p>
 
   <steps>
     <item>
@@ -39,17 +39,17 @@
       <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>在窗口左侧的帐号列表中选择您想要删除的帐号。</p>
+      <p>在窗口左侧的账户列表中选择您想要删除的账户。</p>
     </item>
     <item>
-      <p>点击<gui style="button">-</gui>。</p>
+      <p>Click <gui style="button">-</gui>.</p>
     </item>
     <item>
-      <p>一个弹出对话框会要求您确认删除。点击<gui>删除</gui>按钮来永久的删除这个帐号。</p>
+      <p>一个弹出对话框会要求您确认删除。点击<gui>删除</gui>按钮来永久的删除这个账户。</p>
     </item>
   </steps>
 
   <note>
-    <p>即使删除了帐号，<app>Empathy</app> 也不会删除这个帐号的聊天记录。</p>
+    <p>即使删除了账户，<app>Empathy</app> 也不会删除这个账户的聊天记录。</p>
   </note>
 </page>

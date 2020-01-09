@@ -18,15 +18,16 @@
  */
 
 #include "config.h"
+
+#include <gtk/gtk.h>
+#include <pulse/glib-mainloop.h>
+
 #include "empathy-mic-monitor.h"
 
-#include <pulse/glib-mainloop.h>
-#include <tp-account-widgets/tpaw-utils.h>
-
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 enum
 {
@@ -476,7 +477,7 @@ empathy_mic_monitor_change_microphone_finish (EmpathyMicMonitor *self,
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_void (self,
+  empathy_implement_finish_void (self,
       empathy_mic_monitor_change_microphone_async);
 }
 
@@ -614,7 +615,7 @@ empathy_mic_monitor_get_default_finish (EmpathyMicMonitor *self,
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_return_pointer (self,
+  empathy_implement_finish_return_pointer (self,
       empathy_mic_monitor_get_default_async);
 }
 
@@ -678,6 +679,6 @@ empathy_mic_monitor_set_default_finish (EmpathyMicMonitor *self,
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_void (self,
+  empathy_implement_finish_void (self,
       empathy_mic_monitor_set_default_async);
 }

@@ -23,6 +23,7 @@
 #define __EMPATHY_CONTACT_H__
 
 #include <glib-object.h>
+
 #include <telepathy-glib/telepathy-glib.h>
 #include <telepathy-logger/telepathy-logger.h>
 #include <folks/folks.h>

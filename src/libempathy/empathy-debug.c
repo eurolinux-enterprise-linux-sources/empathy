@@ -19,9 +19,8 @@
  */
 
 #include "config.h"
-#include "empathy-debug.h"
 
-#include <tp-account-widgets/tpaw-debug.h>
+#include "empathy-debug.h"
 
 #ifdef ENABLE_DEBUG
 
@@ -32,6 +31,7 @@ static GDebugKey keys[] = {
   { "Chat", EMPATHY_DEBUG_CHAT },
   { "Contact", EMPATHY_DEBUG_CONTACT },
   { "Account", EMPATHY_DEBUG_ACCOUNT },
+  { "Irc", EMPATHY_DEBUG_IRC },
   { "Dispatcher", EMPATHY_DEBUG_DISPATCHER },
   { "Ft", EMPATHY_DEBUG_FT },
   { "Location", EMPATHY_DEBUG_LOCATION },
@@ -60,7 +60,6 @@ empathy_debug_set_flags (const gchar *flags_string)
   for (nkeys = 0; keys[nkeys].value; nkeys++);
 
   tp_debug_set_flags (flags_string);
-  tpaw_debug_set_flags (flags_string);
 
   if (flags_string)
       debug_set_flags (g_parse_debug_string (flags_string, keys, nkeys));

@@ -5,7 +5,7 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="change-status"/>
 	  <link type="seealso" xref="status-icons"/>
-    <desc>Dodawanie, modyfikowanie i usuwanie własnych wiadomości dla stanów obecności.</desc>
+    <desc>Dodawanie, modyfikowanie i usuwanie własnych wiadomości dla stanów obecności.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-30" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <credit type="author">
@@ -26,37 +26,29 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Ustawienie własnej wiadomości</title>
 
   <p>Czasem może wystąpić potrzeba ustawienia własnej wiadomości dla stanu, np. aby powiadomić innych, że będziemy niedostępni przez pewien czas.</p>
-  <p>Można ustawić własną wiadomość na podstawie różnych dostępnych stanów dostępności.</p>
+  <p>Można ustawić własną wiadomość w oparciu o różne dostępne stany dostępności.</p>
 
   <steps>
     <item>
-      <p>W oknie <gui>Lista kontaktów</gui> należy kliknąć rozwijaną listę na górze.</p>
+      <p>W oknie <gui>Lista kontaktów</gui> należy kliknąć w rozwijaną listę na górze.</p>
     </item>
     <item>
       <p>Należy wybrać stan, do którego chcemy dodać własną wiadomość. Należy wybrać stan oznaczony etykietą <gui>Własna wiadomość</gui>.</p>
     </item>
     <item>
-      <p>Należy wprowadzić własną wiadomość do pola tekstowego na górze okna i nacisnąć <key>Enter</key>, aby ustawić wiadomość.</p>
+      <p>Należy wprowadzić własną wiadomość do pola tekstowego na górze okna i nacisnąć <key>Enter</key>, aby ustawić wiadomość.</p>
     </item>
     <item>
-      <p>Jeśli chcemy ustawić własną wiadomość jako ulubioną, zapisując ją do ponownego użycia, należy nacisnąć serduszko w prawym rogu pola tekstowego, w którym wpisywana jest własna wiadomość.</p>
+      <p>
+        If you want to set the custom message as a favorite, saving it in order to use it
+        again, click on the little heart on the right of the text box where you wrote your
+        custom message.
+      </p>
       <p>Bez naciśnięcia gwiazdki własna wiadomość nie będzie dostępna przy ponownym uruchomieniu programu <app>Empathy</app>. Zostanie ona zapamiętana jedynie do końca bieżącej sesji.</p>
     </item>
   </steps>
@@ -67,10 +59,10 @@
 
   <steps>
     <item>
-     <p>W oknie <gui>Lista kontaktów</gui> należy kliknąć rozwijaną listę na górze.</p>
+     <p>W oknie <gui>Lista kontaktów</gui> należy kliknąć w rozwijaną listę na górze.</p>
     </item>
     <item>
-      <p>Należy wybrać <gui>Zmodyfikuj własne wiadomości…</gui>.</p>
+      <p>Należy wybrać <gui>Zmodyfikuj własne wiadomości...</gui>.</p>
     </item>
 	  <item>
 	    <list>
@@ -78,10 +70,10 @@
 	        <p>Aby zmodyfikować własne wiadomości należy:</p>
 	        <steps>
 	          <item>
-	            <p>W oknie <gui>Zapisane własne wiadomości</gui> należy wybrać wiadomość stanu, którą chcemy zmodyfikować i nacisnąć na nią dwukrotnie.</p>
+	            <p>W oknie <gui>Zapisane własne wiadomości</gui> należy wybrać wiadomość stanu, którą chcemy zmodyfikować i nacisnąć na nią dwukrotnie.</p>
             </item>
             <item>
-              <p>Wprowadzić treść nowej własnej wiadomości i nacisnąć <key>Enter</key>, aby ją zmodyfikować.</p>
+              <p>Wprowadzić treść nowej własnej wiadomości i nacisnąć <key>Enter</key>, aby ją zmodyfikować.</p>
             </item>
           </steps>
         </item>
@@ -89,7 +81,7 @@
           <p>Aby usunąć własną wiadomość należy:</p>
           <steps>
             <item>
-              <p>W oknie <gui>Zapisane własne wiadomości</gui> należy wybrać wiadomość stanu, którą chcemy usunąć.</p>
+              <p>W oknie <gui>Zapisane własne wiadomości</gui> należy wybrać wiadomość stanu, którą chcemy usunąć.</p>
             </item>
             <item>
               <p>Nacisnąć na przycisk <gui>Usuń</gui>.</p>
@@ -104,7 +96,10 @@
   </steps>
 
   <note style="tip">
-    <p>Po modyfikacji własnej wiadomości, nie zostanie ona ustawiona jako bieżąca wiadomość stanu. W tym celu należy wybrać ją w oknie <gui>Lista kontaktów</gui>.</p>
+    <p>
+      When you edit a custom message, it will not be set as the current
+      status message. You will need to select it from the <gui>Contact List</gui> window.
+    </p>
   </note>
 
   </section>

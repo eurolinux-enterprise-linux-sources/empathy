@@ -22,6 +22,7 @@
 #define __EMPATHY_TP_CHAT_H__
 
 #include <glib.h>
+
 #include <telepathy-glib/telepathy-glib.h>
 
 #include "empathy-message.h"

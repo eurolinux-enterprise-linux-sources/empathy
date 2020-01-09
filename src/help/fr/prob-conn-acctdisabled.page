@@ -93,7 +93,7 @@
 
   <steps>
     <item>
-      <p>Assurez-vous d'être connecté à Internet ou à un réseau local.</p>
+      <p>Assurez-vous que vous êtes connecté à Internet ou à un réseau local.</p>
     </item>
     <item>
       <p>Choisissez <guiseq><gui>Édition</gui><gui>Comptes</gui></guiseq> et sélectionnez le compte qui ne fonctionne pas.</p>

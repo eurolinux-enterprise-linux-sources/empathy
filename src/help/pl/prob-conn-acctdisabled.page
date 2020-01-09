@@ -25,18 +25,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Konto nie jest włączone</title>
@@ -45,16 +33,16 @@
 
   <steps>
     <item>
-      <p>Należy się upewnić, że połączenie z Internetem lub siecią lokalną zostało ustanowione.</p>
+      <p>Należy się upewnić, że połączenie z Internetem lub siecią lokalną zostało ustanowione.</p>
     </item>
     <item>
-      <p>Należy wybrać <guiseq><gui>Edycja</gui><gui>Konta</gui></guiseq> i zaznaczyć konto, które nie działa.</p>
+      <p>Należy wybrać <guiseq><gui>Edycja</gui><gui>Konta</gui></guiseq> i zaznaczyć konto, które nie działa.</p>
     </item>
     <item>
-      <p>Należy ponownie wprowadzić nazwę użytkownika i hasło, aby upewnić się, że są one poprawne.</p>
+      <p>Należy ponownie wprowadzić nazwę użytkownika i hasło, aby upewnić się, że są one poprawne.</p>
     </item>
     <item>
-      <p>Należy sprawdzić w części <gui>Zaawansowane</gui>, czy wszystkie szczegóły są poprawne. Szczegóły powinny być możliwe do sprawdzenia na stronie usługi komunikatora.</p>
+      <p>Należy sprawdzić w części <gui>Zaawansowane</gui>, czy wszystkie szczegóły są poprawne. Szczegóły powinny być możliwe do sprawdzenia na stronie usługi komunikatora.</p>
     </item>
     <item>
       <p>

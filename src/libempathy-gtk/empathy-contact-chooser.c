@@ -10,13 +10,15 @@
  */
 
 #include "config.h"
+
 #include "empathy-contact-chooser.h"
 
-#include "empathy-client-factory.h"
-#include "empathy-individual-store-manager.h"
-#include "empathy-individual-view.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-client-factory.h>
+
+#include <libempathy-gtk/empathy-individual-store-manager.h>
+#include <libempathy-gtk/empathy-individual-view.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
 
 G_DEFINE_TYPE (EmpathyContactChooser,
     empathy_contact_chooser, GTK_TYPE_BOX);
@@ -213,7 +215,7 @@ get_contacts_cb (GObject *source,
   GError *error = NULL;
   FolksIndividual *individual;
   TpContact *contact;
-  EmpathyContact *emp_contact = NULL;
+  EmpathyContact *emp_contact;
 
   self = tp_weak_ref_dup_object (wr);
   if (self == NULL)
@@ -232,7 +234,7 @@ get_contacts_cb (GObject *source,
     /* another request has been started */
     goto out;
 
-  individual =  empathy_ensure_individual_from_tp_contact (contact);
+  individual =  empathy_create_individual_from_tp_contact (contact);
   if (individual == NULL)
     goto out;
 
@@ -312,7 +314,7 @@ search_text_changed (GtkEntry *entry,
 
   id = gtk_entry_get_text (entry);
 
-  self->priv->search_words = tpaw_live_search_strip_utf8_string (id);
+  self->priv->search_words = empathy_live_search_strip_utf8_string (id);
   self->priv->search_str = g_strdup (id);
 
   add_temporary_individuals (self, id);

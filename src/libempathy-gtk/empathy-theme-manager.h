@@ -23,6 +23,7 @@
 #ifndef __EMPATHY_THEME_MANAGER_H__
 #define __EMPATHY_THEME_MANAGER_H__
 
+#include <glib-object.h>
 #include "empathy-theme-adium.h"
 
 G_BEGIN_DECLS

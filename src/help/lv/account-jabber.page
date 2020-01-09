@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -38,7 +37,7 @@
       <title><gui>Vajadzīga šifrēšana (TLS/SSL)</gui></title>
       <title><gui>Ignorēt SSL sertifikāta kļūdas</gui></title>
       <p>Kad vien tas ir iespējams, saziņa caur <app>Empathy</app> un Jabber serveriem ir šifrēta. Ja šifrēta saruna nav iespējama, ziņas var tikt nosūtītas nešifrētā veidā. Izvēlies <gui>Šifrēšana pieprasīta</gui>, lai aizliegtu <app>Empathy</app> lietotnei sazināties ar Jabber serveri, kad šifrēšana nav iespējama.</p>
-      <p>Daži Jabber serveri var šifrēt datus, izmantojot nederīgus sertifikātus, vai izmantojot sertifikātus, ko ir parakstījušas nezināmas institūcijas. Jūs varat izvēlēties <gui>Ignorēt SSL sertifikātu kļūdas</gui>, lai ļautu šifrēt komunikāciju, izmantojot nederīgus sertifikātus, bet tas ļaus uzbrucējam pārtvert komunikāciju ar serveriem (tai skaitā paroles). Šo opciju varat izmantot testēšanas nolūkiem, vai ja serveris is salauzts un jūs neuztrauc komunikāciju drošība.</p>
+      <p>Daži Jabber serveri var iešifrēt datus, izmantojot nederīgus sertifikātus, vai izmantojot sertifikātus no neatpazīstamiem veidotājiem. Ja tu uzticies serverim, kuram pieslēdzies, vari izvēlēties <gui>Ignorēt SSL sertifikāta kļūdas</gui>, lai atļautu iešifrētu saziņu, izmantojot nederīgus sertifikātus.</p>
     </item>
     <item>
       <title><gui>Resurss</gui></title>

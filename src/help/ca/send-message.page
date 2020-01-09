@@ -25,37 +25,16 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Enviament de missatges</title>
+  <title>Envieu una missatge a algú</title>
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> feu doble clic al nom del contacte amb el qual voleu parlar.</p>
+      <p>
+        From the <gui>Contact List</gui> window, double-click the name of the
+        contact that you want to have a conversation with.
+      </p>
     </item>
     <item>
       <p>S'obrirà una finestra nova. Teclegeu el missatge a la caixa a la part inferior de la finestra i premeu <key>Retorn</key> per enviar-lo.</p>
@@ -63,17 +42,22 @@
   </steps>
   
   <section id="send-meta-contact" style="2column">
-    <title>Com enviar un missatge a un metacontacte</title>
+    <title>Send a message to a meta-contact</title>
     <steps>
       <item>
         <p>Des de la finestra <gui>Llista de contactes</gui>, feu clic amb el botó secundari al metacontacte.</p>
       </item>
       <item>
-        <p>Seleccioneu el contacte amb el qual voleu conversar i des del menú seleccioneu <gui style="menuitem">Xat</gui>.</p>
+        <p>Seleccioneu el contacte amb el que voleu conversar i des del menú seleccioneu <gui style="menuitem">Xat</gui>.</p>
       </item>
     </steps>
     <note style="tip">
-      <p>Per reconèixer si un contacte és un <em>metacontacte</em> situeu el ratolí a sobre d'un contacte de la finestra <gui>Llista de contactes</gui> i mantingueu-lo a sobre durant un segon: apareixerà un petit missatge emergent que mostrarà el nombre de contactes que formen el metacontacte.</p>
+      <p>
+        To recognize if a contact is a <em>meta-contact</em>, move your mouse on
+        a contact in the <gui>Contact List</gui> window, and stop over it for a
+        second: a small pop-up message will appear showing the number of the
+        contacts that form the meta-contact.
+      </p>
     </note>
   </section>
 

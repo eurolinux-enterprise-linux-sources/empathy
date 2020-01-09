@@ -19,16 +19,15 @@
  */
 
 #include "config.h"
-#include "empathy-client-factory.h"
 
-#include <telepathy-glib/telepathy-glib-dbus.h>
+#include <libempathy/empathy-client-factory.h>
+#include <libempathy/empathy-request-util.h>
 
 #include "empathy-call-factory.h"
 #include "empathy-call-handler.h"
-#include "empathy-request-util.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_VOIP
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 G_DEFINE_TYPE(EmpathyCallFactory, empathy_call_factory, TP_TYPE_BASE_CLIENT)
 
@@ -134,7 +133,7 @@ empathy_call_factory_class_init (EmpathyCallFactoryClass *klass)
       NULL, NULL,
       g_cclosure_marshal_generic,
       G_TYPE_NONE,
-      2, EMPATHY_TYPE_CALL_HANDLER, G_TYPE_UINT64);
+      2, EMPATHY_TYPE_CALL_HANDLER, G_TYPE_BOOLEAN);
 
   signals[INCOMING_CALL] =
     g_signal_new ("incoming-call",
@@ -163,7 +162,7 @@ empathy_call_factory_initialise (void)
   self = EMPATHY_CALL_FACTORY (g_object_new (EMPATHY_TYPE_CALL_FACTORY,
       "account-manager", am,
       "factory", factory,
-      "name", EMPATHY_CALL_TP_BUS_NAME_SUFFIX,
+      "name", EMPATHY_CALL_BUS_NAME_SUFFIX,
       NULL));
 
   g_object_unref (am);
@@ -217,7 +216,7 @@ handle_channels (TpBaseClient *client,
       handler = empathy_call_handler_new_for_channel (call, contact);
 
       g_signal_emit (self, signals[NEW_CALL_HANDLER], 0,
-          handler, user_action_time);
+          handler, FALSE);
 
       g_object_unref (handler);
       g_object_unref (contact);

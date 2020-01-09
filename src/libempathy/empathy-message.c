@@ -23,12 +23,12 @@
  */
 
 #include "config.h"
-#include "empathy-message.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-time.h>
 
 #include "empathy-client-factory.h"
+#include "empathy-message.h"
+#include "empathy-time.h"
 #include "empathy-utils.h"
 #include "empathy-enum-types.h"
 
@@ -46,6 +46,7 @@ typedef struct {
 	gboolean                  is_backlog;
 	guint                     id;
 	gboolean                  incoming;
+	TpChannelTextMessageFlags flags;
 } EmpathyMessagePriv;
 
 static void empathy_message_finalize   (GObject            *object);
@@ -72,6 +73,7 @@ enum {
 	PROP_ORIGINAL_TIMESTAMP,
 	PROP_IS_BACKLOG,
 	PROP_INCOMING,
+	PROP_FLAGS,
 	PROP_TP_MESSAGE,
 };
 
@@ -166,6 +168,15 @@ empathy_message_class_init (EmpathyMessageClass *class)
 							       G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
+					 PROP_FLAGS,
+					 g_param_spec_uint ("flags",
+							       "Flags",
+							       "The TpChannelTextMessageFlags of this message",
+							       0, G_MAXUINT, 0,
+							       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS |
+							       G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
 					 PROP_TP_MESSAGE,
 					 g_param_spec_object ("tp-message",
 							       "TpMessage",
@@ -185,7 +196,7 @@ empathy_message_init (EmpathyMessage *message)
 		EMPATHY_TYPE_MESSAGE, EmpathyMessagePriv);
 
 	message->priv = priv;
-	priv->timestamp = tpaw_time_get_current ();
+	priv->timestamp = empathy_time_get_current ();
 }
 
 static void
@@ -254,6 +265,9 @@ message_get_property (GObject    *object,
 	case PROP_INCOMING:
 		g_value_set_boolean (value, priv->incoming);
 		break;
+	case PROP_FLAGS:
+		g_value_set_uint (value, priv->flags);
+		break;
 	case PROP_TP_MESSAGE:
 		g_value_set_object (value, priv->tp_message);
 		break;
@@ -300,7 +314,7 @@ message_set_property (GObject      *object,
 	case PROP_TIMESTAMP:
 		priv->timestamp = g_value_get_int64 (value);
 		if (priv->timestamp <= 0)
-			priv->timestamp = tpaw_time_get_current ();
+			priv->timestamp = empathy_time_get_current ();
 		break;
 	case PROP_ORIGINAL_TIMESTAMP:
 		priv->original_timestamp = g_value_get_int64 (value);
@@ -310,6 +324,9 @@ message_set_property (GObject      *object,
 		break;
 	case PROP_INCOMING:
 		priv->incoming = g_value_get_boolean (value);
+		break;
+	case PROP_FLAGS:
+		priv->flags = g_value_get_uint (value);
 		break;
 	case PROP_TP_MESSAGE:
 		priv->tp_message = g_value_dup_object (value);
@@ -669,19 +686,31 @@ empathy_message_equal (EmpathyMessage *message1, EmpathyMessage *message2)
 	return FALSE;
 }
 
+TpChannelTextMessageFlags
+empathy_message_get_flags (EmpathyMessage *self)
+{
+	EmpathyMessagePriv *priv = GET_PRIV (self);
+
+	g_return_val_if_fail (EMPATHY_IS_MESSAGE (self), 0);
+
+	return priv->flags;
+}
+
 EmpathyMessage *
 empathy_message_new_from_tp_message (TpMessage *tp_msg,
 				     gboolean incoming)
 {
 	EmpathyMessage *message;
 	gchar *body;
+	TpChannelTextMessageFlags flags;
 	gint64 timestamp;
 	gint64 original_timestamp;
 	const GHashTable *part = tp_message_peek (tp_msg, 0);
+	gboolean is_backlog;
 
 	g_return_val_if_fail (TP_IS_MESSAGE (tp_msg), NULL);
 
-	body = tp_message_to_text (tp_msg, NULL);
+	body = tp_message_to_text (tp_msg, &flags);
 
 	timestamp = tp_message_get_sent_timestamp (tp_msg);
 	if (timestamp == 0)
@@ -690,6 +719,9 @@ empathy_message_new_from_tp_message (TpMessage *tp_msg,
 	original_timestamp = tp_asv_get_int64 (part,
 		"original-message-received", NULL);
 
+	is_backlog = (flags & TP_CHANNEL_TEXT_MESSAGE_FLAG_SCROLLBACK) ==
+		TP_CHANNEL_TEXT_MESSAGE_FLAG_SCROLLBACK;
+
 	message = g_object_new (EMPATHY_TYPE_MESSAGE,
 		"body", body,
 		"token", tp_message_get_token (tp_msg),
@@ -697,7 +729,8 @@ empathy_message_new_from_tp_message (TpMessage *tp_msg,
 		"type", tp_message_get_message_type (tp_msg),
 		"timestamp", timestamp,
 		"original-timestamp", original_timestamp,
-		"is-backlog", tp_message_is_scrollback (tp_msg),
+		"flags", flags,
+		"is-backlog", is_backlog,
 		"incoming", incoming,
 		"tp-message", tp_msg,
 		NULL);

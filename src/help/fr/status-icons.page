@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="fr">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="fr">
 
   <info>
     <desc>Comprendre les différents états et leurs icônes respectives.</desc>
@@ -12,11 +12,11 @@
     </revision>
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Creative Commons Paternité - Partage des Conditions Initiales à l'Identique 3.0</p>
@@ -94,23 +94,23 @@
 
   <terms>
     <item>
-      <title><media type="image" mime="image/png" src="figures/available.png" its:translate="no"><span its:translate="yes">icône disponible</span></media> <gui>Disponible</gui></title>
+      <title><media type="image" mime="image/png" src="figures/available.png">Icône Disponible</media> <gui>Disponible</gui></title>
       <p>Utilisez l'état <em>Disponible</em> quand vous êtes sur votre ordinateur et enclin à discuter avec vos contacts. Vous pouvez définir un message personnalisé pour cet état.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/busy.png" its:translate="no"><span its:translate="yes">icône occupé</span></media> <gui>Occupé</gui></title>
+      <title><media type="image" mime="image/png" src="figures/busy.png">icône Occupé</media> <gui>Occupé</gui></title>
       <p>Utilisez l'état <em>Occupé</em> quand vous souhaitez informer vos contacts que vous ne pouvez pas discuter pour le moment. Ils peuvent toujours vous contacter, par exemple s'ils ont besoin de discuter de quelque chose d'urgent. Par défaut, <app>Empathy</app> ne fait pas usage de bulles de notification et de sons lorsque vous êtes occupé. Vous pouvez définir un message personnalisé pour cet état.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/away.png" its:translate="no"><span its:translate="yes">icône absent</span></media> <gui>Absent</gui></title>
+      <title><media type="image" mime="image/png" src="figures/away.png">icône Absent</media> <gui>Absent</gui></title>
       <p>Utilisez l'état <em>Absent</em> quand vous n'êtes pas à portée de votre ordinateur. <app>Empathy</app> définit automatiquement votre état à Absent si vous n'utilisez pas votre ordinateur pendant un certain temps ou si votre écran de veille est actif. Par défaut, <app>Empathy</app> ne fait pas usage de bulles de notification et de sons lorsque vous êtes absent. Vous pouvez définir un message personnalisé pour cet état.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">icône hors-ligne</span></media> <gui>Invisible</gui></title>
+      <title><media type="image" mime="image/png" src="figures/offline.png">icône Hors-ligne</media> <gui>Invisible</gui></title>
       <p>Quand vous définissez votre état à <em>Invisible</em>, vous apparaissez comme hors-ligne à vos contacts. Vous êtes encore connecté à vos comptes, et vous pouvez encore voir les états de vos contacts et engager des conversations avec eux.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">icône hors-ligne</span></media> <gui>Hors-ligne</gui></title>
+      <title><media type="image" mime="image/png" src="figures/offline.png">Hors-ligne icon</media> <gui>Déconnecté</gui></title>
       <p>Définissez votre état à <em>Déconnecté</em> pour vous déconnecter de tous vos comptes.</p>
     </item>
   </terms>

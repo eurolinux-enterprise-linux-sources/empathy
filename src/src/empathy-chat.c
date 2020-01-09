@@ -23,21 +23,24 @@
 #include "config.h"
 
 #include <glib/gi18n.h>
+
 #include <libnotify/notify.h>
 
-#include "empathy-bus-names.h"
+#include <libempathy/empathy-presence-manager.h>
+
+#include <libempathy-gtk/empathy-theme-manager.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+
 #include "empathy-chat-manager.h"
 #include "empathy-chat-resources.h"
-#include "empathy-presence-manager.h"
-#include "empathy-theme-manager.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CHAT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Exit after $TIMEOUT seconds if not displaying any call window */
 #define TIMEOUT 60
+
+#define EMPATHY_CHAT_DBUS_NAME "org.gnome.Empathy.Chat"
 
 static GtkApplication *app = NULL;
 static gboolean activated = FALSE;
@@ -65,7 +68,6 @@ activate_cb (GApplication *application)
     return;
 
   activated = TRUE;
-  empathy_gtk_init ();
 
   if (!use_timer)
     {
@@ -98,7 +100,7 @@ main (int argc,
   gint retval;
 
   optcontext = g_option_context_new (N_("- Empathy Chat Client"));
-  g_option_context_add_group (optcontext, gtk_get_option_group (FALSE));
+  g_option_context_add_group (optcontext, gtk_get_option_group (TRUE));
   g_option_context_add_main_entries (optcontext, options, GETTEXT_PACKAGE);
   g_option_context_set_translation_domain (optcontext, GETTEXT_PACKAGE);
 
@@ -113,10 +115,10 @@ main (int argc,
 
   g_option_context_free (optcontext);
 
-  empathy_init ();
+  empathy_gtk_init ();
 
   /* Make empathy and empathy-chat appear as the same app in gnome-shell */
-  g_set_prgname ("empathy");
+  gdk_set_program_class ("Empathy");
   gtk_window_set_default_icon_name ("empathy");
   textdomain (GETTEXT_PACKAGE);
 
@@ -125,7 +127,7 @@ main (int argc,
   resource = empathy_chat_get_resource ();
   g_resources_register (resource);
 
-  app = gtk_application_new (EMPATHY_CHAT_BUS_NAME, G_APPLICATION_FLAGS_NONE);
+  app = gtk_application_new (EMPATHY_CHAT_DBUS_NAME, G_APPLICATION_FLAGS_NONE);
   g_signal_connect (app, "activate", G_CALLBACK (activate_cb), NULL);
 
 #ifdef ENABLE_DEBUG

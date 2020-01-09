@@ -21,11 +21,7 @@
 
 /* empathy-ft-factory.c */
 
-#include "config.h"
 #include "empathy-ft-factory.h"
-
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
 #include "empathy-request-util.h"
 #include "empathy-utils.h"
 
@@ -205,7 +201,7 @@ empathy_ft_factory_init (EmpathyFTFactory *self)
   am = tp_account_manager_dup ();
 
   priv->handler = tp_simple_handler_new_with_am (am, FALSE, FALSE,
-      EMPATHY_FT_TP_BUS_NAME_SUFFIX, FALSE, handle_channels_cb, self, NULL);
+      EMPATHY_FT_BUS_NAME_SUFFIX, FALSE, handle_channels_cb, self, NULL);
 
   tp_base_client_take_handler_filter (priv->handler, tp_asv_new (
         TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,

@@ -18,16 +18,18 @@
  */
 
 #include "config.h"
-#include "empathy-notifications-approver.h"
 
 #include <glib/gi18n.h>
 
-#include "empathy-call-utils.h"
+#include <libempathy-gtk/empathy-notify-manager.h>
+#include <libempathy-gtk/empathy-call-utils.h>
+
 #include "empathy-event-manager.h"
-#include "empathy-notify-manager.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+
+#include "empathy-notifications-approver.h"
 
 struct _EmpathyNotificationsApproverPrivate
 {

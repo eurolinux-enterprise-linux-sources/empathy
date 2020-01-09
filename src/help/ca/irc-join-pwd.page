@@ -18,30 +18,6 @@
     <license>
       <p>Creative Commons Reconeixement-Compartir Igual 3.0</p>
     </license>    
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
   <title>Entreu en una sala de xat d'IRC protegida.</title>
@@ -52,7 +28,10 @@
       <p><link xref="irc-join-room">Entra a la sala</link> com sempre.</p>
     </item>
     <item>
-      <p>L'Empathy us demanarà una contrasenya. Introduïu la contrasenya de la sala de xat de l'IRC i feu clic a <gui style="button">Uneix-m'hi</gui>.</p>
+      <p>
+        Empathy will prompt you for a password. Enter the password for the
+        IRC chat room and click <gui style="button">Join</gui>.
+      </p>
     </item>
   </steps>
 

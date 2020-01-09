@@ -19,21 +19,18 @@
  *          Cosimo Cecchi <cosimo.cecchi@collabora.co.uk>
  */
 
-#include "config.h"
+#include <libempathy/empathy-connection-managers.h>
+#include <libempathy/empathy-utils.h>
+
 #include "empathy-import-utils.h"
-
-#include <tp-account-widgets/tpaw-connection-managers.h>
-#include <tp-account-widgets/tpaw-utils.h>
-
 #include "empathy-import-pidgin.h"
-#include "empathy-utils.h"
 
 EmpathyImportAccountData *
 empathy_import_account_data_new (const gchar *source)
 {
   EmpathyImportAccountData *data;
 
-  g_return_val_if_fail (!TPAW_STR_EMPTY (source), NULL);
+  g_return_val_if_fail (!EMP_STR_EMPTY (source), NULL);
 
   data = g_slice_new0 (EmpathyImportAccountData);
   data->settings = g_hash_table_new_full (g_str_hash, g_str_equal, NULL,
@@ -82,13 +79,13 @@ gboolean
 empathy_import_protocol_is_supported (const gchar *protocol,
     TpConnectionManager **cm)
 {
-  TpawConnectionManagers *manager;
+  EmpathyConnectionManagers *manager;
   GList *cms;
   GList *l;
   gboolean proto_is_supported = FALSE;
 
-  manager = tpaw_connection_managers_dup_singleton ();
-  cms = tpaw_connection_managers_get_cms (manager);
+  manager = empathy_connection_managers_dup_singleton ();
+  cms = empathy_connection_managers_get_cms (manager);
 
   for (l = cms; l; l = l->next)
     {

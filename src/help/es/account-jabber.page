@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -27,7 +26,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Daniel Mustieles</mal:name>
       <mal:email>daniel.mustieles@gmail.com</mal:email>
-      <mal:years>2012 - 2015</mal:years>
+      <mal:years>2012</mal:years>
     </mal:credit>
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
@@ -50,7 +49,7 @@
       <title><gui>Se requiere cifrado (TLS/SSL)</gui></title>
       <title><gui>Ignorar los errores de certificados SSL</gui></title>
       <p>Siempre que sea posible, la comunicación entre <app>Empathy</app> y el servidor Jabber está cifrada. Si la comunicación cifrada no es posible, puede que los mensajes se envíen sin cifrar. Seleccione <gui>Requiere cifrado</gui> para evitar que <app>Empathy</app> se comunique con el servidor Jabber cuando no es posible cifrar la comunicación.</p>
-      <p>Algunos servidores de Jabber pueden cifrar los datos usando certificados no válidos, o usando certificados firmados por autoridades desconocidas. Puede elegir <gui>Ignorar los errores en certificados SSL</gui> para permitir una comunicación cifrada con certificados no válidos, pero esto permite que un atacante intercepte su comunicación con el servidor (incluyendo la contraseña). Puede querer usar esta opción para pruebas, o si su servidor no funciona y no le importa la seguridad de su comunicación.</p>
+      <p>Algunos servidores Jabber pueden cifrar datos usando certificados no válidos o usando certificados de autoridades desconocidas. Si confía en el servidor al que se está conectando puede seleccionar <gui>Ignorar los errores de certificados SSL</gui> para permitir comunicaciones cifradas con certificados no válidos.</p>
     </item>
     <item>
       <title><gui>Recurso</gui></title>
@@ -59,7 +58,7 @@
       <p>Puede establecer la prioridad para especificar qué aplicación debería recibir mensajes entrantes de sus contactos. Los mensajes nuevos se enviarán a la aplicación con la prioridad más alta.</p>
     </item>
     <item>
-      <title><gui>Sobrescribir los ajustes del servidor</gui></title>
+      <title><gui>Sobreescribir los ajustes del servidor</gui></title>
       <p><app>Empathy</app> usará la configuración predeterminada para conectarse al servidor Jabber en función de su ID de inicio de sesión. Para algunos servidores Jabber necesitará introducir manualmente ajustes de servidor. Su proveedor Jabber deberá proporcionar esos ajustes.</p>
     </item>
   </terms>

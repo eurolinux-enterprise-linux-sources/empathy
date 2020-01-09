@@ -18,16 +18,15 @@
  */
 
 #include "config.h"
+
 #include "empathy-server-sasl-handler.h"
 
-#include <tp-account-widgets/tpaw-keyring.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
-
-#include "empathy-sasl-mechanisms.h"
-#include "extensions.h"
+#include <extensions/extensions.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_SASL
 #include "empathy-debug.h"
+#include "empathy-keyring.h"
+#include "empathy-sasl-mechanisms.h"
 
 enum {
   PROP_CHANNEL = 1,
@@ -69,7 +68,7 @@ empathy_server_sasl_handler_set_password_cb (GObject *source,
 {
   GError *error = NULL;
 
-  if (!tpaw_keyring_set_account_password_finish (TP_ACCOUNT (source), result,
+  if (!empathy_keyring_set_account_password_finish (TP_ACCOUNT (source), result,
           &error))
     {
       DEBUG ("Failed to set password: %s", error->message);
@@ -104,7 +103,7 @@ empathy_server_sasl_handler_get_password_async_cb (GObject *source,
 
   priv = EMPATHY_SERVER_SASL_HANDLER (user_data)->priv;
 
-  password = tpaw_keyring_get_account_password_finish (TP_ACCOUNT (source),
+  password = empathy_keyring_get_account_password_finish (TP_ACCOUNT (source),
       result, &error);
 
   if (password != NULL)
@@ -135,7 +134,7 @@ empathy_server_sasl_handler_init_async (GAsyncInitable *initable,
   priv->async_init_res = g_simple_async_result_new (G_OBJECT (self),
       callback, user_data, empathy_server_sasl_handler_new_async);
 
-  tpaw_keyring_get_account_password_async (priv->account,
+  empathy_keyring_get_account_password_async (priv->account,
       empathy_server_sasl_handler_get_password_async_cb, self);
 }
 
@@ -356,7 +355,7 @@ auth_cb (GObject *source,
   else
     {
       DEBUG ("Saving password in keyring");
-      tpaw_keyring_set_account_password_async (priv->account,
+      empathy_keyring_set_account_password_async (priv->account,
           priv->password, priv->save_password,
           empathy_server_sasl_handler_set_password_cb,
           NULL);
@@ -431,7 +430,7 @@ empathy_server_sasl_handler_provide_password (
   if (!may_save_response)
     {
       /* delete any password present, it shouldn't be there */
-      tpaw_keyring_delete_account_password_async (priv->account, NULL, NULL);
+      empathy_keyring_delete_account_password_async (priv->account, NULL, NULL);
     }
 
   /* Additionally, if we implement Ch.I.CredentialsStorage, inform that

@@ -20,10 +20,8 @@
  */
 
 #include "config.h"
+
 #include "empathy-chatroom.h"
-
-#include <tp-account-widgets/tpaw-utils.h>
-
 #include "empathy-utils.h"
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyChatroom)
@@ -415,7 +413,7 @@ empathy_chatroom_get_name (EmpathyChatroom *chatroom)
 
 	priv = GET_PRIV (chatroom);
 
-	if (TPAW_STR_EMPTY (priv->name)) {
+	if (EMP_STR_EMPTY (priv->name)) {
 		return priv->room;
 	}
 

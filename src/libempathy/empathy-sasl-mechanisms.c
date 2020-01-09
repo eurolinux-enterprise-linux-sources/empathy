@@ -19,15 +19,13 @@
  */
 
 #include "config.h"
-#include "empathy-sasl-mechanisms.h"
 
 #include <libsoup/soup.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_SASL
 #include "empathy-debug.h"
 #include "empathy-utils.h"
+#include "empathy-sasl-mechanisms.h"
 
 #define MECH_FACEBOOK "X-FACEBOOK-PLATFORM"
 #define MECH_WLM "X-MESSENGER-OAUTH2"
@@ -156,7 +154,8 @@ facebook_new_challenge_cb (TpChannel *channel,
   GSimpleAsyncResult *result = user_data;
   FacebookData *data;
   GHashTable *h;
-  GString *response_string;
+  GHashTable *params;
+  gchar *response;
   GArray *response_array;
 
   DEBUG ("new challenge: %s", challenge->data);
@@ -165,29 +164,27 @@ facebook_new_challenge_cb (TpChannel *channel,
 
   h = soup_form_decode (challenge->data);
 
-  /* See https://developers.facebook.com/docs/chat/#platauth.
-   * We don't use soup_form_encode() here because it would escape parameters
-   * and facebook server is not expecting that and would reject the response. */
-  response_string = g_string_new ("v=1.0&call_id=0");
-  g_string_append (response_string, "&access_token=");
-  g_string_append_uri_escaped (response_string, data->access_token, NULL, TRUE);
-  g_string_append (response_string, "&api_key=");
-  g_string_append_uri_escaped (response_string, data->client_id, NULL, TRUE);
-  g_string_append (response_string, "&method=");
-  g_string_append_uri_escaped (response_string, g_hash_table_lookup (h, "method"), NULL, TRUE);
-  g_string_append (response_string, "&nonce=");
-  g_string_append_uri_escaped (response_string, g_hash_table_lookup (h, "nonce"), NULL, TRUE);
+  /* See https://developers.facebook.com/docs/chat/#platauth */
+  params = g_hash_table_new (g_str_hash, g_str_equal);
+  g_hash_table_insert (params, "method", g_hash_table_lookup (h, "method"));
+  g_hash_table_insert (params, "nonce", g_hash_table_lookup (h, "nonce"));
+  g_hash_table_insert (params, "access_token", data->access_token);
+  g_hash_table_insert (params, "api_key", data->client_id);
+  g_hash_table_insert (params, "call_id", "0");
+  g_hash_table_insert (params, "v", "1.0");
 
-  DEBUG ("Response: %s", response_string->str);
+  response = soup_form_encode_hash (params);
+  DEBUG ("Response: %s", response);
 
   response_array = g_array_new (FALSE, FALSE, sizeof (gchar));
-  g_array_append_vals (response_array, response_string->str, response_string->len);
+  g_array_append_vals (response_array, response, strlen (response));
 
   tp_cli_channel_interface_sasl_authentication_call_respond (data->channel, -1,
       response_array, generic_cb, g_object_ref (result), g_object_unref, NULL);
 
   g_hash_table_unref (h);
-  g_string_free (response_string, TRUE);
+  g_hash_table_unref (params);
+  g_free (response);
   g_array_unref (response_array);
 }
 
@@ -339,7 +336,7 @@ empathy_sasl_auth_finish (TpChannel *channel,
     GAsyncResult *result,
     GError **error)
 {
-  tpaw_implement_finish_void (channel, empathy_sasl_auth_common_async);
+  empathy_implement_finish_void (channel, empathy_sasl_auth_common_async);
 }
 
 gboolean

@@ -11,19 +11,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
  *
  * Authors: Danielle Madeley <danielle.madeley@collabora.co.uk>
  */
 
 #include "config.h"
 
-#include <tp-account-widgets/tpaw-calendar-button.h>
+#include <libempathy-gtk/empathy-calendar-button.h>
 
 static void
-date_changed_cb (TpawCalendarButton *button,
+date_changed_cb (EmpathyCalendarButton *button,
     GDate *date,
     gpointer user_data)
 {
@@ -54,10 +55,10 @@ main (int argc,
   g_signal_connect_swapped (win, "destroy",
       G_CALLBACK (gtk_main_quit), NULL);
 
-  button = tpaw_calendar_button_new ();
+  button = empathy_calendar_button_new ();
 
   date = g_date_new_dmy (30, 11, 1984);
-  tpaw_calendar_button_set_date (TPAW_CALENDAR_BUTTON (button), date);
+  empathy_calendar_button_set_date (EMPATHY_CALENDAR_BUTTON (button), date);
   g_date_free (date);
 
   g_signal_connect (button, "date-changed",

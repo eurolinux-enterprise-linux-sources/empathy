@@ -28,6 +28,11 @@
 
   <title>什么是“附近的人”？</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>附近的人(People Nearby)服务是一个无服务器的通讯服务：您不需要连接并认证到一个中央服务器来使用这个功能。</p>
   <p>这类无服务器的通讯系统只局限于本地局域网，并且不需要互联网链接。</p>
   <p>会自动的发现在同一个局域网中使用这个服务的人，并且可以给他们发送消息甚至文件，想其它服务一样。</p>

@@ -5,7 +5,7 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="add-account"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>从其他即时聊天程序中导入帐号。</desc>
+    <desc>从其他即时聊天程序中导入账户。</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-22" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-22" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-09-02" status="review">
@@ -37,19 +37,19 @@
 -->
   </info>
 
-  <title>导入已存在的帐号</title>
+  <title>导入已存在的账户</title>
 
-  <p><app>Empathy</app> 第一次运行时，会提示您可以从其他即时通讯程序中导入帐号。目前，支持的程序只有 <app>Pidgin</app>。</p>
+  <p><app>Empathy</app> 第一次运行时，会提示您可以从其他即时通讯程序中导入账户。目前，支持的程序只有 <app>Pidgin</app>。</p>
 
   <steps>
     <item>
-      <p>第一次运行 <app>Empathy</app>，一个助理程序会提供若干选项以创建新帐号。</p>
+      <p>第一次运行 <app>Empathy</app>，一个助理程序会提供若干选项以创建新账户。</p>
     </item>
     <item>
-      <p>选择 <gui>有，请导入我的帐号信息</gui> 并点击 <gui>前进</gui>。</p>
+      <p>选择 <gui>有，请导入我的账户信息</gui> 并点击 <gui>前进</gui>。</p>
     </item>
     <item>
-      <p>选择每个您想要导入的帐号旁的复选框。</p>
+      <p>选择每个您想要导入的账户旁的复选框。</p>
     </item>
     <item>
       <p>点击<gui style="button">应用</gui>。</p>
@@ -57,7 +57,7 @@
   </steps>
 
   <note>
-    <p>目前，您只能在第一次运行时的助理程序中导入帐号。</p>
+    <p>目前，您只能在第一次运行时的助理程序中导入账户。</p>
   </note>
 
 </page>

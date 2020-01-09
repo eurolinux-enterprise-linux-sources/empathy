@@ -19,15 +19,15 @@ which gnome-autogen.sh || {
 }
 
 # Fetch submodules if needed
-if test ! -f telepathy-account-widgets/COPYING;
+if test ! -f libempathy-gtk/egg-list-box/COPYING;
 then
   echo "+ Setting up submodules"
   git submodule init
 fi
 git submodule update
 
-cd telepathy-account-widgets
+cd libempathy-gtk/egg-list-box
 sh autogen.sh --no-configure
-cd ..
+cd ../..
 
 USE_GNOME2_MACROS=1 USE_COMMON_DOC_BUILD=yes . gnome-autogen.sh

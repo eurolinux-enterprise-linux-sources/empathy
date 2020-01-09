@@ -21,18 +21,17 @@
  */
 
 #include "config.h"
-#include "empathy-contact-groups.h"
 
 #include <sys/stat.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
 #include "empathy-utils.h"
+#include "empathy-contact-groups.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
 #include "empathy-debug.h"
 
 #define CONTACT_GROUPS_XML_FILENAME "contact-groups.xml"
-#define CONTACT_GROUPS_DTD_RESOURCENAME "/org/gnome/Empathy/empathy-contact-groups.dtd"
+#define CONTACT_GROUPS_DTD_FILENAME "empathy-contact-groups.dtd"
 
 typedef struct {
 	gchar    *name;
@@ -92,7 +91,7 @@ contact_groups_file_parse (const gchar *filename)
 		return;
 	}
 
-	if (!tpaw_xml_validate_from_resource (doc, CONTACT_GROUPS_DTD_RESOURCENAME)) {
+	if (!empathy_xml_validate (doc, CONTACT_GROUPS_DTD_FILENAME)) {
 		g_warning ("Failed to validate file:'%s'", filename);
 		xmlFreeDoc (doc);
 		xmlFreeParserCtxt (ctxt);

@@ -21,8 +21,9 @@
 #ifndef _EMPATHY_WEBKIT_UTILS__H_
 #define _EMPATHY_WEBKIT_UTILS__H_
 
-#include <tp-account-widgets/tpaw-string-parser.h>
 #include <webkit/webkit.h>
+
+#include "empathy-string-parser.h"
 
 G_BEGIN_DECLS
 
@@ -31,7 +32,7 @@ typedef enum {
     EMPATHY_WEBKIT_MENU_INSPECT = 1 << 1,
 } EmpathyWebKitMenuFlags;
 
-TpawStringParser * empathy_webkit_get_string_parser (gboolean smileys);
+EmpathyStringParser * empathy_webkit_get_string_parser (gboolean smileys);
 
 void empathy_webkit_bind_font_setting (WebKitWebView *webview,
     GSettings *gsettings,

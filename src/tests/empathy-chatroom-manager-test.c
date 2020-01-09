@@ -1,6 +1,12 @@
-#include "config.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <glib/gstdio.h>
 
-#include "empathy-chatroom-manager.h"
+#include <telepathy-glib/telepathy-glib.h>
+
+#include <libempathy/empathy-chatroom-manager.h>
+
 #include "test-helper.h"
 
 #define CHATROOM_SAMPLE "chatrooms-sample.xml"

@@ -30,33 +30,9 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Canvi de l'estat</title>
+  <title>Canvieu l'estat</title>
 
   <p>Podeu canviar l'estat per indicar la disponibilitat als contactes. L'<app>Empathy</app> us permet seleccionar-ne un d'una llista d'estats per defecte.</p>
 
@@ -69,7 +45,10 @@
     </item>
   </steps>
 
-  <p>Vegeu <link xref="status-icons"/> per veure la llista d'estats possibles i què signifiquen. També podeu <link xref="set-custom-status">afegir missatges d'estat personalitzats</link> per proporcionar informació sobre la disponibilitat als contactes.</p>
+  <p>See <link xref="status-icons"/> for a list of the built-in statuses
+  and what they mean.  You can also <link xref="set-custom-status">add
+  custom status messages</link> to provide more information about your
+  availability to your contacts.</p>
 
   <note>
     <p>Si no utilitzeu l'ordinador durant una estona o s'activa l'estalvi de pantalla, l'estat es posarà a absent.</p>

@@ -81,6 +81,8 @@ const gchar *            empathy_message_type_to_str       (TpChannelTextMessage
 
 gboolean                 empathy_message_equal (EmpathyMessage *message1, EmpathyMessage *message2);
 
+TpChannelTextMessageFlags empathy_message_get_flags        (EmpathyMessage           *message);
+
 G_END_DECLS
 
 #endif /* __EMPATHY_MESSAGE_H__ */

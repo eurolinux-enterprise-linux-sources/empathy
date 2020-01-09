@@ -45,7 +45,10 @@
     </item>
   </steps>
 
-  <p>内置状态及其含义参见<link xref="status-icons"/>。您也可以<link xref="set-custom-message">添加自定义消息</link>来向您的联系人提供更多有关您当前状态的信息。</p>
+  <p>See <link xref="status-icons"/> for a list of the built-in statuses
+  and what they mean.  You can also <link xref="set-custom-status">add
+  custom status messages</link> to provide more information about your
+  availability to your contacts.</p>
 
   <note>
     <p>如果您一段时间不使用计算机，或屏幕保护开始运行，您的状态会自动变为“离开”。</p>

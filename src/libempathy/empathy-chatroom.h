@@ -23,9 +23,10 @@
 #define __EMPATHY_CHATROOM_H__
 
 #include <glib-object.h>
+
 #include <telepathy-glib/telepathy-glib.h>
 
-#include "empathy-tp-chat.h"
+#include <libempathy/empathy-tp-chat.h>
 
 G_BEGIN_DECLS
 

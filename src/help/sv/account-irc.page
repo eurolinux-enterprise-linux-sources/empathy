@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="sv">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="sv">
 
   <info>
     <link type="guide" xref="irc-manage#manage"/> 
-    <desc>Ytterligare information som är nödvändig för att ansluta till ett IRC-nätverk.</desc>
+    <desc>Additional information necessary for connecting to IRC networks.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-31" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
@@ -12,10 +12,10 @@
     <revision pkgversion="2.30" version="0.2" date="2010-04-19" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -24,52 +24,62 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/> 
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>IRC-kontodetaljer</title>
+  <title>IRC account details</title>
 
-  <p>IRC-konton kräver mer information än många andra typer av konton. För att skapa ett IRC-konto måste du ange åtminstone ett IRC-nätverk och ett smeknamn. Den här sidan specificerar information som du kan ge ett IRC-konto.</p>
+  <p>IRC accounts require different information than many other types of
+  accounts.  To create an IRC account, you must specify at least an IRC
+  network and a nickname.  This page details the information you can
+  provide for an IRC account.</p>
 
   <note style="info package">
-    <p>Du måste ha <sys>telepathy-idle</sys>-paketet installerat för att använda IRC i <app>Empathy</app>.</p>
+    <p>You must have the <sys>telepathy-idle</sys> package installed to use IRC 
+    in <app>Empathy</app>.</p>
   </note>
 
   <terms>
     <item>
-      <title><gui>Nätverk</gui></title>
-      <p>IRC är ett öppet system som tillåter människor att köra separata IRC-nätverk. Varje nätverk är avskilt och har sina egna användare och chattrum. <app>Empathy</app> visar de populäraste nätverken i <gui>Nätverks</gui>-rullgardinslistan. Du kan lägga till ytterligare nätverk. Se <link xref="#networks"/> nedanför.</p>
+      <title><gui>Network</gui></title>
+      <p>IRC is an open system that allows people to run separate IRC
+      networks.  Each network is distinct and has its own users and
+      chat rooms.  <app>Empathy</app> lists the most popular networks
+      in the <gui>Network</gui> drop-down list.  You can add additional
+      networks.  See <link xref="#networks"/> below.</p>
     </item>
     <item>
-      <title><gui>Smeknamn</gui></title>
-      <p>Ditt smeknamn är ditt unika namn på IRC-nätverket. Endast en person i ett nätverk kan använda ett visst smeknamn. Om du får ett felmeddelande som säger <link xref="prob-conn-name" role="error-msg"/> behöver du ändra ditt smeknamn.</p>
+      <title><gui>Nickname</gui></title>
+      <p>Your nickname is your unique name on the IRC network. Only one
+      person on a network may use a given nickname.  If you get an error
+      message that says <link xref="prob-conn-name" role="error-msg"/>
+      you will need to change your nickname.</p>
     </item>
     <item>
-      <title><gui>Lösenord</gui></title>
-      <p>Vissa servrar, särskilt de privata nätverken, kräver ett lösenord för att ansluta till. Om du har rätt att använda nätverket bör nätverksadministratören förse dig med ett lösenord.</p>
+      <title><gui>Password</gui></title>
+      <p>Some servers, particularly those on private networks, require
+      a password to connect.  If you are authorized to use the network,
+      the network administrators should provide you with a password.</p>
       <note>
-        <title>Lösenord för Nickserv</title>
-        <p>På vissa nätverk kan smeknamn registreras med en tjänst som kallas Nickserv. <app>Empathy</app> stöder inte direkta lösenord för smeknamn. I vissa nätverk, inklusive det populära freenode-nätverket, vidarebefordras serverlösenordet automatiskt till Nickserv, så att du kan ställa in det här fältet för att identifiera dig med Nickserv. Se <link xref="irc-nick-password"/> för mer information.</p>
+        <title>NickServ Passwords</title>
+        <p>On some networks, nicknames can be registered using a service
+        known as NickServ.  <app>Empathy</app> does not directly support
+        nickname passwords.  On some networks, including the popular
+        freenode network, server passwords are automatically forwarded
+        to NickServ, allowing you to set this field to identify yourself
+        with NickServ.  See <link xref="irc-nick-password"/> for more
+        details.</p>
       </note>
     </item>
     <item>
-      <title><gui>Verkligt namn</gui></title>
-      <p>Du kan ange ditt riktiga namn utöver ditt smeknamn. Andra användare kommer att kunna se det när de läser din information.</p>
+      <title><gui>Real name</gui></title>
+      <p>You can provide your real name in addition to your nickname.  Other
+      users will be able to see this when they view your information.</p>
     </item>
     <item>
-      <title><gui>Avslutningsmeddelande</gui></title>
-      <p>När du kopplar från skickas ett avslutningsmeddelande till alla chattrum du deltar i och till alla användare du har en privat konversation med. Använd detta fält för att skapa ett anpassat avslutningsmeddelande.</p>
+      <title><gui>Quit message</gui></title>
+      <p>When you go offline, a quit message is sent to all the chat rooms
+      you’re in and to all the users you’re having a private conversation
+      with.  Use this field to provide a custom quit message.</p>
     </item>
   </terms>
 
@@ -79,40 +89,63 @@ telepathy-idle note
 
   <section id="networks">
     <info>
-      <title type="link">IRC-Nätverk</title>
+      <title type="link">IRC Networks</title>
     </info>
 
-    <title>Nätverk</title>
+    <title>Networks</title>
 
-    <p><app>Empathy</app> innehåller en lista över populära IRC-nätverk. Om du vill ansluta till ett annat IRC-nätverk kan du lägga till det i listan. Du kan även ändra nätverk och ta bort dem från listan.</p>
+    <p><app>Empathy</app> includes a list of popular IRC networks.  If you
+    wish to another IRC network, you can add it to the list.  You can also
+    modify networks and remove them from the list.</p>
 
     <list>
-      <item><p>För att lägga till ett nätverk i listan, klicka <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16" its:translate="no"><span its:translate="yes">Lägg till</span></media>.</p></item>
-      <item><p>För att ändra ett nätverk i listan, markera nätverket och klicka på <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16" its:translate="no"><span its:translate="yes">Redigera</span></media>.</p></item>
-      <item><p>För att ta bort ett nätverk från listan, markera nätverket och klicka på <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16" its:translate="no"><span its:translate="yes">Ta bort</span></media>.</p></item>
+      <item><p>To add a network to the list, click <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16">Add</media>.</p></item>
+      <item><p>To modify a network in the list, select the network and click
+      <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16">Edit</media>.</p></item>
+      <item><p>To remove a network from the list, select the network and
+      click <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16">Remove</media>.</p></item>
     </list>
 
-    <p>När du lägger till eller modifierar ett nätverk kan du ange följande information:</p>
+    <p>When adding or modifying a network, you can enter the following
+    information:</p>
 
     <terms>
       <item>
-        <title><gui>Nätverk</gui></title>
-        <p>Det är namnet på nätverket så som du vill att det ska visas i listan över nätverk.</p>
+        <title><gui>Network</gui></title>
+        <p>This is the name of the network as you want it to appear in
+        the list of networks.</p>
       </item>
       <item>
-        <title><gui>Teckenkodning</gui></title>
-        <p>Detta anger den teckenkodning som vanligtvis används i nätverket. En teckenkodning är ett specifikt sätt att spela in tecken internt i en dator. Det finns många teckenkodningar och du måste använda samma teckenkodning som övriga användare för att se deras meddelanden korrekt.</p>
+        <title><gui>Charset</gui></title>
+        <p>This specifies the character encoding that is typically used on
+        this network.  A character encoding is a specific way of recording
+        characters internally in a computer.  There are many character
+        encodings, and you need to use the same character encoding as other
+        users to see their messages correctly.</p>
         <!--
             Translators: Recommend character encodings that are common
             for your language.
         -->
-        <p>Som standard, använder <app>Empathy</app> UTF-8, en modern teckenkodning som kan hantera text från de flesta av världens språk. En annan vanlig kodning för engelska och några andra västerländska språk är ISO-8859-1.</p>
+        <p>By default, <app>Empathy</app> uses UTF-8, a modern character
+        encoding that can handle text from most of the world's languages.
+        Another common encoding for English and some other Western languages
+        is ISO-8859-1.</p>
       </item>
       <item>
-        <title><gui>Servrar</gui></title>
-        <p>Ett IRC-nätverk kan ha många servrar som du kan ansluta till. När du är ansluten till en server på ett särskild nätverk, kan du kommunicera med samtliga användare på övriga servrar i detta nätverk. Du kan lägga till och ta bort servrar för detta nätverk med hjälp av knapparna <gui>Lägg till</gui> och <gui>Ta bort</gui>.</p>
-        <p>När en server är markerad, klicka på fältet under <gui>Server</gui> eller <gui>Port</gui> för att redigera den. Alternativt kan du använda vänster och höger piltangenter för att fokusera fältet och därefter trycka på blankstegstangenten för att börja redigera.</p>
-        <p>Markera kryssrutan i <gui>SSL</gui>-kolumnen för att kryptera all kommunikation med en server. Observera att detta inte hindrar andra användare i nätverket från att se vad du skriver i offentliga chattrum.</p>
+        <title><gui>Servers</gui></title>
+        <p>An IRC network may have many servers you can connect to.  When
+        you are connected to a server on a particular network, you can
+        communicate with all users on all other servers on that network.
+        You can add and remove servers for this network using the
+        <gui>Add</gui> and <gui>Remove</gui> buttons.</p>
+        <p>When a server is selected, click the field under <gui>Server</gui>
+        or <gui>Port</gui> to edit it.  Alternatively, use the left and right
+        arrow keys to focus the field, and press the space bar to begin
+        editing.</p>
+        <p>Select the check box in the <gui>SSL</gui> column to encrypt
+        all communication with a server.  Note that this does not prevent
+        other users on the network from seeing what you write on public
+        chat rooms.</p>
       </item>
     </terms>
   </section>

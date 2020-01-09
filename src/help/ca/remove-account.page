@@ -27,45 +27,22 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Suprimiu un compte</title>
+  <title>Com suprimir un compte</title>
 
   <p>Podeu suprimir un compte completament de l'<app>Empathy</app> si no voleu utilitzar-lo més. Si voleu utilitzar el compte un altre cop amb l'<app>Empathy</app> en un futur haureu de tornar a crear el compte amb totes les seves dades.</p>
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> seleccioneu <guiseq><gui>Edita</gui><gui>Comptes</gui></guiseq> o premeu la tecla <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
       <p>Seleccioneu el compte que vulgueu suprimir de la llista de comptes a la part esquerra de la finestra.</p>
     </item>
     <item>
-      <p>Feu clic a <gui style="button">-</gui>.</p>
+      <p>Click <gui style="button">-</gui>.</p>
     </item>
     <item>
       <p>Es mostrarà un diàleg sol·licitant la confirmació. Feu clic al botó <gui>Suprimeix</gui> per a suprimir el compte permanentment.</p>

@@ -24,21 +24,21 @@
  */
 
 #include "config.h"
-#include "empathy-preferences.h"
 
 #include <glib/gi18n.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
-#include "empathy-client-factory.h"
-#include "empathy-gsettings.h"
-#include "empathy-spell.h"
-#include "empathy-theme-manager.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-client-factory.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-theme-manager.h>
+#include <libempathy-gtk/empathy-spell.h>
+
+#include "empathy-preferences.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 G_DEFINE_TYPE (EmpathyPreferences, empathy_preferences, GTK_TYPE_DIALOG);
 
@@ -58,9 +58,7 @@ static const gchar * empathy_preferences_tabs[] =
 struct _EmpathyPreferencesPriv {
 	GtkWidget *notebook;
 
-	GtkWidget *label_general_behavior;
 	GtkWidget *checkbutton_events_notif_area;
-	GtkWidget *checkbutton_autoconnect;
 
 	GtkWidget *treeview_sounds;
 	GtkWidget *treeview_spell_checker;
@@ -191,6 +189,12 @@ preferences_setup_widgets (EmpathyPreferences *preferences,
 
 	BIND_ACTIVE (loc, LOCATION_PUBLISH,
 		     "checkbutton_location_publish");
+	BIND_ACTIVE (loc, LOCATION_RESOURCE_NETWORK,
+		     "checkbutton_location_resource_network");
+	BIND_ACTIVE (loc, LOCATION_RESOURCE_CELL,
+		     "checkbutton_location_resource_cell");
+	BIND_ACTIVE (loc, LOCATION_RESOURCE_GPS,
+		     "checkbutton_location_resource_gps");
 	BIND_ACTIVE (loc, LOCATION_REDUCE_ACCURACY,
 		     "checkbutton_location_reduce_accuracy");
 
@@ -219,6 +223,12 @@ preferences_setup_widgets (EmpathyPreferences *preferences,
 	BIND_SENSITIVE (sound, SOUNDS_ENABLED,
 			"treeview_sounds");
 
+	BIND_SENSITIVE (loc, LOCATION_PUBLISH,
+			"checkbutton_location_resource_network");
+	BIND_SENSITIVE (loc, LOCATION_PUBLISH,
+			"checkbutton_location_resource_cell");
+	BIND_SENSITIVE (loc, LOCATION_PUBLISH,
+			"checkbutton_location_resource_gps");
 	BIND_SENSITIVE (loc, LOCATION_PUBLISH,
 			"checkbutton_location_reduce_accuracy");
 
@@ -1016,21 +1026,19 @@ empathy_preferences_init (EmpathyPreferences *preferences)
 	gtk_window_set_role (GTK_WINDOW (preferences), "preferences");
 	gtk_window_set_position (GTK_WINDOW (preferences),
 				 GTK_WIN_POS_CENTER_ON_PARENT);
-	gtk_window_set_icon_name (GTK_WINDOW (preferences), "preferences-desktop");
+	gtk_window_set_icon_name (GTK_WINDOW (preferences), "gtk-preferences");
 
 	filename = empathy_file_lookup ("empathy-preferences.ui", "src");
-	gui = tpaw_builder_get_file (filename,
+	gui = empathy_builder_get_file (filename,
 		"notebook", &priv->notebook,
 		"vbox_chat_theme", &priv->vbox_chat_theme,
 		"combobox_chat_theme", &priv->combobox_chat_theme,
 		"combobox_chat_theme_variant", &priv->combobox_chat_theme_variant,
 		"hbox_chat_theme_variant", &priv->hbox_chat_theme_variant,
 		"sw_chat_theme_preview", &priv->sw_chat_theme_preview,
+		"checkbutton_events_notif_area", &priv->checkbutton_events_notif_area,
 		"treeview_sounds", &priv->treeview_sounds,
 		"treeview_spell_checker", &priv->treeview_spell_checker,
-		"label_general_behavior", &priv->label_general_behavior,
-		"checkbutton_events_notif_area", &priv->checkbutton_events_notif_area,
-		"checkbutton_autoconnect", &priv->checkbutton_autoconnect,
 		NULL);
 	g_free (filename);
 
@@ -1121,19 +1129,12 @@ empathy_preferences_new (GtkWindow *parent,
 
 	/* when running in Gnome Shell we must hide these options since they
 	 * are meaningless in that context:
-	 * - General->Behavior label
 	 * - 'Display incoming events in the notification area' (General->Behavior)
-	 * - 'Automatically connect at startup' (General->Behavior)
 	 * - 'Notifications' tab
 	 */
 	priv = GET_PRIV (self);
 	if (shell_running) {
-		/* Behavior */
-		gtk_widget_hide (priv->label_general_behavior);
 		gtk_widget_hide (priv->checkbutton_events_notif_area);
-		gtk_widget_hide (priv->checkbutton_autoconnect);
-
-		/* Notifications tab */
 		notif_page = gtk_notebook_get_nth_page (GTK_NOTEBOOK (priv->notebook),
 		                                        EMPATHY_PREFERENCES_TAB_NOTIFICATIONS);
 		gtk_widget_hide (notif_page);

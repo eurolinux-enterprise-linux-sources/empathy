@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#text-conv"/>
-    <desc>Wysyłanie wiadomości do jednego z kontaktów.</desc>
+    <desc>Wysyłanie wiadomości do jednego z kontaktów.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
       <!--
@@ -25,18 +25,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Wysyłanie wiadomości do kogoś</title>
@@ -49,7 +37,7 @@
       </p>
     </item>
     <item>
-      <p>Zostanie otwarte nowe okno. Należy wprowadzić wiadomość w polu na dole okna i nacisnąć <key>Enter</key>, aby ją wysłać.</p>
+      <p>Zostanie otwarte nowe okno. Należy wprowadzić wiadomość w polu na dole okna i nacisnąć <key>Enter</key>, aby ją wysłać.</p>
     </item>
   </steps>
   

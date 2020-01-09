@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Informazioni su quando è possibile avere una conversazione audio o video.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>    
@@ -25,15 +25,51 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Informazioni su quando è possibile avere una conversazione audio o video.</desc>
-
   </info>
 
   <title>Supporto audio e video</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Le conversazioni audio e video sono possibili solamente con i contatti che utilizzano un'applicazione in grado di supportarle. Quando i propri contatti supportano le conversazioni audio o video, è possibile visualizzare le seguenti icone a fianco dei nomi nell'elenco contatti:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Icona</p>
+        </td>
+        <td>
+          <p>Descrizione</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/audio-input-microphone.png">
+            Icon for audio conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>Il contatto è in grado di avere conversazioni audio.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <media type="image" mime="image/png" src="figures/camera-web.png">
+            Icon for video conversation
+          </media>
+        </p>
+      </td>
+      <td>
+        <p>Il contatto è in grado di avere conversazioni video.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Per poter avere una conversazione audio è necessario avere una scheda audio supportata dal sistema operativo e un microfono funzionanti.</p>
     <p>Per poter avere una conversazione video è necessario avere una webcam supportata dal sistema operativo e un microfono funzionanti.</p>
@@ -49,6 +85,22 @@
     <p>Le diverse tipologie di account sono fornite attraverso dei plugin. Il proprio sistema operativo potrebbe non avere tutte queste tipologie di account disponibili o potrebbe averne che non sono elencate qui. Dei plugin aggiornati potrebbero anche rendere possibili le conversazioni audio e video su account che qui vengono indicati come non supportati.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -61,6 +113,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>No</p></td>
+        <td><p>No</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook Chat</p></td>
         <td><p>No</p></td>
         <td><p>No</p></td>
       </tr>
@@ -91,6 +148,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Sì</p></td>
+        <td><p>Sì</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Sì</p></td>
         <td><p>Sì</p></td>
       </tr>

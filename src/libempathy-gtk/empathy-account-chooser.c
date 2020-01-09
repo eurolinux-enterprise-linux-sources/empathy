@@ -22,13 +22,14 @@
  */
 
 #include "config.h"
-#include "empathy-account-chooser.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
+
+#include "empathy-ui-utils.h"
+#include "empathy-account-chooser.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /**
  * SECTION:empathy-account-chooser
@@ -312,10 +313,6 @@ account_chooser_constructed (GObject *object)
   GtkListStore *store;
   GtkCellRenderer *renderer;
   GtkComboBox *combobox;
-
-  if (G_OBJECT_CLASS (empathy_account_chooser_parent_class)->constructed)
-    G_OBJECT_CLASS
-      (empathy_account_chooser_parent_class)->constructed (object);
 
   /* Set up combo box with new store */
   combobox = GTK_COMBO_BOX (self);
@@ -843,7 +840,7 @@ account_chooser_filter_ready_cb (gboolean is_enabled,
   store = GTK_LIST_STORE (gtk_combo_box_get_model (combobox));
 
   icon_name = tp_account_get_icon_name (account);
-  pixbuf = tpaw_pixbuf_from_icon_name (icon_name,
+  pixbuf = empathy_pixbuf_from_icon_name (icon_name,
     GTK_ICON_SIZE_BUTTON);
 
   gtk_list_store_set (store, iter,

@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#text-conv"/>
-    <desc>Jak procházet a vyhledávat ve svých předchozích konverzacích.</desc>
+    <desc>Browse or search your previous conversations.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-17" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-31" status="review">
       <!--
@@ -29,85 +29,87 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Zobrazení předchozí konverzace</title>
+  <title>View previous conversations</title>
 
-  <p><app>Empathy</app> automaticky ukládá veškerou vaši textovu konverzaci, kterou jste s svými kontakty vedli. Můžete v ní <link xref="#search">vyhledávat</link> nebo ji <link xref="#browse">procházet</link> podle kontaktů a data.</p>
+  <p>
+    <app>Empathy</app> automatically saves all your text conversations you have
+    with your contacts.  You can <link xref="#search">search through all of your
+    previous conversations</link> or <link xref="#browse">browse previous
+    conversations</link> by contact and date.
+  </p>
 
   <note>
-    <p>K tomu, abyste si zobrazili nebo vyhledávali v předchozí konverzaci, nemusíte být připojeni k Internetu.</p>
+    <p>
+      You do not need to be connected to the Internet to view and search your previous
+      conversations.
+    </p>
   </note>
 
   <section id="search" style="task">
-  <title>Hledání v předchozích konverzacích</title>
+  <title>Search previous conversations</title>
 
-  <p>Ve všech svých dřívějších konverzacích můžete vyhledávat ve všech textech.</p>
+  <p>You can perform a full-text search through all of your previous conversations.</p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> zvolte <guiseq><gui>Zobrazit</gui> <gui>Předchozí konverzace</gui></guiseq>. Případně můžete zmáčknout <key>F3</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>Vyberte účet v rozbalovacím seznamu v horní části. Pro tento účet se pod ním ukáže seznam kontaktů a diskuzních místností.</p>
+      <p>Select an account from the drop-down list in the top.  A list of
+      contacts and chat room for that account will be shown below.</p>
     </item>
     <item>
-      <p>Do textového pole <gui>Hledat</gui> napište text, který chcete najít.</p>
+      <p>Type the text you want to search for in the <gui>Search</gui> text field.
+      </p>
     </item>
     <item>
-      <p>Zobrazí se konverzace, které odpovídají hledanému výrazu. Ve výchozím stavu jsou konverzace seřazeny podle data.</p>
+      <p>
+        Any conversations that matched your search terms will be shown. By
+        default, conversations are ordered by date.
+      </p>
     </item>
   </steps>
   </section>
 
   <section id="browse" style="task">
-  <title>Procházení předchozích konverzací</title>
+  <title>Browse previous conversations</title>
 
-  <p>Svoji dřívější komunikaci se svými kontakty nebo v diskuzních místnostech si můžete procházet podle data.</p>
+  <p>You can browse your previous conversations with your contacts or in
+  chat rooms by date.</p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> zvolte <guiseq><gui>Zobrazit</gui> <gui>Předchozí konverzace</gui></guiseq>. Případně můžete zmáčknout <key>F3</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>Vyberte účet v rozbalovacím seznamu v levé horní části. Pro tento účet se pod ním ukáže seznam kontaktů a diskuzních místností.</p>
+      <p>Select an account from the drop-down list in the top left.  A list of
+      contacts and chat room for that account will be shown below.</p>
     </item>
     <item>
-      <p>Vyberte kontakt nebo diskuzní místnost, jejichž dřívější konverzace chcete zobrazit. Jako výchozí se zobrazí úplně poslední konverzace.</p>
+      <p>Select a contact or chat room to view your previous conversations from.
+      By default the most recent conversation will be shown.</p>
     </item>
     <item>
-      <p>Svoji konverzaci můžete procházet podle data. Dny, ve které jste vedli konverzaci s vybraným kontaktem, budou zobrazeny tučně. Kliknutím vyberte datum. Jestli chcete procházet starší data, použijte šipky vedle měsíce a roku.</p>
+      <p>You can browse your conversations by date.  Days on which you had a conversation
+      with the selected contact will be shown in bold text.  Click a date to select it.
+      Click the arrows next to the month and year to browse earlier dates.</p>
     </item>
   </steps>
 
-  <p>Psaním do vyhledávacího pole nahoře můžete v konverzaci hledat konkrétní text. Zobrazí se vyhovující konverzace.</p>
+  <p>
+    You can search for text in the conversations by typing into the
+    search field at the top. The matching conversations will be showed.
+  </p>
 
   <note style="tip">
-    <p>Rychlým způsobem si můžete zobrazit dřívější konverzace pro jednotlivé kontakty z okna <gui>Seznam kontaktů</gui>. Stačí na kontakt kliknout pravým tlačítkem a zvolit <gui>Dřívější konverzace</gui>. Okno <gui>Dřívější konverzace</gui> se otevře s již vybraným správným kontaktem.</p>
+    <p>You can quickly view the previous conversations with one of your contacts
+    from the <gui>Contact List</gui> window.  Simply right click the contact and
+    choose <gui>Previous Conversations</gui>.  The <gui>Previous
+    Conversations</gui> window will open with that contact already selected.</p>
   </note>
 
   </section>

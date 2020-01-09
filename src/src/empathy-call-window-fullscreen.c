@@ -22,13 +22,10 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include "config.h"
 #include "empathy-call-window-fullscreen.h"
 
-#include <tp-account-widgets/tpaw-builder.h>
-
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
 
 /* The number of seconds for which the "leave fullscreen" popup should
    be shown */
@@ -187,7 +184,7 @@ empathy_call_window_fullscreen_init (EmpathyCallWindowFullscreen *self)
   gchar *filename;
 
   filename = empathy_file_lookup ("empathy-call-window-fullscreen.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
     "leave_fullscreen_window", &priv->leave_fullscreen_popup,
     "leave_fullscreen_button", &self->leave_fullscreen_button,
     NULL);

@@ -6,88 +6,98 @@
     <link type="seealso" xref="send-message"/>
     <link type="seealso" xref="audio-call"/>
     <link type="seealso" xref="video-call"/>
-    <desc>Sammanfoga och dela olika kontakter till en enda.</desc>
+    <desc>Merge and separate different contacts into a single one.</desc>
     <revision pkgversion="2.32" version="0.1" date="2010-09-06" status="draft"/>
     <revision pkgversion="2.32" version="0.2" date="2010-09-09" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>
+        Creative Commons Share Alike 3.0
+      </p>
     </license>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Länka och avlänka kontakter</title>
-  <p>Om en eller flera av dina kontakter har mer än ett konto med olika meddelandetjänster, kan du länka ihop dessa konton till en enda kontakt.</p>
-  <p>Den hoplänkade kontakten kallas <em>meta-kontakt</em>: en kontakt som består av olika individuella kontakter.</p>
-  <p>Anta att du har en kontakt heter Jane Smith som använder tre olika meddelandetjänster som:</p>
+  <title>Combine and separate contacts</title>
+  <p>
+    If one, or more, of your contacts has multiple accounts with different
+    messaging services, you can combine these contacts into a single one.
+  </p>
+  <p>
+    The resulting contact is called a <em>meta-contact</em>: a contact composed
+    from different single contacts.
+  </p>
+  <p>
+    If you have a Jane Smith contact that is using three different messaging
+    services like:
+  </p>
   <list>
     <item>
-      <p>jane.smith@gmail</p>
+      <p>
+        janes@facebook
+      </p>
     </item>
     <item>
-      <p>jane_smith@hotmail</p>
+      <p>
+        jane.smith@gmail
+      </p>
     </item>
     <item>
-      <p>janes@yahoo</p>
+      <p>
+        jane_smith@hotmail
+      </p>
     </item>
   </list>
-  <p>Du kan kombinera dessa kontakter i en gemensam Jane Smith.</p>
+  <p>
+    You can combine these contacts into a single Jane Smith one.
+  </p>
+  
   <section id="linking">
-  <title>Länka kontakter</title>
-  <p>Det sätt som du kan länka dina kontakter är som följer:</p>
+    <title>Combining contacts</title>
     <steps>
       <item>
-        <p>Bocka för de poster du vill länka. Detta kommer att aktivera ett <em>markeringsläge</em> och du kan se en kryssruta för varje post.</p>
+        <p>
+          From the <gui>Contact List</gui> window, right-click one of the contact
+          that has different accounts, and select
+          <gui style="menuitem">Link Contacts...</gui>.
+        </p>
       </item>
       <item>
-        <p>Markera de kryssrutor som motsvarar de <app>kontaktposter</app> som hör till samma kontakt.</p>
+        <p>
+          From the left pane in the <gui>Link Contacts</gui> window,
+          select the contacts you want to combine.
+        </p>
       </item>
       <item>
-        <p>Tryck <gui style="button">Länka</gui>.</p>
+        <p>
+          Click <gui style="button">Link</gui>.
+        </p>
       </item>
     </steps>
-    <p>Upprepa steg 3 och 4 för att länka flera kontakter.</p>
+    <note>
+      <p>
+        When a meta-contact has been created, the default contact that will be used
+        to have a conversation with when you double-click on it, is the contact with
+        the highest presence on-line.
+      </p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Avlänka kontakter</title>
-  <p>För att avlänka en länkad kontakt:</p>
+  <section id="unlinkg">
+    <title>Separating contacts</title>
     <steps>
       <item>
-        <p>Välj kontakten från din kontaktlista.</p>
+        <p>
+          From the <gui>Contact List</gui>, right-click the contact
+          to separate, and select <gui style="menuitem">Link Contacts...</gui>.
+        </p>
       </item>
       <item>
-        <p>Tryck på <gui style="button">Redigera</gui> i övre högra hörnet av <app>Kontakter</app>.</p>
-      </item>
-      <item>
-	<p>Tryck på <gui style="button">Länkade konton</gui>.</p>
-      </item>
-      <item>
-	<p>Tryck på <gui style="button">Ta bort</gui> för att avlänka en post från den länkade kontakten.</p>
-      </item>
-      <item>
-        <p>Tryck på <gui style="button">Stäng</gui> om du inte vill ta bort fler länkade kontakter.</p>
-      </item>
-      <item>
-        <p>Slutligen, tryck på <gui style="button">Klar</gui> för att avsluta redigeringen.</p>
+        <p>
+          Click <gui style="button">Unlink</gui>.
+        </p>
       </item>
     </steps>
   </section>

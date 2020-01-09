@@ -26,34 +26,33 @@
  *          Xavier Claessens <xclaesse@gmail.com>
  */
 
+#include "config.h"
 /* for GCompletion */
 #define GLIB_DISABLE_DEPRECATION_WARNINGS 1
 
-#include "config.h"
-#include "empathy-chat.h"
-
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-keyring.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
-#include "empathy-client-factory.h"
-#include "empathy-gsettings.h"
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-keyring.h>
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-client-factory.h>
+
+#include "empathy-chat.h"
+#include "empathy-spell.h"
 #include "empathy-individual-information-dialog.h"
 #include "empathy-individual-store-channel.h"
 #include "empathy-individual-view.h"
 #include "empathy-input-text-view.h"
-#include "empathy-request-util.h"
 #include "empathy-search-bar.h"
-#include "empathy-spell.h"
-#include "empathy-string-parser.h"
 #include "empathy-theme-manager.h"
+#include "empathy-smiley-manager.h"
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-string-parser.h"
+#include "extensions/extensions.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CHAT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #define IS_ENTER(v) (v == GDK_KEY_Return || v == GDK_KEY_ISO_Enter || v == GDK_KEY_KP_Enter)
 #define COMPOSING_STOP_TIMEOUT 5
@@ -127,6 +126,9 @@ struct _EmpathyChatPriv {
 
 	guint              unread_messages;
 	guint              unread_messages_when_offline;
+	/* TRUE if the pending messages can be displayed. This is to avoid to show
+	 * pending messages *before* messages from logs. (#603980) */
+	gboolean           can_show_pending;
 
 	/* FIXME: retrieving_backlogs flag is a workaround for Bug#610994 and should
 	 * be differently handled since it introduces another race condition, which
@@ -325,7 +327,7 @@ chat_new_connection_cb (TpAccount   *account,
 
 	if (priv->tp_chat != NULL || account != priv->account ||
 	    priv->handle_type == TP_HANDLE_TYPE_NONE ||
-	    TPAW_STR_EMPTY (priv->id))
+	    EMP_STR_EMPTY (priv->id))
 		return;
 
 	g_object_ref (chat);
@@ -730,7 +732,7 @@ chat_command_msg_cb (GObject *source,
 		goto OUT;
 	}
 
-	if (!TPAW_STR_EMPTY (data->message) && TP_IS_TEXT_CHANNEL (channel)) {
+	if (!EMP_STR_EMPTY (data->message) && TP_IS_TEXT_CHANNEL (channel)) {
 		TpTextChannel *text = (TpTextChannel *) channel;
 		TpMessage *msg;
 
@@ -757,7 +759,7 @@ nick_command_supported (EmpathyChat *chat)
 
 	connection = tp_channel_get_connection (TP_CHANNEL (priv->tp_chat));
 	return tp_proxy_has_interface_by_id (connection,
-		TP_IFACE_QUARK_CONNECTION_INTERFACE_RENAMING);
+		EMP_IFACE_QUARK_CONNECTION_INTERFACE_RENAMING);
 }
 
 static gboolean
@@ -820,7 +822,7 @@ chat_command_join (EmpathyChat *chat,
 	* https://bugs.freedesktop.org/show_bug.cgi?id=13422 */
 	while (rooms[i] != NULL) {
 		/* ignore empty strings */
-		if (!TPAW_STR_EMPTY (rooms[i])) {
+		if (!EMP_STR_EMPTY (rooms[i])) {
 			empathy_chat_join_muc (chat, rooms[i]);
 		}
 		i++;
@@ -843,12 +845,16 @@ chat_command_msg_internal (EmpathyChat *chat,
 	EmpathyChatPriv *priv = GET_PRIV (chat);
 	ChatCommandMsgData *data;
 	TpAccountChannelRequest *req;
+	GHashTable *request;
 
-	req = tp_account_channel_request_new_text (priv->account,
+	request = tp_asv_new (
+		TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING, TP_IFACE_CHANNEL_TYPE_TEXT,
+		TP_PROP_CHANNEL_TARGET_HANDLE_TYPE, G_TYPE_UINT, TP_HANDLE_TYPE_CONTACT,
+		TP_PROP_CHANNEL_TARGET_ID, G_TYPE_STRING, contact_id,
+		NULL);
+
+	req = tp_account_channel_request_new (priv->account, request,
 		empathy_get_current_action_time ());
-
-	tp_account_channel_request_set_target_id (req, TP_HANDLE_TYPE_CONTACT,
-		contact_id);
 
 	/* FIXME: We should probably search in members alias. But this
 	 * is enough for IRC */
@@ -857,9 +863,10 @@ chat_command_msg_internal (EmpathyChat *chat,
 	data->message = g_strdup (message);
 
 	tp_account_channel_request_ensure_and_observe_channel_async (req,
-		EMPATHY_CHAT_TP_BUS_NAME, NULL, chat_command_msg_cb, data);
+		EMPATHY_CHAT_BUS_NAME, NULL, chat_command_msg_cb, data);
 
 	g_object_unref (req);
+	g_hash_table_unref (request);
 }
 
 static void
@@ -879,7 +886,7 @@ chat_command_msg (EmpathyChat *chat,
 }
 
 static void
-callback_for_request_rename (TpConnection *conn,
+callback_for_request_rename (TpProxy *proxy,
 		  const GError *error,
 		  gpointer user_data,
 		  GObject *weak_object)
@@ -894,11 +901,11 @@ chat_command_nick (EmpathyChat *chat,
 		   GStrv        strv)
 {
 	EmpathyChatPriv *priv = GET_PRIV (chat);
-	TpConnection *conn;
+	TpProxy *proxy;
 
-	conn = tp_account_get_connection (priv->account);
+	proxy = TP_PROXY (tp_account_get_connection (priv->account));
 
-	tp_cli_connection_interface_renaming_call_request_rename (conn, -1,
+	emp_cli_connection_interface_renaming_call_request_rename (proxy, -1,
 		strv[1], callback_for_request_rename, NULL, NULL, NULL);
 }
 
@@ -1186,7 +1193,7 @@ chat_command_parse (const gchar *text, guint max_parts)
 
 	/* Append last part if not empty */
 	item = g_strstrip (g_strdup (text));
-	if (!TPAW_STR_EMPTY (item)) {
+	if (!EMP_STR_EMPTY (item)) {
 		g_ptr_array_add (array, item);
 		DEBUG ("\tITEM: \"%s\"", item);
 	} else {
@@ -1214,7 +1221,7 @@ chat_send (EmpathyChat  *chat,
 	TpMessage  *message;
 	guint            i;
 
-	if (TPAW_STR_EMPTY (msg)) {
+	if (EMP_STR_EMPTY (msg)) {
 		return;
 	}
 
@@ -1424,6 +1431,7 @@ chat_should_highlight (EmpathyChat *chat,
 {
 	EmpathyChatPriv *priv = GET_PRIV (chat);
 	const gchar   *msg;
+	TpChannelTextMessageFlags flags;
 
 	g_return_val_if_fail (EMPATHY_IS_MESSAGE (message), FALSE);
 
@@ -1440,7 +1448,8 @@ chat_should_highlight (EmpathyChat *chat,
 		return FALSE;
 	}
 
-	if (empathy_message_is_backlog (message)) {
+	flags = empathy_message_get_flags (message);
+	if (flags & TP_CHANNEL_TEXT_MESSAGE_FLAG_SCROLLBACK) {
 		/* FIXME: Ideally we shouldn't highlight scrollback messages only if they
 		 * have already been received by the user before (and so are in the logs) */
 		return FALSE;
@@ -1664,13 +1673,13 @@ chat_subject_changed_cb (EmpathyChat *chat)
 		priv->subject = g_strdup (empathy_tp_chat_get_subject (priv->tp_chat));
 		g_object_notify (G_OBJECT (chat), "subject");
 
-		if (TPAW_STR_EMPTY (priv->subject)) {
+		if (EMP_STR_EMPTY (priv->subject)) {
 			gtk_widget_hide (priv->hbox_topic);
 		} else {
 			gchar *markup_topic;
 			gchar *markup_text;
 
-			markup_topic = tpaw_add_link_markup (priv->subject);
+			markup_topic = empathy_add_link_markup (priv->subject);
 			markup_text = g_strdup_printf ("<span weight=\"bold\">%s</span> %s",
 				_("Topic:"), markup_topic);
 
@@ -1683,7 +1692,7 @@ chat_subject_changed_cb (EmpathyChat *chat)
 		if (priv->block_events_timeout_id == 0) {
 			gchar *str = NULL;
 
-			if (!TPAW_STR_EMPTY (priv->subject)) {
+			if (!EMP_STR_EMPTY (priv->subject)) {
 				const gchar *actor = empathy_tp_chat_get_subject_actor (priv->tp_chat);
 
 				if (tp_str_empty (actor)) {
@@ -2085,13 +2094,6 @@ chat_input_has_focus_notify_cb (GtkWidget   *widget,
 	empathy_theme_adium_focus_toggled (chat->view, gtk_widget_has_focus (widget));
 }
 
-void
-empathy_chat_insert_smiley (GtkTextBuffer *buffer,
-				EmpathySmiley        *smiley)
-{
-	gtk_text_buffer_insert_at_cursor (buffer, smiley->str, -1);
-}
-
 static void
 chat_insert_smiley_activate_cb (EmpathySmileyManager *manager,
 				EmpathySmiley        *smiley,
@@ -2099,10 +2101,15 @@ chat_insert_smiley_activate_cb (EmpathySmileyManager *manager,
 {
 	EmpathyChat   *chat = EMPATHY_CHAT (user_data);
 	GtkTextBuffer *buffer;
+	GtkTextIter    iter;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (chat->input_text_view));
 
-	empathy_chat_insert_smiley (buffer, smiley);
+	gtk_text_buffer_get_end_iter (buffer, &iter);
+	gtk_text_buffer_insert (buffer, &iter, smiley->str, -1);
+
+	gtk_text_buffer_get_end_iter (buffer, &iter);
+	gtk_text_buffer_insert (buffer, &iter, " ", -1);
 }
 
 typedef struct {
@@ -2404,7 +2411,7 @@ chat_input_populate_popup_cb (GtkTextView *view,
 	/* Add the Send menu item. */
 	gtk_text_buffer_get_bounds (buffer, &start, &end);
 	str = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
-	if (!TPAW_STR_EMPTY (str)) {
+	if (!EMP_STR_EMPTY (str)) {
 		item = gtk_menu_item_new_with_mnemonic (_("_Send"));
 		g_signal_connect (G_OBJECT (item), "activate",
 				  G_CALLBACK (chat_text_send_cb), chat);
@@ -2451,7 +2458,7 @@ chat_input_populate_popup_cb (GtkTextView *view,
 		str = gtk_text_buffer_get_text (buffer,
 						&start, &end, FALSE);
 	}
-	if (!TPAW_STR_EMPTY (str)) {
+	if (!EMP_STR_EMPTY (str)) {
 		chat_spell = chat_spell_new (chat, str, start, end);
 		g_object_set_data_full (G_OBJECT (menu),
 					"chat-spell", chat_spell,
@@ -2515,14 +2522,19 @@ out:
 	return retval;
 }
 
+
 static void
 show_pending_messages (EmpathyChat *chat) {
 	EmpathyChatPriv *priv = GET_PRIV (chat);
 	const GList *messages, *l;
 
 	g_return_if_fail (EMPATHY_IS_CHAT (chat));
-	g_return_if_fail (chat->view != NULL);
-	g_return_if_fail (priv->tp_chat != NULL);
+
+	if (chat->view == NULL || priv->tp_chat == NULL)
+		return;
+
+	if (!priv->can_show_pending)
+		return;
 
 	messages = empathy_tp_chat_get_pending_messages (priv->tp_chat);
 
@@ -2531,6 +2543,7 @@ show_pending_messages (EmpathyChat *chat) {
 		chat_message_received (chat, message, TRUE);
 	}
 }
+
 
 static gboolean
 chat_scrollable_set_value (gpointer user_data)
@@ -2629,6 +2642,11 @@ out:
 	 */
 	if (G_UNLIKELY (!priv->watch_scroll &&
 			!tpl_log_walker_is_end (priv->log_walker))) {
+		/* The pending messages need not be shown after the
+		 * first batch of logs have been displayed */
+		priv->can_show_pending = TRUE;
+		show_pending_messages (chat);
+
 		priv->watch_scroll = TRUE;
 		g_idle_add_full (G_PRIORITY_LOW, chat_scrollable_connect,
 		    g_object_ref (chat), g_object_unref);
@@ -2833,7 +2851,7 @@ build_part_message (guint           reason,
 		g_string_append_printf (s, _("%s has left the room"), name);
 	}
 
-	if (!TPAW_STR_EMPTY (message)) {
+	if (!EMP_STR_EMPTY (message)) {
 		/* Note to translators: this string is appended to
 		 * notifications like "foo has left the room", with the message
 		 * given by the user living the room. If this poses a problem,
@@ -3196,8 +3214,6 @@ save_paned_pos_timeout (gpointer data)
 	EmpathyChat *self = data;
 	gint hpaned_pos;
 
-	self->priv->save_paned_pos_id = 0;
-
 	hpaned_pos = gtk_paned_get_position (GTK_PANED (self->priv->hpaned));
 
 	g_settings_set_int (self->priv->gsettings_ui,
@@ -3235,7 +3251,7 @@ chat_create_ui (EmpathyChat *chat)
 
 	filename = empathy_file_lookup ("empathy-chat.ui",
 					"libempathy-gtk");
-	gui = tpaw_builder_get_file (filename,
+	gui = empathy_builder_get_file (filename,
 					"chat_widget", &priv->widget,
 					"hpaned", &priv->hpaned,
 					"vbox_left", &priv->vbox_left,
@@ -3248,7 +3264,7 @@ chat_create_ui (EmpathyChat *chat)
 					"info_bar_vbox", &priv->info_bar_vbox,
 					NULL);
 
-	tpaw_builder_connect (gui, chat,
+	empathy_builder_connect (gui, chat,
 		"expander_topic", "notify::expanded", chat_topic_expander_activate_cb,
 		"label_topic", "size-allocate", chat_topic_label_size_allocate_cb,
 		NULL);
@@ -3441,12 +3457,7 @@ chat_constructed (GObject *object)
 						    supports_avatars);
 	}
 
-	/* Add messages from last conversations. Backlog messages are always
-	 * prepended and pending messages are appended, so we can do both
-	 * independently. Hacks like we previously had for bug #603980 are no
-	 * longer needed. Pending messages are handled within
-	 * empathy_chat_set_tp_chat() so we don't have to care about them here.
-	 */
+	/* Add messages from last conversation */
 	if (priv->handle_type == TP_HANDLE_TYPE_ROOM)
 		target = tpl_entity_new_from_room_id (priv->id);
 	else
@@ -3457,7 +3468,13 @@ chat_constructed (GObject *object)
 	g_object_unref (target);
 
 	if (priv->handle_type != TP_HANDLE_TYPE_ROOM) {
+		/* First display logs from the logger and then display pending messages */
 		chat_add_logs (chat);
+	}
+	 else {
+		/* Just display pending messages for rooms */
+		priv->can_show_pending = TRUE;
+		show_pending_messages (chat);
 	}
 }
 
@@ -3664,9 +3681,6 @@ empathy_chat_init (EmpathyChat *chat)
 	priv->completion = g_completion_new ((GCompletionFunc) empathy_contact_get_alias);
 	g_completion_set_compare (priv->completion, chat_contacts_completion_func);
 
-	/* Create UI early so by the time empathy_chat_set_tp_chat() is called
-	 * (construct property) the view will already exists to receive pending
-	 * messages. */
 	chat_create_ui (chat);
 }
 
@@ -3721,7 +3735,7 @@ remember_password_infobar_response_cb (GtkWidget *info_bar,
 
 	if (response_id == GTK_RESPONSE_OK) {
 		DEBUG ("Saving room password");
-		tpaw_keyring_set_room_password_async (priv->account,
+		empathy_keyring_set_room_password_async (priv->account,
 							 empathy_tp_chat_get_id (priv->tp_chat),
 							 data->password,
 							 NULL, NULL);
@@ -3841,8 +3855,14 @@ provide_password_cb (GObject *tp_chat,
 		return;
 	}
 
-    /* ask whether they want to save the password */
-    chat_prompt_to_save_password (self, data);
+	if (empathy_keyring_is_available ()) {
+		/* ask whether they want to save the password */
+		chat_prompt_to_save_password (self, data);
+	} else {
+		/* Get rid of the password info bar finally */
+		gtk_widget_destroy (data->info_bar);
+		g_slice_free (PasswordData, data);
+	}
 
 	/* Room joined */
 	gtk_widget_set_sensitive (priv->hpaned, TRUE);
@@ -3908,7 +3928,7 @@ password_entry_changed_cb (GtkEditable *entry,
 	str = gtk_entry_get_text (GTK_ENTRY (entry));
 
 	gtk_entry_set_icon_sensitive (GTK_ENTRY (entry),
-	    GTK_ENTRY_ICON_SECONDARY, !TPAW_STR_EMPTY (str));
+	    GTK_ENTRY_ICON_SECONDARY, !EMP_STR_EMPTY (str));
 }
 
 static void
@@ -4057,7 +4077,7 @@ chat_room_got_password_cb (GObject *source,
 	const gchar *password;
 	GError *error = NULL;
 
-	password = tpaw_keyring_get_room_password_finish (priv->account,
+	password = empathy_keyring_get_room_password_finish (priv->account,
 	    result, &error);
 
 	if (error != NULL) {
@@ -4079,7 +4099,7 @@ chat_password_needed_changed_cb (EmpathyChat *self)
 	EmpathyChatPriv *priv = GET_PRIV (self);
 
 	if (tp_channel_password_needed (TP_CHANNEL (priv->tp_chat))) {
-		tpaw_keyring_get_room_password_async (priv->account,
+		empathy_keyring_get_room_password_async (priv->account,
 							 empathy_tp_chat_get_id (priv->tp_chat),
 							 chat_room_got_password_cb, self);
 	}
@@ -4182,6 +4202,9 @@ empathy_chat_set_tp_chat (EmpathyChat   *chat,
 	g_object_notify (G_OBJECT (chat), "id");
 	g_object_notify (G_OBJECT (chat), "account");
 
+	/* This is a noop when tp-chat is set at object construction time and causes
+	 * the pending messages to be show when it's set on the object after it has
+	 * been created */
 	show_pending_messages (chat);
 
 	/* check if a password is needed */
@@ -4278,7 +4301,7 @@ empathy_chat_get_contact_menu (EmpathyChat *chat)
 	if (individual == NULL)
 		return NULL;
 
-	menu = empathy_individual_menu_new (individual, NULL,
+	menu = empathy_individual_menu_new (individual,
 					 EMPATHY_INDIVIDUAL_FEATURE_CALL |
 					 EMPATHY_INDIVIDUAL_FEATURE_LOG |
 					 EMPATHY_INDIVIDUAL_FEATURE_INFO |

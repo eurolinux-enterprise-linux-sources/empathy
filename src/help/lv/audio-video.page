@@ -3,6 +3,7 @@
 
   <info>
     <link type="guide" xref="index#audio-video"/>
+    <desc>Informācija par to, kad ir iespējama audio vai video saziņa.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -14,7 +15,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0 licence.</p>
     </license>    
@@ -25,14 +25,43 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Informācija par to, kad ir iespējama audio vai video saziņa.</desc>
-
   </info>
 
   <title>Audio un video atbalsts</title>
 
-  <p>Audio on video sarunas ir iespējamas tikai starp kontaktiem, kuri izmanto lietotni, kura atbalsta šo iespēju.</p>
+  <p>Audio on video sarunas ir iespējamas tikai starp kontaktiem, kuri izmanto lietotni, kura atbalsta šo iespēju. Ja tavi kontakti ir pieejami audio vai video zvanam, pie viņu vārdiem kontaktu sarakstā jūs redzēsiet sekojošas ikonas:</p>
 
+  <table frame="all" rules="cols rowgroups" shade="rows">
+    <thead>
+      <tr>
+        <td>
+          <p>Ikona</p>
+        </td>
+        <td>
+          <p>Apraksts</p>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/audio-input-microphone.png"> Ikona audio sarunai </media></p>
+      </td>
+      <td>
+        <p>Šis kontakts ir pieejams audio sarunai.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><media type="image" mime="image/png" src="figures/camera-web.png"> Ikona video sarunai </media></p>
+      </td>
+      <td>
+        <p>Šis kontakts ir pieejams video sarunai.</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
   <note>
     <p>Lai varētu sazināties caur audio, tev ir vajadzīga skaņas karte, kuru savukārt atbalsta tava operetētājsistēma, kā arī ir nepieciešams arī mikrofons.</p>
     <p>Lai varētu sazināties caur video, tev ir vajadzīga tīmekļa kamera, kuru atbalsta tava operētājsistēma, kā arī strādājošs mikrofons.</p>
@@ -48,6 +77,22 @@
     <p>Kontu tipus nodrošina spraudņi. Tavai sistēmai varētu nebūt pieejami visi šeit uzskaitītie tipi, vai arī tev var būt tādi tipi, kuri nav uzskaitīti šeit. Atjaunināti spraudņi var padarīt audi un video saziņu iespējamu starp kontu tipiem, kuri ir uzskaitīti kā neatbalstīti.</p>
   </note>
 
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>I'd like to do tables like this using nothing for No and ✔ for Yes, but
+    we need to look at the accessibility impact.  I've
+    <link href="http://mail.gnome.org/archives/gnome-doc-list/2009-September/msg00006.html">asked
+    the accessibility team</link> for input.</p>
+  </comment>
+
+  <comment>
+    <cite date="2009-09-04">Shaun McCance</cite>
+    <p>There's recent work on telepathy-butterfly and papyon to support
+    audio and video for MSN.  It might be released in time for 2.28, but
+    since it doesn't follow the Gnome release schedule, I can't be sure.
+    If it looks like it's going to ship, let's mark it Yes.</p>
+  </comment>
+  
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
@@ -60,6 +105,11 @@
     <tbody>
       <tr>
         <td><p>AIM</p></td>
+        <td><p>Nē</p></td>
+        <td><p>Nē</p></td>
+      </tr>
+      <tr>
+        <td><p>Facebook tērzēšana</p></td>
         <td><p>Nē</p></td>
         <td><p>Nē</p></td>
       </tr>
@@ -90,6 +140,11 @@
       </tr>
       <tr>
         <td><p>Jabber</p></td>
+        <td><p>Jā</p></td>
+        <td><p>Jā</p></td>
+      </tr>
+      <tr>
+        <td><p>MSN</p></td>
         <td><p>Jā</p></td>
         <td><p>Jā</p></td>
       </tr>

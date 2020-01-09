@@ -19,11 +19,12 @@
  */
 
 #include "config.h"
+
 #include "empathy-auth-factory.h"
 
-#include <telepathy-glib/telepathy-glib-dbus.h>
-#include <tp-account-widgets/tpaw-keyring.h>
-
+#define DEBUG_FLAG EMPATHY_DEBUG_TLS
+#include "empathy-debug.h"
+#include "empathy-keyring.h"
 #include "empathy-sasl-mechanisms.h"
 #include "empathy-server-sasl-handler.h"
 #include "empathy-server-tls-handler.h"
@@ -37,8 +38,7 @@
 #include "empathy-uoa-auth-handler.h"
 #endif /* HAVE_UOA */
 
-#define DEBUG_FLAG EMPATHY_DEBUG_TLS
-#include "empathy-debug.h"
+#include "extensions/extensions.h"
 
 G_DEFINE_TYPE (EmpathyAuthFactory, empathy_auth_factory, TP_TYPE_BASE_CLIENT);
 
@@ -281,7 +281,7 @@ common_checks (EmpathyAuthFactory *self,
        * ServerTLSConnection channels. */
       if (observe
           || tp_channel_get_channel_type_id (channel) !=
-          TP_IFACE_QUARK_CHANNEL_TYPE_SERVER_TLS_CONNECTION)
+          EMP_IFACE_QUARK_CHANNEL_TYPE_SERVER_TLS_CONNECTION)
         {
           g_set_error (error, TP_ERROR, TP_ERROR_INVALID_ARGUMENT,
               "Can only %s ServerTLSConnection or ServerAuthentication channels, "
@@ -363,7 +363,7 @@ handle_channels (TpBaseClient *handler,
 
   /* create a handler */
   if (tp_channel_get_channel_type_id (channel) ==
-      TP_IFACE_QUARK_CHANNEL_TYPE_SERVER_TLS_CONNECTION)
+      EMP_IFACE_QUARK_CHANNEL_TYPE_SERVER_TLS_CONNECTION)
     {
       empathy_server_tls_handler_new_async (channel, server_tls_handler_ready_cb,
           data);
@@ -431,7 +431,7 @@ get_password_cb (GObject *source,
 {
   ObserveChannelsData *data = user_data;
 
-  if (tpaw_keyring_get_account_password_finish (TP_ACCOUNT (source), result, NULL) == NULL)
+  if (empathy_keyring_get_account_password_finish (TP_ACCOUNT (source), result, NULL) == NULL)
     {
       /* We don't actually mind if this fails, just let the approver
        * go ahead and take the channel. */
@@ -584,7 +584,7 @@ observe_channels (TpBaseClient *client,
           return;
         }
 
-      tpaw_keyring_get_account_password_async (data->account,
+      empathy_keyring_get_account_password_async (data->account,
           get_password_cb, data);
       tp_observe_channels_context_delay (context);
       return;
@@ -658,7 +658,7 @@ empathy_auth_factory_constructed (GObject *obj)
   tp_base_client_take_handler_filter (client, tp_asv_new (
           /* ChannelType */
           TP_PROP_CHANNEL_CHANNEL_TYPE, G_TYPE_STRING,
-          TP_IFACE_CHANNEL_TYPE_SERVER_TLS_CONNECTION,
+          EMP_IFACE_CHANNEL_TYPE_SERVER_TLS_CONNECTION,
           /* AuthenticationMethod */
           TP_PROP_CHANNEL_TARGET_HANDLE_TYPE, G_TYPE_UINT,
           TP_HANDLE_TYPE_NONE, NULL));

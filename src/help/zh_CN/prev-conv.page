@@ -50,13 +50,18 @@
       <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>在顶部的下拉列表中选择一个帐号。下方显示该帐号的联系人列表和聊天室。</p>
+      <p>Select an account from the drop-down list in the top.  A list of
+      contacts and chat room for that account will be shown below.</p>
     </item>
     <item>
-      <p>在<gui>搜索</gui>文本框输入您要搜索的文本。</p>
+      <p>Type the text you want to search for in the <gui>Search</gui> text field.
+      </p>
     </item>
     <item>
-      <p>符合搜索条件的会话会显示在下面的列表中。会话默认按日期排序。</p>
+      <p>
+        Any conversations that matched your search terms will be shown. By
+        default, conversations are ordered by date.
+      </p>
     </item>
   </steps>
   </section>
@@ -72,20 +77,26 @@
       <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>在左上的下拉列表中选择一个帐号。下方会显示这个帐号的联系人和聊天室列表。</p>
+      <p>在左上的下拉列表中选择一个账户。下方会显示这个账户的联系人和聊天室列表。</p>
     </item>
     <item>
       <p>选择一个联系人或聊天室以查看之前的会话。默认显示的是最近的会话。</p>
     </item>
     <item>
-      <p>您可以按日期浏览您的会话。如果在某日您所选择的帐号有过会话，该日会以粗体显示。点击一个日期以选择它。点击月和年旁的箭头以浏览更早的日期。</p>
+      <p>您可以按日期浏览您的会话。如果在某日您所选择的账户有过会话，该日会以粗体显示。点击一个日期以选择它。点击月和年旁的箭头以浏览更早的日期。</p>
     </item>
   </steps>
 
-  <p>您可以在顶部的搜索栏中输入文字，以在会话中搜索文字。匹配的会话会显示出来。</p>
+  <p>
+    You can search for text in the conversations by typing into the
+    search field at the top. The matching conversations will be showed.
+  </p>
 
   <note style="tip">
-    <p>在 <gui>联系人列表</gui> 窗口中，您可以快速查看与某个联系人之前进行过的会话。右键点击该联系人，选择 <gui>最近回话</gui>。与该联系人的<gui>最近会话</gui>窗口将会打开，并且选中该联系人。</p>
+    <p>You can quickly view the previous conversations with one of your contacts
+    from the <gui>Contact List</gui> window.  Simply right click the contact and
+    choose <gui>Previous Conversations</gui>.  The <gui>Previous
+    Conversations</gui> window will open with that contact already selected.</p>
   </note>
 
   </section>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="sl">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="screen" id="account-irc" xml:lang="sl">
 
   <info>
     <link type="guide" xref="irc-manage#manage"/> 
@@ -12,7 +12,7 @@
     <revision pkgversion="2.30" version="0.2" date="2010-04-19" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
-      <email its:translate="no">shaunm@gnome.org</email>
+      <email>shaunm@gnome.org</email>
     </credit>
     <license>
       <p>Dovoljenje Creative Commons - deljenje pod istimi pogoji 3.0</p>
@@ -75,11 +75,9 @@ telepathy-idle note
     <p><app>Empathy</app> vključuje seznam priljubljenih omrežij IRC. V primeru da želite uporabljati drugo omrežje IRC ga lahko dodate na seznam. Omrežja lahko tudi spreminjate in jih odstranjujete s seznama. You can also modify networks and remove them from the list.</p>
 
     <list>
-      <item><p>To add a network to the list, click <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16" its:translate="no"><span its:translate="yes">Add</span></media>.</p></item>
-      <item><p>To modify a network in the list, select the network and click
-      <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16" its:translate="no"><span its:translate="yes">Edit</span></media>.</p></item>
-      <item><p>To remove a network from the list, select the network and
-      click <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16" its:translate="no"><span its:translate="yes">Remove</span></media>.</p></item>
+      <item><p>Za dodajanje omrežja na seznamu kliknite <media type="image" mime="image/png" src="figures/gtk-add.png" width="16" height="16">Dodaj</media>.</p></item>
+      <item><p>Za spremembo omrežja v seznamu izberite omrežje in kliknite <media type="image" mime="image/png" src="figures/gtk-edit.png" width="16" height="16">Uredi</media>.</p></item>
+      <item><p>Za odstranitev omrežja s seznama izberite omrežje in kliknite  <media type="image" mime="image/png" src="figures/gtk-remove.png" width="16" height="16">Odstrani</media>.</p></item>
     </list>
 
     <p>Ob dodajanju ali spreminjanju omrežja lahko vnesete naslednje podatke:</p>

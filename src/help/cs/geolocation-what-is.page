@@ -4,7 +4,9 @@
   <info>
     <link type="guide" xref="geolocation#geoloc"/>
     <link type="seealso" xref="geolocation-supported"/>
-    <desc>Seznamte se s geolokací.</desc>
+    <desc>
+      Understanding geolocation.
+    </desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-19" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-09-09" status="deferred"/>
@@ -24,50 +26,39 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Co je to geolokace</title>
+  <title>What is geolocation</title>
 
-  <p>Geolokace umožňuje určit skutečnou zeměpisnou polohu počítače nebo zařízení připojeného k Internetu.</p>
-  <p>S geolokací v <app>Empathy</app> můžete:</p>
+  <p>Geolocation allows you to identify the real geographical location of a
+  computer or a device connected to the Internet.</p>
+  <p>
+    With geolocation in <app>Empathy</app> you can:
+  </p>
   <list>
     <item>
-      <p>Zveřejňovat svoji zeměpisnou polohu svým kontatkům.</p>
+      <p>
+        Publish your geographical location to your contacts.
+      </p>
     </item>
     <item>
-      <p>Vidět zeměpisnou polohu svých kontaktů a rychle se s nimi spojit.</p>
+      <p>
+        See your contacts’ geographical location and quickly contact them.
+      </p>
     </item>
     <item>
-      <p>Nastavit přesnost polohy a zařízení používané k určení vaší polohy.</p>
+      <p>
+        Set the accuracy of your location and the device used to discover your
+        location.
+      </p>
     </item>
   </list>
 
   <note style="tip">
-    <p>Abyste mohli vidět zeměpisnou polohu svých kontaktů, musíte používat službu a aplikaci, které geolokaci podporují.</p>
+    <p>
+      In order to see your contacts’ geographical locations, they need to use a
+      service and an application that supports geolocation.
+    </p>
   </note>
 
 </page>

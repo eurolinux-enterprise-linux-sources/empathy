@@ -29,46 +29,39 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Wyświetlanie poprzednich rozmów</title>
 
-  <p>Program <app>Empathy</app> automatycznie zapisuje wszystkie rozmowy tekstowe prowadzone z kontaktami. Można <link xref="#search">przeszukiwać wszystkie poprzednie rozmowy</link> lub <link xref="#browse">przeglądać je</link> filtrując kontakty i daty.</p>
+  <p>Program <app>Empathy</app> automatycznie zapisuje wszystkie rozmowy tekstowe prowadzone z kontaktami. Można <link xref="#search">przeszukiwać wszystkie poprzednie rozmowy</link> lub <link xref="#browse">przeglądać je</link> filtrując kontakty i daty.</p>
 
   <note>
-    <p>Nie trzeba być połączonym do Internetu, aby wyświetlać i przeszukiwać poprzednie rozmowy.</p>
+    <p>Nie trzeba być połączonym do Internetu, aby wyświetlać i przeszukiwać poprzednie rozmowy.</p>
   </note>
 
   <section id="search" style="task">
   <title>Przeszukiwanie poprzednich rozmów</title>
 
-  <p>Można wykonać wyszukiwanie całego tekstu w poprzednich rozmowach.</p>
+  <p>Można wykonać wyszukiwanie całego tekstu w poprzednich rozmowach.</p>
 
   <steps>
     <item>
-      <p>W oknie <gui>Lista kontaktów</gui> należy wybrać <guiseq><gui>Widok</gui><gui>Poprzednie rozmowy</gui></guiseq>. Można również nacisnąć <key>F3</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>Należy wybrać konto z rozwijanej listy na górze. Lista kontaktów i pokojów rozmów dla tego konta zostanie wyświetlona poniżej.</p>
+      <p>Select an account from the drop-down list in the top.  A list of
+      contacts and chat room for that account will be shown below.</p>
     </item>
     <item>
       <p>Type the text you want to search for in the <gui>Search</gui> text field.
       </p>
     </item>
     <item>
-      <p>Wszelkie rozmowy zawierające wyszukiwane terminy zostaną wyświetlone. Domyślnie rozmowy są ułożone według daty.</p>
+      <p>
+        Any conversations that matched your search terms will be shown. By
+        default, conversations are ordered by date.
+      </p>
     </item>
   </steps>
   </section>
@@ -76,27 +69,34 @@
   <section id="browse" style="task">
   <title>Przeszukiwanie poprzednich rozmów</title>
 
-  <p>Można przeszukiwać poprzednie rozmowy z kontaktami w pokojach rozmów według daty.</p>
+  <p>Można przeszukiwać poprzednie rozmowy z kontaktami w pokojach rozmów według daty.</p>
 
   <steps>
     <item>
-      <p>W oknie <gui>Lista kontaktów</gui> należy wybrać <guiseq><gui>Widok</gui><gui>Poprzednie rozmowy</gui></guiseq>. Można również nacisnąć <key>F3</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>Należy wybrać konto z rozwijanej listy na górze po lewej stronie. Lista kontaktów i pokojów rozmów dla tego konta zostanie wyświetlona poniżej.</p>
+      <p>Należy wybrać konto z rozwijanej listy na górze po prawej stronie. Lista kontaktów i pokojów rozmów dla tego konta zostanie wyświetlona poniżej.</p>
     </item>
     <item>
       <p>Należy wybrać kontakt lub pokój rozmów, aby zostały wyświetlone jego poprzednie rozmowy. Domyślnie wyświetlone zostaną najpóźniejsze poprzednie rozmowy.</p>
     </item>
     <item>
-      <p>Można przeglądać rozmowy według daty. Dni, w których zostały przeprowadzone rozmowy z wybranym kontaktem, zostaną zaznaczone wytłuszczonym drukiem. Należy je wybrać. Następnie należy kliknąć strzałki obok miesiąca i roku, aby móc przeglądać wcześniejsze daty.</p>
+      <p>Można przeglądać rozmowy według daty. Dni, w których zostały przeprowadzone rozmowy z wybranym kontaktem, zostaną zaznaczone wytłuszczonym drukiem. Należy je wybrać. Następnie należy kliknąć w strzałki obok miesiąca i roku, aby móc przeglądać wcześniejsze daty.</p>
     </item>
   </steps>
 
-  <p>Można wyszukiwać tekst w rozmowach wprowadzając wyszukiwany termin w polu na górze. Pasujące rozmowy zostaną wyświetlone.</p>
+  <p>
+    You can search for text in the conversations by typing into the
+    search field at the top. The matching conversations will be showed.
+  </p>
 
   <note style="tip">
-    <p>Można szybko wyświetlić poprzednie rozmowy z jednym z kontaktów z okna <gui>Listy kontaktów</gui>. Należy nacisnąć prawym przyciskiem myszy na kontakt i wybrać <gui>Poprzednie rozmowy</gui>. Okno <gui>Poprzednich rozmów</gui> z wybranym kontaktem zostanie otwarte.</p>
+    <p>You can quickly view the previous conversations with one of your contacts
+    from the <gui>Contact List</gui> window.  Simply right click the contact and
+    choose <gui>Previous Conversations</gui>.  The <gui>Previous
+    Conversations</gui> window will open with that contact already selected.</p>
   </note>
 
   </section>

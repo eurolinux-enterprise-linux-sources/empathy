@@ -19,11 +19,12 @@
  */
 
 #include "config.h"
-#include "empathy-plist.h"
 
 #include <string.h>
 #include <libxml/tree.h>
 #include <telepathy-glib/telepathy-glib.h>
+
+#include "empathy-plist.h"
 
 static GValue *empathy_plist_parse_node (xmlNode *a_node);
 

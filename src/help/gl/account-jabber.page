@@ -8,7 +8,6 @@
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
       -->
     </revision>
-    <revision pkgversion="3.12" date="2015-02-03" status="review"/>
     <credit type="author">
       <name>Shaun McCance</name>
       <email>shaunm@gnome.org</email>
@@ -44,13 +43,7 @@
       <title><gui>Requírese cifrado (TLS/SSL)</gui></title>
       <title><gui>Ignorar os erros de certificados SSL</gui></title>
       <p>Sempre que sexa posíbel, a comunicación entre <app>Empathy</app> e o servidor Jabber está cifrada. Se a comunicación cifrada non é posíbel, pode que as mensaxes se envíen sen cifrar. Seleccione <gui>Require cifrado</gui> para evitar que <app>Empathy</app> se comunique co servidor Jabber cando non é posíbel cifrar a comunicación.</p>
-      <p>Some Jabber servers may encrypt data using invalid certificates,
-      or using certificates signed by unknown authorities.  You can select
-      <gui>Ignore SSL certificate errors</gui> to allow encrypted communication
-      with invalid certificates, but this allows an attacker to intercept your
-      communication with the server (including your password). You might want to
-      use this option for testing purposes, or if your server is broken and you
-      do not care about the security of your communication.</p>
+      <p>Algúns servidores Jabber poden cifrar datos usando certificados non válidos ou usando certificados de autoridades descoñecidas. Se confía no servidor ao que se está conectando pode seleccionar <gui>Ignorar os erros de certificados SSL</gui> para permitir comunicacións cifradas con certificados non válidos.</p>
     </item>
     <item>
       <title><gui>Recurso</gui></title>

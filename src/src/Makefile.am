@@ -2,13 +2,8 @@ include $(top_srcdir)/tools/flymake.mk
 
 CPPFLAGS_COMMON =					\
 	$(EMPATHY_CFLAGS)				\
-	$(TPAW_CFLAGS)					\
 	$(ERROR_CFLAGS)					\
-	-I$(top_srcdir)/libempathy-gtk			\
-	-I$(top_srcdir)/libempathy			\
-	-I$(top_srcdir)/extensions			\
-	-I$(top_builddir)/libempathy-gtk		\
-	-I$(top_builddir)/libempathy			\
+	-I$(top_srcdir)                          	\
 	-DG_LOG_DOMAIN=\"empathy\"			\
 	-DBIN_DIR=\"$(bindir)\"                         \
 	$(DISABLE_DEPRECATED)				\
@@ -28,7 +23,6 @@ LDADD =								\
 	$(top_builddir)/extensions/libemp-extensions.la		\
 	$(GCR_LIBS) 						\
 	$(EMPATHY_LIBS)						\
-	$(TPAW_LIBS)						\
 	$(LIBCHAMPLAIN_LIBS)					\
 	$(UOA_LIBS)						\
 	$(NULL)
@@ -86,7 +80,6 @@ empathy_auth_client_SOURCES =						\
 	$(NULL)
 
 empathy_chat_SOURCES =						\
-	chat-manager-interface.c chat-manager-interface.h \
 	empathy-about-dialog.c empathy-about-dialog.h			\
 	empathy-chat-manager.c empathy-chat-manager.h		\
 	empathy-chat-window.c empathy-chat-window.h		\
@@ -155,7 +148,6 @@ empathy_handwritten_source = \
 
 empathy_SOURCES =							\
 	$(empathy_handwritten_source)					\
-	chat-manager-interface.c chat-manager-interface.h \
 	$(NULL)
 
 empathy_LDADD =								\
@@ -199,33 +191,26 @@ EXTRA_DIST =			\
 	$(autostart_DATA)	\
 	$(ui_DATA)		\
 	empathy-chat.js		\
-	empathy-chat.gresource.xml \
-	Chat_Manager.xml
+	empathy-chat.gresource.xml
 
 dist_man_MANS =			\
 	empathy.1 \
 	empathy-accounts.1
 
-chat-manager-interface.c: chat-manager-interface.h
-chat-manager-interface.h: Makefile.am Chat_Manager.xml
-	gdbus-codegen \
-		--interface-prefix org.gnome.Empathy. \
-		--c-namespace EmpathyGen \
-		--generate-c-code chat-manager-interface \
-		Chat_Manager.xml
-
 BUILT_SOURCES = \
 	$(nodist_empathy_chat_SOURCES) \
-	chat-manager-interface.c \
-	chat-manager-interface.h \
 	$(NULL)
 
 CLEANFILES = $(BUILT_SOURCES)
 
-chat_resource_files: $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(srcdir) $(srcdir)/empathy-chat.gresource.xml)
+empathy-chat-resources.c: empathy-chat.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/empathy-chat.gresource.xml)
+	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ \
+		--sourcedir=$(srcdir) \
+		--generate-source \
+		$<
 
-empathy-chat-resources.c: empathy-chat.gresource.xml $(chat_resource_files)
-	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $<
-
-empathy-chat-resources.h: empathy-chat.gresource.xml $(chat_resource_files)
-	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-header $<
+empathy-chat-resources.h: empathy-chat.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/empathy-chat.gresource.xml)
+	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) --target=$@ \
+		--sourcedir=$(srcdir) \
+		--generate-header \
+		$<

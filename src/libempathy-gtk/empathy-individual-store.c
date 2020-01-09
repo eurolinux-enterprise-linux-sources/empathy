@@ -25,17 +25,16 @@
  */
 
 #include "config.h"
-#include "empathy-individual-store.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-gtk-enum-types.h"
+#include <libempathy/empathy-utils.h>
+
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include "empathy-gtk-enum-types.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Active users are those which have recently changed state
  * (e.g. online, offline or from normal to a busy state).
@@ -200,9 +199,8 @@ individual_store_get_group (EmpathyIndividualStore *self,
     }
 }
 
-GList *
-/* (transfer full) free with empathy_individual_store_free_iters() */
-empathy_individual_store_find_contact (EmpathyIndividualStore *self,
+static GList *
+individual_store_find_contact (EmpathyIndividualStore *self,
     FolksIndividual *individual)
 {
   GQueue *row_refs_queue;
@@ -224,8 +222,8 @@ empathy_individual_store_find_contact (EmpathyIndividualStore *self,
   return iters_list;
 }
 
-void
-empathy_individual_store_free_iters (GList *iters)
+static void
+free_iters (GList *iters)
 {
   g_list_foreach (iters, (GFunc) gtk_tree_iter_free, NULL);
   g_list_free (iters);
@@ -284,7 +282,7 @@ empathy_individual_store_add_individual (EmpathyIndividualStore *self,
   GeeSet *group_set = NULL;
   gboolean grouped = FALSE;
 
-  if (TPAW_STR_EMPTY (folks_alias_details_get_alias (
+  if (EMP_STR_EMPTY (folks_alias_details_get_alias (
           FOLKS_ALIAS_DETAILS (individual))))
     return;
 
@@ -388,7 +386,7 @@ individual_store_contact_set_active (EmpathyIndividualStore *self,
 
   model = GTK_TREE_MODEL (self);
 
-  iters = empathy_individual_store_find_contact (self, individual);
+  iters = individual_store_find_contact (self, individual);
   for (l = iters; l; l = l->next)
     {
       GtkTreePath *path;
@@ -405,7 +403,7 @@ individual_store_contact_set_active (EmpathyIndividualStore *self,
         }
     }
 
-  empathy_individual_store_free_iters (iters);
+  free_iters (iters);
 }
 
 static void individual_store_contact_active_free (ShowActiveData *data);
@@ -523,7 +521,7 @@ individual_avatar_pixbuf_received_cb (FolksIndividual *individual,
     {
       GList *iters, *l;
 
-      iters = empathy_individual_store_find_contact (data->store, individual);
+      iters = individual_store_find_contact (data->store, individual);
       for (l = iters; l; l = l->next)
         {
           gtk_tree_store_set (GTK_TREE_STORE (data->store), l->data,
@@ -531,7 +529,7 @@ individual_avatar_pixbuf_received_cb (FolksIndividual *individual,
               -1);
         }
 
-      empathy_individual_store_free_iters (iters);
+      free_iters (iters);
     }
 
   /* Free things */
@@ -568,7 +566,7 @@ individual_store_contact_update (EmpathyIndividualStore *self,
 
   model = GTK_TREE_MODEL (self);
 
-  iters = empathy_individual_store_find_contact (self, individual);
+  iters = individual_store_find_contact (self, individual);
   if (!iters)
     {
       in_list = FALSE;
@@ -696,7 +694,7 @@ individual_store_contact_update (EmpathyIndividualStore *self,
    * timeout removes the user from the contact list, really we
    * should remove the first timeout.
    */
-  empathy_individual_store_free_iters (iters);
+  free_iters (iters);
 }
 
 static void

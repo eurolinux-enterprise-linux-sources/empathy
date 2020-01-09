@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#accounts"/>
-    <desc>Jak úplně ostranit účet z <app>Empathy</app>.</desc>
+    <desc>Completely remove an account from <app>Empathy</app>.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review">
@@ -27,52 +27,35 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Lucas Lommer</mal:name>
-      <mal:email>llommer@svn.gnome.org</mal:email>
-      <mal:years>2008</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Martin Picek</mal:name>
-      <mal:email>picek.martin@gnome-cesko.cz</mal:email>
-      <mal:years>2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Tomáš Karger</mal:name>
-      <mal:email>tomkarger@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Marek Černocký</mal:name>
-      <mal:email>marek@manet.cz</mal:email>
-      <mal:years>2014</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Odstranění účtu</title>
+  <title>Remove an account</title>
 
-  <p>Pokud si už některý účet nepřejete používat, můžete jej z <app>Empathy</app> úplně odstranit. Pokud jej ale budete chtít někdy v opět budoucnu použít, bude muset znovu zadat všechny potřebné údaje.</p>
+  <p>You can completely remove an account from <app>Empathy</app> if you no
+  longer wish to use the account.  If you wish to use the account in
+  <app>Empathy</app> again in the future, you will have to add your account
+  details again.</p>
 
   <steps>
     <item>
-      <p>V okně <gui>Seznam kontaktů</gui> vyberte <guiseq><gui>Upravit</gui> <gui>Účty</gui></guiseq> nebo zmáčkněte <key>F4</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
+      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
     </item>
     <item>
-      <p>V seznamu účtů na levé straně okna vyberte účet, který si přejete odstranit.</p>
+      <p>Select the account you wish to remove from the accounts list on the
+      left side of the window.</p>
     </item>
     <item>
-      <p>Klikněte na <gui style="button">-</gui>.</p>
+      <p>Click <gui style="button">-</gui>.</p>
     </item>
     <item>
-      <p>Zobrazí se dialogové okno požadující potvrzení. Kliknutím na tlačítko <gui>Odstranit</gui> účet trvale odstraníte.</p>
+      <p>A dialog will be shown asking for confirmation. Click the <gui>Remove</gui>
+      button to permanently remove the account.</p>
     </item>
   </steps>
 
   <note>
-    <p>Ani po odstranění účtu se ale v <app>Empathy</app> nesmaže historie konverzace onoho účtu.</p>
+    <p>Even after removing an account, <app>Empathy</app> does not delete
+    your conversation history for that account.</p>
   </note>
 </page>

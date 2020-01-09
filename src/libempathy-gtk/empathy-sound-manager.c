@@ -18,16 +18,15 @@
  */
 
 #include "config.h"
+
 #include "empathy-sound-manager.h"
 
 #include <glib/gi18n-lib.h>
 
-#include "empathy-gsettings.h"
-#include "empathy-presence-manager.h"
-#include "empathy-utils.h"
-
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-utils.h>
 
 typedef struct {
   EmpathySound sound_id;
@@ -160,45 +159,6 @@ empathy_sound_manager_dup_singleton (void)
 
   g_object_add_weak_pointer (G_OBJECT (manager), (gpointer *) &manager);
   return manager;
-}
-
-static gboolean
-empathy_check_available_state (void)
-{
-  TpConnectionPresenceType most_available_requested_presence;
-  TpAccountManager *am;
-  GList *accounts;
-
-  /* We cannot use tp_account_manager_get_most_available_presence() or
-   * empathy_presence_manager_get_state() because it is the requested presence
-   * that matters, not the current presence.
-   * See https://bugzilla.gnome.org/show_bug.cgi?id=704454 */
-  most_available_requested_presence = TP_CONNECTION_PRESENCE_TYPE_UNSET;
-  am = tp_account_manager_dup ();
-  accounts = tp_account_manager_dup_valid_accounts (am);
-  while (accounts != NULL)
-    {
-      TpAccount *account = accounts->data;
-      TpConnectionPresenceType requested_presence;
-
-      requested_presence = tp_account_get_requested_presence (account,
-          NULL, NULL);
-
-      if (tp_connection_presence_type_cmp_availability (requested_presence,
-              most_available_requested_presence) > 0)
-        most_available_requested_presence = requested_presence;
-
-      g_object_unref (account);
-      accounts = g_list_delete_link (accounts, accounts);
-    }
-
-  g_object_unref (am);
-
-  if (most_available_requested_presence != TP_CONNECTION_PRESENCE_TYPE_AVAILABLE &&
-    most_available_requested_presence != TP_CONNECTION_PRESENCE_TYPE_UNSET)
-    return FALSE;
-
-  return TRUE;
 }
 
 static gboolean

@@ -20,15 +20,11 @@
  */
 
 #include "config.h"
-#include "empathy-contact.h"
-
-#include <tp-account-widgets/tpaw-utils.h>
 
 #ifdef HAVE_GEOCODE
 #include <geocode-glib/geocode-glib.h>
 #endif
 
-#include "empathy-location.h"
 #include "empathy-utils.h"
 #include "empathy-enum-types.h"
 
@@ -325,7 +321,7 @@ empathy_contact_class_init (EmpathyContactClass *class)
         "Contact presence",
         "Presence of contact",
         TP_CONNECTION_PRESENCE_TYPE_UNSET,
-        TP_NUM_CONNECTION_PRESENCE_TYPES,
+        NUM_TP_CONNECTION_PRESENCE_TYPES,
         TP_CONNECTION_PRESENCE_TYPE_UNSET,
         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
@@ -464,7 +460,7 @@ empathy_contact_set_id (EmpathyContact *contact,
       priv->id = g_strdup (id);
 
       g_object_notify (G_OBJECT (contact), "id");
-      if (TPAW_STR_EMPTY (priv->alias))
+      if (EMP_STR_EMPTY (priv->alias))
           g_object_notify (G_OBJECT (contact), "alias");
     }
 
@@ -770,7 +766,7 @@ empathy_contact_from_tpl_contact (TpAccount *account,
         }
     }
 
-  if (!TPAW_STR_EMPTY (tpl_entity_get_avatar_token (tpl_entity)))
+  if (!EMP_STR_EMPTY (tpl_entity_get_avatar_token (tpl_entity)))
     contact_load_avatar_cache (retval,
         tpl_entity_get_avatar_token (tpl_entity));
 
@@ -814,12 +810,12 @@ empathy_contact_get_alias (EmpathyContact *contact)
 
   priv = GET_PRIV (contact);
 
-  if (!TPAW_STR_EMPTY (priv->alias))
+  if (!EMP_STR_EMPTY (priv->alias))
     alias = priv->alias;
   else if (priv->tp_contact != NULL)
     alias = tp_contact_get_alias (priv->tp_contact);
 
-  if (!TPAW_STR_EMPTY (alias))
+  if (!EMP_STR_EMPTY (alias))
     return alias;
   else
     return empathy_contact_get_id (contact);
@@ -1187,7 +1183,7 @@ empathy_contact_get_status (EmpathyContact *contact)
   g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), "");
 
   message = empathy_contact_get_presence_message (contact);
-  if (!TPAW_STR_EMPTY (message))
+  if (!EMP_STR_EMPTY (message))
     return message;
 
   return empathy_presence_get_default_message (
@@ -1332,7 +1328,7 @@ contact_get_avatar_filename (EmpathyContact *contact,
   gchar *avatar_file;
   gchar *token_escaped;
 
-  if (TPAW_STR_EMPTY (empathy_contact_get_id (contact)))
+  if (EMP_STR_EMPTY (empathy_contact_get_id (contact)))
     return NULL;
 
   token_escaped = tp_escape_as_identifier (token);
@@ -1365,7 +1361,7 @@ contact_load_avatar_cache (EmpathyContact *contact,
   GError *error = NULL;
 
   g_return_val_if_fail (EMPATHY_IS_CONTACT (contact), FALSE);
-  g_return_val_if_fail (!TPAW_STR_EMPTY (token), FALSE);
+  g_return_val_if_fail (!EMP_STR_EMPTY (token), FALSE);
 
   /* Load the avatar from file if it exists */
   filename = contact_get_avatar_filename (contact, token);
@@ -1620,6 +1616,7 @@ geocode_cb (GObject *source,
   GeocodeLocation *loc;
   GHashTable *new_location;
   GHashTable *resolved = NULL;
+  gdouble latitude, longitude;
 
   if (priv->location == NULL)
     goto out;
@@ -1637,14 +1634,14 @@ geocode_cb (GObject *source,
   loc = res->data;
 
   new_location = tp_asv_new (
-      EMPATHY_LOCATION_LAT, G_TYPE_DOUBLE, geocode_location_get_latitude (loc),
-      EMPATHY_LOCATION_LON, G_TYPE_DOUBLE, geocode_location_get_longitude (loc),
+      EMPATHY_LOCATION_LAT, G_TYPE_DOUBLE, loc->latitude,
+      EMPATHY_LOCATION_LON, G_TYPE_DOUBLE, loc->longitude,
       NULL);
 
-  DEBUG ("\t - Latitude: %f", geocode_location_get_latitude (loc));
-  DEBUG ("\t - Longitude: %f", geocode_location_get_longitude (loc));
+  DEBUG ("\t - Latitude: %f", loc->latitude);
+  DEBUG ("\t - Longitude: %f", loc->longitude);
 
-  g_list_free_full (res, g_object_unref);
+  g_list_free_full (res, (GDestroyNotify) geocode_location_free);
 
   /* Copy remaning fields. LAT and LON were not defined so we won't overwrite
    * the values we just set. */

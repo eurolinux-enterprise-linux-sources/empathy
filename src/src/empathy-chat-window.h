@@ -27,11 +27,12 @@
 #ifndef __EMPATHY_CHAT_WINDOW_H__
 #define __EMPATHY_CHAT_WINDOW_H__
 
+#include <glib-object.h>
 #include <gtk/gtk.h>
+
 #include <telepathy-glib/telepathy-glib.h>
 
-#include "empathy-chat.h"
-#include "empathy-individual-manager.h"
+#include <libempathy-gtk/empathy-chat.h>
 
 G_BEGIN_DECLS
 

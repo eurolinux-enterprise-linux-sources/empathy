@@ -1,86 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="ca">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="ca">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Registreu un compte amb un dels serveis de missatgeria habilitats.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Reconeixement-Compartir Igual 3.0</p>
     </license>    
-
-    <desc>Create an account for one of the supported messaging services.</desc>
-
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
-  <title>Register a new account</title>
+  <title>Registre d'un compte nou</title>
 
-  <p>Most account types require you to create an account with a service
-  provider before you can use that account with instant messaging applications.
-  You can use <app>Empathy</app> to register for a new account with some
-  account providers using the same steps as you would to
-  <link xref="add-account">add an account</link>.</p>
+  <p>La majoria de comptes requereixen que creeu un compte amb un proveïdor abans de connectar-vos amb aplicacions de missatgeria com l'<app>Empathy</app>. Amb alguns proveïdors de comptes, podeu utilitzar l'<app>Empathy</app> per registrar el compte nou, utilitzant el mateixos passos que si <link xref="add-account">afegiu un compte</link>.</p>
 
-  <p>Once you create a new account, your account provider should give you a
-  login or a username and a password, as well as any additional information you
-  need to connect using <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>IRC networks require that you specify a nick (nickname) when you connect
-    to the server. Some IRC networks use a service, such as NickServ, to allow
-    users to <link xref="irc-nick-password">protect their nick</link>. If you
-    did not register your nick or are unable to do so and another user is using
-    it, then you will need to choose a different one.</p>
-
-    <p>Alguns servidors d'IRC estan protegits amb contrasenya. Haureu de saber la contrasenya per connectar-vos-hi. Generalment són xarxes d'IRC privades.</p>
-
-    <note>
-      <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
-      discussion.</p>
-    </note>
+  <p>This page provides information on creating a new account for various types of
+  accounts.  Your account provider should give you a login ID and a password, as well
+  as any additional information you need to connect using <app>Empathy</app>.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>
+      Facebook is one of the most-used social networks.  It allows users to
+      create their own profile and to communicate with their friends. 
+    </p>
+    <p>
+      To use Facebook to communicate with your friends, you will need 
+      to create a new account from the website: 
+      <link href="http://www.facebook.com">www.facebook.com</link>.
+    </p>
   </section>
 
   <section id="jabber">
@@ -88,56 +55,68 @@
 
     <p>Jabber és un sistema obert de missatgeria instantània. Semblant al correu electrònic, Jabber us permet escollir el vostre proveïdor de comptes i comunicar-vos amb altres usuaris de Jabber, sense que importi el seu proveïdor de comptes.</p>
 
-    <p>You will need to create a new account with a Jabber provider. There are
-    many free providers; one popular provider is
-    <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Haureu de crear un compte nou amb algun proveïdor de comptes Jabber. Hi ha molt proveïdors gratuïts, un dels més populars és <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>If you use Gmail or Google+ Hangouts, you already have a Jabber
-      account. Use your Gmail address and password in <app>Empathy</app> to
-      connect.</p>
+      <p>Si sou usuaris del Google Mail o del Google Talk, ja teniu un compte de Jabber. El Google Talk és un servei de Jabber. Només us cal utilitzar l'adreça i la contrasenya de Google Mail per connectar-vos a l'<app>Empathy</app>.</p>
     </note>
   </section>
 
   <section id="salut">
     <title>Gent propera</title>
 
-    <p>This service works whenever you are connected to a local network, such
-    as a wireless hotspot, you do not need to create an account with service
-    providor, just set up your account through <app>Empathy</app>. It
-    automatically finds all other users on the network who are also using this
-    service.</p>
+    <p>No us cal crear cap compte a cap proveïdor de serveis per utilitzar aquesta característica. Aquest servei funciona sempre que estigueu connectats a una xarxa d'àrea local, com un punt d'accés Wi-Fi. Us mostra tots els usuaris que fan servir aquest mateix servei de forma automàtica.</p>
 
-    <p>For more information, see the <link xref="salut-protocol">salut
-    protocol</link>.</p>
+    <p>Vegeu <link xref="salut-protocol"/> per a més informació.</p>
   </section>
 
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>El SIP és un sistema obert que permet realitzar converses de veu i de vídeo per Internet. Heu de crear un compte amb un proveïdor de SIP. Podeu comunicar-vos amb qualsevol usuari de SIP sense que importi el proveïdor SIP que estiguin utilitzant.</p>
+    <p>El SIP és un sistema obert que permet realitzar converses d'àudio i de vídeo per Internet. Heu de crear un compte amb un proveïdor de SIP. Podeu comunicar-vos amb qualsevol usuari de SIP sense que importi el proveïdor SIP que estiguin utilitzant.</p>
+
+    <note style="warning">
+      <p>Per motius tècnics, el servei lliure <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> no funciona amb l'<app>Empathy</app>.</p>
+    </note>
 
     <p>Alguns proveïdors de SIP us permeten fer trucades a telèfons fixes i mòbils des de l'ordinador. Normalment us cal una subscripció a un servei de pagament per poder-ho realitzar.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>No us cal registrar un compte per utilitzar l'IRC. Encara que especifiqueu un sobrenom quan afegiu el compte d'IRC a l'<app>Empathy</app>, aquest sobrenom només s'utilitza cada vegada que us connecteu. Si un altre usuari està utilitzant aquest sobrenom, us caldrà canviar el sobrenom.</p>
+
+    <p>Algunes xarxes d'IRC utilitzen un servei anomenat NickServ per permetre als usuaris protegir el seu sobrenom. Vegeu <link xref="irc-nick-password"/> per a més informació.</p>
+
+    <p>Alguns servidors d'IRC estan protegits amb contrasenya. Haureu de saber la contrasenya per connectar-vos-hi. Generalment són xarxes d'IRC privades.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Serveis propietaris</title>
 
-    <p>There are many proprietary instant messaging services that have been
-    developed by different companies or organizations. <app>Empathy</app>
-    allows you to connect to an existing account for some of these services.
-    To create a new account with one of these services, you will need to
-    visit the website for the service.</p>
+    <p>Hi ha molts serveis de missatgeria instantània propietaris desenvolupats per diverses organitzacions o empreses. L'<app>Empathy</app> us permet connectar-vos a comptes existent de molts serveis populars. Per crear-vos-hi un compte nou haureu de visitar el lloc web i acceptar la llicència d'ús.</p>
 
     <list>
       <item>
-        <p><link href="http://dashboard.aim.com/aim">AIM</link></p>
+        <p>
+          <link href="http://dashboard.aim.com/aim">AIM</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://www.icq.com/register/">ICQ</link></p>
+        <p>
+          <link href="https://www.icq.com/register/">ICQ</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>
+        <p>
+          <link href="https://accountservices.passport.net">MSN</link>
+        </p>
+      </item>
+      <item>
+        <p>
+          <link href="https://login.yahoo.com/config/login">Yahoo!</link>
+        </p>
       </item>
     </list>
   </section>

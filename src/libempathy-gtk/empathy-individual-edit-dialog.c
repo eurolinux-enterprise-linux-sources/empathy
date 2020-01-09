@@ -21,12 +21,13 @@
  */
 
 #include "config.h"
-#include "empathy-individual-edit-dialog.h"
 
 #include <glib/gi18n-lib.h>
 
+#include <libempathy/empathy-utils.h>
+
+#include "empathy-individual-edit-dialog.h"
 #include "empathy-individual-widget.h"
-#include "empathy-utils.h"
 
 #define GET_PRIV(obj) EMPATHY_GET_PRIV (obj, EmpathyIndividualEditDialog)
 

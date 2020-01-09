@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <link type="seealso" xref="hide-contacts"/>
+    <link type="seealso" xref="offline-contacts"/>
     <desc>Jemanden zur Kontaktliste hinzufügen.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-15" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
@@ -42,7 +42,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2015</mal:years>
+      <mal:years>2010-2013</mal:years>
     </mal:credit>
   </info>
 

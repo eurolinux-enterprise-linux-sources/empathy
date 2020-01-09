@@ -22,22 +22,21 @@
  *     Danielle Madeley <danielle.madeley@collabora.co.uk>
  *     Emilio Pozuelo Monfort <emilio.pozuelo@collabora.co.uk>
  */
-
 #include "config.h"
-#include "empathy-contact-search-dialog.h"
 
 #include <glib/gi18n-lib.h>
 
-#include "empathy-account-chooser.h"
-#include "empathy-cell-renderer-activatable.h"
-#include "empathy-cell-renderer-text.h"
-#include "empathy-client-factory.h"
-#include "empathy-images.h"
-#include "empathy-individual-information-dialog.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-client-factory.h>
+
+#include <libempathy-gtk/empathy-account-chooser.h>
+#include <libempathy-gtk/empathy-cell-renderer-text.h>
+#include <libempathy-gtk/empathy-cell-renderer-activatable.h>
+#include <libempathy-gtk/empathy-individual-information-dialog.h>
+#include <libempathy-gtk/empathy-images.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 #include "empathy-contact-search-dialog.h"
 
@@ -54,8 +53,7 @@ enum
 
 enum {
    PAGE_SEARCH_RESULTS,
-   PAGE_NO_MATCH,
-   PAGE_NOT_SUPPORTED,
+   PAGE_NO_MATCH
 };
 
 typedef struct _EmpathyContactSearchDialogPrivate EmpathyContactSearchDialogPrivate;
@@ -70,6 +68,7 @@ struct _EmpathyContactSearchDialogPrivate
   GtkWidget *spinner;
   GtkWidget *add_button;
   GtkWidget *find_button;
+  GtkWidget *no_contact_found;
   GtkWidget *search_entry;
   /* GtkWidget *server_entry; */
   GtkWidget *message;
@@ -103,15 +102,9 @@ on_searcher_reset (GObject *source_object,
   if (error != NULL)
     {
       DEBUG ("Failed to reset the TpContactSearch: %s", error->message);
-      gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-          PAGE_NOT_SUPPORTED);
-
       g_error_free (error);
       return;
     }
-
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-      PAGE_SEARCH_RESULTS);
 
   search = g_hash_table_new (g_str_hash, g_str_equal);
 
@@ -321,15 +314,9 @@ on_searcher_created (GObject *source_object,
   if (error != NULL)
     {
       DEBUG ("Failed to create a TpContactSearch: %s", error->message);
-      gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-          PAGE_NOT_SUPPORTED);
-
       g_error_free (error);
       return;
     }
-
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-      PAGE_SEARCH_RESULTS);
 
   g_signal_connect (priv->searcher, "search-results-received",
       G_CALLBACK (_search_results_received), self);
@@ -337,7 +324,6 @@ on_searcher_created (GObject *source_object,
       G_CALLBACK (_on_search_state_changed_cb), self);
 
   gtk_widget_set_sensitive (priv->find_button, TRUE);
-  gtk_widget_set_sensitive (priv->search_entry, TRUE);
 }
 
 static void
@@ -386,7 +372,6 @@ _account_chooser_changed (EmpathyAccountChooser *chooser,
 
   /* gtk_widget_set_sensitive (priv->server_entry, can_set_server); */
   gtk_widget_set_sensitive (priv->find_button, FALSE);
-  gtk_widget_set_sensitive (priv->search_entry, FALSE);
 
   DEBUG ("New account is %s", tp_proxy_get_object_path (account));
 
@@ -521,24 +506,6 @@ on_profile_button_clicked_cb (EmpathyCellRendererActivatable *cell,
 }
 
 static void
-append_message_page (EmpathyContactSearchDialog *self,
-    const gchar *message)
-{
-  EmpathyContactSearchDialogPrivate *priv = GET_PRIVATE (self);
-  GtkWidget *label;
-  gchar *tmp;
-
-  label = gtk_label_new (NULL);
-  tmp = g_strdup_printf ("<b><span size='xx-large'>%s</span></b>", message);
-  gtk_label_set_markup (GTK_LABEL (label), tmp);
-  g_free (tmp);
-
-  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-
-  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), label, NULL);
-}
-
-static void
 empathy_contact_search_dialog_init (EmpathyContactSearchDialog *self)
 {
   EmpathyContactSearchDialogPrivate *priv = GET_PRIVATE (self);
@@ -547,6 +514,7 @@ empathy_contact_search_dialog_init (EmpathyContactSearchDialog *self)
   GtkTreeViewColumn *col;
   GtkTreeSelection *selection;
   GtkSizeGroup *size_group = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+  gchar *tmp;
 
   /* Title */
   gtk_window_set_title (GTK_WINDOW (self), _("Search contacts"));
@@ -653,11 +621,19 @@ empathy_contact_search_dialog_init (EmpathyContactSearchDialog *self)
 
   gtk_container_add (GTK_CONTAINER (scrolled_window), priv->tree_view);
 
+  priv->no_contact_found = gtk_label_new (NULL);
+  tmp = g_strdup_printf ("<b><span size='xx-large'>%s</span></b>",
+      _("No contacts found"));
+  gtk_label_set_markup (GTK_LABEL (priv->no_contact_found), tmp);
+  g_free (tmp);
+
+  gtk_label_set_ellipsize (GTK_LABEL (priv->no_contact_found),
+      PANGO_ELLIPSIZE_END);
+
   gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook), scrolled_window,
       NULL);
-
-  append_message_page (self, _("No contacts found"));
-  append_message_page (self, _("Contact search is not supported on this account"));
+  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
+      priv->no_contact_found, NULL);
 
   gtk_box_pack_start (GTK_BOX (vbox), priv->notebook, TRUE, TRUE, 3);
 

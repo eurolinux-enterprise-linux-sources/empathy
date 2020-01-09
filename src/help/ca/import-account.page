@@ -35,35 +35,11 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Importeu un compte existent</title>
+  <title>Com importar un compte existent</title>
 
-  <p>La primera vegada que executeu l'<app>Empathy</app> us oferirà la importació dels comptes d'una altra aplicació de missatgeria instantània. Ara mateix l'única aplicació des de la qual es poden importar comptes és el <app>Pidgin</app>.</p>
+  <p>La primera vegada que executeu l'<app>Empathy</app> us oferirà la importació dels comptes d'una altra aplicació de missatgeria instantània. Ara mateix l'única aplicació des de la que es poden importar comptes és el <app>Pidgin</app>.</p>
 
   <steps>
     <item>

@@ -2,9 +2,10 @@
 #ifndef __EMPATHY_ROSTER_VIEW_H__
 #define __EMPATHY_ROSTER_VIEW_H__
 
-#include <tp-account-widgets/tpaw-live-search.h>
+#include <libempathy-gtk/egg-list-box/egg-list-box.h>
+#include <libempathy-gtk/empathy-live-search.h>
 
-#include "empathy-roster-model.h"
+#include <libempathy-gtk/empathy-roster-model.h>
 
 G_BEGIN_DECLS
 
@@ -15,13 +16,13 @@ typedef struct _EmpathyRosterViewPriv EmpathyRosterViewPriv;
 struct _EmpathyRosterViewClass
 {
   /*<private>*/
-  GtkListBoxClass parent_class;
+  EggListBoxClass parent_class;
 };
 
 struct _EmpathyRosterView
 {
   /*<private>*/
-  GtkListBox parent;
+  EggListBox parent;
   EmpathyRosterViewPriv *priv;
 };
 
@@ -58,7 +59,7 @@ void empathy_roster_view_show_groups (EmpathyRosterView *self,
     gboolean show);
 
 void empathy_roster_view_set_live_search (EmpathyRosterView *self,
-    TpawLiveSearch *search);
+    EmpathyLiveSearch *search);
 
 gboolean empathy_roster_view_is_empty (EmpathyRosterView *self);
 
@@ -75,7 +76,7 @@ void empathy_roster_view_remove_event (EmpathyRosterView *self,
 FolksIndividual * empathy_roster_view_get_individual_at_y (
     EmpathyRosterView *self,
     gint y,
-    GtkListBoxRow **out_row);
+    GtkWidget **out_child);
 
 const gchar * empathy_roster_view_get_group_at_y (
     EmpathyRosterView *self,

@@ -1,0 +1,37 @@
+From daeb37137604edb60ae86526a0a387ed2b1962f1 Mon Sep 17 00:00:00 2001
+From: Debarshi Ray <debarshir@gnome.org>
+Date: Fri, 1 Nov 2013 11:12:06 +0100
+Subject: [PATCH] protocol-chooser: skip Haze's IRC implementation
+
+Users should be using Idle for IRC, and not Haze. This is implicitly
+codified in the widgets array kept in empathy-account-widget.c.
+Otherwise, if Idle is absent we would still be advertising IRC support
+in the UI, only to crash immediately afterwards.
+
+All said and done, it is saner to support one single implementation of
+a protocol.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=711226
+---
+ libempathy-gtk/empathy-protocol-chooser.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/libempathy-gtk/empathy-protocol-chooser.c b/libempathy-gtk/empathy-protocol-chooser.c
+index d5b0de7..ec7d125 100644
+--- a/libempathy-gtk/empathy-protocol-chooser.c
++++ b/libempathy-gtk/empathy-protocol-chooser.c
+@@ -182,6 +182,11 @@ protocol_choosers_add_cm (EmpathyProtocolChooser *chooser,
+         continue;
+ 
+       if (!tp_strdiff (cm_name, "haze") &&
++          !tp_strdiff (proto_name, "irc"))
++        /* Use Idle for IRC (bgo #711226) */
++        continue;
++
++      if (!tp_strdiff (cm_name, "haze") &&
+           !tp_strdiff (proto_name, "sip"))
+         /* Haze's SIP implementation is pretty useless (bgo #629736) */
+         continue;
+-- 
+1.8.3.1
+

@@ -11,20 +11,22 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
  *
  * Authors: Danielle Madeley <danielle.madeley@collabora.co.uk>
  */
 
-#include "config.h"
+#include <config.h>
 
 #include <gtk/gtk.h>
 
-#include "empathy-client-factory.h"
-#include "empathy-contact-blocking-dialog.h"
-#include "empathy-ui-utils.h"
+#include <libempathy/empathy-client-factory.h>
+
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-contact-blocking-dialog.h>
 
 static void
 am_prepare_cb (GObject *source,

@@ -22,15 +22,14 @@
 #include "empathy-local-xmpp-assistant-widget.h"
 
 #include <glib/gi18n-lib.h>
-#include <tp-account-widgets/tpaw-account-widget.h>
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
+#include <libempathy/empathy-utils.h>
+
+#include <libempathy-gtk/empathy-account-widget.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_ACCOUNT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 G_DEFINE_TYPE (EmpathyLocalXmppAssistantWidget,
     empathy_local_xmpp_assistant_widget, GTK_TYPE_GRID)
@@ -44,7 +43,7 @@ static gulong signals[LAST_SIGNAL] = { 0, };
 
 struct _EmpathyLocalXmppAssistantWidgetPrivate
 {
-  TpawAccountSettings  *settings;
+  EmpathyAccountSettings  *settings;
 };
 
 static void
@@ -56,7 +55,7 @@ empathy_local_xmpp_assistant_widget_init (EmpathyLocalXmppAssistantWidget *self)
 }
 
 static void
-handle_apply_cb (TpawAccountWidget *widget_object,
+handle_apply_cb (EmpathyAccountWidget *widget_object,
     gboolean is_valid,
     EmpathyLocalXmppAssistantWidget *self)
 {
@@ -70,7 +69,7 @@ empathy_local_xmpp_assistant_widget_constructed (GObject *object)
     object;
   GtkWidget *w;
   GdkPixbuf *pix;
-  TpawAccountWidget *account_widget;
+  EmpathyAccountWidget *account_widget;
   gchar *markup;
 
   G_OBJECT_CLASS (empathy_local_xmpp_assistant_widget_parent_class)->
@@ -85,11 +84,10 @@ empathy_local_xmpp_assistant_widget_constructed (GObject *object)
         "details below are correct."));
   gtk_misc_set_alignment (GTK_MISC (w), 0, 0.5);
   gtk_label_set_line_wrap (GTK_LABEL (w), TRUE);
-  gtk_label_set_max_width_chars (GTK_LABEL (w), 60);
   gtk_grid_attach (GTK_GRID (self), w, 0, 0, 1, 1);
   gtk_widget_show (w);
 
-  pix = tpaw_pixbuf_from_icon_name_sized ("im-local-xmpp", 48);
+  pix = empathy_pixbuf_from_icon_name_sized ("im-local-xmpp", 48);
   if (pix != NULL)
     {
       w = gtk_image_new_from_pixbuf (pix);
@@ -99,12 +97,12 @@ empathy_local_xmpp_assistant_widget_constructed (GObject *object)
       g_object_unref (pix);
     }
 
-  self->priv->settings = tpaw_account_settings_new ("salut", "local-xmpp",
+  self->priv->settings = empathy_account_settings_new ("salut", "local-xmpp",
       NULL, _("People nearby"));
 
-  account_widget = tpaw_account_widget_new_for_protocol (
-      self->priv->settings, NULL, TRUE);
-  tpaw_account_widget_hide_buttons (account_widget);
+  account_widget = empathy_account_widget_new_for_protocol (
+      self->priv->settings, TRUE);
+  empathy_account_widget_hide_buttons (account_widget);
 
   g_signal_connect (account_widget, "handle-apply",
       G_CALLBACK (handle_apply_cb), self);
@@ -184,7 +182,7 @@ account_enabled_cb (GObject *source,
 
   account_mgr = tp_account_manager_dup ();
 
-  tpaw_connect_new_account (account, account_mgr);
+  empathy_connect_new_account (account, account_mgr);
 
   g_object_unref (account_mgr);
 }
@@ -194,11 +192,11 @@ apply_account_cb (GObject *source,
     GAsyncResult *result,
     gpointer user_data)
 {
-  TpawAccountSettings *settings = TPAW_ACCOUNT_SETTINGS (source);
+  EmpathyAccountSettings *settings = EMPATHY_ACCOUNT_SETTINGS (source);
   TpAccount *account;
   GError *error = NULL;
 
-  if (!tpaw_account_settings_apply_finish (settings, result, NULL, &error))
+  if (!empathy_account_settings_apply_finish (settings, result, NULL, &error))
     {
       DEBUG ("Failed to create account: %s", error->message);
       g_error_free (error);
@@ -206,7 +204,7 @@ apply_account_cb (GObject *source,
     }
 
   /* enable the newly created account */
-  account = tpaw_account_settings_get_account (settings);
+  account = empathy_account_settings_get_account (settings);
   tp_account_set_enabled_async (account, TRUE, account_enabled_cb, NULL);
 }
 
@@ -214,7 +212,7 @@ void
 empathy_local_xmpp_assistant_widget_create_account (
     EmpathyLocalXmppAssistantWidget *self)
 {
-  tpaw_account_settings_apply_async (self->priv->settings,
+  empathy_account_settings_apply_async (self->priv->settings,
       apply_account_cb, NULL);
 }
 
@@ -247,5 +245,5 @@ gboolean
 empathy_local_xmpp_assistant_widget_is_valid (
         EmpathyLocalXmppAssistantWidget *self)
 {
-  return tpaw_account_settings_is_valid (self->priv->settings);
+  return empathy_account_settings_is_valid (self->priv->settings);
 }

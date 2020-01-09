@@ -21,7 +21,8 @@
 #define ___EMPATHY_NEW_ACCOUNT_DIALOG_H__
 
 #include <gtk/gtk.h>
-#include <tp-account-widgets/tpaw-account-settings.h>
+
+#include <libempathy/empathy-account-settings.h>
 
 G_BEGIN_DECLS
 
@@ -50,7 +51,7 @@ GType empathy_new_account_dialog_get_type (void) G_GNUC_CONST;
 
 GtkWidget * empathy_new_account_dialog_new (GtkWindow *parent);
 
-TpawAccountSettings * empathy_new_account_dialog_get_settings (
+EmpathyAccountSettings * empathy_new_account_dialog_get_settings (
     EmpathyNewAccountDialog *self);
 
 G_END_DECLS

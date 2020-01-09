@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="hu">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="hu">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Fiók regisztrálása valamelyik támogatott üzenetküldő szolgáltatással.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Share Alike 3.0</p>
     </license>    
-
-    <desc>Fiók létrehozása valamelyik támogatott üzenetküldő szolgáltatáshoz.</desc>
-
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Kelemen Gábor</mal:name>
@@ -38,20 +37,14 @@
 
   <title>Új fiók regisztrálása</title>
 
-  <p>A legtöbb fióktípus megköveteli fiók létrehozását egy szolgáltatónál ahhoz, hogy az <app>Empathyhoz</app> hasonló azonnaliüzenő alkalmazásokkal azt a fiókot használhassa. Egyes szolgáltatók esetén használhatja az <app>Empathyt</app> új fiók regisztrálására, a <link xref="add-account">fiók hozzáadásánál</link> használt lépéseket követve.</p>
+  <p>A legtöbb fióktípus megköveteli fiók létrehozását egy szolgáltatónál ahhoz, hogy az <app>Empathyhoz</app> hasonló azonnaliüzenő alkalmazásokkal csatlakozhatna. Egyes szolgáltatók esetén használhatja az <app>Empathyt</app> új fiók regisztrálására, a <link xref="add-account">fiók hozzáadásánál</link> használt lépéseket követve.</p>
 
-  <p>Az új fiók létrehozása után a szolgáltatónak meg kell adnia a bejelentkezési azonosítót és jelszót, valamint az <app>Empathy</app> használatával való csatlakozáshoz esetleg szükséges további információkat.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>Az IRC hálózatok megkövetelik egy becenév megadását a kiszolgálóhoz való csatlakozáskor. Egyes IRC hálózatok rendelkeznek NickServ szolgáltatással, amely lehetővé teszi a <link xref="irc-nick-password">becenevek védelmét</link>. Ha nem regisztrálja becenevét, vagy nincs erre lehetősége és közben másik felhasználó vette használatba, akkor másikat kell választania.</p>
-
-    <p>Egyes IRC-kiszolgálók jelszóval védettek. Az ilyen kiszolgálókhoz csatlakozáskor ismernie kell a jelszót. Ezek általában privát IRC-hálózatok.</p>
-
-    <note>
-      <p>Számos GNOME projekt az <code>irc.gnome.org</code> hálózatot használja a projekttel kapcsolatos beszélgetéshez.</p>
-    </note>
+  <p>Ez az oldal új fiók létrehozásával kapcsolatos információkat biztosít különböző fióktípusokhoz. A szolgáltatónak meg kell adnia a bejelentkezési azonosítót és jelszót, valamint az <app>Empathy</app> használatával való csatlakozáshoz esetleg szükséges további információkat.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>A Facebook az egyik legtöbbet használt közösségi hálózat. Segítségével a felhasználók saját profilt hozhatnak létre, és kommunikálhatnak barátaikkal.</p>
+    <p>A Facebook használatához a <link href="http://www.facebook.com">www.facebook.com</link> weboldalon kell létrehoznia egy új fiókot.</p>
   </section>
 
   <section id="jabber">
@@ -59,19 +52,19 @@
 
     <p>A Jabber egy nyílt azonnaliüzenő-rendszer. Az e-mailhez hasonlóan a Jabber lehetővé teszi a szolgáltató megválasztását, és az összes Jabber felhasználóval való kommunikációt a szolgáltatótól függetlenül.</p>
 
-    <p>Egy Jabber szolgáltatónál létre kell hoznia az új fiókot. Számos ingyenes szolgáltató van, az egyik népszerű a <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Egy Jabber szolgáltatónál létre kell hoznia az új fiókot. Számos ingyenes szolgáltató van, az egyik népszerű a <link href="http://register.jabber.org/">Jabber.org</link>.</p>
 
     <note>
-      <p>Ha a GMail vagy a Google+ Hangout szolgáltatást használja, akkor már van Jabber fiókja. Használja GMail címét és jelszavát az <app>Empathyban</app> a kapcsolódáshoz.</p>
+      <p>Ha a Google Mail vagy a Google Talk szolgáltatást használja, akkor már van Jabber fiókja. A Google Talk egy Jabber szolgáltatás. Google Mail címét és jelszavát használhatja az <app>Empathyban</app> a kapcsolódáshoz.</p>
     </note>
   </section>
 
   <section id="salut">
     <title>Közeli emberek</title>
 
-    <p>Ez a szolgáltatás mindig működik, amikor helyi hálózathoz, például vezeték nélküli hotspothoz kapcsolódik. Használatához nem kell fiókot regisztrálni egy szolgáltatónál, csak egy fiókot kell beállítani az <app>Empathyban</app>. Ezután automatikusan megtalálja a szolgáltatás többi felhasználóját az adott hálózaton.</p>
+    <p>Ezen szolgáltatás használatához nem szükséges fiókot létrehoznia egy szolgáltatónál. A szolgáltatás akkor működik, amikor helyi hálózathoz, például vezeték nélküli hotspothoz kapcsolódik, és képes automatikusan megtalálni a szolgáltatás többi felhasználóját az adott hálózaton.</p>
 
-    <p>További információkért lásd a <link xref="salut-protocol">salut protokoll</link> oldalt.</p>
+    <p>További információkért lásd a <link xref="salut-protocol"/> oldalt.</p>
   </section>
 
   <section id="sip-services">
@@ -79,13 +72,27 @@
 
     <p>A SIP egy nyílt rendszer, amely lehetővé teszi felhasználóinak hang- és videohívások bonyolítását az interneten. Létre kell hoznia egy fiókot egy SIP-szolgáltatónál. Az összes SIP-felhasználóval kommunikálhat, függetlenül az általuk használt szolgáltatótól.</p>
 
+    <note style="warning">
+      <p>Technikai nehézségek miatt az ingyenes <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> szolgáltatás jelenleg nem működik az <app>Empathyval</app>.</p>
+    </note>
+
     <p>Egyes SIP-szolgáltatók lehetővé teszik normál telefonok hívását a számítógépéről. Az ilyen szolgáltatásra általában elő kell fizetni.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>Az IRC használatához nem kell fiókot regisztrálni. Noha meg kell adnia egy becenevet az IRC-fiók felvételekor az <app>Empathyba</app>, ez a becenév csak az egyes csatlakozásokkor jön létre. Ha másik felhasználó használja a becenevet, akkor újat kell választania.</p>
+
+    <p>Egyes IRC-hálózatok egy NickServ nevű szolgáltatást használnak, amely lehetővé teszi felhasználóiknak beceneveik megvédését. További információkért lásd a <link xref="irc-nick-password"/> oldalt.</p>
+
+    <p>Egyes IRC-kiszolgálók jelszóval védettek. Az ilyen kiszolgálókhoz csatlakozáskor ismernie kell a jelszót. Ezek általában privát IRC-hálózatok.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Zárt szolgáltatások</title>
 
-    <p>Számos zárt azonnaliüzenő-szolgáltatást fejlesztettek különböző cégek és szervezetek. Az <app>Empathy</app> lehetővé teszi a kapcsolódást meglévő fiókjával néhány ilyen szolgáltatáshoz. Új fiók létrehozásához fel kell keresnie a szolgáltató weboldalát.</p>
+    <p>Számos zárt azonnaliüzenő-szolgáltatást fejlesztettek különböző cégek és szervezetek. Az <app>Empathy</app> lehetővé teszi a kapcsolódást meglévő fiókjával a legnépszerűbb szolgáltatásokhoz. Új fiók létrehozásához fel kell keresnie a szolgáltató weboldalát, és el kell fogadnia a felhasználási feltételeket.</p>
 
     <list>
       <item>
@@ -93,6 +100,9 @@
       </item>
       <item>
         <p><link href="https://www.icq.com/register/">ICQ</link></p>
+      </item>
+      <item>
+        <p><link href="https://accountservices.passport.net">MSN</link></p>
       </item>
       <item>
         <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>

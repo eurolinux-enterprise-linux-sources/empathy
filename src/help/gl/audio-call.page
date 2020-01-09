@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" xmlns:its="http://www.w3.org/2005/11/its" type="topic" style="task" id="audio-call" xml:lang="gl">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="audio-call" xml:lang="gl">
 
   <info>
     <link type="guide" xref="index#audio-video"/>
@@ -13,17 +13,10 @@
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-02-14" status="review"/>
     <revision pkgversion="2.32" version="0.4" date="2010-09-09" status="review"/>   
-    <revision pkgversion="3.8" version="0.4" date="2013-04-15" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="author">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Compartir Igual 3.0</p>
     </license>
@@ -38,16 +31,15 @@
   <title>Comezar unha conversa de son</title>
 
   <p>Pode chamar aos seus contactos e ter conversas de son con eles. Esta característica só funciona con certo tipo de contas e require que a outra persoa teña un aplicativo que admita chamadas de son.</p>
-
   <steps>
     <item>
-      <p>Seleccione o contacto co que desexe ter unha conversa e seleccione <gui style="menuitem">Audiochamada</gui>.</p>
+      <p>Desde a xanela <gui>Lista de contactos</gui>, prema a icona <media type="image" mime="image/png" src="figures/camera-web.png">chamada de vídeo</media> ao lado do nome do contacto ao que quere chamar e seleccione <gui style="menuitem">Chamada de son</gui>.</p>
     </item>
     <item>
-      <p>Abrirase unha nova xanela. Cando a conexión se estabeleza verá o tempo total da conversa na parte inferior da xanela.</p>
+      <p>Abrirase unha nova xanela. Cando a conexión se estabeleza verá <placeholder-2/> na parte inferior da xanela, ao carón do tempo de conversa total.</p>
     </item>
     <item>
-      <p>Para rematar a conversa, prema o botón de <gui style="button">colgar</gui></p>
+      <p>Para rematar a conversa, prema sobre <placeholder-1/></p>
     </item>
   </steps>
   

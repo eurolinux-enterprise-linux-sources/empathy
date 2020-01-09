@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <link type="seealso" xref="hide-contacts"/>
+    <link type="seealso" xref="offline-contacts"/>
     <desc>Dodawanie kontaktu do listy.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-15" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
@@ -26,18 +26,6 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aleksander Łukasiewicz</mal:name>
-      <mal:email>aleksander@lukasiewicz.net</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Aviary.pl</mal:name>
-      <mal:email>community-poland@mozilla.org</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
   </info>
 
   <title>Dodawanie kontaktu do listy kontaktów</title>
@@ -47,13 +35,13 @@
       <p>Należy wybrać <guiseq><gui>Rozmowa</gui><gui>Dodaj kontakt</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Z rozwijanej listy <gui>Kont</gui> należy wybrać konto, którego chcemy używać do połączenia z kontaktami. Kontakty muszą używać tej samej usługi jak wybrane konto.</p>
+      <p>Z rozwijanej listy <gui>Kont</gui> należy wybrać konto, którego chcemy używać do połączenia z kontaktami. Kontakty muszą używać tej samej usługi jak wybrane konto.</p>
     </item>
     <item>
-      <p>W polu <gui>Identyfikator</gui> należy wpisać identyfikator logowania, nazwę użytkownika, pseudonim lub inny identyfikator właściwy dla danego rodzaju usługi.</p>
+      <p>W polu <gui>Identyfikator</gui> należy wpisać identyfikator logowania, nazwę użytkownika, pseudonim lub inny identyfikator właściwy dla danego rodzaju usługi.</p>
     </item>
     <item>
-      <p>W polu <gui>Alias</gui> należy wpisać nazwę kontaktu, która ma być wyświetlana na liście kontaktów.</p>
+      <p>W polu <gui>Alias</gui> należy wpisać nazwę kontaktu, która ma być wyświetlana na liście kontaktów.</p>
     </item>
     <item>
       <p>Należy nacisnąć przycisk <gui>Dodaj</gui>, aby dodać osobę do listy kontaktów.</p>
@@ -61,7 +49,7 @@
   </steps>
 
   <note>
-    <p>Aby dodać nową osobę do listy kontaktów, należy być podłączonym do Internetu i do konta.</p>
+    <p>Aby dodać nową osobę do listy kontaktów, należy być podłączonym do Internetu i do konta.</p>
   </note>
 
 </page>

@@ -21,13 +21,10 @@
  */
 
 #include "config.h"
+
+#include <libempathy/empathy-utils.h>
 #include "empathy-smiley-manager.h"
-
-#include <tp-account-widgets/tpaw-pixbuf-utils.h>
-#include <tp-account-widgets/tpaw-utils.h>
-
 #include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 typedef struct _SmileyManagerTree SmileyManagerTree;
 
@@ -245,15 +242,15 @@ empathy_smiley_manager_add (EmpathySmileyManager *manager,
 	va_list    var_args;
 
 	g_return_if_fail (EMPATHY_IS_SMILEY_MANAGER (manager));
-	g_return_if_fail (!TPAW_STR_EMPTY (icon_name));
-	g_return_if_fail (!TPAW_STR_EMPTY (first_str));
+	g_return_if_fail (!EMP_STR_EMPTY (icon_name));
+	g_return_if_fail (!EMP_STR_EMPTY (first_str));
 
-	pixbuf = tpaw_pixbuf_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+	pixbuf = empathy_pixbuf_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
 	if (pixbuf) {
 		gchar *path;
 
 		va_start (var_args, first_str);
-		path = tpaw_filename_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+		path = empathy_filename_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
 		smiley_manager_add_valist (manager, pixbuf, path, first_str, var_args);
 		va_end (var_args);
 		g_object_unref (pixbuf);
@@ -267,53 +264,27 @@ empathy_smiley_manager_load (EmpathySmileyManager *manager)
 	g_return_if_fail (EMPATHY_IS_SMILEY_MANAGER (manager));
 
 	/* From fd.o icon-naming spec */
-
-	/* U+1F47C BABY ANGEL */
-	empathy_smiley_manager_add (manager, "face-angel",      "👼",    "O:-)",  "O:)",  NULL);
-	/* U+1F620 ANGRY FACE */
-	empathy_smiley_manager_add (manager, "face-angry",      "😠",    "X-(",   ":@",   NULL);
-	/* U+1F60E SMILING FACE WITH SUNGLASSES */
-	empathy_smiley_manager_add (manager, "face-cool",       "😎",    "B-)",   "B-|",  NULL);
-	/* U+1F62D LOUDLY CRYING FACE */
-	empathy_smiley_manager_add (manager, "face-crying",     "😭",    ":'(",           NULL);
-	/* U+1F608 SMILING FACE WITH HORNS  */
-	empathy_smiley_manager_add (manager, "face-devilish",   "😈",    ">:-)",  ">:)",  NULL);
-	/* U+1F633 FLUSHED FACE */
-	empathy_smiley_manager_add (manager, "face-embarrassed","😳",    ":-[",   ":[",   ":-$", ":$", NULL);
-	/* no suitable character in unicode */
-	empathy_smiley_manager_add (manager, "face-glasses",    "8-)",   NULL);
-	/* U+1F618 FACE THROWING A KISS */
-	empathy_smiley_manager_add (manager, "face-kiss",       "😘",    ":-*",   ":*",   NULL);
-	/* U+1F604 SMILING FACE WITH OPEN MOUTH AND SMILING EYES" */
-	empathy_smiley_manager_add (manager, "face-laugh",      "😄",    ":-))",  ":))",  NULL);
-	/* U+1F435 MONKEY */
-	empathy_smiley_manager_add (manager, "face-monkey",     "🐵",    ":-(|)", ":(|)", NULL);
-	/* U+1F610 NEUTRAL FACE */
-	empathy_smiley_manager_add (manager, "face-plain",      "😐",    ":-|",   ":|",   NULL);
-	/* U+1F61B FACE WITH STUCK-OUT TONGUE */
-	empathy_smiley_manager_add (manager, "face-raspberry",  "😛",    ":-P",   ":P",	 ":-p", ":p", NULL);
-	/* U+1F626 FROWING FACE WITH OPEN MOUTH */
-	empathy_smiley_manager_add (manager, "face-sad",        "😦",    ":-(",   ":(",   NULL);
-	/* U+1F635 DIZZY FACE */
-	empathy_smiley_manager_add (manager, "face-sick",       "😵",    ":-&",   ":&",   NULL);
-	/* U+1F603 SMILING FACE WITH OPEN MOUTH */
-	empathy_smiley_manager_add (manager, "face-smile",      "😃",    ":-)",   ":)",   ":]",  "=)", NULL);
-	/* U+1F601 GRINNING FACE WITH SMILING EYES */
-	empathy_smiley_manager_add (manager, "face-smile-big",  "😁",    ":-D",   ":D",   ":-d", ":d", NULL);
-	/* U+1F60F SMIRKING FACE */
-	empathy_smiley_manager_add (manager, "face-smirk",      "😏",    ":-!",   ":!",   NULL);
-	/* U+1F632 ASTONISHED FACE */
-	empathy_smiley_manager_add (manager, "face-surprise",   "😲",    ":-O",   ":O",   ":-o", ":o", NULL);
-	/* U+1F62A SLEEPY FACE */
-	empathy_smiley_manager_add (manager, "face-tired",      "😪",    "|-)",   "|)",   NULL);
-	/* U+1F615 CONFUSED FACE */
-	empathy_smiley_manager_add (manager, "face-uncertain",  "😕",    ":-/",   ":/",   ":-\\", ":\\", NULL);
-	/* U+1F609 WINKING FACE */
-	empathy_smiley_manager_add (manager, "face-wink",       "😉",    ";-)",   ";)",   NULL);
-	/* U+1F61F WORRIED FACE */
-	empathy_smiley_manager_add (manager, "face-worried",    "😟",    ":-S",   ":S",   ":-s", ":s", NULL);
-	/* U+2764 HEAVY BLACK HEART */
-	empathy_smiley_manager_add (manager, "emblem-favorite", "❤",     "<3", NULL);
+	empathy_smiley_manager_add (manager, "face-angel",      "O:-)",  "O:)",  NULL);
+	empathy_smiley_manager_add (manager, "face-angry",      "X-(",   ":@",   NULL);
+	empathy_smiley_manager_add (manager, "face-cool",       "B-)",   NULL);
+	empathy_smiley_manager_add (manager, "face-crying",     ":'(",           NULL);
+	empathy_smiley_manager_add (manager, "face-devilish",   ">:-)",  ">:)",  NULL);
+	empathy_smiley_manager_add (manager, "face-embarrassed",":-[",   ":[",   ":-$", ":$", NULL);
+	empathy_smiley_manager_add (manager, "face-kiss",       ":-*",   ":*",   NULL);
+	empathy_smiley_manager_add (manager, "face-laugh",      ":-))",  ":))",  NULL);
+	empathy_smiley_manager_add (manager, "face-monkey",     ":-(|)", ":(|)", NULL);
+	empathy_smiley_manager_add (manager, "face-plain",      ":-|",   ":|",   NULL);
+	empathy_smiley_manager_add (manager, "face-raspberry",  ":-P",   ":P",	 ":-p", ":p", NULL);
+	empathy_smiley_manager_add (manager, "face-sad",        ":-(",   ":(",   NULL);
+	empathy_smiley_manager_add (manager, "face-sick",       ":-&",   ":&",   NULL);
+	empathy_smiley_manager_add (manager, "face-smile",      ":-)",   ":)",   NULL);
+	empathy_smiley_manager_add (manager, "face-smile-big",  ":-D",   ":D",   ":-d", ":d", NULL);
+	empathy_smiley_manager_add (manager, "face-smirk",      ":-!",   ":!",   NULL);
+	empathy_smiley_manager_add (manager, "face-surprise",   ":-O",   ":O",   ":-o", ":o", NULL);
+	empathy_smiley_manager_add (manager, "face-tired",      "|-)",   "|)",   NULL);
+	empathy_smiley_manager_add (manager, "face-uncertain",  ":-/",   ":/",   NULL);
+	empathy_smiley_manager_add (manager, "face-wink",       ";-)",   ";)",   NULL);
+	empathy_smiley_manager_add (manager, "face-worried",    ":-S",   ":S",   ":-s", ":s", NULL);
 }
 
 static EmpathySmileyHit *
@@ -490,10 +461,9 @@ empathy_smiley_menu_new (EmpathySmileyManager *manager,
 		smiley = l->data;
 		image = gtk_image_new_from_pixbuf (smiley->pixbuf);
 
-		item = gtk_image_menu_item_new ();
-		gtk_style_context_add_class (gtk_widget_get_style_context (item),
-			"empathy-smiley-menu-item");
-		gtk_container_add (GTK_CONTAINER (item), image);
+		item = gtk_image_menu_item_new_with_label ("");
+		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), image);
+		gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (item), TRUE);
 
 		gtk_menu_attach (GTK_MENU (menu), item,
 				 x, x + 1, y, y + 1);

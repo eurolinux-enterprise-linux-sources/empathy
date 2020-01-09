@@ -26,10 +26,11 @@
 #ifndef __EMPATHY_INDIVIDUAL_STORE_MANAGER_H__
 #define __EMPATHY_INDIVIDUAL_STORE_MANAGER_H__
 
-#include <glib-object.h>
+#include <gtk/gtk.h>
 
-#include "empathy-individual-manager.h"
-#include "empathy-individual-store.h"
+#include <libempathy/empathy-individual-manager.h>
+
+#include <libempathy-gtk/empathy-individual-store.h>
 
 G_BEGIN_DECLS
 #define EMPATHY_TYPE_INDIVIDUAL_STORE_MANAGER         (empathy_individual_store_manager_get_type ())

@@ -1,62 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="eu">
+<page xmlns="http://projectmallard.org/1.0/" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="task" id="create-account" xml:lang="eu">
 
   <info>
-    <link type="guide" xref="add-account"/>
+    <link type="guide" xref="index#accounts"/>
+    <link type="seealso" xref="add-account"/>
+    <desc>Erregistratu kontu baterako onartutako mezularitza-zerbitzuetako batekin.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-07" status="review">
-    <!--
-    <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
-    -->
+      <!--
+      <e:review by="shaunm@gnome.org" date="2009-09-02" status="done"/>
+      -->
     </revision>
     <revision pkgversion="2.30" version="0.3" date="2010-04-19" status="review"/>
     <revision pkgversion="2.30" version="0.4" date="2010-10-01" status="review"/>
-    <revision pkgversion="3.10" date="2013-06-23" status="review"/>
-
     <credit type="author">
       <name>Milo Casagrande</name>
-      <email its:translate="no">milo@ubuntu.com</email>
+      <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Ekaterina Gerasimova</name>
-      <email its:translate="no">kittykat3756@gmail.com</email>
-    </credit>
-
     <license>
       <p>Creative Commons Partekatu Berdin 3.0</p>
     </license>    
-
-    <desc>Create an account for one of the supported messaging services.</desc>
-
+<!--
+    <copyright>
+      <year>2009</year>
+      <name>GNOME Documentation Project</name>
+    </copyright>
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+-->
   </info>
 
-  <title>Register a new account</title>
+  <title>Erregistratu kontu berri baterako</title>
 
-  <p>Most account types require you to create an account with a service
-  provider before you can use that account with instant messaging applications.
-  You can use <app>Empathy</app> to register for a new account with some
-  account providers using the same steps as you would to
-  <link xref="add-account">add an account</link>.</p>
+  <p>Kontu mota gehienek zuk kontu-hornitzaile batekin kontu bat sortzea eskatzen dute, <app>Empathy</app> bezalako berehalako mezularitzako aplikazioak erabiliz konektatu ahal izateko. Kontu-hornitzaile batzuekin <app>Empathy</app> erabil dezakezu kontu berri batean erregistratzeko, <link xref="add-account">kontu bat gehitzeko</link> erabiliko zenituzkeen urrats berekin.</p>
 
-  <p>Once you create a new account, your account provider should give you a
-  login or a username and a password, as well as any additional information you
-  need to connect using <app>Empathy</app>.</p>
-
-  <section id="irc">
-    <title>IRC</title>
-
-    <p>IRC networks require that you specify a nick (nickname) when you connect
-    to the server. Some IRC networks use a service, such as NickServ, to allow
-    users to <link xref="irc-nick-password">protect their nick</link>. If you
-    did not register your nick or are unable to do so and another user is using
-    it, then you will need to choose a different one.</p>
-
-    <p>IRC zerbitzari batzuk pasahitzez babestuta daude. Pasahitza jakin behar duzu zerbitzari horiekin konektatu ahal izateko. Normalean, IRC sare pribatuak dira.</p>
-
-    <note>
-      <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
-      discussion.</p>
-    </note>
+  <p>Orri honetan hainbat kontu mota berri nola sortu azaltzen da. Zure kontu-hornitzaileak saio-hasierako ID eta pasahitz bat eman beharko lizkizuke, baita <app>Empathy</app> erabiliz konektatzeko behar duzun edozein informazio gehigarri.</p>
+  
+  <section id="facebook">
+    <title>Facebook</title>
+    <p>Facebook gehien erabiltzen diren sare sozialetako bat da. Aukera ematen die erabiltzaileei beren profil propioa sortzeko, eta beren lagunekin komunikatzeko.</p>
+    <p>Zure lagunekin komunikatzeko Facebook erabili ahal izateko, kontu berri bat sortu beharko duzu webgune honetan: <link href="http://www.facebook.com">www.facebook.com</link>.</p>
   </section>
 
   <section id="jabber">
@@ -64,28 +46,19 @@
 
     <p>Jabber berehalako mezularitzako sistema irekia da. Postarako bezala, Jabber-ek aukera ematen dizu kontu-hornitzailea aukeratu eta beste Jabber erabiltzaileekin komunikatzeko, haien kontu-hornitzailea kontuan hartu gabe.</p>
 
-    <p>You will need to create a new account with a Jabber provider. There are
-    many free providers; one popular provider is
-    <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Kontu berri bat sortu beharko duzu Jabber hornitzaile batekin. Doako hornitzaile bat baino gehiago daude; ezagunetako bat <link href="http://register.jabber.org/">Jabber.org</link> da.</p>
 
     <note>
-      <p>If you use Gmail or Google+ Hangouts, you already have a Jabber
-      account. Use your Gmail address and password in <app>Empathy</app> to
-      connect.</p>
+      <p>Google Mail edo Google Talk erabiltzen baduzu, baduzu Jabber kontu bat. Google Talk Jabber zerbitzu bat da. Besterik gabe, erabili zure Google Mail helbidea eta pasahitza <app>Empathy</app>-n, konektatzeko</p>
     </note>
   </section>
 
   <section id="salut">
     <title>Hurbileko jendea</title>
 
-    <p>This service works whenever you are connected to a local network, such
-    as a wireless hotspot, you do not need to create an account with service
-    providor, just set up your account through <app>Empathy</app>. It
-    automatically finds all other users on the network who are also using this
-    service.</p>
+    <p>Ez duzu zerbitzu-hornitzaile batekin konturik sortu behar eginbide hau erabili ahal izateko. Zerbitzuak sare lokal batekin konektatuta zauden guztietan funtzionatuko du, haririk gabeko wifigune gisa. Automatikoki aurkitzen ditu zerbitzu hau erabiltzen duten sareko beste erabiltzaileak.</p>
 
-    <p>For more information, see the <link xref="salut-protocol">salut
-    protocol</link>.</p>
+    <p>Informazio gehiago lortzeko, ikus <link xref="salut-protocol"/>.</p>
   </section>
 
   <section id="sip-services">
@@ -93,27 +66,48 @@
 
     <p>SIP sistema irekiak aukera ematen die erabiltzaileei audio- eta bideo-solasaldiak edukitzeko Internet bidez. Kontu bat sortu behar duzu SIP hornitzaile batekin. Beste SIP erabiltzaile guztiekin komunika zaitezke, erabiltzen duten SIP hornitzailea kontuan hartu gabe.</p>
 
+    <note style="warning">
+      <p>Arazo teknikoak direla-eta, doako <link href="https://www.ekiga.net/index.php?page=register">Ekiga.net</link> zerbitzua ez dabil gaur egun <app>Empathy</app>-rekin.</p>
+    </note>
+
     <p>SIP hornitzaile batzuek aukera ematen dizute telefono normaletara deitzeko zure ordenagailutik. Normalean, ordaindu beharreko zerbitzu batean harpidetu beharko duzu eginbide hau erabili ahal izateko.</p>
+  </section>
+
+  <section id="irc">
+    <title>IRC</title>
+
+    <p>Ez duzu kontu batean erregistratu behar IRC erabili ahal izateko. IRC kontua <app>Empathy</app>-n gehitzean goitizena zehaztu duzun arren, goitizen hori konektatzen zaren bakoitzean ezartzen da. Beste erabiltzaile bat goitizen hori erabiltzen ari bada, goitizen berria aukeratu beharko duzu.</p>
+
+    <p>IRC sare batzuek NickServ izeneko zerbitzua erabiltzen dute, erabiltzaileei beren goitizenak babesten laguntzeko. Informazio gehiago lortzeko, ikus <link xref="irc-nick-password"/>.</p>
+
+    <p>IRC zerbitzari batzuk pasahitzez babestuta daude. Pasahitza jakin behar duzu zerbitzari horiekin konektatu ahal izateko. Normalean, IRC sare pribatuak dira.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Zerbitzu pribatuak</title>
 
-    <p>There are many proprietary instant messaging services that have been
-    developed by different companies or organizations. <app>Empathy</app>
-    allows you to connect to an existing account for some of these services.
-    To create a new account with one of these services, you will need to
-    visit the website for the service.</p>
+    <p>Hainbat konpainiak edo erakundek garatutako berehalako mezularitzako zerbitzu pribatu ugari daude. <app>Empathy</app>-k aukera ematen dizu zerbitzu ezagunenetako kontuekin konektatzeko. Zerbitzu hauetako batekin kontu berria sortzeko, zerbitzuaren webgunea bisitatu beharko duzu, eta bertako erabilera-baldintzekin bat egin.</p>
 
     <list>
       <item>
-        <p><link href="http://dashboard.aim.com/aim">AIM</link></p>
+        <p>
+          <link href="http://dashboard.aim.com/aim">AIM</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://www.icq.com/register/">ICQ</link></p>
+        <p>
+          <link href="https://www.icq.com/register/">ICQ</link>
+        </p>
       </item>
       <item>
-        <p><link href="https://login.yahoo.com/config/login">Yahoo!</link></p>
+        <p>
+          <link href="https://accountservices.passport.net">MSN</link>
+        </p>
+      </item>
+      <item>
+        <p>
+          <link href="https://login.yahoo.com/config/login">Yahoo!</link>
+        </p>
       </item>
     </list>
   </section>

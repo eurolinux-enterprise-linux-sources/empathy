@@ -32,12 +32,6 @@
 -->
   
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Ελληνική μεταφραστική ομάδα GNOME</mal:name>
-      <mal:email>team@gnome.gr</mal:email>
-      <mal:years>2009-2014</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name> Δημήτρης Σπίγγος,</mal:name>
       <mal:email>dmtrs32@gmail.com</mal:email>
       <mal:years>2013</mal:years>
@@ -75,7 +69,7 @@
     </item>
   </steps>
 
-  <p>Στο <link xref="status-icons"/> υπάρχει μια λίστα με τις ενσωματωμένες καταστάσεις και το τι σημαίνουν. Επίσης, μπορείτε να <link xref="set-custom-status">προσθέτετε προσαρμοσμένα μηνύματα κατάστασης</link> που παρέχουν περισσότερες πληροφορίες για τη διαθεσιμότητά σας στις επαφές σας.</p>
+  <p>Στην <link xref="status-icons"/> υπάρχει μια λίστα με τις προεγκατεστημένες καταστάσεις και το τι σημαίνει η καθεμία. Επίσης, μπορείτε να <link xref="set-custom-message">προσθέτετε προσαρμοσμένα μηνύματα κατάστασης</link> που παρέχουν περισσότερες πληροφορίες για τη διαθεσιμότητά σας στις επαφές σας.</p>
 
   <note>
     <p>Αν δεν έχετε χρησιμοποιήσει τον υπολογιστή σας για κάποιο χρονικό διάστημα, ή αν έχει ενεργοποιηθεί η προστασία οθόνης, επιλέγεται αυτόματα η κατάσταση Απουσιάζει.</p>

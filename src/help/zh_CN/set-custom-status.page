@@ -44,14 +44,18 @@
       <p>在窗口顶部的文本框中输入您的自定义消息，然后按<key>Enter</key>来设定这个消息。</p>
     </item>
     <item>
-      <p>如果您希望收藏一个自定义消息，即将它保存下来方便日后使用，请点击您撰写自定义消息的文本框右侧的心形符号。</p>
+      <p>
+        If you want to set the custom message as a favorite, saving it in order to use it
+        again, click on the little heart on the right of the text box where you wrote your
+        custom message.
+      </p>
       <p>如果您不这么做，那么下次您使用 <app>Empathy</app> 的时候，这个自定义消息就不会再出现。它只在 <app>Empathy</app> 本次运行期间被保留。</p>
     </item>
   </steps>
 
   <section id="edit-custom">
 
-  <title>编辑和删除自定义消息</title>
+  <title>Edit and remove a custom message</title>
 
   <steps>
     <item>
@@ -92,7 +96,10 @@
   </steps>
 
   <note style="tip">
-    <p>当您编辑自定义消息时，它不会被设为当前状态消息。您需要在<gui>联系人列表</gui>窗口中选中它。</p>
+    <p>
+      When you edit a custom message, it will not be set as the current
+      status message. You will need to select it from the <gui>Contact List</gui> window.
+    </p>
   </note>
 
   </section>

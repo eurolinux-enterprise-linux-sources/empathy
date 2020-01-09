@@ -34,6 +34,11 @@
 
   <title>Que é Persoas próximas</title>
 
+  <comment>
+    <cite date="2009-09-09">Shaun McCance</cite>
+    <p>I'd like to see this played up a bit more.</p>
+  </comment>
+
   <p>O servizo de Xente próxima é un servizo de comunicación sen servidores: non precisa conectarse e autenticarse contra un servidor central para poder usalo.</p>
   <p>Este tipo de sistemas de mensaxería sen servidores está restrinxido a redes de área local e non se necesita unha conexión activa con Internet.</p>
   <p>A xente que usa o servizo dentro da mesma rede de área local autodestruirase e será posíbel enviarlles mensaxes e ficheiros ao igual que con outros servizos</p>

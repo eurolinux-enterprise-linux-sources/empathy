@@ -29,33 +29,9 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Joan Duran</mal:name>
-      <mal:email>jodufi@gmail.com</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Carles Ferrando</mal:name>
-      <mal:email>carles.ferrando@gmail.com</mal:email>
-      <mal:years>2010</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Gil Forcada</mal:name>
-      <mal:email>gilforcada@guifi.net</mal:email>
-      <mal:years>2011</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Manel Vidal</mal:name>
-      <mal:email>verduler@gmail.com</mal:email>
-      <mal:years>2013</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Visualització de les converses anteriors</title>
+  <title>Visualitzeu les converses anteriors</title>
 
   <p>L'<app>Empathy</app> desa automàticament totes les converses que manteniu amb els contactes. Podeu cercar <link xref="#search">per les converses anteriors</link> o <link xref="#browse">navegar per les converses anteriors</link> per contacte i data.</p>
 
@@ -70,16 +46,22 @@
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> escolliu <guiseq><gui>Visualitza</gui><gui>Converses anteriors</gui></guiseq> o premeu <key>F3</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
-      <p>Seleccioneu un compte de la llista desplegable situada a la part superior. Es mostrarà a sota la llista de contactes i les sales de xat per aquest compte.</p>
+      <p>Select an account from the drop-down list in the top.  A list of
+      contacts and chat room for that account will be shown below.</p>
     </item>
     <item>
-      <p>Escriviu el text que voleu cercar al camp de text <gui>Cerca</gui>.</p>
+      <p>Type the text you want to search for in the <gui>Search</gui> text field.
+      </p>
     </item>
     <item>
-      <p>Es mostrarà totes les converses que compleixin els criteris de cerca. Per defecte, les converses estan ordenades per data.</p>
+      <p>
+        Any conversations that matched your search terms will be shown. By
+        default, conversations are ordered by date.
+      </p>
     </item>
   </steps>
   </section>
@@ -91,7 +73,8 @@
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> escolliu <guiseq><gui>Visualitza</gui><gui>Converses anteriors</gui></guiseq> o premeu <key>F3</key>.</p>
+      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
+      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
     </item>
     <item>
       <p>Seleccioneu un compte de la llista desplegable de dalt a l'esquerre. Es mostrarà a sota la llista de contactes i les sales de xat per aquest compte.</p>
@@ -104,10 +87,16 @@
     </item>
   </steps>
 
-  <p>Podeu cercar alguna paraula o frase de les converses escrivint al camp de cerca situat a la part superior. Es mostraran les converses que coincideixin amb la paraula o la frase cercada.</p>
+  <p>
+    You can search for text in the conversations by typing into the
+    search field at the top. The matching conversations will be showed.
+  </p>
 
   <note style="tip">
-    <p>Podeu veure fàcilment les converses anteriors amb algun dels contactes a la finestra <gui>Llista de contactes</gui>. Feu clic sobre el contacte i escolliu <gui>Converses anteriors</gui>. S'obrirà la finestra <gui>Converses anteriors</gui> amb el contacte ja seleccionat.</p>
+    <p>You can quickly view the previous conversations with one of your contacts
+    from the <gui>Contact List</gui> window.  Simply right click the contact and
+    choose <gui>Previous Conversations</gui>.  The <gui>Previous
+    Conversations</gui> window will open with that contact already selected.</p>
   </note>
 
   </section>

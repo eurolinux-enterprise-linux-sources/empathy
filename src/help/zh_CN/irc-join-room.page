@@ -35,7 +35,7 @@
       <p>在 <gui>联系人列表</gui> 窗口，选择 <guiseq><gui>聊天室</gui><gui>加入</gui></guiseq>。</p>
     </item>
     <item>
-      <p>在 <gui>帐号</gui> 下拉列表中，选择与您想要使用的网络对应的 IRC 帐号。</p>
+      <p>在 <gui>账户</gui> 下拉列表中，选择与您想要使用的网络对应的 IRC 账户。</p>
     </item>
     <item>
       <p>在 <gui>聊天室</gui> 文本框中，输入您想要加入的频道的名称。IRC 频道名称以井号(<sys>#</sys>)开头。</p>

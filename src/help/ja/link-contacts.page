@@ -13,10 +13,6 @@
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
-    <credit type="editor">
-      <name>Shobha Tyagi</name>
-      <email>tyagishobha@gmail.com</email>
-    </credit>
     <license>
       <p>クリエイティブ・コモンズ・ライセンス 継承 3.0</p>
     </license>
@@ -28,94 +24,53 @@
     </mal:credit>
   </info>
 
-  <title>Link and unlink contacts</title>
-  <p>
-    If one or more of your contacts has multiple accounts with different
-    messaging services, you can combine these accounts into a single contact.
-  </p>
+  <title>相手先の結合と分離</title>
+  <p>相手先の一人が、別々のメッセージングサービスで複数のアカウントを持っている場合、これらの相手先をひとつにまとめることができます。</p>
   <p>そのまとめたものを<em>メタ相手先</em>と呼びます。メタ相手先は、個々の相手先で構成された相手先のことです。</p>
-  <p>
-    Suppose you have a contact called Jane Smith who is using three different
-    messaging services like:
-  </p>
+  <p>Jane Smith という相手先がいて、次のように3つの別のメッセージングサービスを使っていたとします。</p>
   <list>
+    <item>
+      <p>janes@facebook</p>
+    </item>
     <item>
       <p>jane.smith@gmail</p>
     </item>
     <item>
       <p>jane_smith@hotmail</p>
     </item>
-    <item>
-      <p>
-        janes@yahoo
-      </p>
-    </item>
   </list>
   <p>これらの相手先をJane Smith というひとつの相手先にまとめることができます。</p>
+  
   <section id="linking">
-  <title>Link contacts</title>
-  <p>
-    The way you can link your contacts is as follows:
-  </p>
+    <title>相手先の結合</title>
     <steps>
       <item>
-        <p>
-          Press the tick button to select entries you want to link. This will enable
-          <em>selection mode</em> and you can see a checkbox for each entry.
-        </p>
+        <p><gui>相手先の一覧</gui>ウィンドウから、複数のアカウントを持つ相手先を右クリックして、<gui style="menuitem">相手先をリンク…</gui>を指定します。</p>
       </item>
       <item>
-        <p>
-	  Tick the checkboxes that correspond to the <app>Contacts</app> entries which
-	  belong to the same contact.
-        </p>
+        <p><gui>相手先をリンク</gui>ウィンドウの左欄から、結合したい相手先を指定します。</p>
       </item>
       <item>
-        <p>
-          Press <gui style="button">Link</gui>.
-        </p>
+        <p><gui style="button">リンク</gui>をクリックします。</p>
       </item>
     </steps>
-    <p>
-      Repeat steps 3 and 4 in order to link other contacts.
-    </p>
+    <note>
+      <p>
+        When a meta-contact has been created, the default contact that will be used
+        to have a conversation with when you double-click on it, is the contact with
+        the highest presence on-line.
+      </p>
+    </note>
   </section>
   
-  <section id="unlinking">
-  <title>Unlink contacts</title>
-  <p>
-    To unlink a linked contact:
-  </p>
+  <section id="unlinkg">
+    <title>相手先の分離</title>
     <steps>
       <item>
-        <p>
-          Select the contact from your list.
-        </p>
+        <p><gui>相手先の一覧</gui>から、分離したい相手先を右クリックして<gui style="menuitem">相手先をリンク…</gui>を指定します。</p>
       </item>
       <item>
-        <p>
-          Press <gui style="button">Edit</gui> in the top-right corner of <app>Contacts</app>.
-	</p>
-      </item>
-      <item>
-	<p>
-	  Press <gui style="button">Linked Contacts</gui>.
-        </p>
-      </item>
-      <item>
-	<p>
-	  Press <gui style="button">Remove</gui> to unlink an entry from the linked contact.
-        </p>
-      </item>
-      <item>
-        <p>
-          Press <gui style="button">Close</gui> if you do not want to unlink any more contacts.
-        </p>
-      </item>
-      <item>
-        <p>
-	  Finally, press <gui style="button">Done</gui> to finish editing.
-	</p>
+        <p><gui style="button">リンクを外す</gui>をクリックします。</p>
       </item>
     </steps>
   </section>

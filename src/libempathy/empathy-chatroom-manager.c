@@ -22,20 +22,18 @@
  */
 
 #include "config.h"
-#include "empathy-chatroom-manager.h"
 
 #include <sys/stat.h>
-#include <tp-account-widgets/tpaw-utils.h>
-#include <telepathy-glib/telepathy-glib-dbus.h>
 
 #include "empathy-client-factory.h"
+#include "empathy-chatroom-manager.h"
 #include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_OTHER
 #include "empathy-debug.h"
 
 #define CHATROOMS_XML_FILENAME "chatrooms.xml"
-#define CHATROOMS_DTD_RESOURCENAME "/org/gnome/Empathy/empathy-chatroom-manager.dtd"
+#define CHATROOMS_DTD_FILENAME "empathy-chatroom-manager.dtd"
 #define SAVE_TIMER 4
 
 static EmpathyChatroomManager *chatroom_manager_singleton = NULL;
@@ -322,7 +320,7 @@ chatroom_manager_file_parse (EmpathyChatroomManager *manager,
       return FALSE;
     }
 
-  if (!tpaw_xml_validate_from_resource (doc, CHATROOMS_DTD_RESOURCENAME))
+  if (!empathy_xml_validate (doc, CHATROOMS_DTD_FILENAME))
     {
       g_warning ("Failed to validate file:'%s'", filename);
       xmlFreeDoc (doc);

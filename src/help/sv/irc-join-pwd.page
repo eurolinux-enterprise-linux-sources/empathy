@@ -4,7 +4,7 @@
   <info>
     <link type="guide" xref="irc-manage#manage"/>
     <link type="seealso" xref="irc-join-room"/>
-    <desc>Gå in i lösenordsskyddade IRC-chattrum.</desc>
+    <desc>Enter password-protected IRC chat rooms.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-07" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
@@ -16,31 +16,27 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons DelaLika 3.0</p>
+      <p>Creative Commons Share Alike 3.0</p>
     </license>    
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Daniel Nylander</mal:name>
-      <mal:email>po@danielnylander.se</mal:email>
-      <mal:years>2008, 2009</mal:years>
-    </mal:credit>
-  
-    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
-      <mal:name>Erik Sköldås</mal:name>
-      <mal:email>erik.skoldas@tele2.se</mal:email>
-      <mal:years>2016</mal:years>
-    </mal:credit>
   </info>
 
-  <title>Gå in i ett skyddat IRC-chattrum</title>
+  <title>Join a protected IRC chat room</title>
 
-  <p>På vissa IRC-nätverk kan privata IRC-rum vara skyddade med ett lösenord. Om du känner till lösenordet, använd följande steg för att ansluta:</p>
+  <p>
+    On some IRC networks, private IRC rooms may be protected with a password.
+    If you know the password, use the following steps to join:
+  </p>
   <steps>
     <item>
-      <p><link xref="irc-join-room">Gå in i rummet</link> som vanligt.</p>
+      <p>
+        <link xref="irc-join-room">Join the room</link> as normal.
+      </p>
     </item>
     <item>
-      <p>Empathy kommer att fråga dig om lösenordet. Ange lösenordet för IRC-chattrummet och klicka på <gui style="button">Gå in</gui>.</p>
+      <p>
+        Empathy will prompt you for a password. Enter the password for the
+        IRC chat room and click <gui style="button">Join</gui>.
+      </p>
     </item>
   </steps>
 

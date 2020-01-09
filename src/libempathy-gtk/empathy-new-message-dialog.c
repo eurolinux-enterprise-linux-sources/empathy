@@ -19,17 +19,19 @@
  */
 
 #include "config.h"
-#include "empathy-new-message-dialog.h"
 
 #include <glib/gi18n-lib.h>
 
-#include "empathy-request-util.h"
-#include "empathy-contact-chooser.h"
-#include "empathy-ui-utils.h"
-#include "empathy-images.h"
+#include <libempathy/empathy-request-util.h>
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CONTACT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
+
+#include <libempathy-gtk/empathy-contact-chooser.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-images.h>
+
+#include "empathy-new-message-dialog.h"
 
 static EmpathyNewMessageDialog *dialog_singleton = NULL;
 

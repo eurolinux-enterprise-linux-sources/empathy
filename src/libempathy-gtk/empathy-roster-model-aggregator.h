@@ -23,6 +23,7 @@
 #define __EMPATHY_ROSTER_MODEL_AGGREGATOR_H__
 
 #include <glib-object.h>
+
 #include <folks/folks.h>
 
 #include "empathy-roster-model.h"

@@ -2,6 +2,7 @@
 #define __EMPATHY_WEBCREDENTIALS_MONITOR_H__
 
 #include <glib-object.h>
+
 #include <libaccounts-glib/ag-manager.h>
 
 G_BEGIN_DECLS

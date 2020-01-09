@@ -26,28 +26,31 @@
  */
 
 #include "config.h"
-#include "empathy-chat-window.h"
 
+#include <gtk/gtk.h>
 #include <glib/gi18n.h>
-#include <tp-account-widgets/tpaw-builder.h>
-#include <tp-account-widgets/tpaw-utils.h>
 
-#include "empathy-about-dialog.h"
+#include <libempathy/empathy-client-factory.h>
+#include <libempathy/empathy-chatroom-manager.h>
+#include <libempathy/empathy-gsettings.h>
+#include <libempathy/empathy-utils.h>
+#include <libempathy/empathy-request-util.h>
+#include <libempathy/empathy-individual-manager.h>
+
+#include <libempathy-gtk/empathy-images.h>
+#include <libempathy-gtk/empathy-geometry.h>
+#include <libempathy-gtk/empathy-smiley-manager.h>
+#include <libempathy-gtk/empathy-sound-manager.h>
+#include <libempathy-gtk/empathy-ui-utils.h>
+#include <libempathy-gtk/empathy-notify-manager.h>
+
 #include "empathy-chat-manager.h"
-#include "empathy-chatroom-manager.h"
-#include "empathy-client-factory.h"
-#include "empathy-geometry.h"
-#include "empathy-gsettings.h"
-#include "empathy-images.h"
+#include "empathy-chat-window.h"
+#include "empathy-about-dialog.h"
 #include "empathy-invite-participant-dialog.h"
-#include "empathy-notify-manager.h"
-#include "empathy-request-util.h"
-#include "empathy-sound-manager.h"
-#include "empathy-ui-utils.h"
-#include "empathy-utils.h"
 
 #define DEBUG_FLAG EMPATHY_DEBUG_CHAT
-#include "empathy-debug.h"
+#include <libempathy/empathy-debug.h>
 
 /* Macro to compare guint32 X timestamps, while accounting for wrapping around
  */
@@ -83,8 +86,6 @@ struct _EmpathyChatWindowPriv
   GtkUIManager *ui_manager;
   GtkAction *menu_conv_insert_smiley;
   GtkAction *menu_conv_favorite;
-  GtkAction *menu_conv_join_chat;
-  GtkAction *menu_conv_leave_chat;
   GtkAction *menu_conv_always_urgent;
   GtkAction *menu_conv_toggle_contacts;
 
@@ -380,26 +381,19 @@ chat_tab_style_updated_cb (GtkWidget *hbox,
 {
   GtkWidget *button;
   int char_width, h, w;
-  GtkStyleContext *style_context;
-  PangoContext *pango_context;
-  PangoFontDescription *font_desc;
+  PangoContext *context;
+  const PangoFontDescription *font_desc;
   PangoFontMetrics *metrics;
 
   button = g_object_get_data (G_OBJECT (user_data),
     "chat-window-tab-close-button");
-  style_context = gtk_widget_get_style_context (hbox);
-  pango_context = gtk_widget_get_pango_context (hbox);
+  context = gtk_widget_get_pango_context (hbox);
 
-  gtk_style_context_save (style_context);
-  gtk_style_context_set_state (style_context, GTK_STATE_FLAG_NORMAL);
-  gtk_style_context_get (style_context,
-      GTK_STATE_FLAG_NORMAL,
-      "font", &font_desc,
-      NULL);
-  gtk_style_context_restore (style_context);
+  font_desc = gtk_style_context_get_font (gtk_widget_get_style_context (hbox),
+      GTK_STATE_FLAG_NORMAL);
 
-  metrics = pango_context_get_metrics (pango_context, font_desc,
-    pango_context_get_language (pango_context));
+  metrics = pango_context_get_metrics (context, font_desc,
+    pango_context_get_language (context));
   char_width = pango_font_metrics_get_approximate_char_width (metrics);
   pango_font_metrics_unref (metrics);
 
@@ -412,7 +406,6 @@ chat_tab_style_updated_cb (GtkWidget *hbox,
     12 * PANGO_PIXELS (char_width) + 2 * w, -1);
 
   gtk_widget_set_size_request (button, w, h);
-  pango_font_description_free (font_desc);
 }
 
 static GtkWidget *
@@ -970,10 +963,10 @@ chat_window_update_chat_tab_full (EmpathyChat *chat,
       g_free (tmp);
     }
 
-  if (!TPAW_STR_EMPTY (status))
+  if (!EMP_STR_EMPTY (status))
     append_markup_printf (tooltip, "\n<i>%s</i>", status);
 
-  if (!TPAW_STR_EMPTY (subject))
+  if (!EMP_STR_EMPTY (subject))
     append_markup_printf (tooltip, "\n<b>%s</b> %s",
         _("Topic:"), subject);
 
@@ -1079,11 +1072,13 @@ chat_window_insert_smiley_activate_cb (EmpathySmileyManager *manager,
   EmpathyChatWindow *self = user_data;
   EmpathyChat *chat;
   GtkTextBuffer *buffer;
+  GtkTextIter iter;
 
   chat = self->priv->current_chat;
-  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (chat->input_text_view));
 
-  empathy_chat_insert_smiley (buffer, smiley);
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (chat->input_text_view));
+  gtk_text_buffer_get_end_iter (buffer, &iter);
+  gtk_text_buffer_insert (buffer, &iter, smiley->str, -1);
 }
 
 static void
@@ -1093,7 +1088,6 @@ chat_window_conv_activate_cb (GtkAction *action,
   gboolean is_room;
   gboolean active;
   EmpathyContact *remote_contact = NULL;
-  gboolean disconnected;
 
   /* Favorite room menu */
   is_room = empathy_chat_is_room (self->priv->current_chat);
@@ -1138,44 +1132,8 @@ chat_window_conv_activate_cb (GtkAction *action,
         GTK_TOGGLE_ACTION (self->priv->menu_conv_toggle_contacts), active);
     }
 
-  /* Menu-items to be visible for MUCs only */
   gtk_action_set_visible (self->priv->menu_conv_toggle_contacts,
       (remote_contact == NULL));
-
-  disconnected = (empathy_chat_get_tp_chat (self->priv->current_chat) == NULL);
-  if (disconnected)
-    {
-      gtk_action_set_visible (self->priv->menu_conv_join_chat, TRUE);
-      gtk_action_set_visible (self->priv->menu_conv_leave_chat, FALSE);
-    }
-  else
-    {
-      TpChannel *channel = NULL;
-      TpContact *self_contact = NULL;
-      TpHandle  self_handle = 0;
-
-      channel = (TpChannel *) (empathy_chat_get_tp_chat (
-          self->priv->current_chat));
-      self_contact = tp_channel_group_get_self_contact (channel);
-      if (self_contact == NULL)
-      {
-        /* The channel may not be a group */
-        gtk_action_set_visible (self->priv->menu_conv_leave_chat, FALSE);
-      }
-      else
-      {
-        self_handle = tp_contact_get_handle (self_contact);
-        /* There is sometimes a lag between the members-changed signal
-           emitted on tp-chat and invalidated signal being emitted on the channel.
-           Leave Chat menu-item should be sensitive only till our self-handle is
-           a part of channel-members */
-        gtk_action_set_visible (self->priv->menu_conv_leave_chat,
-            self_handle != 0);
-      }
-
-      /* Join Chat is insensitive for a connected chat */
-      gtk_action_set_visible (self->priv->menu_conv_join_chat, FALSE);
-    }
 
   if (remote_contact != NULL)
     g_object_unref (remote_contact);
@@ -1283,29 +1241,6 @@ chat_window_invite_participant_activate_cb (GtkAction *action,
 
 out:
   gtk_widget_destroy (dialog);
-}
-
-static void
-chat_window_join_chat_activate_cb (GtkAction *action,
-    EmpathyChatWindow *self)
-{
-    g_return_if_fail (self->priv->current_chat != NULL);
-
-    empathy_chat_join_muc (self->priv->current_chat,
-        empathy_chat_get_id (self->priv->current_chat));
-}
-
-static void
-chat_window_leave_chat_activate_cb (GtkAction *action,
-    EmpathyChatWindow *self)
-{
-    EmpathyTpChat * tp_chat;
-
-    g_return_if_fail (self->priv->current_chat != NULL);
-
-    tp_chat = empathy_chat_get_tp_chat (self->priv->current_chat);
-    if (tp_chat != NULL)
-        empathy_tp_chat_leave (tp_chat, "");
 }
 
 static void
@@ -2418,13 +2353,11 @@ empathy_chat_window_init (EmpathyChatWindow *self)
     EMPATHY_TYPE_CHAT_WINDOW, EmpathyChatWindowPriv);
 
   filename = empathy_file_lookup ("empathy-chat-window.ui", "src");
-  gui = tpaw_builder_get_file (filename,
+  gui = empathy_builder_get_file (filename,
       "chat_vbox", &chat_vbox,
       "ui_manager", &self->priv->ui_manager,
       "menu_conv_insert_smiley", &self->priv->menu_conv_insert_smiley,
       "menu_conv_favorite", &self->priv->menu_conv_favorite,
-      "menu_conv_join_chat", &self->priv->menu_conv_join_chat,
-      "menu_conv_leave_chat", &self->priv->menu_conv_leave_chat,
       "menu_conv_always_urgent", &self->priv->menu_conv_always_urgent,
       "menu_conv_toggle_contacts", &self->priv->menu_conv_toggle_contacts,
       "menu_edit_cut", &self->priv->menu_edit_cut,
@@ -2440,15 +2373,13 @@ empathy_chat_window_init (EmpathyChatWindow *self)
       NULL);
   g_free (filename);
 
-  tpaw_builder_connect (gui, self,
+  empathy_builder_connect (gui, self,
       "menu_conv", "activate", chat_window_conv_activate_cb,
       "menu_conv_clear", "activate", chat_window_clear_activate_cb,
       "menu_conv_favorite", "toggled", chat_window_favorite_toggled_cb,
       "menu_conv_always_urgent", "toggled", chat_window_always_urgent_toggled_cb,
       "menu_conv_toggle_contacts", "toggled", chat_window_contacts_toggled_cb,
       "menu_conv_invite_participant", "activate", chat_window_invite_participant_activate_cb,
-      "menu_conv_join_chat", "activate", chat_window_join_chat_activate_cb,
-      "menu_conv_leave_chat", "activate", chat_window_leave_chat_activate_cb,
       "menu_conv_close", "activate", chat_window_close_activate_cb,
       "menu_edit", "activate", chat_window_edit_activate_cb,
       "menu_edit_cut", "activate", chat_window_cut_activate_cb,
@@ -2789,7 +2720,7 @@ empathy_chat_window_find_chat (TpAccount *account,
 {
   GList *l;
 
-  g_return_val_if_fail (!TPAW_STR_EMPTY (id), NULL);
+  g_return_val_if_fail (!EMP_STR_EMPTY (id), NULL);
 
   for (l = chat_windows; l; l = l->next)
     {
@@ -2860,7 +2791,7 @@ empathy_chat_window_present_chat (EmpathyChat *chat,
 
   empathy_chat_window_switch_to_chat (self, chat);
 
-  /* Don't use tpaw_window_present_with_time () which would move the window
+  /* Don't use empathy_window_present_with_time () which would move the window
    * to our current desktop but move to the window's desktop instead. This is
    * more coherent with Shell's 'app is ready' notication which moves the view
    * to the app desktop rather than moving the app itself. */

@@ -1,11 +1,10 @@
-#include "config.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include "test-helper.h"
-#include "empathy-chatroom.h"
+
+#include <libempathy/empathy-chatroom.h>
 
 #if 0
 static EmpathyChatroom *
