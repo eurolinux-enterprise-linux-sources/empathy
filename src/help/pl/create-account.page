@@ -26,11 +26,23 @@
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>    
 
-    <desc>Create an account for one of the supported messaging services.</desc>
+    <desc>Należy utworzyć konto jednej z obsługiwanych usług komunikatora.</desc>
 
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Register a new account</title>
+  <title>Rejestracja nowego konta</title>
 
   <p>Most account types require you to create an account with a service
   provider before you can use that account with instant messaging applications.
@@ -51,7 +63,7 @@
     did not register your nick or are unable to do so and another user is using
     it, then you will need to choose a different one.</p>
 
-    <p>Niektóre serwery IRC są chronione hasłem. Aby połączyć się z tymi serwerami konieczna jest znajomość hasła. Zasadniczo, są to prywatne sieci IRC.</p>
+    <p>Niektóre serwery IRC są chronione hasłem. Aby połączyć się z tymi serwerami konieczna jest znajomość hasła. Zasadniczo, są to prywatne sieci IRC.</p>
 
     <note>
       <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
@@ -62,21 +74,17 @@
   <section id="jabber">
     <title>Jabber</title>
 
-    <p>Jabber jest otwartym systemem komunikacyjnym. Podobnie jak e-mail Jabber pozwala na wybór dostawcy konta i komunikację z innymi użytkownikami Jabbera niezależnie od ich dostawcy konta.</p>
+    <p>Jabber jest otwartym systemem komunikacyjnym. Podobnie jak e-mail Jabber pozwala na wybór dostawcy konta i komunikację z innymi użytkownikami Jabbera niezależnie od ich dostawcy konta.</p>
 
-    <p>You will need to create a new account with a Jabber provider. There are
-    many free providers; one popular provider is
-    <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Należy stworzyć nowe konto u jednego z dostawców usług Jabber. Istnieje wielu dostawców niepobierających opłat; jednym z popularnych dostawców jest <link href="http://register.jabber.org/">jabber.org</link>.</p>
 
     <note>
-      <p>If you use Gmail or Google+ Hangouts, you already have a Jabber
-      account. Use your Gmail address and password in <app>Empathy</app> to
-      connect.</p>
+      <p>Gmail i Google+ Hangouts są usługami zawierającymi w sobie konto Jabbera. Należy użyć swojego adresu Gmail i hasła, aby połączyć się za pomocą programu <app>Empathy</app>.</p>
     </note>
   </section>
 
   <section id="salut">
-    <title>Osoby w pobliżu</title>
+    <title>Osoby w pobliżu</title>
 
     <p>This service works whenever you are connected to a local network, such
     as a wireless hotspot, you do not need to create an account with service
@@ -91,19 +99,15 @@
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>SIP jest otwartym systemem pozwalającym użytkownikom na nawiązywanie połączeń głosowych i wideorozmów w sieci Internet. Należy utworzyć konto u usługodawcy SIP. Można łączyć się z innymi użytkownikami SIP niezależnie od tego z jakiego usługodawcy SIP korzystają.</p>
+    <p>SIP jest otwartym systemem pozwalającym użytkownikom na nawiązywanie połączeń głosowych i wideorozmów w sieci Internet. Należy utworzyć konto u usługodawcy SIP. Można łączyć się z innymi użytkownikami SIP niezależnie od tego, z jakiego usługodawcy SIP korzystają.</p>
 
-    <p>Niektórzy dostawcy usług SIP umożliwiają wykonywanie połączeń ze zwykłymi telefonami. Zasadniczo, aby korzystać z tej funkcji należy zakupić odpowiednią usługę.</p>
+    <p>Niektórzy dostawcy usług SIP umożliwiają wykonywanie połączeń ze zwykłymi telefonami. Zasadniczo, aby korzystać z tej funkcji należy zakupić odpowiednią usługę.</p>
   </section>
 
   <section id="proprietary-services">
     <title>Usługi własnościowe</title>
 
-    <p>There are many proprietary instant messaging services that have been
-    developed by different companies or organizations. <app>Empathy</app>
-    allows you to connect to an existing account for some of these services.
-    To create a new account with one of these services, you will need to
-    visit the website for the service.</p>
+    <p>Istnieje wiele własnościowych komunikatorów, które zostały stworzone przez różne firmy i instytucje. Program <app>Empathy</app> pozwala na połączenie z istniejącym kontem w niektórych sieciach. Aby utworzyć nowe konto w jednym z tych komunikatorów należy odwiedzić jego stronę.</p>
 
     <list>
       <item>

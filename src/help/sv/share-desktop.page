@@ -3,9 +3,7 @@
 
   <info>
     <link type="guide" xref="index#advanced"/>
-    <desc>
-      Show your desktop to your contacts.
-    </desc>
+    <desc>Visa ditt skrivbord för dina kontakter.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-09-05" status="review"/>
@@ -18,7 +16,7 @@
       <email>kittykat3756@gmail.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -27,77 +25,55 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Share your desktop</title>
+  <title>Dela ditt skrivbord</title>
 
-  <p>
-    It is possible to share your desktop with some of your contacts. You can
-    use this functionality to show your desktop to your contacts to, for
-    example, ask for help or help your contacts resolve a problem.
-  </p>
+  <p>Det är möjligt att dela ditt skrivbord med några av dina kontakter. Du kan använda den här funktionen för att visa skrivbordet för dina kontakter, till exempel för att be om hjälp eller hjälpa dina kontakter att lösa ett problem.</p>
 
   <note style="tip">
-    <p>
-      To be able to share your desktop, you need to have a VNC server, which
-      has support for the feature, installed on your system. <app>Vino</app>,
-      the GNOME VNC server, has the required support.
-    </p>
+    <p>För att kunna dela ditt skrivbord måste du ha en VNC-server som har stöd för funktionen installerad på datorn. GNOME:s VNC-server <app>Vino</app> har det stöd som krävs.</p>
   </note>
 
   <steps>
     <item>
-      <p>
-        From the <gui>Contact List</gui> window, do one of the following:
-      </p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, gör något av följande:</p>
       <list>
         <item>
-          <p>
-            Select the contact you want to share your desktop with and choose
-            <guiseq><gui>Edit</gui><gui>Contact</gui>
-	    <gui>Share My Desktop</gui></guiseq>.
-          </p>
+          <p>Välj den kontakt som du vill dela ditt skrivbord med och välj <guiseq><gui>Redigera</gui><gui>Kontakt</gui> <gui>Dela ut mitt skrivbord</gui></guiseq>.</p>
         </item>
         <item>
-          <p>
-            Right-click on the name of the contact you want to share your
-	    desktop with and select <gui>Share My Desktop</gui>.
-          </p>
+          <p>Högerklicka på namnet på den kontakt som du vill dela ditt skrivbord med och välj <gui>Dela ut mitt skrivbord</gui>.</p>
         </item>
       </list>
     </item>
     <item>
-      <p>
-	An invitation to view your desktop will be sent to the contact you have
-	selected. To view your desktop, they will need to accept it.
-      </p>
+      <p>En inbjudan att visa din dators skrivbord kommer att skickas till den kontakt som du har valt. För att visa ditt skrivbord kommer de att behöva acceptera den.</p>
     </item>
     <item>
-      <p>
-        You can disconnect the contact from your computer using your desktop
-	sharing application.
-      </p>
+      <p>Du kan frånkoppla kontakten från din dator med hjälp av ditt program för fjärrskrivbordsdelning.</p>
       <note>
-        <p>
-	  For more information about how to use the remote desktop sharing
-	  application, refer to its help.
-        </p>
+        <p>För mer information om hur du använder fjärrskrivbordsdelning, hänvisas till dess hjälp.</p>
       </note>
     </item>
   </steps>
 
-  <p>
-    When you share your desktop with someone else, it is possible to experience
-    system performance slowdown and low Internet speed.
-  </p>
+  <p>När du delar ut ditt skrivbord med någon annan är det möjligt att uppleva nedsatt systemprestanda och lägre internethastighet.</p>
 
   <note>
-    <p>
-      Some of your contacts may not be able to use this feature. It is
-      necessary for them to have version 2.28, or newer, of <app>Empathy</app>
-      and a compatible remote desktop viewer application installed in their
-      system.
-    </p>
+    <p>Några av dina kontakter kanske inte kan använda den här funktionen. Det är nödvändigt för dem att ha version 2.28 eller nyare av <app>Empathy</app> och ett kompatibelt program för fjärrskrivbordsdelning installerat i sina system.</p>
   </note>
 
 </page>

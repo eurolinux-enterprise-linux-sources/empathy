@@ -5,8 +5,8 @@
     <link type="guide" xref="prob-conn"/>
     <link type="guide" xref="irc-manage#problems"/>
     <link type="seealso" xref="account-irc"/>
-    <title type="link" role="error-msg">“Name in use”</title>
-    <desc>Pojawia się komunikat błędu "<gui>Pseudonim jest już używany</gui>" w oknie głównym.</desc>
+    <title type="link" role="error-msg">„Używana nazwa”</title>
+    <desc>Pojawia się komunikat o błędzie „<gui>Pseudonim jest już używany</gui>” w oknie głównym.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-07-26" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review"/>
     <revision pkgversion="2.30" version="0.3" date="2010-02-16" status="review"/>
@@ -25,11 +25,23 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Pojawia się komunikat "Używana nazwa"</title>
+  <title>Pojawia się komunikat „Używana nazwa”</title>
 
-  <p>Ten rodzaj błędu zdarza się podczas próby połączenia do konta IRC przy użyciu pseudonimu, który jest już używany przez inną osobę w danej sieci.</p>
+  <p>Ten rodzaj błędu zdarza się podczas próby połączenia do konta IRC przy użyciu pseudonimu, który jest już używany przez inną osobę w danej sieci.</p>
 
   <steps>
     <item>
@@ -39,10 +51,10 @@
     <item>
       <list>
         <item>
-          <p>W polu <gui>Pseudonim</gui> należy wprowadzić pseudonim.</p>
+          <p>W polu <gui>Pseudonim</gui> należy wprowadzić pseudonim.</p>
         </item>
         <item>
-          <p>Jeśli użytkownik zarejestrował ten pseudonim w używanej sieci, należy ustawić hasło dla tego pseudonimu. Aby uzyskać więcej informacji, należy zobaczyć <link xref="irc-nick-password"/>.</p>
+          <p>Jeśli użytkownik zarejestrował ten pseudonim w używanej sieci, należy ustawić hasło dla tego pseudonimu. Aby uzyskać więcej informacji, należy zobaczyć <link xref="irc-nick-password"/>.</p>
         </item>
       </list>
     </item>

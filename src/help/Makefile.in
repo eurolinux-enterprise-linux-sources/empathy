@@ -212,6 +212,7 @@ LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LTLIBOBJS = @LTLIBOBJS@
+LT_SYS_LIBRARY_PATH = @LT_SYS_LIBRARY_PATH@
 MAKEINFO = @MAKEINFO@
 MANIFEST_TOOL = @MANIFEST_TOOL@
 MISSION_CONTROL_PLUGINS_DIR = @MISSION_CONTROL_PLUGINS_DIR@
@@ -388,7 +389,7 @@ HELP_FILES = \
 	status-icons.page \
 	video-call.page
 
-HELP_LINGUAS = ca cs de el en_GB es eu fi fr gl hu lv it ja pl pt_BR ru sl sv te zh_CN
+HELP_LINGUAS = ca cs de el en_GB es eu fi fr gl hu lv id it ja pl pt_BR ru sl sv te zh_CN
 all: all-am
 
 .SUFFIXES:

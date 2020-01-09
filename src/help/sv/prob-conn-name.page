@@ -5,10 +5,8 @@
     <link type="guide" xref="prob-conn"/>
     <link type="guide" xref="irc-manage#problems"/>
     <link type="seealso" xref="account-irc"/>
-    <title type="link" role="error-msg">“Name in use”</title>
-    <desc>
-      An error message which says “<gui>Name in use</gui>” appears in the main window.
-    </desc>
+    <title type="link" role="error-msg">”Namnet används”</title>
+    <desc>Ett felmeddelande som säger ”<gui>Namnet används</gui>” visas i huvudfönstret.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-07-26" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review"/>
     <revision pkgversion="2.30" version="0.3" date="2010-02-16" status="review"/>
@@ -18,7 +16,7 @@
       <email its:translate="no">milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
 <!--
     <copyright>
@@ -27,42 +25,40 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>I get a message that says “Name in use”</title>
+  <title>Jag får ett meddelande som säger ”Namnet används”</title>
 
-  <p>
-    This kind of error happens when you try to connect to your IRC account and
-    you are using a nickname that is already being used by someone else on that particular
-    network.
-  </p>
+  <p>Denna typ av fel inträffar när du försöker ansluta till ditt IRC-konto och du använder ett smeknamn som redan används av någon annan på just det nätverket.</p>
 
   <steps>
     <item>
-      <p>Click the <media type="image" mime="image/png" src="figures/gtk-edit.png" its:translate="no"><span its:translate="yes">edit</span></media>
-      icon in the error message.</p>
+      <p>Klicka på ikonen <media type="image" mime="image/png" src="figures/gtk-edit.png" its:translate="no"><span its:translate="yes">redigera</span></media> i felmeddelandet.</p>
     </item>
     <item>
       <list>
         <item>
-          <p>
-            In the <gui>Nickname</gui> text box, type a new nickname.
-          </p>
+          <p>I textrutan <gui>Smeknamn</gui>, skriv ett nytt smeknamn.</p>
         </item>
         <item>
-          <p>
-            If you have registered that nickname within the network you are using,
-            set the password for that nickname. For more information,
-            see <link xref="irc-nick-password"/>.
-          </p>
+          <p>Om du har registrerat smeknamnet för det nätverket du använder, ange lösenordet för smeknamnet. För mera information, se <link xref="irc-nick-password"/>.</p>
         </item>
       </list>
     </item>
     <item>
-      <p>
-        Switch the account off, and then switch it on to try to reconnect to the
-        service.
-      </p>
+      <p>Avaktivera kontot för att sedan aktivera det för att försöka återansluta till tjänsten.</p>
     </item>
   </steps>
 

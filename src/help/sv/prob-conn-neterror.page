@@ -3,9 +3,7 @@
 
   <info>
     <link type="guide" xref="prob-conn"/>
-    <desc>
-        An error message which says “<gui>Network error</gui>” appears in the main window.
-    </desc>
+    <desc>Ett felmeddelande som säger ”<gui>Nätverksfel</gui>” visas i huvudfönstret.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-17" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2010-02-16" status="review"/>
@@ -19,7 +17,7 @@
       <email its:translate="no">milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
 <!--
     <copyright>
@@ -28,35 +26,34 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>I get a message that says “Network error”</title>
+  <title>Jag får ett meddelande som säger ”Nätverksfel”</title>
 
-  <p>
-    This kind of error happens when <app>Empathy</app> cannot communicate
-    with the instant messaging service for some reason.
-  </p>
-  <p>
-    Also, this kind of error happens when you try to use an IRC account without
-    setting a nickname.
-  </p>
+  <p>Denna typ av fel händer när <app>Empathy</app> inte kan kommunicera med snabbmeddelandetjänsten av någon anledning.</p>
+  <p>Dessutom händer den här typen av fel när du försöker använda ett IRC-konto utan att ange ett smeknamn.</p>
 
   <steps>
     <item>
-      <p>
-        Make sure that you are connected to the Internet, or to a local area network.
-      </p>
+      <p>Försäkra dig om att du är ansluten till internet eller till ett lokalt nätverk.</p>
     </item>
     <item>
-      <p>Click the <media type="image" mime="image/png" src="figures/gtk-edit.png" its:translate="no"><span its:translate="yes">edit</span></media>
-      icon in the error message.</p>
+      <p>Klicka på ikonen <media type="image" mime="image/png" src="figures/gtk-edit.png" its:translate="no"><span its:translate="yes">redigera</span></media> i felmeddelandet.</p>
     </item>
     <item>
-      <p>
-        Check in the <gui>Advanced</gui> section that all the details are correct.
-        You should be able to find these details from the website of the messaging
-        service.
-      </p>
+      <p>Kontrollera att uppgifterna är rätt under avdelningen <gui>Avancerat</gui>. Du bör kunna hitta dessa uppgifter från meddelandetjänstens hemsida.</p>
 <!--
         <item>
           <p>
@@ -67,19 +64,13 @@
 -->
     </item>
     <item>
-      <p>
-        Switch the account off, and then switch it on to try to reconnect to the
-        service.
-      </p>
+      <p>Avaktivera kontot för att sedan aktivera det för att försöka återansluta till tjänsten.</p>
     </item>
   </steps>
 
   <section id="prob-conn-neterror-proxy">
-    <title>Proxy support</title>
-    <p>
-      At the moment <app>Empathy</app> can not be configured to work with a
-      proxy.
-    </p>
+    <title>Stöd för proxy</title>
+    <p>För tillfället kan inte <app>Empathy</app> konfigureras att fungera med en proxy.</p>
   </section>
 
 </page>

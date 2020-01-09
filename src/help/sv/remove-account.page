@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#accounts"/>
-    <desc>Completely remove an account from <app>Empathy</app>.</desc>
+    <desc>Radera ett konto helt från <app>Empathy</app>.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review">
@@ -18,7 +18,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
 <!--
     <copyright>
@@ -27,35 +27,40 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Remove an account</title>
+  <title>Ta bort ett konto</title>
 
-  <p>You can completely remove an account from <app>Empathy</app> if you no
-  longer wish to use the account.  If you wish to use the account in
-  <app>Empathy</app> again in the future, you will have to add your account
-  details again.</p>
+  <p>Du kan radera ett konto helt från <app>Empathy</app> om du inte längre vill använda kontot. Om du i framtiden vill använda kontot i <app>Empathy</app>, måste du lägga till dina kontouppgifter igen.</p>
 
   <steps>
     <item>
-      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
-      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Redigera</gui> <gui>Konton</gui></guiseq> eller tryck ned <key>F4</key>.</p>
     </item>
     <item>
-      <p>Select the account you wish to remove from the accounts list on the
-      left side of the window.</p>
+      <p>Välj det konto som du vill radera från kontolistan till vänster i fönstret.</p>
     </item>
     <item>
-      <p>Click <gui style="button">-</gui>.</p>
+      <p>Klicka <gui style="button">-</gui>.</p>
     </item>
     <item>
-      <p>A dialog will be shown asking for confirmation. Click the <gui>Remove</gui>
-      button to permanently remove the account.</p>
+      <p>En dialogruta kommer att visas som frågar efter bekräftelse. Klicka på knappen <gui>Ta bort</gui> för att radera kontot helt.</p>
     </item>
   </steps>
 
   <note>
-    <p>Even after removing an account, <app>Empathy</app> does not delete
-    your conversation history for that account.</p>
+    <p>Även efter att ha raderat ett konto, raderar inte <app>Empathy</app> din samtalshistorik för det kontot.</p>
   </note>
 </page>

@@ -30,18 +30,30 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Zmiana stanu dostępności</title>
 
-  <p>Można ustawić stan, aby pokazać swoją dostępność dla kontaktów. Program <app>Empathy</app> pozwala na wybór z listy zdefiniowanych stanów.</p>
+  <p>Można ustawić stan, aby pokazać swoją dostępność dla kontaktów. Program <app>Empathy</app> pozwala na wybór z listy zdefiniowanych stanów.</p>
 
   <steps>
     <item>
-      <p>Należy wybrać z rozwijanej listy na górze okna <gui>Listy kontaktów</gui>.</p>
+      <p>Należy wybrać z rozwijanej listy na górze okna <gui>Listy kontaktów</gui>.</p>
     </item>
     <item>
-      <p>Należy wybrać stan dostępności z listy.</p>
+      <p>Należy wybrać stan dostępności z listy.</p>
     </item>
   </steps>
 

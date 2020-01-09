@@ -24,26 +24,38 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Czym jest geolokalizacja</title>
 
   <p>Geolokalizacja pozwala na określenie rzeczywistego położenia geograficznego komputera lub urządzenia podłączonego do Internetu.</p>
-  <p>Dzięki funkcji geolokalizacji w programie <app>Empathy</app> można:</p>
+  <p>Dzięki funkcji geolokalizacji w programie <app>Empathy</app> można:</p>
   <list>
     <item>
       <p>Publikować położenie geograficzne swoim kontaktom.</p>
     </item>
     <item>
-      <p>Śledzić położenie geograficzne geograficzne kontaktów i szybko się z nimi łączyć.</p>
+      <p>Śledzić położenie geograficzne kontaktów i szybko się z nimi łączyć.</p>
     </item>
     <item>
-      <p>Ustawić dokładność swojego położenia i urządzenia używanego do określania położenia.</p>
+      <p>Ustawić dokładność swojego położenia i urządzenia używanego do określania położenia.</p>
     </item>
   </list>
 
   <note style="tip">
-    <p>Aby śledzić  położenie geograficzne kontaktów konieczne jest, aby używali usługi i programu obsługującego geolokalizację.</p>
+    <p>Aby śledzić położenie geograficzne kontaktów konieczne jest, aby używali usługi i programu obsługującego geolokalizację.</p>
   </note>
 
 </page>

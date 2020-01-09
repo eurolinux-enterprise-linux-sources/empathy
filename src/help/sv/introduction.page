@@ -5,40 +5,39 @@
     <link type="guide" xref="index"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-16" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-17" status="review"/>
-    <desc>
-      Introduction to the <app>Empathy</app> instant messenger.
-    </desc>
+    <desc>Introduktion för snabbmeddelandeprogrammet <app>Empathy</app>.</desc>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
   <title>Introduktion</title>
 
-  <p>
-    <app>Empathy</app> is an instant messaging application for the GNOME Desktop.
-    It supports text messaging, voice &amp; video calls, file transfers, and all the
-    most used messaging systems such as Jabber and Google Talk.
-  </p>
-  <p>
-    <app>Empathy</app> includes features that help you better collaborate while at work,
-    and that let you easily keep in touch with your friends.  
-  </p>
-  <p>
-    Using <app>Empathy</app>, you can group all the conversations in a single window,
-    have multiple windows for different kind of conversations, easily search through
-    your previous conversations, and share your desktop in just two clicks.
-  </p>
+  <p><app>Empathy</app> är ett chattprogram för GNOME-skrivbordet. Det stöder textmeddelanden, röst- och videosamtal, filöverföringar och de mest använda meddelandesystemen som Jabber och Google Talk.</p>
+  <p><app>Empathy</app> innehåller funktioner som hjälper dig att bättre samarbeta under arbetet och som gör att du enkelt kan hålla kontakten med dina vänner.</p>
+  <p>I <app>Empathy</app> kan du gruppera alla samtal i ett enda fönster, ha flera fönster för olika typer av samtal, enkelt söka igenom dina tidigare samtal och dela ditt skrivbord i bara två klick.</p>
 
   <figure>
-    <title><gui>Contact List</gui> window</title>
-    <desc><app>Empathy</app> main window</desc>
+    <title>Fönstret <gui>Kontaktlista</gui></title>
+    <desc><app>Empathys</app> huvudfönster</desc>
     <media type="image" src="figures/empathy-main-window.png" mime="image/png" style="right">
-      <p><app>Empathy</app> main window.</p>
+      <p><app>Empathys</app> huvudfönster.</p>
     </media>
   </figure>
 

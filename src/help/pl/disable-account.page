@@ -4,7 +4,7 @@
   <info>
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Należy wyłączyć w programie <app>Empathy</app> funkcję automatycznego logowania na koncie.</desc>
+    <desc>Należy wyłączyć w programie <app>Empathy</app> funkcję automatycznego logowania na koncie.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-08-27" status="review"/>
@@ -33,16 +33,27 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Wyłączanie konta</title>
 
-  <p>Można wyłączyć konto bez jego usuwania, aby program <app>Empathy</app> nie logował się na koncie. Można wyłączyć i ponownie włączyć konto jeśli chcemy się czasami na to konto zalogować, ale chcemy używać programu <app>Empathy</app> do obsługi innych kont.</p>
+  <p>Można wyłączyć konto bez jego usuwania, aby program <app>Empathy</app> nie logował się na koncie. Można wyłączyć i ponownie włączyć konto, jeśli chcemy się czasami na to konto zalogować, ale chcemy używać programu <app>Empathy</app> do obsługi innych kont.</p>
 
   <steps>
     <item>
-      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>Edit</gui>
-      <gui>Accounts</gui></guiseq>, or press <key>F4</key>.</p>
+      <p>W oknie <gui>Lista kontaktów</gui> należy wybrać <guiseq><gui>Edycja</gui><gui>Konta</gui></guiseq>, lub nacisnąć <key>F4</key>.</p>
     </item>
     <item>
       <p>Należy zaznaczyć konto, które chcemy wyłączyć na liście kont po lewej stronie okna.</p>

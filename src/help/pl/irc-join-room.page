@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="irc-manage#manage" group="one"/>
-    <desc>Łączenie z kanałem IRC.</desc>
+    <desc>Łączenie z kanałem IRC.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-07-26" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
       <!--
@@ -24,21 +24,33 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Łączenie z pokojem rozmów IRC</title>
+  <title>Łączenie z pokojem rozmów IRC</title>
 
-  <p>Można dołączyć do pokojów rozmów IRC (znanych również jako kanały) w dowolnej sieci IRC do której jesteśmy połączeni. Aby połączyć się do sieci IRC, należy zobaczyć <link xref="add-account"/> i <link xref="account-irc"/>.</p>
+  <p>Można dołączyć do pokojów rozmów IRC (znanych również jako kanały) w dowolnej sieci IRC, do której jesteśmy połączeni. Aby połączyć się do sieci IRC, należy zobaczyć <link xref="add-account"/> i <link xref="account-irc"/>.</p>
 
   <steps>
     <item>
-      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Pokój</gui><gui>Dołącz...</gui></guiseq>.</p>
+      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Pokój</gui><gui>Dołącz…</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Z rozwijanej listy <gui>Konto</gui> należy wybrać konto IRC odpowiadające sieci, której chcemy używać.</p>
+      <p>Z rozwijanej listy <gui>Konto</gui> należy wybrać konto IRC odpowiadające sieci, której chcemy używać.</p>
     </item>
     <item>
-      <p>W polu tekstowym <gui>Pokój</gui> należy wpisać nazwę kanały, do którego chcemy dołączyć. Nazwy kanałów IRC rozpoczynają się od symbolu hash (<sys>#</sys>).</p>
+      <p>W polu tekstowym <gui>Pokój</gui> należy wpisać nazwę kanały, do którego chcemy dołączyć. Nazwy kanałów IRC rozpoczynają się od symbolu hash (<sys>#</sys>).</p>
     </item>
     <item>
       <p>Należy nacisnąć na przycisk <gui>Dołącz</gui>, aby wejść do pokoju.</p>

@@ -16,9 +16,8 @@
 %global gcr_version		2.91.4
 
 Name:		empathy
-# FIXME: Reenable parallel build for 3.12.13.
-Version:	3.12.12
-Release:	4%{?dist}
+Version:	3.12.13
+Release:	1%{?dist}
 Summary:	Instant Messaging Client for GNOME
 
 License:	GPLv2+
@@ -27,18 +26,11 @@ URL:		https://wiki.gnome.org/Apps/Empathy
 Source0:	http://download.gnome.org/sources/%{name}/3.12/%{name}-%{version}.tar.xz
 Source1:	%{name}-README.ConnectionManagers
 
-# https://bugzilla.gnome.org/show_bug.cgi?id=756990
-Patch0:		fix-date-icons.patch
-# https://bugzilla.gnome.org/show_bug.cgi?id=767516
-Patch1:		fix-empathy-call.patch
-# https://bugzilla.gnome.org/show_bug.cgi?id=746735
-Patch2:		fix-reduce-accuracy-setting.patch
-# https://bugzilla.gnome.org/show_bug.cgi?id=768889
-Patch3:		fs-element-notifiers-crash.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1142832
-Patch4:		0001-help-Remove-IRC-content.patch
+Patch0:		0001-help-Remove-IRC-content.patch
+
 # https://bugzilla.redhat.com/show_bug.cgi?id=1386616
-Patch5:		fix-certificate-validation.patch
+Patch1:		%{name}-fix-certificate-validation.patch
 
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,19 +83,13 @@ Requires:	telepathy-rakia
 %endif
 
 %description
-Empathy is powerful multi-protocol instant messaging client which supports
+Empathy is a powerful multi-protocol instant messaging client which supports
 Jabber, GTalk, MSN, Salut, and other protocols. It is built on top of the
 Telepathy framework.
 
 
 %prep
-%setup -q
-%patch0 -p1 -b .fix-date-icons
-%patch1 -p1 -b .fix-empathy-call
-%patch2 -p1 -b .fix-reduce-accuracy-setting
-%patch3 -p1 -b .fs-element-notifiers-crash
-%patch4 -p1 -b .remove-irc
-%patch5 -p1 -b .fix-certificate-validation
+%autosetup -p1
 
 
 %build
@@ -114,15 +100,13 @@ autoreconf -f -i
   --disable-static \
   --enable-ubuntu-online-accounts=no
 
-# Parallel build is broken in 3.12.12, but it will be fixed in the next release.
-# TODO: Reenable parallel build.
-make
+%make_build
 install -m 0644 %{SOURCE1} ./README.ConnectionManagers
 
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+%make_install
+find $RPM_BUILD_ROOT -name '*.la' -delete
 
 %find_lang %{name} --with-gnome
 %find_lang empathy-tpaw
@@ -215,6 +199,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/adium/message-styles/PlanetGNOME.AdiumMessageStyle/Contents/Resources/main.css
 
 %changelog
+* Thu Jun 07 2018 Debarshi Ray <rishi@fedoraproject.org> - 3.12.13-1
+- Update to 3.12.13
+- Resolves: #1569812
+
 * Tue Mar 21 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-4
 - Fix certificate validation (use reference identities, handle validation
   failures correctly, fixed the test suite)

@@ -18,6 +18,18 @@
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Overview of instant messaging</title>
@@ -39,7 +51,7 @@
      </tr>
      <tr>
        <td><p>Video Conference</p></td>
-       <td><p>Group chats</p></td>
+       <td><p>Rozmowy grupowe</p></td>
        <td><p>Chat rooms</p></td>
       </tr>
   </table>

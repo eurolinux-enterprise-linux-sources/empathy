@@ -27,12 +27,23 @@
 -->
     <desc>Informacja dotycząca możliwości nawiązania rozmowy głosowej lub wideo.</desc>
 
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Obsługa rozmów głosowych i wideorozmów</title>
+  <title>Obsługa rozmów głosowych i wideorozmów</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Rozmowy głosowe i wideorozmowy można nawiązywać jedynie z kontaktami używającymi programu obsługującego tę funkcję.</p>
 
   <note>
     <p>Aby nawiązywać rozmowy głosowe potrzebna jest karta dźwiękowa obsługiwana przez system operacyjny oraz działający mikrofon.</p>
@@ -43,10 +54,10 @@
   
   <title>Obsługiwane typy kont</title>
 
-  <p>Można nawiązywać rozmowy głosowe i wideorozmowy jedynie używając kont pewnych obsługiwanych usług. Poniższa tabele pokazuje czy rozmowy głosowe i wideorozmowy są obsługiwane dla każdego rodzaju konta.</p>
+  <p>Można nawiązywać rozmowy głosowe i wideorozmowy jedynie za pomocą kont pewnych obsługiwanych usług. Poniższa tabele pokazuje czy rozmowy głosowe i wideorozmowy są obsługiwane dla każdego rodzaju konta.</p>
 
   <note>
-    <p>Obsługa typów kont jest zapewniana przez wtyczki. System może nie udostępniać wszystkich z wymienionych typów lub mogą one nie być wymienione. Uaktualnione wtyczki mogą umożliwiać rozmowy głosowe lub wideorozmowy dla rodzajów kont, które oznaczone są tu jako nieobsługiwane.</p>
+    <p>Obsługa typów kont jest zapewniana przez wtyczki. System może nie udostępniać wszystkich z wymienionych typów lub mogą one nie być wymienione. Uaktualnione wtyczki mogą umożliwiać rozmowy głosowe lub wideorozmowy dla rodzajów kont, które oznaczone są tu jako nieobsługiwane.</p>
   </note>
 
   <table frame="all" rules="rowgroups colgroups" shade="rows">
@@ -105,7 +116,7 @@
         <td><p>Brak</p></td>
       </tr>
       <tr>
-        <td><p>Osoby w pobliżu</p></td>
+        <td><p>Osoby w pobliżu</p></td>
         <td><p>Brak</p></td>
         <td><p>Brak</p></td>
       </tr>

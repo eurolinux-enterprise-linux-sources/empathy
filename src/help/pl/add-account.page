@@ -34,11 +34,23 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Dodawanie nowego konta</title>
 
-  <p>Można dodać konta komunikatora każdej obsługiwanej usługi, aby komunikować się wszystkimi kontaktami przy użyciu programu <app>Empathy</app>. W przypadku niektórych dostawców kont można w ten sposób również zarejestrować nowe konto. Aby uzyskać więcej informacji na ten temat, należy zapoznać się z <link xref="create-account"/>.</p>
+  <p>Można dodać konta komunikatora każdej obsługiwanej usługi, aby komunikować się wszystkimi kontaktami przy użyciu programu <app>Empathy</app>. W przypadku niektórych dostawców kont można w ten sposób również zarejestrować nowe konto. Aby uzyskać więcej informacji na ten temat, należy zapoznać się z <link xref="create-account"/>.</p>
 
   <steps>
     <item>
@@ -46,18 +58,14 @@
       <key>F4</key>.</p>
     </item>
     <item>
-      <p>
-        Click <gui style="button">+</gui>.
-      </p>
+      <p>Należy nacisnąć przycisk <gui style="button">+</gui>.</p>
     </item>
     <item>
       <p>From the <gui>What kind of chat account do you have?</gui> drop-down
       list, select the type of account you wish to add.</p>
     </item>
     <item>
-      <p>Enter the required information.  For most accounts, you will only need
-      a login ID and a password.  Some accounts may require additional information.
-      See <link xref="accounts-window#details"/>for more information.</p>
+      <p>Należy wprowadzić wymagane informacje. W przypadku większości kont potrzebne będą identyfikator logowania i hasło. Niektóre konta mogą wymagać dodatkowej informacji. Aby uzyskać więcej informacji, należy zobaczyć <link xref="accounts-window#details"/>.</p>
     </item>
     <item>
       <p>Należy nacisnąć przycisk <gui style="button">Dodaj</gui>.</p>
@@ -65,9 +73,6 @@
   </steps>
 
   <note style="tip">
-    <p>To change the name that identifies the account in the <gui>Messaging and
-    VoIP Accounts</gui> window, select the account from the list on the left
-    and either click on the name or press the space bar. Edit the account name
-    and press <key>Enter</key> when you’re finished.</p>
+    <p>Aby zmienić nazwę identyfikującą konto w oknie <gui>Konta komunikatora i VoIP</gui>, należy wybrać konto z listy po lewej stronie i kliknąć nazwę lub nacisnąć przycisk spacji. Po zakończeniu modyfikacji nazwy należy nacisnąć przycisk <key>Enter</key>.</p>
   </note>
 </page>

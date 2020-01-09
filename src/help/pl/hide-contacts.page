@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <desc>Ukrywanie kontaktów w trybie offline  na <gui>Liście kontaktów</gui>.</desc>
+    <desc>Ukrywanie kontaktów w trybie offline na <gui>Liście kontaktów</gui>.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-03-11" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
@@ -12,21 +12,31 @@
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>    
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Ukrywanie kontaktów znajdujących się w trybie offline.</title>
+  <title>Ukrywanie kontaktów znajdujących się w trybie offline.</title>
 
-  <p>Domyślnie program <app>Empathy</app> wyświetla jedynie kontakty znajdujące się w trybie online. Można jednak również wyświetlać wszystkie kontakty włącznie z tymi, które znajdują się w trybie offline.</p>
-  <p>Aby ukryć kontakty w trybie offline:</p>
+  <p>Domyślnie program <app>Empathy</app> wyświetla jedynie kontakty znajdujące się w trybie online. Można jednak również wyświetlać wszystkie kontakty włącznie z tymi, które znajdują się w trybie offline.</p>
+  <p>Aby ukryć kontakty w trybie offline:</p>
 
   <steps>
     <item>
-      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
-      <gui>Offline Contacts</gui></guiseq>, or press <keyseq><key>Ctrl</key>
-      <key>H</key></keyseq>.</p>
+      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Widok</gui><gui>Kontakty w trybie offline</gui></guiseq> lub nacisnąć <keyseq><key>Ctrl</key><key>H</key></keyseq>.</p>
     </item>
     <item>
-      <p>Aby ponownie wyświetlić kontakty w trybie offline, należy powtórzyć powyższą procedurę.</p>
+      <p>Aby ponownie wyświetlić kontakty w trybie offline, należy powtórzyć powyższą procedurę.</p>
     </item>
   </steps>
 

@@ -4,7 +4,7 @@
   <info>
     <link type="guide" xref="index#contacts"/>
     <link type="seealso" xref="hide-contacts"/>
-    <desc>Add someone to the contact list.</desc>
+    <desc>Lägga till någon i kontaktlistan.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-15" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review">
       <!--
@@ -17,7 +17,7 @@
       <email>philbull@gmail.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -26,40 +26,42 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Add someone to your list of contacts</title>
+  <title>Lägga till någon i din kontaktlista</title>
 
   <steps>
     <item>
-      <p>Choose <guiseq><gui>Chat</gui><gui>Add Contact</gui></guiseq>.</p>
+      <p>Välj <guiseq><gui>Chatt</gui><gui>Lägg till kontakt</gui></guiseq>.</p>
     </item>
     <item>
-      <p>From the <gui>Account</gui> drop-down list, select the account you wish
-      to use to connect to your contact.  Your contact will need to be using the
-      same service as the account you select.</p>
+      <p>Från <gui>Konto</gui>-rullgardinslistan väljer du det konto som du vill använda för att ansluta till din kontakt. Din kontakt kommer att behöva använda samma tjänst som det konto som du väljer.</p>
     </item>
     <item>
-      <p>In the <gui>Identifier</gui> field, enter your contact’s login ID, username,
-      screen name, or other appropriate identifier for the service type.</p>
+      <p>I fältet <gui>Identifierare</gui>, ange din kontakts inloggnings-ID, användarnamn, skärmnamn eller annan relevant identifiering för den tjänsten.</p>
     </item>
     <item>
-      <p>In the <gui>Alias</gui> field, type your contact’s name as you would like
-      it to appear in your contact list.</p>
+      <p>I fältet <gui>Alias</gui> skriver du in kontaktens namn som du vill att det ska visas i kontaktlistan.</p>
     </item>
     <item>
-      <p>
-        Click <gui>Add</gui> to add the person to your list of
-        contacts.
-      </p>
+      <p>Klicka <gui>Lägg till</gui> för att lägga till personen till dina kontakter.</p>
     </item>
   </steps>
 
   <note>
-    <p>
-      To add a new person to your list of contacts, you need to be
-      connected to the Internet and to your account.
-    </p>
+    <p>För att lägga till en ny person till din kontaktlista måste du vara ansluten till internet och till ditt konto.</p>
   </note>
 
 </page>

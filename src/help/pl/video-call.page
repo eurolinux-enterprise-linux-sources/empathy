@@ -5,7 +5,7 @@
     <link type="guide" xref="index#audio-video"/>
     <link type="seealso" xref="audio-video"/>
     <link type="seealso" xref="audio-call"/>
-    <desc>Rozpoczęcie wideorozmowy z jednym z kontaktów.</desc>
+    <desc>Rozpoczęcie wideorozmowy z jednym z kontaktów.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
       <!--
@@ -28,13 +28,22 @@
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
   <title>Rozpoczęcie wideorozmowy</title>
 
-  <p>If you have a webcam, you can call your contacts and have a video
-  conversation with them. This feature only works with certain types of
-  accounts, and it requires the other person to have an application that
-  supports video calls.</p>
+  <p>Jeśli podłączona jest kamera internetowa można połączyć się z kontaktami i prowadzić z nimi wideorozmowę. Ta funkcja działają jedynie z pewnymi rodzajami kont i wymaga, aby inna osoba miała program obsługujący wideorozmowy.</p>
 
   <steps>
     <item>

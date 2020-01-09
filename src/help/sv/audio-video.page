@@ -16,7 +16,7 @@
     </credit>
 
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -25,122 +25,125 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
-    <desc>Information on when it is possible to have an audio or video
-    conversation.</desc>
+    <desc>Information om när det är möjligt att ha ett ljud- eller videosamtal.</desc>
 
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Audio and video support</title>
+  <title>Ljud- och videosupport</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Du kan bara ha ljud- och videosamtal med kontakter som använder ett program som också stöder den här funktionen.</p>
 
   <note>
-    <p>In order to have an audio conversation, you need to have a sound card
-    that is supported by your operating system, and a working microphone.</p>
-    <p>In order to have a video conversation, you need to have a webcam that
-    is supported by your operating system, and a working microphone.</p>
+    <p>För att kunna ha ett ljudsamtal måste du ha ett ljudkort som stöds av operativsystemet och en fungerande mikrofon.</p>
+    <p>För att kunna ha ett videosamtal måste du ha en webbkamera som stöds av operativsystemet och en fungerande mikrofon.</p>
   </note>
 
   <section id="services">
   
-  <title>Supported Account Types</title>
+  <title>Kontotyper som stöds</title>
 
-  <p>You can only have audio and video conversations using accounts on
-  certain supported services.  The following table lists whether audio
-  and video is supported for each type of account.</p>
+  <p>Du kan bara ha ljud- och videosamtal med konton som stöder dessa tjänster. I följande tabell visas om ljud och video stöds för varje typ av konto.</p>
 
   <note>
-    <p>Account types are provided by plugins.  Your system may not have
-    all of the following types available, or it may have types not listed
-    here.  Updated plugins may make audio or video conversations possible
-    on account types that are listed as unsupported here.</p>
+    <p>Kontotyperna tillhandahålls genom insticksmoduler. Ditt system kanske inte har alla av följande typer tillgängliga eller det kan ha typer som inte anges här. Uppdaterade insticksmoduler kan göra ljud- eller videosamtal möjligt med kontotyper som enligt listan inte stöds.</p>
   </note>
 
   <table frame="all" rules="rowgroups colgroups" shade="rows">
     <colgroup><col/></colgroup><colgroup><col/><col/></colgroup>
     <thead>
       <tr>
-        <td><p>Service</p></td>
-        <td><p>Audio</p></td>
+        <td><p>Tjänst</p></td>
+        <td><p>Ljud</p></td>
         <td><p>Video</p></td>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><p>AIM</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>gadugadu</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>Google Talk</p></td>
-        <td><p>Yes</p></td>
-        <td><p>Yes</p></td>
+        <td><p>Ja</p></td>
+        <td><p>Ja</p></td>
       </tr>
       <tr>
         <td><p>Groupwise</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>ICQ</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>IRC</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>Jabber</p></td>
-        <td><p>Yes</p></td>
-        <td><p>Yes</p></td>
+        <td><p>Ja</p></td>
+        <td><p>Ja</p></td>
       </tr>
       <tr>
         <td><p>myspace</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>qq</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
-        <td><p>People Nearby</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Personer i närheten</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>sametime</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>silc</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>SIP</p></td>
-        <td><p>Yes</p></td>
-        <td><p>Yes</p></td>
+        <td><p>Ja</p></td>
+        <td><p>Ja</p></td>
       </tr>
       <tr>
         <td><p>Yahoo!</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
       <tr>
         <td><p>zephyr</p></td>
-        <td><p>No</p></td>
-        <td><p>No</p></td>
+        <td><p>Nej</p></td>
+        <td><p>Nej</p></td>
       </tr>
     </tbody>
   </table>

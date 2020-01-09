@@ -19,42 +19,51 @@
     </credit>
 
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 
-    <desc>Empathy is the instant messaging application for GNOME. It supports text, voice and video chat over many protocols.</desc>
+    <desc>Empathy är ett chattprogram för GNOME. Det stöder text, röst- och videochatt för många protokoll.</desc>
 
     <title type="link">Empathy</title>
     <title type="text">Empathy</title>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>
-    <media type="image" mime="image/png" src="figures/empathy-logo.png" its:translate="no"/>
-    Empathy
-  </title>
+  <title><media type="image" mime="image/png" src="figures/empathy-logo.png" its:translate="no"/> Empathy</title>
 
   <section id="accounts" style="2column">
-    <title>Account Management</title>
+    <title>Kontohantering</title>
   </section>
   
   <section id="contacts" style="2column">
-    <title>Contact Management</title>
+    <title>Kontakthantering</title>
   </section>
 
   <section id="text-conv" style="2column">
-    <title>Text Conversations</title>
+    <title>Textsamtal</title>
   </section>
 
   <section id="audio-video" style="2column">
-    <title>Audio and Video Conversations</title>
+    <title>Ljud- och videosamtal</title>
   </section>
   
   <section id="advanced" style="2column">
-    <title>Advanced Actions</title>
+    <title>Avancerade åtgärder</title>
   </section>
 
   <section id="problems">
-    <title>Common Problems</title>
+    <title>Vanliga problem</title>
   </section>
 
 </page>

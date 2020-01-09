@@ -5,9 +5,7 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="change-status"/>
 	  <link type="seealso" xref="status-icons"/>
-    <desc>
-      Add, edit or delete personal messages for your status.
-    </desc>
+    <desc>Lägga till, redigera eller ta bort personliga meddelanden från din status.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-30" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-10" status="review"/>
     <credit type="author">
@@ -19,7 +17,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -28,118 +26,85 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Set a custom message</title>
+  <title>Skapa ett anpassat meddelande</title>
 
-  <p>
-    Sometimes you may want to set a custom message for your status, for example to let
-    people know that you will be unavailable for a certain period of time.
-  </p>
-  <p>
-    It is possible to set a custom message based on the different statuses available.
-  </p>
+  <p>Ibland kanske du vill använda ett anpassat meddelande för din status, till exempel för att låta folk veta att du kommer att vara otillgänglig under en viss tidsperiod.</p>
+  <p>Det är möjligt att ange ett anpassat meddelande baserat på den tillgängliga statusen.</p>
 
   <steps>
     <item>
-      <p>
-        From the <gui>Contact List</gui> window, click on the drop-down list at
-        the top.
-      </p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, klicka på rullgardinslistan längst upp.</p>
     </item>
     <item>
-      <p>
-        Select the status you want to add a custom message to. You have to select the one
-        identified with the label <gui>Custom Message</gui>.
-      </p>
+      <p>Välj den status du vill lägga till ett anpassat meddelande. Du måste välja den som identifieras med etiketten <gui>Anpassat meddelande</gui>.</p>
     </item>
     <item>
-      <p>
-        Enter your custom message in the text box at the top of the window, and
-        press <key>Enter</key> to set the message.
-      </p>
+      <p>Skriv in ditt anpassade meddelande i textrutan längst upp i fönstret och tryck på <key>Retur</key>.</p>
     </item>
     <item>
-      <p>
-        If you want to set the custom message as a favorite, saving it in order to use it
-        again, click on the little heart on the right of the text box where you wrote your
-        custom message.
-      </p>
-      <p>
-        If you do not do it, the custom message will not be available the next time you
-        use <app>Empathy</app>. It will be saved only for the current session.
-      </p>
+      <p>Om du vill spara ditt anpassade meddelande som en favorit för att använda det igen, klicka på det lilla hjärtat till höger om textrutan där du skrev ditt meddelande.</p>
+      <p>Om du inte gör det, kommer det anpassade meddelandet inte vara tillgängligt nästa gång du använder <app>Empathy</app>. Det sparas endast för den aktuella sessionen.</p>
     </item>
   </steps>
 
   <section id="edit-custom">
 
-  <title>Edit and remove a custom message</title>
+  <title>Redigera och ta bort ett anpassat meddelande</title>
 
   <steps>
     <item>
-     <p>
-        From the <gui>Contact List</gui> window, click on the drop-down list at
-        the top.
-      </p>
+     <p>Från fönstret <gui>Kontaktlista</gui>, klicka på rullgardinslistan längst upp.</p>
     </item>
     <item>
-      <p>
-        Select <gui>Edit Custom Message</gui>.
-      </p>
+      <p>Välj <gui>Redigera anpassade Meddelanden</gui>.</p>
     </item>
 	  <item>
 	    <list>
 	      <item>
-	        <p>
-	          To edit a custom message:
-	        </p>
+	        <p>För att redigera ett anpassat meddelande:</p>
 	        <steps>
 	          <item>
-	            <p>
-	              From the <gui>Saved Presets</gui> box, select the status message
-	              you want to edit and double-click on it.
-              </p>
+	            <p>I rutan <gui>Sparade förval</gui> markera det statusmeddelande som du vill redigera och dubbelklicka på det.</p>
             </item>
             <item>
-              <p>
-                Type the new custom message and press <key>Enter</key> to modify it.
-              </p>
+              <p>Skriv in det nya anpassade meddelandet och tryck ned <key>Retur</key> för att spara.</p>
             </item>
           </steps>
         </item>
         <item>
-          <p>
-            To remove a custom message:
-          </p>
+          <p>För att ta bort ett anpassat meddelande:</p>
           <steps>
             <item>
-              <p>
-                From the <gui>Saved Presets</gui> box, select the status message you want
-                to remove.
-              </p>
+              <p>Från rutan <gui>Sparade förval</gui> markera det statusmeddelande du vill ta bort.</p>
             </item>
             <item>
-              <p>
-                Click on the <gui>Remove</gui> button.
-              </p>
+              <p>Klicka på knappen <gui>Ta bort</gui>.</p>
             </item>
           </steps>
         </item>
       </list>
     </item>
     <item>
-      <p>
-        When finished, click on <gui>Close</gui>.
-      </p>
+      <p>När du är klar, klicka på <gui>Stäng</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>
-      When you edit a custom message, it will not be set as the current
-      status message. You will need to select it from the <gui>Contact List</gui> window.
-    </p>
+    <p>När du redigerar ett anpassat meddelande, kommer det inte att sparas som det aktuella statusmeddelandet. Du måste välja det från fönstret <gui>Kontaktlista</gui>.</p>
   </note>
 
   </section>

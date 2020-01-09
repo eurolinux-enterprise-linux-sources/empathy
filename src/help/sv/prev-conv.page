@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#text-conv"/>
-    <desc>Browse or search your previous conversations.</desc>
+    <desc>Visa och genomsök dina tidigare samtal.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-17" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-31" status="review">
       <!--
@@ -20,7 +20,7 @@
       <email>shaunm@gnome.org</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
 <!--
     <copyright>
@@ -29,87 +29,73 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>View previous conversations</title>
+  <title>Visa tidigare samtal</title>
 
-  <p>
-    <app>Empathy</app> automatically saves all your text conversations you have
-    with your contacts.  You can <link xref="#search">search through all of your
-    previous conversations</link> or <link xref="#browse">browse previous
-    conversations</link> by contact and date.
-  </p>
+  <p><app>Empathy</app> sparar automatiskt alla dina textsamtal som du har med dina kontakter. Du kan <link xref="#search">söka igenom alla dina tidigare samtal </link> eller <link xref="#browse">bläddra igenom tidigare samtal</link> sorterat på kontakt och datum.</p>
 
   <note>
-    <p>
-      You do not need to be connected to the Internet to view and search your previous
-      conversations.
-    </p>
+    <p>Du behöver inte vara ansluten till Internet för att visa och söka dina tidigare samtal.</p>
   </note>
 
   <section id="search" style="task">
-  <title>Search previous conversations</title>
+  <title>Söka efter tidigare samtal</title>
 
-  <p>You can perform a full-text search through all of your previous conversations.</p>
+  <p>Du kan utföra en fulltextsökning genom alla dina tidigare konversationer.</p>
 
   <steps>
     <item>
-      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
-      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Visa</gui> <gui>Tidigare samtal</gui></guiseq>. Alternativt, tryck på <key>F3</key>.</p>
     </item>
     <item>
-      <p>Select an account from the drop-down list in the top.  A list of
-      contacts and chat room for that account will be shown below.</p>
+      <p>Välj ett konto från rullgardinslistan i överkanten. En lista med kontakter och chattrum för det kontot kommer att visas nedan.</p>
     </item>
     <item>
-      <p>Type the text you want to search for in the <gui>Search</gui> text field.
-      </p>
+      <p>Skriv in den text du vill söka efter i textfältet <gui>Sök</gui>.</p>
     </item>
     <item>
-      <p>
-        Any conversations that matched your search terms will be shown. By
-        default, conversations are ordered by date.
-      </p>
+      <p>Alla samtal som matchar dina sökord kommer att visas. Som standard ordnas samtal efter datum.</p>
     </item>
   </steps>
   </section>
 
   <section id="browse" style="task">
-  <title>Browse previous conversations</title>
+  <title>Genomsöka tidigare samtal</title>
 
-  <p>You can browse your previous conversations with your contacts or in
-  chat rooms by date.</p>
+  <p>Du kan genomsöka dina tidigare samtal med dina kontakter eller i chattrum, datumvis.</p>
 
   <steps>
     <item>
-      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
-      <gui>Previous Conversations</gui></guiseq>.  Alternatively, press <key>F3</key>.</p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Visa</gui> <gui>Tidigare samtal</gui></guiseq>. Alternativt, tryck på <key>F3</key>.</p>
     </item>
     <item>
-      <p>Select an account from the drop-down list in the top left.  A list of
-      contacts and chat room for that account will be shown below.</p>
+      <p>Välj ett konto från rullgardinslistan i det vänstra övre hörnet. En lista med kontakter och chattrum för det kontot kommer att visas nedan.</p>
     </item>
     <item>
-      <p>Select a contact or chat room to view your previous conversations from.
-      By default the most recent conversation will be shown.</p>
+      <p>Välj en kontakt eller chattrum för att visa dina tidigare samtal. Som standard visas det senaste samtalet.</p>
     </item>
     <item>
-      <p>You can browse your conversations by date.  Days on which you had a conversation
-      with the selected contact will be shown in bold text.  Click a date to select it.
-      Click the arrows next to the month and year to browse earlier dates.</p>
+      <p>Du kan genomsöka dina samtal efter datum. Dagar då du haft ett samtal med den valda kontakten visas i fetstil. Klicka på ett datum för att välja det. Klicka på pilarna bredvid månad och år för att genomsöka tidigare datum.</p>
     </item>
   </steps>
 
-  <p>
-    You can search for text in the conversations by typing into the
-    search field at the top. The matching conversations will be showed.
-  </p>
+  <p>Du kan söka efter text i samtalen genom att skriva i sökfältet längst upp. De matchande samtalen kommer att visas.</p>
 
   <note style="tip">
-    <p>You can quickly view the previous conversations with one of your contacts
-    from the <gui>Contact List</gui> window.  Simply right click the contact and
-    choose <gui>Previous Conversations</gui>.  The <gui>Previous
-    Conversations</gui> window will open with that contact already selected.</p>
+    <p>Du kan snabbt visa dina tidigare samtal med en av dina kontakter från fönstret <gui>Kontaktlista</gui>. Högerklicka bara på kontakten och välj <gui>Tidigare samtal</gui>. Fönstret <gui>Tidigare samtal</gui> kommer att öppnas med den markerade kontakten.</p>
   </note>
 
   </section>

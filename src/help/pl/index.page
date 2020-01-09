@@ -22,16 +22,25 @@
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>    
 
-    <desc>Empathy is the instant messaging application for GNOME. It supports text, voice and video chat over many protocols.</desc>
+    <desc>Empathy jest komunikatorem internetowym środowiska GNOME. Obsługuje rozmowy tekstowe, głosowe i wideorozmowy przez wiele protokołów.</desc>
 
     <title type="link">Empathy</title>
     <title type="text">Empathy</title>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>
-    <media type="image" mime="image/png" src="figures/empathy-logo.png" its:translate="no"/>
-    Empathy
-  </title>
+  <title><media type="image" mime="image/png" src="figures/empathy-logo.png" its:translate="no"/> Empathy</title>
 
   <section id="accounts" style="2column">
     <title>Zarządzanie kontami</title>
@@ -46,7 +55,7 @@
   </section>
 
   <section id="audio-video" style="2column">
-    <title>Rozmowy głosowe i wideorozmowy</title>
+    <title>Rozmowy głosowe i wideorozmowy</title>
   </section>
   
   <section id="advanced" style="2column">

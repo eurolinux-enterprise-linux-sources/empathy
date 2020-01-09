@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="geolocation#geoloc"/>
-    <desc>Jakie informacje są wysyłane i do kogo.</desc>
+    <desc>Jakie informacje są wysyłane i do kogo.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-19" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-09-09" status="deferred"/>
@@ -23,21 +23,33 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Prywatność w geolokalizacji</title>
+  <title>Prywatność w geolokalizacji</title>
 
   <section id="info-sent">
   <title>Jakie informacje są wysyłane</title>
-  <p>Można wysyłać następujące dane: kraj, region, położenie, obszar, ulica, budynek, piętro, pokój, kod pocztowy, długość geograficzna, szerokość geograficzna i wysokość nad poziomem morza oraz prędkość i kierunek.</p>
-  <p>Dokładność i ilość informacji o pozycji geograficznej użytkownika zależą od oprogramowania i infrastruktury użytej do określenia jego pozycji.</p>
-  <p>Różne rodzaje sieci mogą mieć różne ustawienia dokładności i mogą przesyłać różne informacje. Użycie zewnętrznych urządzeń takich jak GPS lub telefony komórkowe zwiększa dokładność przesyłanych informacji.</p>
-  <p>Po włączeniu trybu prywatnego żadne informacje bardziej szczegółowe niż miasto w którym znajduje się użytkownik nie zostaną udostępnione, nawet jeśli zostanie użyte urządzenie zewnętrzne.</p>
+  <p>Można wysyłać następujące dane: kraj, region, położenie, obszar, ulica, budynek, piętro, pokój, kod pocztowy, długość geograficzna, szerokość geograficzna i wysokość nad poziomem morza oraz prędkość i kierunek.</p>
+  <p>Dokładność i ilość informacji o pozycji geograficznej użytkownika zależą od oprogramowania i infrastruktury użytej do określenia jego pozycji.</p>
+  <p>Różne rodzaje sieci mogą mieć różne ustawienia dokładności i mogą przesyłać różne informacje. Użycie zewnętrznych urządzeń takich jak GPS lub telefony komórkowe zwiększa dokładność przesyłanych informacji.</p>
+  <p>Po włączeniu trybu prywatnego żadne informacje bardziej szczegółowe niż miasto, w którym znajduje się użytkownik nie zostaną udostępnione, nawet jeśli zostanie użyte urządzenie zewnętrzne.</p>
   </section>
   
   <section id="see-info">
   <title>Osoby mające wgląd do udostępnionych informacji</title>
-  <p>Jedynie osoby z listy kontaktów mają dostęp do położenia geograficznego użytkownika.</p>
+  <p>Jedynie osoby z listy kontaktów mają dostęp do położenia geograficznego użytkownika.</p>
   </section>
   
   <section id="privacy-mode">
@@ -47,19 +59,19 @@
   
   <section id="privacy-overview">
   <title>Przegląd ustawień prywatności</title>
-  <p>Przegląd różnych ustawień prywatności geolokalizacji w programie <app>Empathy</app>.</p>
+  <p>Przegląd różnych ustawień prywatności geolokalizacji w programie <app>Empathy</app>.</p>
   <list>
     <item>
       <p>Geolokalizacja nie jest domyślnie włączona.</p>
     </item>
     <item>
-      <p>Tryb prywatny jest domyśnie włączony.</p>
+      <p>Tryb prywatny jest domyślnie włączony.</p>
     </item>
     <item>
-      <p>Tryb prywatny pozostaje włączony nawet gdy zostaną użyte zewnętrzne, bardziej dokładne urządzenia.</p>
+      <p>Tryb prywatny pozostaje włączony, nawet gdy zostaną użyte zewnętrzne, dokładniejsze urządzenia.</p>
     </item>
     <item>
-      <p>Jedynie kontakty z listy kontaktów użytkownika mają dostęp do informacji o jego położeniu.</p>
+      <p>Jedynie kontakty z listy kontaktów użytkownika mają dostęp do informacji o jego położeniu.</p>
     </item>
   </list>
   </section>

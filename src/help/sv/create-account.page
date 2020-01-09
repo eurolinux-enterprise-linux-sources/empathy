@@ -23,96 +23,75 @@
     </credit>
 
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 
-    <desc>Create an account for one of the supported messaging services.</desc>
+    <desc>Skapa ett konto för en av de understödda meddelandetjänsterna.</desc>
 
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Register a new account</title>
+  <title>Registrera ett nytt konto</title>
 
-  <p>Most account types require you to create an account with a service
-  provider before you can use that account with instant messaging applications.
-  You can use <app>Empathy</app> to register for a new account with some
-  account providers using the same steps as you would to
-  <link xref="add-account">add an account</link>.</p>
+  <p>De flesta typer av konton kräver att du skapar ett konto med en tjänsteleverantör innan du kan använda kontot för snabbmeddelanden. Du kan använda <app>Empathy</app> för att registrera ett nytt konto med vissa kontoleverantörer med samma steg som när du ska <link xref="add-account">lägga till ett konto</link>.</p>
 
-  <p>Once you create a new account, your account provider should give you a
-  login or a username and a password, as well as any additional information you
-  need to connect using <app>Empathy</app>.</p>
+  <p>När du skapat ett nytt konto, bör din kontoleverantör ge dig en inloggning eller ett användarnamn och ett lösenord, samt eventuellt ytterligare information som du behöver för att ansluta med <app>Empathy</app>.</p>
 
   <section id="irc">
     <title>IRC</title>
 
-    <p>IRC networks require that you specify a nick (nickname) when you connect
-    to the server. Some IRC networks use a service, such as NickServ, to allow
-    users to <link xref="irc-nick-password">protect their nick</link>. If you
-    did not register your nick or are unable to do so and another user is using
-    it, then you will need to choose a different one.</p>
+    <p>IRC-nätverk kräver att du anger ett smeknamn när du ansluter till servern. Vissa IRC-nätverk använder en tjänst, exempelvis Nickserv, för att <link xref="irc-nick-password">skydda användarnas smeknamn</link>. Om du inte har registrerat ditt smeknamn eller inte kan göra det och det används av en annan användare, då måste du välja ett annat.</p>
 
-    <p>Some IRC servers are password protected. You will need to know the
-    password to connect to these servers. Generally, these are private IRC
-    networks.</p>
+    <p>Vissa IRC-servrar är lösenordsskyddade. Du måste känna till lösenordet för att ansluta till dessa servrar. Dessa IRC-nätverk är i allmänhet privata.</p>
 
     <note>
-      <p>Many GNOME projects use <code>irc.gnome.org</code> for project-related
-      discussion.</p>
+      <p>Många GNOME-projekt använder <code>irc.gnome.org</code> för projektrelaterade diskussioner.</p>
     </note>
   </section>
 
   <section id="jabber">
     <title>Jabber</title>
 
-    <p>Jabber is an open instant messaging system. Like email, Jabber allows
-    you to choose your account provider and communicate with all other Jabber
-    users, regardless of their account provider.</p>
+    <p>Jabber är ett öppet snabbmeddelandesystem. Likt e-post, ger Jabber dig möjlighet att välja din kontoleverantör och kommunicera med alla andra Jabber-användare, oberoende av deras kontoleverantör.</p>
 
-    <p>You will need to create a new account with a Jabber provider. There are
-    many free providers; one popular provider is
-    <link href="http://register.jabber.org/">jabber.org</link>.</p>
+    <p>Du kommer att behöva skapa ett nytt konto med en Jabber-kontoleverantör. Det finns många gratis leverantörer; en populär leverantör är <link href="http://register.jabber.org/">jabber.org</link>.</p>
 
     <note>
-      <p>If you use Gmail or Google+ Hangouts, you already have a Jabber
-      account. Use your Gmail address and password in <app>Empathy</app> to
-      connect.</p>
+      <p>Om du använder Gmail eller Google+ Hangouts har du redan ett Jabber-konto. Använd din Gmail-adress och lösenord i <app>Empathy</app> för att ansluta.</p>
     </note>
   </section>
 
   <section id="salut">
-    <title>People Nearby</title>
+    <title>Personer i närheten</title>
 
-    <p>This service works whenever you are connected to a local network, such
-    as a wireless hotspot, you do not need to create an account with service
-    providor, just set up your account through <app>Empathy</app>. It
-    automatically finds all other users on the network who are also using this
-    service.</p>
+    <p>Denna tjänst är alltid tillgänglig om du är ansluten till ett lokalt nätverk, till exempel en trådlös surfzon, du behöver inte skapa ett konto med tjänsteleverantören, konfigurera bara ditt konto via <app>Empathy</app>. Den hittar automatiskt alla andra användare i nätverket som också använder den här tjänsten.</p>
 
-    <p>For more information, see the <link xref="salut-protocol">salut
-    protocol</link>.</p>
+    <p>För mera information, se <link xref="salut-protocol">salut-protokollet</link>.</p>
   </section>
 
   <section id="sip-services">
     <title>SIP</title>
 
-    <p>SIP is an open system which allows users to have audio and video
-    conversations over the Internet. You need to create an account with
-    a SIP provider. You can communicate with all other SIP users,
-    regardless of which SIP provider they use.</p>
+    <p>SIP är ett öppet system som gör det möjligt för användare att ha ljud- och videokonversationer över Internet. Du måste skapa ett konto med en SIP-leverantör. Du kan kommunicera med alla andra SIP-användare, oavsett vilken SIP-leverantör de använder.</p>
 
-    <p>Some SIP providers allow you to call normal phones from your computer.
-    Generally, you will need to subscribe to a paid service for this
-    feature.</p>
+    <p>Med vissa SIP-leverantörer kan du ringa till vanliga telefoner från din dator. Generellt måste du abonnera på en betaltjänst för den här funktionen.</p>
   </section>
 
   <section id="proprietary-services">
-    <title>Proprietary Services</title>
+    <title>Proprietära tjänster</title>
 
-    <p>There are many proprietary instant messaging services that have been
-    developed by different companies or organizations. <app>Empathy</app>
-    allows you to connect to an existing account for some of these services.
-    To create a new account with one of these services, you will need to
-    visit the website for the service.</p>
+    <p>Det finns många proprietära snabbmeddelandetjänster som har utvecklats av olika företag eller organisationer. <app>Empathy</app> låter dig ansluta till ett befintligt konto för vissa av dessa tjänster. För att skapa ett nytt konto med en av dessa tjänster måste du besöka webbplatsen för tjänsten.</p>
 
     <list>
       <item>

@@ -3,25 +3,32 @@
       
   <info>
     <link type="guide" xref="irc-manage#manage"/>
-    <desc>The supported IRC commands.</desc>
+    <desc>De IRC-kommandon som stöds.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-02-14" status="draft"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Supported IRC commands</title>
-  <p>
-    To see the list of the supported IRC commands, in a chat room type <input>/help</input>
-    and press <key>Enter</key>.
-  </p>
+  <title>IRC-kommandon som stöds</title>
+  <p>För att se förteckningen över de IRC-kommandon som stöds i ett chattrum skriv <input>/help</input> och tryck på <key>Retur</key>.</p>
   <note>
-    <p>
-      All commands available have a small description on their usage.
-    </p>
+    <p>Alla kommandon har en liten beskrivning för deras användning.</p>
   </note>
 </page>

@@ -27,9 +27,21 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Współdziel pulpit</title>
+  <title>Udostępnij pulpit</title>
 
   <p>
     It is possible to share your desktop with some of your contacts. You can
@@ -47,16 +59,10 @@
 
   <steps>
     <item>
-      <p>
-        From the <gui>Contact List</gui> window, do one of the following:
-      </p>
+      <p>W oknie <gui>Lista kontaktów</gui> należy wykonać jedno z poniższych działań:</p>
       <list>
         <item>
-          <p>
-            Select the contact you want to share your desktop with and choose
-            <guiseq><gui>Edit</gui><gui>Contact</gui>
-	    <gui>Share My Desktop</gui></guiseq>.
-          </p>
+          <p>Należy zaznaczyć kontakt, któremu chcemy udostępnić pulpit i wybrać <guiseq><gui>Edycja</gui><gui>Kontakt</gui> <gui>Udostępnij pulpit</gui></guiseq>.</p>
         </item>
         <item>
           <p>
@@ -86,15 +92,10 @@
     </item>
   </steps>
 
-  <p>Podczas współdzielenia pulpitu z innym użytkownikiem można zaobserwować zmniejszenie wydajności systemu i spowolnienie połączenia internetowego.</p>
+  <p>Podczas udostępniania pulpitu innemu użytkownikowi można zaobserwować zmniejszenie wydajności systemu i spowolnienie połączenia internetowego.</p>
 
   <note>
-    <p>
-      Some of your contacts may not be able to use this feature. It is
-      necessary for them to have version 2.28, or newer, of <app>Empathy</app>
-      and a compatible remote desktop viewer application installed in their
-      system.
-    </p>
+    <p>Nie wszystkie kontakty mogą używać tej funkcjonalności. Aby móc używać funkcji udostępniania pulpitu należy zainstalować w systemie co najmniej wersję 2.28 programu <app>Empathy</app> i program do przeglądania zdalnych pulpitów.</p>
   </note>
 
 </page>

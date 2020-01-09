@@ -1,3 +1,220 @@
+commit 90ce49a9c37d01d9861476cc9c5b03e9287d0760
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Mon Mar 13 17:52:28 2017 +0100
+
+    3.12.13
+
+ NEWS         | 27 +++++++++++++++++++++++----
+ configure.ac |  4 ++--
+ 2 files changed, 25 insertions(+), 6 deletions(-)
+
+commit 32b085f285b3d4e03a07b79331e7ab021182c908
+Author: Anders Jonsson <anders.jonsson@norsjovallen.se>
+Date:   Wed Feb 1 21:02:08 2017 +0000
+
+    Update Swedish translation
+
+ help/sv/sv.po | 2066
+ ++++++++++++++++++++++++---------------------------------
+ 1 file changed, 872 insertions(+), 1194 deletions(-)
+
+commit 27de2c6f036b1e2f1d8882ca249755bf33ac1e2f
+Author: Daniel Boles <dboles@src.gnome.org>
+Date:   Thu Dec 1 04:10:54 2016 +0000
+
+    roster-window: Fix the GActions not working
+
+    Underscores are not allowed in GAction names. This led to a pile of
+    warnings during startup and ultimately none of these actions working.
+    Fix by substituting the underscores with hyphens, an allowed
+    character.
+
+    We can also omit the NULLs in the GActionEntries, as they are implied:
+    struct fields not explicitly initialised are zero-initialised anyway.
+
+ src/empathy-roster-window-menubar.ui | 30 +++++++++----------
+ src/empathy-roster-window.c          | 56
+ ++++++++++++++++++------------------
+ 2 files changed, 43 insertions(+), 43 deletions(-)
+
+commit 3f8b1552fbb88139c948fc536171c8ba77befedb
+Author: Daniel Boles <dboles@src.gnome.org>
+Date:   Wed Nov 30 23:47:23 2016 +0000
+
+    Update telepathy-account-widgets to fix IRC button
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=738315
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ce75b8661996adfe42730f852745d771c90a8b63
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Wed Jan 25 21:55:49 2017 +0100
+
+    Update Polish translation
+
+ help/pl/pl.po | 5409
+ ++++++++++++++++++++++++++++++---------------------------
+ po/pl.po      |  310 ++--
+ 2 files changed, 3002 insertions(+), 2717 deletions(-)
+
+commit 8d710ed06f3cee2ac5406855c5e11be1b8b17a32
+Author: Charles Monzat <superboa@hotmail.fr>
+Date:   Fri Nov 18 10:05:51 2016 +0000
+
+    Update French translation
+
+ help/fr/fr.po | 27 +++++++++++++++++++--------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
+
+commit b386b32ff3562932d36697f8ae27d7b7cb3baecf
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Sun Aug 7 12:30:52 2016 -0500
+
+    Leave note in NEWS regarding GNU make-ism
+
+ NEWS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit e07685ff5e93346a86690fcf1b8449bf934c8da4
+Author: Fabrice Bellet <fabrice@bellet.info>
+Date:   Wed Jul 13 16:00:05 2016 +0200
+
+    call-window: properly remove the fs element notifiers
+
+    This patch removes the FsElementAddedNotifier from the pipeline
+    in the conference remove callback, instead of just unreferencing
+    them. This fixes a crash in the rtp-special-source stop thread
+    cleanup code.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=768889
+
+ src/empathy-call-window.c | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
+
+commit f1b1b75e6772502290cbff5be2c8f31b61bdb6df
+Author: Fabrice Bellet <fabrice@bellet.info>
+Date:   Mon Mar 23 01:30:50 2015 +0100
+
+    location-manager: fix reduce accuracy setting
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=746735
+
+ libempathy-gtk/empathy-location-manager.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 9f0d8a6e7444dd59729bac2c24717ea72aea5080
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Thu Jul 21 20:48:12 2016 -0500
+
+    Revert "Don't call XInitThreads in Wayland"
+
+    This reverts commit a9ede294c57bc5738be3c33cba4ef88b9a7d4a0e.
+
+    It causes empathy-call to crash when run in X11, and fixes absolutely
+    nothing. See the bug for details.
+
+    Thanks to Diane Trout for investigating and preparing a substantially-
+    identical patch.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=767516
+
+ src/empathy-call.c | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+commit fd624644340af9e14435f66d09979a6ed0f4c7a8
+Author: Rémi Cardona <remi@gentoo.org>
+Date:   Sun Nov 30 22:10:59 2014 +0100
+
+    Fix parallel build in extensions/
+
+    GNU Make manual says:
+
+        A rule with multiple targets is equivalent to writing many rules,
+        each with one target, and all identical aside from that.
+
+    In other words, make may very well call glib-gtypes-generator.py twice
+    (once for each generated header). And hell breaks loose because the
+    python code assumes it will run once (it should be using the tempfile
+    module, but that's another bug). On a fast multi-core machine,
+    make -j4
+    will easily reproduce this bug.
+
+    The solution is hidden in the same manual [1] :
+
+        %.tab.c %.tab.h: %.y
+                bison -d $<
+
+        This tells make that the recipe ‘bison -d x.y’ will make both
+        x.tab.c and x.tab.h.
+
+    So by using '%' to replace the 'y' in the targets, I'm telling
+    make that
+    running the recipe once will generate both files.
+
+    [1] http://www.gnu.org/software/make/manual/make.html#Pattern-Examples
+
+    https://bugs.gentoo.org/show_bug.cgi?id=515894
+    https://bugzilla.gnome.org/show_bug.cgi?id=685837
+
+    Signed-off-by: Gilles Dartiguelongue <eva@gentoo.org>
+
+ extensions/Makefile.am | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 746b5b52c8469d5156a0a94fff4361ec3378246c
+Author: Hussam Al-Tayeb <me@hussam.eu.org>
+Date:   Thu Oct 22 16:25:00 2015 -0500
+
+    Fix missing date icons in chat history window
+
+    use x-office-calendar icon instead
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=756990
+
+ libempathy-gtk/empathy-log-window.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit cb4d5c2b8023c2f2a9df1b8a9fb19f2af7d392be
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Sat Jun 4 13:19:34 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 77
+ ++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 39 insertions(+), 38 deletions(-)
+
+commit 03ef98701820544821474764ed1c1feafa3c7f93
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Mon May 30 16:09:36 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 34 ++++++++--------------------------
+ 1 file changed, 8 insertions(+), 26 deletions(-)
+
+commit 2e238d464ed248f27b42fc5cbb1121489d8d8c54
+Author: Rafael Fontenelle <rafaelff@gnome.org>
+Date:   Mon May 23 10:24:59 2016 -0300
+
+    Added Indonesian translation for help files
+
+ help/Makefile.am |    2 +-
+ help/id/id.po    | 3508
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 3509 insertions(+), 1 deletion(-)
+
+commit e577d60cb8f732e20af639e1d746e56497e49de9
+Author: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
+Date:   Fri May 13 10:28:42 2016 +0200
+
+    remove released flag
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 commit f64f3c9685dde69d09bb5f6e9b09668f9feb02ba
 Author: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
 Date:   Fri May 13 10:15:51 2016 +0200

@@ -98,13 +98,7 @@
       <title><gui>Chiffrement requis (TLS/SSL)</gui></title>
       <title><gui>Ignorer les erreurs de certificat SSL</gui></title>
       <p>Chaque fois que possible, la communication entre <app>Empathy</app> et le serveur Jabber est chiffrée. Si le chiffrement n'est pas possible, le message sera envoyé en clair. Sélectionnez <gui>Chiffrement requis</gui> pour empêcher <app>Empathy</app> de communiquer avec le serveur Jabber lorsque le chiffrement n'est pas possible.</p>
-      <p>Some Jabber servers may encrypt data using invalid certificates,
-      or using certificates signed by unknown authorities.  You can select
-      <gui>Ignore SSL certificate errors</gui> to allow encrypted communication
-      with invalid certificates, but this allows an attacker to intercept your
-      communication with the server (including your password). You might want to
-      use this option for testing purposes, or if your server is broken and you
-      do not care about the security of your communication.</p>
+      <p>Certains serveurs Jabber peuvent chiffrer les données en utilisant des certificats non valides ou signés par des autorités inconnues. Vous pouvez sélectionner <gui>Ignorer les erreurs de certificat SSL</gui> pour autoriser les communications chiffrées avec des certificats non valides, mais cela permet aux pirates informatiques d'intercepter vos communications avec le serveur (y compris votre mot de passe). Vous pouvez vouloir utiliser cette option à des fins de test ou si votre serveur est cassé et que vous ne vous souciez pas de la sécurité de votre communication.</p>
     </item>
     <item>
       <title><gui>Ressource</gui></title>

@@ -2,7 +2,7 @@
 <page xmlns="http://projectmallard.org/1.0/" xmlns:its="http://www.w3.org/2005/11/its" xmlns:e="http://projectmallard.org/experimental/" type="topic" style="concept" id="status-icons" xml:lang="sv">
 
   <info>
-    <desc>Understanding the various statuses and status icons.</desc>
+    <desc>Förståelse för de olika status och statusikoner.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-07-18" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-07-21" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
@@ -19,7 +19,7 @@
       <email its:translate="no">shaunm@gnome.org</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -28,46 +28,42 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Status Types and Icons</title>
+  <title>Statustyper och ikoner</title>
 
   <terms>
     <item>
-      <title><media type="image" mime="image/png" src="figures/available.png" its:translate="no"><span its:translate="yes">Available icon</span></media>
-      <gui>Available</gui></title>
-      <p>Use the <em>Available</em> status when you are at your computer and able
-      to chat with your contacts.  You can set a custom message for this status.</p>
+      <title><media type="image" mime="image/png" src="figures/available.png" its:translate="no"><span its:translate="yes">Ikonen tillgänglig</span></media> <gui>Tillgänglig</gui></title>
+      <p>Använd statusen <em>Tillgänglig</em> när du är vid datorn och kan chatta med dina kontakter. Du kan skapa ett eget meddelande för denna status.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/busy.png" its:translate="no"><span its:translate="yes">Busy icon</span></media>
-      <gui>Busy</gui></title>
-      <p>Use the <em>Busy</em> status to let your contacts know that you don’t want
-      to chat right now.  They can still contact you, for instance if they have something
-      urgent they need to discuss.  By default, <app>Empathy</app> will not use notification
-      bubbles and sounds when you are busy.  You can set a custom message for this status.</p>
+      <title><media type="image" mime="image/png" src="figures/busy.png" its:translate="no"><span its:translate="yes">Ikonen upptagen</span></media> <gui>Upptagen</gui></title>
+      <p>Använd statusen <em>Upptagen</em> för att låta dina kontakter veta att du inte kan chatta just nu. De kan fortfarande kontakta dig, till exempel om de har något angeläget de behöver diskutera. Som standard använder <app>Empathy</app> inte någon ljud- eller bildavisering när du är upptagen. Du kan skapa ett eget meddelande för denna status.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/away.png" its:translate="no"><span its:translate="yes">Away icon</span></media>
-      <gui>Away</gui></title>
-      <p>Use the <em>Away</em> status when you are going away from your computer.
-      <app>Empathy</app> automatically sets your status to Away if you do not use
-      your computer for a while, or if your screensaver is on.  By default,
-      <app>Empathy</app> will not use notification bubbles and sounds when you are
-      away.  You can set a custom message for this status.</p>
+      <title><media type="image" mime="image/png" src="figures/away.png" its:translate="no"><span its:translate="yes">Ikonen frånvarande</span></media> <gui>Frånvarande</gui></title>
+      <p>Använd statusen <em>Frånvarande</em> när du inte sitter vid datorn. <app>Empathy</app> sätter automatiskt din status till Frånvarande om du inte använder din dator på ett tag eller om skärmsläckaren är på. Som standard använder <app>Empathy</app> inte någon ljud- eller bildavisering när du är Frånvarande. Du kan skapa ett eget meddelande för denna status.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">Offline icon</span></media>
-      <gui>Invisible</gui></title>
-      <p>When you set your status to <em>Invisible</em>, you will appear as offline
-      to your contacts.  You will still be connected to your accounts, and you
-      still see your contacts’ statuses and start conversations with them.</p>
+      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">Ikonen frånkopplad</span></media> <gui>Osynlig</gui></title>
+      <p>När du sätter din status till <em>Osynlig</em> kommer du att visas som frånkopplad för dina kontakter. Du kommer fortfarande att vara ansluten till dina konton och du kan fortfarande se dina kontakters status och starta konversationer med dem.</p>
     </item>
     <item>
-      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">Offline icon</span></media>
-      <gui>Offline</gui></title>
-      <p>Setting your status to <em>Offline</em> disconnects you from all of
-      your accounts.</p>
+      <title><media type="image" mime="image/png" src="figures/offline.png" its:translate="no"><span its:translate="yes">Ikonen frånkopplad</span></media> <gui>Frånkopplad</gui></title>
+      <p>Att sätta statusen till <em>Frånkopplad</em> kopplar bort dig från samtliga konton.</p>
     </item>
   </terms>
 

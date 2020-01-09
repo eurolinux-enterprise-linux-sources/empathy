@@ -4,9 +4,7 @@
   <info>
     <link type="guide" xref="index"/>
     <revision pkgversion="3.7" version="0.1" date="2012-11-30" status="draft"/>
-    <desc>
-      What instant messaging is and how you can use it.
-    </desc>
+    <desc>Vad snabbmeddelanden är och hur du kan använda det.</desc>
     <credit type="author">
       <name>Aruna S</name>
       <email its:translate="no">aruna.evam@gmail.com</email>
@@ -16,20 +14,25 @@
       <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Overview of instant messaging</title>
+  <title>Översikt över snabbmeddelanden</title>
 
-  <p>
-    Instant messaging, sometimes abbreviated to IM, is a text-based means to
-    communicate instantly over the internet and the local network. While some
-    IM applications work with only one type of account, others, including
-    <link xref="introduction">Empathy</link>, provide IM facilities by using
-    <link xref="add-account">accounts</link> from different service providers.
-    Some of these even support audio and video calling.
-  </p>
+  <p>Snabbmeddelanden, ibland förkortat till IM (Instant messaging), är ett textbaserat sätt att kommunicera direkt över internet och i det lokala nätverket. Medan vissa IM-program fungerar med endast en typ av konto medan andra, inklusive <link xref="introduction">Empathy</link>, erbjuder IM-möjligheter genom att använda <link xref="add-account">konton</link> från olika tjänsteleverantörer. Några av dessa stöder även ljud- och videosamtal.</p>
 
   <table frame="all" shade="cols">
      <tr>
@@ -38,21 +41,12 @@
        <td><p><media type="image" src="figures/croom_overview.png" mime="image/png" style="right" width="150" height="150" its:translate="no"/></p></td>
      </tr>
      <tr>
-       <td><p>Video Conference</p></td>
-       <td><p>Group chats</p></td>
-       <td><p>Chat rooms</p></td>
+       <td><p>Videokonferens</p></td>
+       <td><p>Gruppchatt</p></td>
+       <td><p>Chattrum</p></td>
       </tr>
   </table>
 
-  <p>
-    Some instant messaging applications can be used to connect to chat rooms,
-    online places where like-minded people meet to talk. One popular means to
-    connect to several chat rooms is the Internet Relay Chat, also known as
-    <link xref="irc-manage">IRC</link>. IRC provides
-    <link xref="irc-join-room">public</link> chat rooms, which are open to
-    anyone who creates an account on the IRC Server, and private chat rooms,
-    which are <link xref="irc-join-pwd">password protected</link>
-    and open only to a select few.
-  </p>
+  <p>Vissa snabbmeddelandeprogram kan användas för att ansluta till chattrum, platser på nätet där likasinnade träffas för att samtala. Ett populärt sätt att ansluta till flera chattrum är Internet Relay Chat, även känd som <link xref="irc-manage">IRC</link>. IRC tillhandahåller <link xref="irc-join-room">offentliga</link> chattrum som är öppna för alla som skapar ett konto på IRC-servern och privata chattrum som är <link xref="irc-join-pwd">lösenordsskyddade</link> och endast öppna för ett fåtal utvalda.</p>
 
 </page>

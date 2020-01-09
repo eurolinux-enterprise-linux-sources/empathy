@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="irc-manage#manage" group="two"/>
-    <desc>Start a conversation with an IRC contact.</desc>
+    <desc>Starta ett samtal med en IRC-kontakt.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
       <e:review by="shaunm@gnome.org" date="2009-08-31" status="done"/>
@@ -14,7 +14,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -23,35 +23,36 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Chat with somebody on IRC</title>
+  <title>Chatta med någon på IRC</title>
 
-  <p>You can hold private conversations with other IRC users, outside of the
-  public IRC chat rooms.  To start a conversation with another IRC user:</p>
+  <p>Du kan ha privata samtal med andra IRC-användare utanför det offentliga IRC-chattrummet. För att starta ett samtal med en annan IRC-användare:</p>
 
   <steps>
     <item>
-      <p>In the contact list for an IRC chat room, double click the name of
-      the user you want to chat with.  Alternatively, right click the name
-      of the user and choose <gui>Chat</gui>.</p>
+      <p>I kontaktlistan för ett IRC-chattrum, dubbelklicka på namnet på den användare du vill chatta med. Alternativt, högerklicka på namnet för användaren och välj <gui>Chatta</gui>.</p>
     </item>
   </steps>
 
   <list>
     <item>
-      <p>
-        The IRC room contact list is not the same as <app>Empathy</app> contact list.  It contains
-        a list of users in the IRC chat room you joined.  Different rooms can have different
-         contacts listed.
-      </p>
+      <p>Kontaktlistan för IRC är inte samma som <app>Empathys</app> kontaktlista. Den innehåller en lista på användare för det IRC-chattrum du anslöt dig till. Olika rum kan ha olika kontakter i listan.</p>
     </item>
     <item>
-      <p>
-        The IRC room contact list is usually on the right side of the IRC room window. If you
-         do not see it, choose
-         <guiseq><gui>Conversation</gui><gui>Show Contact List</gui></guiseq>.
-      </p>
+      <p>Kontaktlistan för IRC-rummet är vanligtvis på den högra sidan av IRC-rummets fönster. Om du inte ser den, välj <guiseq><gui>Samtal</gui><gui>Visa kontaktlista</gui></guiseq>.</p>
     </item>
   </list>
 

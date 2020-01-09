@@ -3,7 +3,7 @@
 
   <info>
     <link type="seealso" xref="create-account"/>
-    <desc>Działanie funkcji protokołu Osoby w pobliżu.</desc>
+    <desc>Działanie funkcji protokołu Osoby w pobliżu.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-12" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -24,12 +24,24 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Czym jest protokół Osoby w pobliżu?</title>
+  <title>Czym jest protokół Osoby w pobliżu?</title>
 
-  <p>Osoby w pobliżu jest usługą nie wymagającą serwera: nie jest konieczne łączenie się i uwierzytelnianie w żadnym centralnym serwerze, aby jej używać.</p>
-  <p>Tego rodzaju bezserwerowy system jest ograniczony do sieci lokalnej i nie ma potrzeby nawiązywania połączenia z Internetem.</p>
-  <p>Osoby używające tej usługi wewnątrz tej samej sieci lokalnej zostaną automatycznie wykryte i będzie można nawiązywać z nimi rozmowy i przesyłać pliki, tak jak ma to miejsce w innych protokołach.</p>
+  <p>Osoby w pobliżu jest usługą niewymagającą serwera: nie jest konieczne łączenie się i uwierzytelnianie w żadnym centralnym serwerze, aby jej używać.</p>
+  <p>Tego rodzaju bezserwerowy system jest ograniczony do sieci lokalnej i nie ma potrzeby nawiązywania połączenia z Internetem.</p>
+  <p>Osoby używające tej usługi wewnątrz tej samej sieci lokalnej zostaną automatycznie wykryte i będzie można nawiązywać z nimi rozmowy i przesyłać pliki, tak jak ma to miejsce w innych protokołach.</p>
   <p>Wszystkie współczesne sieci lokalne powinny obsługiwać tego rodzaju usługę.</p>
 </page>

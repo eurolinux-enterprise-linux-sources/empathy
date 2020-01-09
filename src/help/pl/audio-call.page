@@ -27,13 +27,23 @@
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Nawiązywanie połączeń głosowych</title>
 
-  <p>You can call your contacts and have an audio conversation with them. This
-  features only works with certain types of accounts and it requires the other
-  person to have an application that supports audio calls.</p>
+  <p>Można nawiązywać rozmowy głosowe z kontaktami. Funkcja ta działa jedynie na pewnego rodzaju kontach i wymaga, aby inna osoba używała programu obsługującego rozmowy głosowe.</p>
 
   <steps>
     <item>

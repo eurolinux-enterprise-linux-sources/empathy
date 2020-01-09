@@ -1,4 +1,4 @@
-From 73c173dfc567dcdac9c37bdaeea8b1d5ba4ccd5e Mon Sep 17 00:00:00 2001
+From 7712a50a4c3dfecda6b6401ba5a9dff52a583ecb Mon Sep 17 00:00:00 2001
 From: Debarshi Ray <debarshir@gnome.org>
 Date: Wed, 15 Mar 2017 20:23:43 +0100
 Subject: [PATCH 1/5] tls-verifier: Handle GNUTLS_CERT_REVOKED
@@ -24,10 +24,10 @@ index fcbc559b3f97..8f80b4372de1 100644
          *reason = TP_TLS_CERTIFICATE_REJECT_REASON_UNKNOWN;
  
 -- 
-2.9.3
+2.14.4
 
 
-From 54fb0e0550ba4664934e73e1de8793479b3370b8 Mon Sep 17 00:00:00 2001
+From 8c5dc77f406308b77b4a6c7274ff8096091267a6 Mon Sep 17 00:00:00 2001
 From: Debarshi Ray <debarshir@gnome.org>
 Date: Mon, 20 Mar 2017 19:20:11 +0100
 Subject: [PATCH 2/5] tests: Fix comment
@@ -60,10 +60,10 @@ index 91b05761f9b9..0752e1b328c5 100644
  
    test->mock = mock_tls_certificate_new_and_register (test->dbus,
 -- 
-2.9.3
+2.14.4
 
 
-From 77be5d93d0c438acfa765f94f04fe9ee1f6eba6e Mon Sep 17 00:00:00 2001
+From 6fe06a78a7538cefa2333b180d58b330325796ab Mon Sep 17 00:00:00 2001
 From: Debarshi Ray <debarshir@gnome.org>
 Date: Mon, 20 Mar 2017 19:31:39 +0100
 Subject: [PATCH 3/5] tests: Actually test that hostnames of pinned
@@ -97,10 +97,10 @@ index 0752e1b328c5..422909e7cc2a 100644
    ensure_certificate_proxy (test);
  
 -- 
-2.9.3
+2.14.4
 
 
-From a9ce001092a2f2868c4926817b5946e1e93687d6 Mon Sep 17 00:00:00 2001
+From f07492434449bcdd74a61aa74596884ef5700d88 Mon Sep 17 00:00:00 2001
 From: Debarshi Ray <debarshir@gnome.org>
 Date: Wed, 15 Mar 2017 20:24:08 +0100
 Subject: [PATCH 4/5] tls-verifier: Use GIO to verify the chain of TLS
@@ -885,10 +885,10 @@ index 422909e7cc2a..b8f9ffcbb9af 100644
            setup, test_certificate_verify_success_with_full_chain, teardown);
    g_test_add ("/tls/certificate_verify_root_not_found", Test, NULL,
 -- 
-2.9.3
+2.14.4
 
 
-From 7df2664ae5996b03c00a48d58c8f05eeba34dd25 Mon Sep 17 00:00:00 2001
+From a5ef984c6219070253f382d41101de9f904563c6 Mon Sep 17 00:00:00 2001
 From: Debarshi Ray <debarshir@gnome.org>
 Date: Thu, 16 Mar 2017 19:50:40 +0100
 Subject: [PATCH 5/5] Remove the GnuTLS dependency
@@ -939,10 +939,11 @@ index e8349373639f..88e28b8dd92b 100644
   */
  
  #include "config.h"
-@@ -649,37 +645,6 @@ empathy_folks_persona_is_interesting (FolksPersona *persona)
+@@ -648,37 +644,6 @@ empathy_folks_persona_is_interesting (FolksPersona *persona)
+   return TRUE;
  }
  
- gchar *
+-gchar *
 -empathy_get_x509_certificate_hostname (gnutls_x509_crt_t cert)
 -{
 -  gchar dns_name[256];
@@ -973,10 +974,9 @@ index e8349373639f..88e28b8dd92b 100644
 -  return NULL;
 -}
 -
--gchar *
+ gchar *
  empathy_format_currency (gint amount,
      guint scale,
-     const gchar *currency)
 diff --git a/libempathy/empathy-utils.h b/libempathy/empathy-utils.h
 index a9ff0d89060d..deb3ae87b7aa 100644
 --- a/libempathy/empathy-utils.h
@@ -1038,5 +1038,5 @@ index b8f9ffcbb9af..9b62ae4e0ec7 100644
    g_test_add ("/tls/certificate_basics", Test, NULL,
            setup, test_certificate_mock_basics, teardown);
 -- 
-2.9.3
+2.14.4
 

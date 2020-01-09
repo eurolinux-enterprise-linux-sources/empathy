@@ -12,11 +12,23 @@
     <license>
       <p>Creative Commons Na tych samych warunkach 3.0</p>
     </license>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Obsługiwane polecenia IRC</title>
-  <p>Aby zobaczyć listę obsługiwanych poleceń IRC, należy w pokoju rozmów wpisać <input>/help</input> a następnie nacisnąć <key>Enter</key></p>
+  <p>Aby zobaczyć listę obsługiwanych poleceń IRC, należy w pokoju rozmów wpisać <input>/help</input>, a następnie nacisnąć <key>Enter</key></p>
   <note>
-    <p>Wszystkie dostępne polecenia posiadają krótkie opisy użycia.</p>
+    <p>Wszystkie dostępne polecenia mają krótkie opisy użycia.</p>
   </note>
 </page>

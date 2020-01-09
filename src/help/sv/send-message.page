@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#text-conv"/>
-    <desc>Send a message to one of your contacts.</desc>
+    <desc>Sända ett meddelande till en av dina kontakter.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-06-14" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-14" status="review">
       <!--
@@ -16,7 +16,7 @@
       <email>philbull@gmail.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -25,47 +25,43 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude" />
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Send a message to someone</title>
+  <title>Skicka ett meddelande till någon</title>
 
   <steps>
     <item>
-      <p>
-        From the <gui>Contact List</gui> window, double-click the name of the
-        contact that you want to have a conversation with.
-      </p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, dubbelklicka på namnet på den kontakten som du vill ha ett samtal med.</p>
     </item>
     <item>
-      <p>
-        A new window will open. Type a message into the box at the
-        bottom of the window and press <key>Enter</key> to send it.
-      </p>
+      <p>Ett nytt fönster kommer att öppnas. Skriv ett meddelande i rutan längst ner i fönstret och tryck på <key>Retur</key> för att skicka det.</p>
     </item>
   </steps>
   
   <section id="send-meta-contact" style="2column">
-    <title>Send a message to a meta-contact</title>
+    <title>Skicka ett meddelande till en meta-kontakt</title>
     <steps>
       <item>
-        <p>
-          From the <gui>Contact List</gui> window, right-click on the meta-contact.   
-        </p>
+        <p>Från fönstret <gui>Kontaktlista</gui>, högerklicka på meta-kontakten.</p>
       </item>
       <item>
-        <p>
-          Select the contact you want to have the conversation, and from the menu
-          select <gui style="menuitem">Chat</gui>.
-        </p>
+        <p>Välj den kontakt du vill ha ett samtal med och från menyn välj <gui style="menuitem">Chatt</gui>.</p>
       </item>
     </steps>
     <note style="tip">
-      <p>
-        To recognize if a contact is a <em>meta-contact</em>, move your mouse on
-        a contact in the <gui>Contact List</gui> window, and stop over it for a
-        second: a small pop-up message will appear showing the number of the
-        contacts that form the meta-contact.
-      </p>
+      <p>För att kontrollera om en kontakt är en <em>meta-kontakt</em>, flytta och håll markören över en kontakt i fönstret <gui>Kontaktlista</gui> och stanna till för en sekund: ett litet popup-meddelande kommer att visa numret på de kontakter som bildar meta-kontakten.</p>
     </note>
   </section>
 

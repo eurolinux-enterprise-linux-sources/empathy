@@ -3,37 +3,40 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <desc>Hide the offline contacts from your <gui>Contact List</gui>.</desc>
+    <desc>Dölja frånkopplade kontakter i din <gui>Kontaktlista</gui>.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-03-11" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Hide offline contacts</title>
+  <title>Dölja frånkopplade kontakter</title>
 
-  <p>
-    Normally, <app>Empathy</app> shows all your contacts: those that are online, 
-    with which you can have a conversation, and also those that are offline. 
-  </p>
-  <p>
-    To hide the contacts that are offline:
-  </p>
+  <p>Normalt visar <app>Empathy</app> alla dina kontakter: de som är uppkopplade vilka du kan ha ett samtal med och även de som är frånkopplade.</p>
+  <p>För att dölja kontakter som är frånkopplade:</p>
 
   <steps>
     <item>
-      <p>From the <gui>Contact List</gui> window, choose <guiseq><gui>View</gui>
-      <gui>Offline Contacts</gui></guiseq>, or press <keyseq><key>Ctrl</key>
-      <key>H</key></keyseq>.</p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Visa</gui> <gui>Frånkopplade kontakter</gui></guiseq> eller tryck ned <keyseq><key>Ctrl</key> <key>H</key></keyseq>.</p>
     </item>
     <item>
-      <p>
-        To show the offline contacts again, repeat the same procedure above.
-      </p>
+      <p>För att återigen visa de frånkopplade kontakterna, upprepa proceduren ovan.</p>
     </item>
   </steps>
 

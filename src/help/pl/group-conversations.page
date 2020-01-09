@@ -25,15 +25,27 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aleksander Łukasiewicz</mal:name>
+      <mal:email>aleksander@lukasiewicz.net</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Aviary.pl</mal:name>
+      <mal:email>community-poland@mozilla.org</mal:email>
+      <mal:years>2010</mal:years>
+    </mal:credit>
   </info>
 
   <title>Rozmowy grupowe</title>
   
-  <p>Dzięki rozmowom grupowym można prowadzić rozmowy tekstowe z więcej niż jednym kontaktem w tym samym czasie.</p>
-  <p>Aby prowadzić rozmowę grupową należy zarejestrować konto w usłudze Jabber lub Google Talk, albo użyć konta Osoby w pobliżu.</p>
+  <p>Dzięki rozmowom grupowym można prowadzić rozmowy tekstowe z więcej niż jednym kontaktem w tym samym czasie.</p>
+  <p>Aby prowadzić rozmowę grupową należy zarejestrować konto w usłudze Jabber lub Google Talk, albo użyć konta Osoby w pobliżu.</p>
 
   <note>
-    <p>Rozmów grupowych można używać tylko gdy inne kontakty używają tej samej usługi.</p>
+    <p>Rozmów grupowych można używać tylko, gdy inne kontakty używają tej samej usługi.</p>
   </note>
 
   <section id="start-group-conv">
@@ -42,32 +54,32 @@
 
   <steps>
     <item>
-      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Pokój</gui><gui>Dołącz...</gui></guiseq>.</p>
+      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Pokój</gui><gui>Dołącz…</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Z listy rozwijanej <gui>Konto</gui> należy zaznaczyć konto, które ma zostać użyte do rozmowy grupowej.</p>
+      <p>Z listy rozwijanej <gui>Konto</gui> należy zaznaczyć konto, które ma zostać użyte do rozmowy grupowej.</p>
     </item>
     <item>
-      <p>W polu <gui>Serwer</gui> należy wpisać nazwę serwera, przez który będzie prowadzona rozmowa.</p>
-      <p>Należy zostawić puste jeśli będzie prowadzona na bieżącym serwerze.</p>
+      <p>W polu <gui>Serwer</gui> należy wpisać nazwę serwera, przez który będzie prowadzona rozmowa.</p>
+      <p>Należy zostawić puste, jeśli będzie prowadzona na bieżącym serwerze.</p>
     </item>
     <item>
-      <p>W polu <gui>Pokój</gui> należy wpisać nazwę, która ma zostać nadana rozmowie.</p>
+      <p>W polu <gui>Pokój</gui> należy wpisać nazwę, która ma zostać nadana rozmowie.</p>
       <note>
         <p>Zostanie ona użyta jako nazwa pokoju do prowadzenia rozmowy. Nazwa ta będzie dostępna publicznie dla innych osób chcących dołączyć do pokoju. Nie ma możliwości utworzenia pokoju prywatnego.</p>
       </note>
     </item>
     <item>
-      <p>Aby zaprosić inne kontakty do rozmowy grupowej należy w oknie <gui>Listy kontaktów</gui> wybrać kontakt, który chcemy zaprosić, a następnie wykonać jedno z poniższych działań:</p>
+      <p>Aby zaprosić inne kontakty do rozmowy grupowej należy w oknie <gui>Listy kontaktów</gui> wybrać kontakt, który chcemy zaprosić, a następnie wykonać jedno z poniższych działań:</p>
       <list>
         <item>
-          <p>Należy nacisnąć prawym przyciskiem myszy na kontakt i wybrać <gui>Zaproś do pokoju rozmowy</gui>.</p>
+          <p>Należy nacisnąć prawym przyciskiem myszy na kontakt i wybrać <gui>Zaproś do pokoju rozmowy</gui>.</p>
         </item>
         <item>
           <p>Należy wybrać <guiseq><gui>Edycja</gui><gui>Kontakt</gui><gui>Zaproś do pokoju rozmowy</gui></guiseq>.</p>
         </item>
       </list> 
-      <p>Jeśli otwarte jest więcej niż jedno okno rozmowy należy wybrać to do którego kontakty mają zostać zaproszone.</p>
+      <p>Jeśli otwarte jest więcej niż jedno okno rozmowy, należy wybrać to, do którego kontakty mają zostać zaproszone.</p>
     </item>
   </steps>
   
@@ -79,7 +91,7 @@
 
   <steps>
     <item>
-      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Pokój</gui><gui>Dołącz...</gui></guiseq>.</p>
+      <p>W oknie <gui>Listy kontaktów</gui> należy wybrać <guiseq><gui>Pokój</gui><gui>Dołącz…</gui></guiseq>.</p>
     </item>
     <item>
       <p>Należy rozwinąć <gui>Listę pokoi</gui>, aby zobaczyć listę istniejących pokoi.</p>

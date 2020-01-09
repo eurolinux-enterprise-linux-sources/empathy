@@ -5,7 +5,7 @@
     <link type="guide" xref="index#accounts"/>
     <link type="seealso" xref="add-account"/>
     <link type="seealso" xref="remove-account"/>
-    <desc>Import an account from another instant messaging application.</desc>
+    <desc>Importera ett konto från ett annat chattprogram.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-22" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-22" status="review"/>
     <revision pkgversion="2.28" version="0.3" date="2009-09-02" status="review">
@@ -26,7 +26,7 @@
       <email>shaunm@gnome.org</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -35,34 +35,41 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Import an existing account</title>
+  <title>Importera ett konto</title>
 
-  <p>The first time you run <app>Empathy</app>, it will offer to import your
-  accounts from other instant messaging applications.  Currently, the only
-  supported application is <app>Pidgin</app>.</p>
+  <p>Första gången du öppnar <app>Empathy</app> får du möjlighet att importera dina konton från andra snabbmeddelandeprogram. För närvarande är det bara programmet <app>Pidgin</app> som stöds.</p>
 
   <steps>
     <item>
-      <p>Run <app>Empathy</app> for the first time.  An assistant will offer
-      you a number of options to create new accounts.</p>
+      <p>När du öppnar <app>Empathy</app> för första gången, kommer en installationsguide att erbjuda dig ett antal alternativ för att skapa nya konton.</p>
     </item>
     <item>
-      <p>Select <gui>Yes, import my account details from</gui> and click
-      <gui>Forward</gui>.</p>
+      <p>Välj <gui>Ja, importera mina kontouppgifter från</gui> och klicka <gui>Framåt</gui>.</p>
     </item>
     <item>
-      <p>Select the check box next to each account you wish to import.</p>
+      <p>Markera kryssrutan bredvid varje konto du vill importera.</p>
     </item>
     <item>
-      <p>Click <gui style="button">Apply</gui>.</p>
+      <p>Klicka <gui style="button">Verkställ</gui>.</p>
     </item>
   </steps>
 
   <note>
-    <p>It is not currently possible to import accounts after you have completed
-    the first-run assistant.</p>
+    <p>För närvarande är det inte möjligt att importera konton efter att installationsguiden är klar.</p>
   </note>
 
 </page>

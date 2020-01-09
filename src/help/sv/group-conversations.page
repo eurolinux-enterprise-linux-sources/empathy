@@ -3,9 +3,7 @@
 
   <info>
     <link type="guide" xref="index#text-conv"/>
-    <desc>
-      Start or join a group conversation with your contacts.
-    </desc>
+    <desc>Starta eller ansluta till ett gruppsamtal med dina kontakter.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-02" status="stub"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-17" status="draft"/>
     <revision pkgversion="2.28" version="0.2" date="2009-08-17" status="review">
@@ -18,7 +16,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -27,85 +25,61 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>Group conversations</title>
+  <title>Gruppsamtal</title>
   
-  <p>
-    Group conversations permits you to have text conversations with more than one
-    contact at the same time.
-  </p>
-  <p>
-    To have a group conversation you need to have a registered account with either
-    Jabber or Google Talk, or a People Nearby account.
-  </p>
+  <p>Gruppsamtal ger dig möjlighet att ha textsamtal med mer än en kontakt samtidigt.</p>
+  <p>För att ha ett gruppsamtal måste du ha ett registrerat konto med antingen Jabber eller Google Talk eller ett Personer i närheten-konto.</p>
 
   <note>
-    <p>
-      You can have a group conversation only with the contacts that are using the
-      same service as yours.
-    </p>
+    <p>Du kan endast ha ett gruppsamtal med de kontakter som använder samma tjänst som ditt.</p>
   </note>
 
   <section id="start-group-conv">
 
-  <title>Start a group conversation</title>
+  <title>Starta ett gruppsamtal</title>
 
   <steps>
     <item>
-      <p>
-        From the <gui>Contact List</gui> window, choose <guiseq><gui>Room</gui><gui>Join</gui></guiseq>.
-      </p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Rum</gui><gui>Gå in</gui></guiseq>.</p>
     </item>
     <item>
-      <p>
-        From the <gui>Account</gui> drop-down list, select the account you want to use
-        for the group conversation.
-      </p>
+      <p>Från rullgardinslistan för <gui>Konto</gui>, välj det konto som du vill använda för gruppsamtalet.</p>
     </item>
     <item>
-      <p>
-        In the <gui>Server</gui> text box, type the name of server in which the conversation
-        will be hosted.
-      </p>
-      <p>
-        Leave it empty if it will be on the current server.
-      </p>
+      <p>I <gui>Server</gui>-textrutan skriver du namnet på den server där samtalet kommer att vara.</p>
+      <p>Lämna det tomt om det kommer att vara på den aktuella servern.</p>
     </item>
     <item>
-      <p>
-        In the <gui>Room</gui> text box, type the name you want to give to the conversation.
-      </p>
+      <p>I <gui>Rum</gui>-textrutan, skriv det namn som du vill ge på samtalet.</p>
       <note>
-        <p>
-          This will be the name of the room you are going to have a conversation. This
-          name will be publicly available for other people to join. It is not possible
-          to create a private room.
-        </p>
+        <p>Detta kommer att vara namnet på rummet du kommer att ha ett samtal i. Detta namn kommer att vara tillgängligt för andra människor att ansluta till. Det är inte möjligt att skapa ett privat rum.</p>
       </note>
     </item>
     <item>
-      <p>
-        To invite other contacts to join the group conversation, from the
-        <gui>Contact List</gui> window, select the contact you want to invite, 
-        and perform one of the following:
-      </p>
+      <p>För att bjuda in andra kontakter att delta i gruppsamtalet, från fönstret <gui>Kontaktlista</gui>, välj den kontakt du vill bjuda in och gör något av följande:</p>
       <list>
         <item>
-          <p>
-            Right-click on the contact and choose <gui>Invite to chatroom</gui>.
-          </p>
+          <p>Högerklicka på kontakten och välj <gui>Bjud in till chattrum</gui>.</p>
         </item>
         <item>
-          <p>
-            Choose <guiseq><gui>Edit</gui><gui>Contact</gui><gui>Invite to chatroom</gui></guiseq>.
-          </p>
+          <p>Välj <guiseq><gui>Redigera</gui><gui>Kontakt</gui><gui>Bjud in till chattrum</gui></guiseq>.</p>
         </item>
       </list> 
-      <p>
-        If you have more than one group conversation open, select the one you want to invite
-        your contacts.
-      </p>
+      <p>Om du har mer än ett gruppsamtal öppet, välj det du vill bjuda in dina kontakter till.</p>
     </item>
   </steps>
   
@@ -113,32 +87,21 @@
 
   <section id="join-group-conv">
 
-  <title>Join a group conversation</title>
+  <title>Ansluta till ett gruppsamtal</title>
 
   <steps>
     <item>
-      <p>
-        From the <gui>Contact List</gui> window, choose
-        <guiseq><gui>Room</gui><gui>Join</gui></guiseq>.
-      </p>
+      <p>Från fönstret <gui>Kontaktlista</gui>, välj <guiseq><gui>Rum</gui><gui>Gå in</gui></guiseq>.</p>
     </item>
     <item>
-      <p>
-        Expand the <gui>Room List</gui> section to see all the existing rooms.
-      </p>
+      <p>Utöka avsnittet <gui>Rumslista</gui> för att se alla befintliga rum.</p>
     </item>
     <item>
-      <p>
-        Double-click on the name of a room to join it.
-      </p>
+      <p>Dubbelklicka på namnet för ett rum för att ansluta.</p>
     </item>
   </steps>
 
-  <p>
-    It is not possible to join all existing rooms. Some of the rooms might require a
-    password, or might be invitation only. <app>Empathy</app> does not support these
-    kind of rooms.
-  </p>
+  <p>Det är inte möjligt att ansluta till alla befintliga rum. Vissa rum kan kräva ett lösenord eller en inbjudan. <app>Empathy</app> stöder inte denna typ av rum.</p>
 
   <!-- TODO: find out where the password protected or invitation only icons are
   and create a table. -->

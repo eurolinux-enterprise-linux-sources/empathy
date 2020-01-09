@@ -3,9 +3,7 @@
 
   <info>
     <link type="seealso" xref="create-account"/>
-    <desc>
-      Understanding the People Nearby feature.
-    </desc>
+    <desc>Att förstå funktionerna i Personer i närheten.</desc>
     <revision pkgversion="2.28" version="0.1" date="2009-08-12" status="draft"/>
     <revision pkgversion="2.28" version="0.1" date="2009-08-14" status="review">
       <!--
@@ -17,7 +15,7 @@
       <email>milo@ubuntu.com</email>
     </credit>
     <license>
-      <p>Creative Commons Share Alike 3.0</p>
+      <p>Creative Commons DelaLika 3.0</p>
     </license>    
 <!--
     <copyright>
@@ -26,26 +24,24 @@
     </copyright>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 -->
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Daniel Nylander</mal:name>
+      <mal:email>po@danielnylander.se</mal:email>
+      <mal:years>2008, 2009</mal:years>
+    </mal:credit>
+  
+    <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
+      <mal:name>Erik Sköldås</mal:name>
+      <mal:email>erik.skoldas@tele2.se</mal:email>
+      <mal:years>2016</mal:years>
+    </mal:credit>
   </info>
 
-  <title>What is People Nearby?</title>
+  <title>Vad är Personer i närheten?</title>
 
-  <p>
-    The People Nearby service is a serverless communication service:
-    you do not need to connect and authenticate to a central server in
-    order to use it.
-  </p>
-  <p>
-    This kind of serverless messaging system is restricted to a local area
-    network and an active Internet connection is not necessary.
-  </p>
-  <p>
-    The people that use this service inside the same local area network
-    will be auto-discovered, and it will be possible to send them messages
-    and files as with other services.
-  </p>
-  <p>
-    All the modern local area networks should be able to support this kind
-    of service.
-  </p>
+  <p>Tjänsten Personer i närheten är en serverlös kommunikationstjänst: du behöver inte ansluta och autentisera till en central server för att kunna använda den.</p>
+  <p>Denna typ av serverlös meddelandetjänst är begränsad till ett lokalt nätverk och en aktiv internetanslutning är inte nödvändigt.</p>
+  <p>De människor som använder denna tjänst inom samma lokala nätverk kommer att bli automatiskt identifierade och det kommer att vara möjligt att skicka meddelanden och filer som med andra tjänster.</p>
+  <p>Alla moderna lokala nätverk ska kunna stödja denna typ av tjänst.</p>
 </page>
