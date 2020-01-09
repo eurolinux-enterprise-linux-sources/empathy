@@ -59,6 +59,6 @@
       </tr>
   </table>
 
-  <p>Algunes aplicacions de missatgeria instantània es poden utilitzar per connectar-se a sales de xat, llocs en línia on persones amb les mateixes inquietuds es troben per parlar. Una de les vies més populars per connectar-se a moltes sales de xat es l'Internet Relay Chat, també conegut com <link xref="irc-manage">IRC</link>. L'IRC proporciona sales <link xref="irc-join-room">públiques</link> de xat, obertes a tothom que tingui un compte al servidor de l'IRC i sales privades de xat protegides amb <link xref="irc-join-pwd">contrasenya</link> i obertes només a un cert grup de persones.</p>
+  <p>Algunes aplicacions de missatgeria instantània es poden utilitzar per connectar-se a sales de xat, llocs en línia on persones amb les mateixes inquietuds es troben per parlar. Una de les vies més populars per connectar-se a moltes sales de xat és l'Internet Relay Chat, també conegut com <link xref="irc-manage">IRC</link>. L'IRC proporciona sales <link xref="irc-join-room">públiques</link> de xat, obertes a tothom que tingui un compte al servidor de l'IRC i sales privades de xat protegides amb <link xref="irc-join-pwd">contrasenya</link> i obertes només a un cert grup de persones.</p>
 
 </page>

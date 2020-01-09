@@ -39,7 +39,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2014</mal:years>
+      <mal:years>2010-2015</mal:years>
     </mal:credit>
   </info>
 
@@ -56,13 +56,7 @@
       <title><gui>Verschlüsselung erforderlich (TLS/SSL)</gui></title>
       <title><gui>SSL-Zertifikatfehler ignorieren</gui></title>
       <p>Wann immer es möglich ist, wird die Kommunikation zwischen <app>Empathy</app> und dem Jabber-Server verschlüsselt. Falls verschlüsselte Kommunikation nicht möglich ist, können Nachrichten unverschlüsselt gesendet werden. Wählen Sie <gui>Verschlüsselung erforderlich</gui>, um eine Kommunikation von <app>Empathy</app> mit dem Jabber-Server zu verhindern, wenn Verschlüsselung nicht möglich ist.</p>
-      <p>Some Jabber servers may encrypt data using invalid certificates,
-      or using certificates signed by unknown authorities.  You can select
-      <gui>Ignore SSL certificate errors</gui> to allow encrypted communication
-      with invalid certificates, but this allows an attacker to intercept your
-      communication with the server (including your password). You might want to
-      use this option for testing purposes, or if your server is broken and you
-      do not care about the security of your communication.</p>
+      <p>Einige Jabber-Server verschlüsseln Daten mit ungültigen Zertifikaten oder Zertifikaten, die von unbekannten Dienststellen signiert wurden. Wählen Sie <gui>SSL-Zertifikatfehler ignorieren</gui>, um verschlüsselten Datenaustausch mit ungültigen Zeichen zu erlauben. Allerdings ermöglicht das einem Angreifer die Kommunikation mit einem Server anzugreifen (einschließlich Ihrem Passwort). Diese Einstellung bietet sich für Testzwecke an oder wenn Ihr Server defekt ist und Datensicherheit keine Rolle spielt.</p>
     </item>
     <item>
       <title><gui>Ressource</gui></title>

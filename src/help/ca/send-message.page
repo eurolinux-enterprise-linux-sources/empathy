@@ -55,7 +55,7 @@
 
   <steps>
     <item>
-      <p>Des de la finestra <gui>Llista de contactes</gui> feu doble clic al nom del contacte amb el que voleu parlar.</p>
+      <p>Des de la finestra <gui>Llista de contactes</gui> feu doble clic al nom del contacte amb el qual voleu parlar.</p>
     </item>
     <item>
       <p>S'obrirà una finestra nova. Teclegeu el missatge a la caixa a la part inferior de la finestra i premeu <key>Retorn</key> per enviar-lo.</p>
@@ -69,7 +69,7 @@
         <p>Des de la finestra <gui>Llista de contactes</gui>, feu clic amb el botó secundari al metacontacte.</p>
       </item>
       <item>
-        <p>Seleccioneu el contacte amb el que voleu conversar i des del menú seleccioneu <gui style="menuitem">Xat</gui>.</p>
+        <p>Seleccioneu el contacte amb el qual voleu conversar i des del menú seleccioneu <gui style="menuitem">Xat</gui>.</p>
       </item>
     </steps>
     <note style="tip">

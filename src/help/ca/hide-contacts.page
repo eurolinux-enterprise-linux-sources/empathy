@@ -3,7 +3,7 @@
 
   <info>
     <link type="guide" xref="index#contacts"/>
-    <desc>Oculta el contactes fora de línia de la <gui>Llista de contactes</gui>.</desc>
+    <desc>Oculta els contactes fora de línia de la <gui>Llista de contactes</gui>.</desc>
     <revision pkgversion="2.30" version="0.1" date="2010-03-11" status="review"/>
     <credit type="author">
       <name>Milo Casagrande</name>

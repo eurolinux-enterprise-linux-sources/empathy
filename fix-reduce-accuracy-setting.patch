@@ -1,0 +1,46 @@
+From f1b1b75e6772502290cbff5be2c8f31b61bdb6df Mon Sep 17 00:00:00 2001
+From: Fabrice Bellet <fabrice@bellet.info>
+Date: Mon, 23 Mar 2015 01:30:50 +0100
+Subject: [PATCH] location-manager: fix reduce accuracy setting
+
+https://bugzilla.gnome.org/show_bug.cgi?id=746735
+---
+ libempathy-gtk/empathy-location-manager.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/libempathy-gtk/empathy-location-manager.c b/libempathy-gtk/empathy-location-manager.c
+index 8787eb2..6ba39ac 100644
+--- a/libempathy-gtk/empathy-location-manager.c
++++ b/libempathy-gtk/empathy-location-manager.c
+@@ -368,6 +368,18 @@ publish_cb (GSettings *gsettings_loc,
+ }
+ 
+ static void
++reduce_accuracy_cb (GSettings *gsettings_loc,
++                    const gchar *key,
++                    gpointer user_data)
++{
++  EmpathyLocationManager *self = EMPATHY_LOCATION_MANAGER (user_data);
++
++  DEBUG ("Reduce Accuracy changed");
++
++  self->priv->reduce_accuracy = g_settings_get_boolean (gsettings_loc, key);
++}
++
++static void
+ account_manager_prepared_cb (GObject *source_object,
+     GAsyncResult *result,
+     gpointer user_data)
+@@ -416,7 +428,12 @@ empathy_location_manager_init (EmpathyLocationManager *self)
+       "changed::" EMPATHY_PREFS_LOCATION_PUBLISH,
+       G_CALLBACK (publish_cb), self);
+ 
++  g_signal_connect (priv->gsettings_loc,
++      "changed::" EMPATHY_PREFS_LOCATION_REDUCE_ACCURACY,
++      G_CALLBACK (reduce_accuracy_cb), self);
++
+   publish_cb (priv->gsettings_loc, EMPATHY_PREFS_LOCATION_PUBLISH, self);
++  reduce_accuracy_cb (priv->gsettings_loc, EMPATHY_PREFS_LOCATION_REDUCE_ACCURACY, self);
+ }
+ 
+ EmpathyLocationManager *

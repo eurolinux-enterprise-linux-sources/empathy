@@ -109,21 +109,17 @@
       <p>Cliquez sur <gui style="button">+</gui>.</p>
     </item>
     <item>
-      <p>From the <gui>What kind of chat account do you have?</gui> drop-down
-      list, select the type of account you wish to add.</p>
+      <p>À partir de la liste déroulante <gui>Quel type de compte de discussion possédez-vous ?</gui>, sélectionnez le type de compte que vous souhaitez ajouter.</p>
     </item>
     <item>
       <p>Saisissez les informations requises. Pour la plupart des comptes, vous n'avez besoin que d'un identifiant de connexion et d'un mot de passe. D'autres comptes peuvent demander plus d'informations. Consultez <link xref="accounts-window#details"/> pour plus d'informations.</p>
     </item>
     <item>
-      <p>Click <gui style="button">Add</gui>.</p>
+      <p>Cliquez sur <gui style="button">Ajouter</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>To change the name that identifies the account in the <gui>Messaging and
-    VoIP Accounts</gui> window, select the account from the list on the left
-    and either click on the name or press the space bar. Edit the account name
-    and press <key>Enter</key> when you’re finished.</p>
+    <p>Pour modifier le nom qui identifie le compte dans la fenêtre des <gui>Comptes de messagerie et VoIP</gui>, sélectionnez le compte à partir de la liste de gauche et cliquez sur le nom ou appuyez sur la barre d'espace. Modifiez le nom du compte et appuyez sur <key>Entrée</key> lorsque vous avez terminé.</p>
   </note>
 </page>

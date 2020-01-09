@@ -42,28 +42,23 @@
 
   <steps>
     <item>
-      <p>Click <guiseq><gui>Empathy</gui><gui>Accounts</gui></guiseq>, or press
-      <key>F4</key>.</p>
+      <p>Klikšķiniet <guiseq><gui>Empathy</gui><gui>Konti</gui></guiseq>, vai spiediet <key>F4</key>.</p>
     </item>
     <item>
-      <p>Spied <gui style="button">+</gui>.</p>
+      <p>Spiediet <gui style="button">+</gui>.</p>
     </item>
     <item>
-      <p>From the <gui>What kind of chat account do you have?</gui> drop-down
-      list, select the type of account you wish to add.</p>
+      <p><gui>Kāda veida tērzēšanas konts jums ir?</gui> sarakstā, izvēlies konta tipu, kuru vēlies pievienot.</p>
     </item>
     <item>
       <p>Ievadi vajadzīgo informāciju. Vairumam kontu vajag norādīt tikai lietotāja ID un paroli. Dažiem kontiem vajag norādīt papildu informāciju. Skati <link xref="accounts-window#details"/>, lai uzzinātu vairāk.</p>
     </item>
     <item>
-      <p>Click <gui style="button">Add</gui>.</p>
+      <p>Spiediet <gui style="button">Pievienot</gui>.</p>
     </item>
   </steps>
 
   <note style="tip">
-    <p>To change the name that identifies the account in the <gui>Messaging and
-    VoIP Accounts</gui> window, select the account from the list on the left
-    and either click on the name or press the space bar. Edit the account name
-    and press <key>Enter</key> when you’re finished.</p>
+    <p>Lai nomainītu vārdu, kurš identificē kontu, <gui>Ziņojumapmaiņas un IP balss pārraides kontu</gui> logā, izvēlies kontu no saraksta kreisajā pusē un vai nu nospied uz vārda, vai nospied atstarpes taustiņu. Rediģē konta vārdu un spied <key>Enter</key>, kad esi pabeidzis.</p>
   </note>
 </page>

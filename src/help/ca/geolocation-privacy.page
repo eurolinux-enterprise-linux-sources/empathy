@@ -71,7 +71,7 @@
   
   <section id="privacy-overview">
   <title>Descripció de la privacitat</title>
-  <p>Descripció de varis paràmetres de geolocalització en l'<app>Empathy</app>.</p>
+  <p>Descripció de diversos paràmetres de geolocalització en l'<app>Empathy</app>.</p>
   <list>
     <item>
       <p>La geolocalització no s'activa per defecte.</p>

@@ -17,11 +17,7 @@
 
   <title>Ievads</title>
 
-  <p>
-    <app>Empathy</app> is an instant messaging application for the GNOME Desktop.
-    It supports text messaging, voice &amp; video calls, file transfers, and all the
-    most used messaging systems such as Jabber and Google Talk.
-  </p>
+  <p><app>Empathy</app> ir tūlītējās ziņojumapmaiņas lietotne, izveidota GNOME darbvirsmai. Tā atbalsta teksta ziņojumus, balss un video zvanus, failu sūtīšanu un visas visbiežāk izmantotās ziņojumu sistēmas, piemēram Jabber un Google Talk.</p>
   <p><app>Empathy</app> sevī ietver iespējas, kas palīdz labāk sadarboties darba vidē un kuras palīdz vieglāk sazināties ar draugiem.</p>
   <p>Izmantojot <app>Empathy</app>, tu vari sagrupēt visas notiekošās sarakstes vienā logā, vari arī katrai sarakstei atvēlēt savu logu, vienkārši meklēt cauri visām sarakstēm un dalīties ar savu darbvirsmu ar tikai diviem klikšķiem!</p>
 

@@ -63,7 +63,7 @@
 
   <title>Importeu un compte existent</title>
 
-  <p>La primera vegada que executeu l'<app>Empathy</app> us oferirà la importació dels comptes d'una altra aplicació de missatgeria instantània. Ara mateix l'única aplicació des de la que es poden importar comptes és el <app>Pidgin</app>.</p>
+  <p>La primera vegada que executeu l'<app>Empathy</app> us oferirà la importació dels comptes d'una altra aplicació de missatgeria instantània. Ara mateix l'única aplicació des de la qual es poden importar comptes és el <app>Pidgin</app>.</p>
 
   <steps>
     <item>

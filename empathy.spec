@@ -1,6 +1,6 @@
 ## Minimum required versions.
 %global	gtk3_min_version	3.9.4
-%global	glib2_min_version	2.37.6
+%global	glib2_min_version	2.48.0
 %global	tp_mc_min_version	5.12.0
 %global	tp_glib_min_version	0.23.2
 %global	enchant_version		1.2.0
@@ -16,30 +16,38 @@
 %global gcr_version		2.91.4
 
 Name:		empathy
-Version:	3.12.10
-Release:	2%{?dist}
+# FIXME: Reenable parallel build for 3.12.13.
+Version:	3.12.12
+Release:	4%{?dist}
 Summary:	Instant Messaging Client for GNOME
 
 License:	GPLv2+
-URL:		http://live.gnome.org/Empathy
+URL:		https://wiki.gnome.org/Apps/Empathy
 
 Source0:	http://download.gnome.org/sources/%{name}/3.12/%{name}-%{version}.tar.xz
 Source1:	%{name}-README.ConnectionManagers
 
-Patch0:		translations.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=756990
+Patch0:		fix-date-icons.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=767516
+Patch1:		fix-empathy-call.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=746735
+Patch2:		fix-reduce-accuracy-setting.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=768889
+Patch3:		fs-element-notifiers-crash.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1142832
-Patch1:		0001-help-Remove-IRC-content.patch
+Patch4:		0001-help-Remove-IRC-content.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=1386616
+Patch5:		fix-certificate-validation.patch
 
-BuildRequires:  pkgconfig
-BuildRequires:  autoconf
-BuildRequires:  automake
-BuildRequires:  libtool
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRequires:	enchant-devel >= %{enchant_version}
 BuildRequires:	iso-codes-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 BuildRequires:	glib2-devel >= %{glib2_min_version}
-BuildRequires:	gnutls-devel
 BuildRequires:	libcanberra-devel >= %{libcanberra_version}
 BuildRequires:	webkitgtk3-devel >= %{webkit_version}
 BuildRequires:	gtk3-devel >= %{gtk3_min_version}
@@ -69,43 +77,45 @@ BuildRequires:	gcr-devel >= %{gcr_version}
 BuildRequires:	pkgconfig(gee-0.8)
 BuildRequires:	itstool
 BuildRequires:	yelp-tools
-# hack to conserve space on the live cd
-BuildRequires:	/usr/bin/convert
 
 Requires:	telepathy-filesystem
 Requires:	telepathy-mission-control >= %{tp_mc_min_version}
+
 ## We install the following connection managers by default.
 Requires:	telepathy-gabble >= 0.16.0
 Requires:	telepathy-salut >= 0.8.0
+Requires:	telepathy-haze >= 0.6.0
 %if 0%{?fedora}
 Requires:	telepathy-idle
+Requires:	telepathy-rakia
 %endif
-Requires:	telepathy-haze >= 0.6.0
-
-Requires(post): /usr/bin/gtk-update-icon-cache
-Requires(postun): /usr/bin/gtk-update-icon-cache
-
 
 %description
-Empathy is powerful multi-protocol instant messaging client which
-supports Jabber, GTalk, MSN, IRC, Salut, and other protocols.
-It is built on top of the Telepathy framework.
+Empathy is powerful multi-protocol instant messaging client which supports
+Jabber, GTalk, MSN, Salut, and other protocols. It is built on top of the
+Telepathy framework.
 
 
 %prep
 %setup -q
-#%patch0 -p1 -b .translations
-%patch1 -p1 -b .remove-irc
-# force this to be regenerated
-rm data/empathy.desktop
+%patch0 -p1 -b .fix-date-icons
+%patch1 -p1 -b .fix-empathy-call
+%patch2 -p1 -b .fix-reduce-accuracy-setting
+%patch3 -p1 -b .fs-element-notifiers-crash
+%patch4 -p1 -b .remove-irc
+%patch5 -p1 -b .fix-certificate-validation
 
 
 %build
 autoreconf -f -i
-## GCC complains about some unused functions, so we forcibly show those as
-## simple warnings instead of build-halting errors.
-%configure --disable-static --enable-ubuntu-online-accounts=no
-# Parallel builds are broken.
+%configure \
+  --disable-schemas-compile \
+  --disable-silent-rules \
+  --disable-static \
+  --enable-ubuntu-online-accounts=no
+
+# Parallel build is broken in 3.12.12, but it will be fixed in the next release.
+# TODO: Reenable parallel build.
 make
 install -m 0644 %{SOURCE1} ./README.ConnectionManagers
 
@@ -121,16 +131,9 @@ desktop-file-install --delete-original			\
 	--dir %{buildroot}%{_datadir}/applications	\
 	%{buildroot}%{_datadir}/applications/%{name}.desktop
 
-# hack to conserve space on the live image
-for f in video_overview.png conf_overview.png croom_overview.png; do
-  convert %{buildroot}%{_datadir}/help/C/empathy/figures/$f -resize 150x150 $f
-  mv $f %{buildroot}%{_datadir}/help/C/empathy/figures
-done
-
 
 %post
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-/sbin/ldconfig
 
 
 %postun
@@ -139,7 +142,6 @@ if [ $1 -eq 0 ]; then
    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
    glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 fi
-/sbin/ldconfig
 
 
 %posttrans
@@ -148,8 +150,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 
 %files -f %{name}.lang -f empathy-tpaw.lang
-%doc AUTHORS COPYING README README.ConnectionManagers NEWS
-%doc COPYING-DOCS COPYING.LGPL COPYING.SHARE-ALIKE
+%doc AUTHORS README README.ConnectionManagers NEWS
+%license COPYING COPYING-DOCS COPYING.LGPL COPYING.SHARE-ALIKE
 %{_bindir}/%{name}
 %{_bindir}/%{name}-accounts
 %{_bindir}/%{name}-debugger
@@ -162,7 +164,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/appdata/%{name}.appdata.xml
 %{_datadir}/empathy/
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}*
+%{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_datadir}/icons/hicolor/scalable/apps/%{name}-symbolic.svg
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.Call.service
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.Chat.service
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.Empathy.Auth.service
@@ -212,6 +215,23 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/adium/message-styles/PlanetGNOME.AdiumMessageStyle/Contents/Resources/main.css
 
 %changelog
+* Tue Mar 21 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-4
+- Fix certificate validation (use reference identities, handle validation
+  failures correctly, fixed the test suite)
+- Resolves: #1386616
+
+* Thu Mar 16 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-3
+- Fix certificate validation
+- Resolves: #1386616
+
+* Mon Mar 13 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-2
+- Remove IRC from %%description
+- Resolves: #1358824
+
+* Mon Mar 13 2017 Debarshi Ray <rishi@fedoraproject.org> - 3.12.12-1
+- Update to 3.12.12
+- Resolves: #1386848
+
 * Tue May 26 2015 Debarshi Ray <rishi@fedoraproject.org> - 3.12.10-2
 - Remove IRC docs
 - Resolves: #1142832

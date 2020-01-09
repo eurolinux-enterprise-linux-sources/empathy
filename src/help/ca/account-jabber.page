@@ -51,7 +51,7 @@
 
   <title>Dades dels comptes de Jabber</title>
 
-  <p>Per connectar-se a la majoria de comptes de Jabber només fa falta el nom d'usuari i la contrasenya. Tot i així, per alguns comptes o tipus de xarxes haureu d'introduir informació addicional al secció <gui>Avançada</gui>. Normalment, no us farà falta utilitzar les opcions avançades. Vegeu <link xref="add-account"/> per les instruccions generals de com afegir comptes.</p>
+  <p>Per connectar-se a la majoria de comptes de Jabber només fa falta el nom d'usuari i la contrasenya. Tot i així, per alguns comptes o tipus de xarxes haureu d'introduir informació addicional a la secció <gui>Avançada</gui>. Normalment, no us farà falta utilitzar les opcions avançades. Vegeu <link xref="add-account"/> per les instruccions generals de com afegir comptes.</p>
 
   <note>
     <p>Com que el Google Talk també és un tipus de compte de Jabber, les instruccions següents també serveixen.</p>

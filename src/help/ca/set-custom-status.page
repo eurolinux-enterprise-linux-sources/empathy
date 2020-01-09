@@ -62,7 +62,7 @@
       <p>Des de la finestra <gui>Llista de contactes</gui> feu clic a la llista desplegable de la part superior.</p>
     </item>
     <item>
-      <p>Seleccioneu l'estat al que voleu afegir-li el missatge personalitzat. Heu de seleccionar el que està identificat amb l'etiqueta <gui>Missatge personalitzat</gui>.</p>
+      <p>Seleccioneu l'estat al qual voleu afegir-li el missatge personalitzat. Heu de seleccionar el que està identificat amb l'etiqueta <gui>Missatge personalitzat</gui>.</p>
     </item>
     <item>
       <p>Introduïu el missatge personalitzat a la caixa de text de dalt de la finestra i premeu <key>Retorn</key> per establir el missatge.</p>

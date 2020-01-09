@@ -36,7 +36,7 @@
     <mal:credit xmlns:mal="http://projectmallard.org/1.0/" type="translator copyright">
       <mal:name>Christian Kirbach</mal:name>
       <mal:email>Christian.Kirbach@gmail.com</mal:email>
-      <mal:years>2010-2014</mal:years>
+      <mal:years>2010-2015</mal:years>
     </mal:credit>
   </info>
 
@@ -52,9 +52,7 @@
       <p>Janina_Schmitt@hotmail</p>
     </item>
     <item>
-      <p>
-        janes@yahoo
-      </p>
+      <p>janes@yahoo</p>
     </item>
   </list>
   <p>Dann können Sie diese Kontakte in einen einzigen zusammenlegen.</p>

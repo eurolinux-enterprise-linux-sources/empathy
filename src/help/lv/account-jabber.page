@@ -38,13 +38,7 @@
       <title><gui>Vajadzīga šifrēšana (TLS/SSL)</gui></title>
       <title><gui>Ignorēt SSL sertifikāta kļūdas</gui></title>
       <p>Kad vien tas ir iespējams, saziņa caur <app>Empathy</app> un Jabber serveriem ir šifrēta. Ja šifrēta saruna nav iespējama, ziņas var tikt nosūtītas nešifrētā veidā. Izvēlies <gui>Šifrēšana pieprasīta</gui>, lai aizliegtu <app>Empathy</app> lietotnei sazināties ar Jabber serveri, kad šifrēšana nav iespējama.</p>
-      <p>Some Jabber servers may encrypt data using invalid certificates,
-      or using certificates signed by unknown authorities.  You can select
-      <gui>Ignore SSL certificate errors</gui> to allow encrypted communication
-      with invalid certificates, but this allows an attacker to intercept your
-      communication with the server (including your password). You might want to
-      use this option for testing purposes, or if your server is broken and you
-      do not care about the security of your communication.</p>
+      <p>Daži Jabber serveri var šifrēt datus, izmantojot nederīgus sertifikātus, vai izmantojot sertifikātus, ko ir parakstījušas nezināmas institūcijas. Jūs varat izvēlēties <gui>Ignorēt SSL sertifikātu kļūdas</gui>, lai ļautu šifrēt komunikāciju, izmantojot nederīgus sertifikātus, bet tas ļaus uzbrucējam pārtvert komunikāciju ar serveriem (tai skaitā paroles). Šo opciju varat izmantot testēšanas nolūkiem, vai ja serveris is salauzts un jūs neuztrauc komunikāciju drošība.</p>
     </item>
     <item>
       <title><gui>Resurss</gui></title>

@@ -28,6 +28,7 @@
 #include <tp-account-widgets/tpaw-utils.h>
 
 #ifdef CLUTTER_WINDOWING_X11
+#include <gdk/gdkx.h>
 #include <X11/Xlib.h>
 #endif
 
@@ -215,9 +216,11 @@ main (int argc,
   g_setenv ("GST_DEBUG_DUMP_DOT_DIR", g_get_tmp_dir (), FALSE);
 
 #ifdef GDK_WINDOWING_X11
-  /* We can't call clutter_gst_init() before gtk_clutter_init(), so no choice
-   * but to intiialise X11 threading ourself */
-  XInitThreads ();
+  if (GDK_IS_X11_DISPLAY (gdk_display_get_default ())) {
+    /* We can't call clutter_gst_init() before gtk_clutter_init(), so no choice
+     * but to intiialise X11 threading ourself */
+    XInitThreads ();
+  }
 #endif
 
   optcontext = g_option_context_new (N_("- Empathy Audio/Video Client"));
@@ -247,7 +250,7 @@ main (int argc,
   g_set_application_name (_("Empathy Audio/Video Client"));
 
   /* Make empathy and empathy-call appear as the same app in gnome-shell */
-  gdk_set_program_class ("Empathy");
+  g_set_prgname ("empathy");
   gtk_window_set_default_icon_name ("empathy");
 
   gtk_settings = gtk_settings_get_default ();

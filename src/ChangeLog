@@ -1,3 +1,671 @@
+commit f64f3c9685dde69d09bb5f6e9b09668f9feb02ba
+Author: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
+Date:   Fri May 13 10:15:51 2016 +0200
+
+    3.12.12
+
+ NEWS         | 42 ++++++++++++++++++++++++++++++++++++++++++
+ configure.ac |  4 ++--
+ 2 files changed, 44 insertions(+), 2 deletions(-)
+
+commit f4148c3992afe7f6c6ca5e03c87e418e5d1054f8
+Author: Florian Müllner <fmuellner@gnome.org>
+Date:   Wed May 11 20:52:33 2016 +0200
+
+    Set prgname instead of program_class
+
+    The former always wins for application matching when using the wayland
+    backend.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=766285
+
+ src/empathy-accounts.c    | 2 +-
+ src/empathy-auth-client.c | 2 +-
+ src/empathy-call.c        | 2 +-
+ src/empathy-chat.c        | 2 +-
+ src/empathy-debugger.c    | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+commit 3383c6e27efb7be4091ef15c63294388a9072dcc
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Sun May 8 18:50:37 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 2228
+ +++++++++++++++++++++++++++-----------------------------------
+ 1 file changed, 965 insertions(+), 1263 deletions(-)
+
+commit 5801158770b52f6b87cadd400ec4e719b4c5bd18
+Author: Laurent Bigonville <bigon@bigon.be>
+Date:   Fri Apr 22 09:18:06 2016 +0200
+
+    tp-aw: build: Don't hard code the name of the pkg-config binary
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ab0c142fcb22893c7d812a8f0e5bd5d0d3b9be15
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sat Apr 16 08:26:49 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+commit dce6f57755983463d7c3b9b21e2db2e7247557fc
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Fri Apr 15 09:35:21 2016 -0500
+
+    Update telepathy-account-widgets
+
+    Fixes build with -Werror=type-limits after recent tpaw update.
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 325a233b0903d50d2f7465e4d13380ac0061ace9
+Author: Diane Trout <diane@ghic.org>
+Date:   Wed Apr 13 16:46:57 2016 -0700
+
+    webkit_dom_html_element_get_class_name is deprecated
+
+    Migrate to its replacement webkit_dom_element_get_class_name.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=765024
+
+ libempathy-gtk/empathy-theme-adium.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit cf20f1f6e37d9cc2e863b809f3a4db1c13b8a300
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Thu Apr 7 20:17:37 2016 +0200
+
+    Updated Polish translation
+
+ po/pl.po | 74
+ +++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 36 insertions(+), 38 deletions(-)
+
+commit 414efabe33f6be3958042ef85085c928641ee557
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Mon Apr 4 13:25:33 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 32 ++++++++++++++++++++------------
+ 1 file changed, 20 insertions(+), 12 deletions(-)
+
+commit a76809aae596356e0ea0e9f59fcef1f3eb57985f
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Apr 3 23:39:09 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 37 +++++++++++++++++++++++++------------
+ 1 file changed, 25 insertions(+), 12 deletions(-)
+
+commit bbfe6a7b45c5510622f815aceacdcfdb93095f4f
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Apr 3 23:21:57 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 44 ++++++++++++++++++++++++++------------------
+ 1 file changed, 26 insertions(+), 18 deletions(-)
+
+commit 6db156ea8ce931ed57a3cb74c0f3b2442b81e703
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Apr 3 17:33:46 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 176
+ +++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 100 insertions(+), 76 deletions(-)
+
+commit 12a4c77ef27adb79fb536b18ef1fdf944b862829
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sun Apr 3 09:32:36 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 138
+ +++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 70 insertions(+), 68 deletions(-)
+
+commit 5b356f1d8072863df656dba00036d537cb56062f
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sat Apr 2 22:36:10 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 228
+ +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 122 insertions(+), 106 deletions(-)
+
+commit 30ade24ddb326f8b4cddd42ecbd523076080c0f3
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sat Apr 2 20:46:37 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 139
+ +++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 75 insertions(+), 64 deletions(-)
+
+commit 85ef80533a92e6bc91405276603b0db1d181a2d2
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Sat Apr 2 17:01:47 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 450
+ ++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 230 insertions(+), 220 deletions(-)
+
+commit 3e200eb5bce4366ced210ca0d32b983928ef17df
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Fri Apr 1 16:56:13 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 55 +++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 31 insertions(+), 24 deletions(-)
+
+commit 7670efa3ab303e27fcb938781744586e042578b9
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Fri Apr 1 16:34:55 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 66
+ +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 37 insertions(+), 29 deletions(-)
+
+commit 1ed7aa2aaf52119fd3d6305de760e595bef30e60
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Fri Apr 1 14:40:54 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 88
+ +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 52 insertions(+), 36 deletions(-)
+
+commit a6b1d8ac60bf2f9a44314f9fe1c0967ba96bba4a
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Fri Apr 1 14:11:57 2016 +0000
+
+    Updated Friulian translation
+
+ po/fur.po | 54 +++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 37 insertions(+), 17 deletions(-)
+
+commit 6575f49f769c64a6d5cdcc6f38b99d027f274752
+Author: Fabio Tomat <f.t.public@gmail.com>
+Date:   Fri Apr 1 11:53:56 2016 +0000
+
+    Added Friulian translation
+
+ po/LINGUAS |    1 +
+ po/fur.po  | 3545
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 3546 insertions(+)
+
+commit 38faef5a30bd92d04afbc33a72a5a4df241b6b95
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Fri Apr 1 10:05:34 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 2881
+ ++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 1321 insertions(+), 1560 deletions(-)
+
+commit 0161c1efa4e59e45183cf6565e2269ab35f2e438
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Thu Mar 31 22:18:11 2016 -0500
+
+    Update telepathy-account-widgets again
+
+    Previous commit was broken. :(
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2e9518eafe3f7eea0046e3ceced8dd4e77b46739
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   Thu Mar 31 22:10:56 2016 -0500
+
+    Update telepathy-account-widgets
+
+    Rizon IRC network is now listed
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fc6a106b0f585db54531e0f5a7c784d9c710ec28
+Author: Daniel Șerbănescu <daniel@serbanescu.dk>
+Date:   Sun Mar 20 13:26:11 2016 +0000
+
+    Updated Romanian translation
+
+ po/ro.po | 268
+ +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 142 insertions(+), 126 deletions(-)
+
+commit 0efe6bdaacd8fc3c12550f2cf85f74e86304a68f
+Author: Anders Jonsson <anders.jonsson@norsjovallen.se>
+Date:   Tue Mar 15 17:38:47 2016 +0000
+
+    Updated Swedish translation
+
+ help/sv/sv.po | 4502
+ ++++++++++++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 3850 insertions(+), 652 deletions(-)
+
+commit 4efd07969a4d8df861333502d716d85e606db0a3
+Author: Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Date:   Sun Mar 13 11:04:05 2016 +0200
+
+    Update Latvian translation
+
+ help/lv/lv.po | 1068
+ +++++++++++++++------------------------------------------
+ 1 file changed, 277 insertions(+), 791 deletions(-)
+
+commit 4113689cf3019ccbe9f0c9b4649d66fa04fc39c7
+Author: Marcos Lans <marcoslansgarza@gmail.com>
+Date:   Sat Mar 12 13:00:05 2016 +0000
+
+    Updated Galician translation
+
+ po/gl.po | 517
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 257 insertions(+), 260 deletions(-)
+
+commit 3bdce1253a9117ed1361733e157286c454834ae8
+Author: Jordi Mas <jmas@softcatala.org>
+Date:   Fri Mar 11 18:59:06 2016 +0100
+
+    Fixes to Catalan translation
+
+ po/ca.po | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 7dac888b52756c2fd88d23c043e965d482b150de
+Author: Duarte Loreto <happyguy_pt@hotmail.com>
+Date:   Wed Mar 9 01:02:27 2016 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 141
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 70 insertions(+), 71 deletions(-)
+
+commit 0bd09aa897830b8583119ace795a7a83863ae348
+Author: Ting-Wei Lan <lantw@src.gnome.org>
+Date:   Fri Feb 26 23:23:30 2016 +0800
+
+    event-manager: Don't use an enum as a TpChannel pointer
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=762738
+
+ src/empathy-event-manager.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1b8ad2c9f03c9c7eab3ef0d048a59150559b1af8
+Author: Ting-Wei Lan <lantw@src.gnome.org>
+Date:   Fri Feb 26 23:15:48 2016 +0800
+
+    build: Don't hardcode #!/usr/bin/python
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=762737
+
+ tools/glib-gtypes-generator.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6def46b94413056eb59af3bbe3d7ce1687bd0c43
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Tue Feb 23 18:05:41 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
+
+commit b3c52589f33c29c829d9a3e1c206c4abda7a2354
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Tue Feb 23 17:32:37 2016 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 328
+ +++++++++++++++++----------------------------------------------
+ 1 file changed, 87 insertions(+), 241 deletions(-)
+
+commit a7ad339a807a2852841e5167f463cc4917ae6f6f
+Author: Richard Hughes <richard@hughsie.com>
+Date:   Mon Jan 25 15:37:33 2016 +0000
+
+    Add a missing tag to the AppData file
+
+ data/empathy.appdata.xml.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit fb99c0b4a4093a3b5dc4a65005783105a299e115
+Author: Richard Hughes <richard@hughsie.com>
+Date:   Mon Jan 25 13:10:11 2016 +0000
+
+    Add a missing tag to the AppData file
+
+ data/empathy.appdata.xml.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit bc7c5e9025ece52d2bf7c1a5bc1bed8a0214d90a
+Author: Michael Catanzaro <mcatanzaro@igalia.com>
+Date:   Sat Jan 16 07:19:37 2016 -0600
+
+    Avoid warning spam from GtkStyleContext with GTK+ 3.19
+
+    Not *necessarily* the best fix, but let's avoid any behavior change.
+
+    (lt-empathy-chat:21101): Gtk-WARNING **: State 0 for GtkBox 0x1d8e120
+    doesn't match state 192 set via gtk_style_context_set_state ()
+
+    (lt-empathy-chat:21101): Gtk-WARNING **: State 0 for GtkBox 0x1d8e120
+    doesn't match state 192 set via gtk_style_context_set_state ()
+
+    (lt-empathy-chat:21101): Gtk-WARNING **: State 0 for GtkBox 0x1d8e120
+    doesn't match state 192 set via gtk_style_context_set_state ()
+
+    (lt-empathy-chat:21101): Gtk-WARNING **: State 0 for GtkBox 0x1d8e120
+    doesn't match state 192 set via gtk_style_context_set_state ()
+
+    (lt-empathy-chat:21101): Gtk-WARNING **: State 0 for GtkBox 0x1d8e120
+    doesn't match state 192 set via gtk_style_context_set_state ()
+
+ libempathy-gtk/empathy-cell-renderer-text.c |  8 +++++++-
+ libempathy-gtk/empathy-individual-view.c    |  3 +++
+ src/empathy-chat-window.c                   | 15 ++++++++++-----
+ 3 files changed, 20 insertions(+), 6 deletions(-)
+
+commit a9ede294c57bc5738be3c33cba4ef88b9a7d4a0e
+Author: Michael Catanzaro <mcatanzaro@igalia.com>
+Date:   Sat Jan 16 06:59:50 2016 -0600
+
+    Don't call XInitThreads in Wayland
+
+    This doesn't fix anything in particular, but seems like a good
+    idea....
+
+ src/empathy-call.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit c93fa8cdd89e95486129bdaea693b7e98694e70a
+Author: Michael Catanzaro <mcatanzaro@igalia.com>
+Date:   Sat Jan 16 06:38:30 2016 -0600
+
+    Fix a critical warning
+
+    GLib-CRITICAL **: Source ID 8795 was not found when attempting to
+    remove it
+
+ libempathy-gtk/empathy-chat.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 942395f7b81e4a81922c8bcb1c11f9676d32f3f8
+Author: Michael Catanzaro <mcatanzaro@igalia.com>
+Date:   Sat Jan 16 00:20:15 2016 -0600
+
+    Don't crash in window_get_workspace under Wayland
+
+ libempathy-gtk/empathy-ui-utils.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+commit a99229737e558ffd68aa746fae941405256efe61
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   Sun Jan 10 17:12:13 2016 +0200
+
+    Updated Lithuanian translation
+
+ po/lt.po | 286
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 141 insertions(+), 145 deletions(-)
+
+commit df4ccc36b259a39e73dd77c4e87c168a5e3b1040
+Author: Michael Catanzaro <mcatanzaro@igalia.com>
+Date:   Thu Dec 24 13:51:46 2015 -0600
+
+    Probably fix icons in search bar
+
+    The previous/next icons have been missing for a while, and I finally
+    decided I cared to fix them. Also, use a better close icon while we're
+    at it.
+
+    This is untested because I cannot figure out how to actually run
+    empathy-chat in jhbuild. 'jhbuild run empathy' seems to work for the
+    roster, but start the system version of empathy-chat. Oh well.
+
+ libempathy-gtk/empathy-search-bar.ui | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 008b7d120454155af0c71c07b870af002b85f957
+Author: Sveinn í Felli <sv1@fellsnet.is>
+Date:   Tue Oct 20 10:55:15 2015 +0000
+
+    Added Icelandic translation
+
+ po/LINGUAS |    1 +
+ po/is.po   | 3512
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 3513 insertions(+)
+
+commit b771a716422b569f4d3e5f2b8d8c693fb86d37b2
+Author: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
+Date:   Wed Oct 14 15:41:42 2015 +0200
+
+    remove released flag
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1245792e78ab67683349d376f4b7b5a2a02a0b9f
+Author: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
+Date:   Wed Oct 14 12:17:59 2015 +0200
+
+    3.12.11
+
+ NEWS         | 27 +++++++++++++++++++++++++++
+ configure.ac |  2 +-
+ 2 files changed, 28 insertions(+), 1 deletion(-)
+
+commit 774bc7e81d039c798ab22eafa6b69bfe0eb1a1ef
+Author: Pranav Kant <pranavk@gnome.org>
+Date:   Tue Oct 13 23:17:06 2015 +0530
+
+    libempathy-gtk: Call the finish method only once
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=756165
+
+ libempathy-gtk/empathy-geoclue-helper.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 0d8bd0c20cea604f0a4fed517a859903a1bef5ec
+Author: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+Date:   Sun Oct 4 02:47:29 2015 +0200
+
+    Updated Esperanto translation
+
+ po/eo.po | 5075
+ ++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 2419 insertions(+), 2656 deletions(-)
+
+commit 572b32e9a5a4fd66f9d93d6de8f36de7ff5d7f96
+Author: Saleem Abdulrasool <compnerd@compnerd.org>
+Date:   Sun Sep 27 12:30:00 2015 -0700
+
+    build: Don't hard code the name of the pkg-config binary
+
+    Use the PKG_CONFIG variable to refer to pkg-config as it may be target
+    triple prefixed.  This is needed for cross-compilation.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=755707
+
+ configure.ac | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+commit f39c68e82497de91bb605817c56d3b3af6c9b57c
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   Thu Sep 24 05:17:14 2015 +0200
+
+    Update Arabic translation
+
+ po/ar.po | 962
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 494 insertions(+), 468 deletions(-)
+
+commit 1c20c5bfbed6693e6f4365b4ee60fa159531f9e4
+Author: Alexandre Franke <alexandre.franke@gmail.com>
+Date:   Sun Sep 20 15:08:14 2015 +0000
+
+    Updated French translation
+
+ help/fr/fr.po | 2188
+ +++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 1285 insertions(+), 903 deletions(-)
+
+commit e3c4b034d702857c01c40ed94f12272f3cd434bc
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   Sun Sep 20 10:03:28 2015 +0000
+
+    Updated Greek translation
+
+ help/el/el.po | 23 +++++++++--------------
+ 1 file changed, 9 insertions(+), 14 deletions(-)
+
+commit eddb19d7728edfae0c3f215134c470e6f0eb7fb2
+Author: Christian Kirbach <Christian.Kirbach@gmail.com>
+Date:   Fri Sep 4 22:35:00 2015 +0000
+
+    Updated German translation
+
+ help/de/de.po | 265
+ ++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 126 insertions(+), 139 deletions(-)
+
+commit 8f75b0e763af04c6f9ba5049bce8b954f2466f8d
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   Wed Aug 26 12:28:40 2015 +0000
+
+    Updated Chinese (Taiwan) translation
+
+ po/zh_TW.po | 407
+ ++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 202 insertions(+), 205 deletions(-)
+
+commit e567bbbbedfcf0886c19e61bde73b4c8b80f0008
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   Mon Aug 24 21:53:48 2015 +0200
+
+    Updated Polish translation
+
+ po/pl.po | 329
+ ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 165 insertions(+), 164 deletions(-)
+
+commit a33aca55b011fe4b02e521edd97b2755339515da
+Author: Anders Jonsson <anders.jonsson@norsjovallen.se>
+Date:   Mon Aug 10 16:24:21 2015 +0000
+
+    Updated Swedish translation
+
+ po/sv.po | 791
+ +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 359 insertions(+), 432 deletions(-)
+
+commit 538b144b4da8b436999ca4ed370f234addb16427
+Author: Debarshi Ray <debarshir@gnome.org>
+Date:   Tue Aug 4 12:41:53 2015 +0200
+
+    telepathy-account-widgets: Update submodule
+
+    Gets us a few memory leak fixes.
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ae32936ea4726b25650c448bb2a0569f987bc059
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   Tue Jul 28 22:48:03 2015 +0200
+
+    telepathy-account-widgets: Update submodule
+
+    This gives us a few memory leak fixes:
+
+    Christophe Fergeau (3):
+          Free TpawProtocol::service_name in finalize()
+          Free GList returned by tp_list_connection_managers_finish()
+          Fix GetProtocolsData leak
+
+    Pedro Albuquerque (1):
+          Updated Portuguese translation
+
+ telepathy-account-widgets | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit a8386e82345fcd84acfa60044478ea62cf22f03a
+Author: Pedro Albuquerque <palbuquerque73@gmail.com>
+Date:   Mon Jun 29 22:37:34 2015 +0000
+
+    Updated Portuguese translation
+
+ po/pt.po | 847
+ +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 421 insertions(+), 426 deletions(-)
+
+commit 1383625c1727aed0c6dcfe793cbd3fa88ac339fc
+Author: Victor Ibragimov <victor.ibragimov@gmail.com>
+Date:   Thu Jun 4 06:09:46 2015 +0000
+
+    Updated Tajik translation
+
+ po/tg.po | 592
+ +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 276 insertions(+), 316 deletions(-)
+
+commit db05c838fbd2db2bebafa789cead832ef45d1c73
+Author: Balló György <ballogyor@gmail.com>
+Date:   Fri Jan 9 19:16:13 2015 +0100
+
+    Fix opening contact list after launching empathy -h
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=729282
+
+ src/empathy.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 0fe9b6f41b0fbdc314caa3f18855261e77a1227c
+Author: Jordi Mas <jmas@softcatala.org>
+Date:   Sun May 24 11:10:15 2015 +0200
+
+    Fixes to Catalan translation
+
+ help/ca/ca.po | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+commit 7eadad7647f655a30b582ad7ea03cd5d98dc0c43
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   Sun May 17 07:28:25 2015 +0000
+
+    Updated Occitan translation
+
+ po/oc.po | 6155
+ +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 file changed, 3901 insertions(+), 2254 deletions(-)
+
 commit fd192fe390e510e901e9501fcaa2f08dd32d6bd0
 Author: Guillaume Desmottes <guillaume.desmottes@collabora.co.uk>
 Date:   Wed May 13 13:13:21 2015 +0200

@@ -31,8 +31,7 @@
 
   <title>Audio un video atbalsts</title>
 
-  <p>You can only have audio and video conversation with contacts who are using
-  an application which also supports this feature.</p>
+  <p>Audio on video sarunas ir iespējamas tikai starp kontaktiem, kuri izmanto lietotni, kura atbalsta šo iespēju.</p>
 
   <note>
     <p>Lai varētu sazināties caur audio, tev ir vajadzīga skaņas karte, kuru savukārt atbalsta tava operetētājsistēma, kā arī ir nepieciešams arī mikrofons.</p>

@@ -81,7 +81,7 @@
     </item>
     <item>
       <title><gui>Missatge de desconnexió</gui></title>
-      <p>Quan sortiu, s'enviarà un missatge a totes les sales de xat que estigueu i tots els usuaris amb els que tingueu xats privats. Utilitzeu aquest camp per proporcionar un missatge de sortida personalitzat.</p>
+      <p>Quan sortiu, s'enviarà un missatge a totes les sales de xat que estigueu i tots els usuaris amb els quals tingueu xats privats. Utilitzeu aquest camp per proporcionar un missatge de sortida personalitzat.</p>
     </item>
   </terms>
 
@@ -124,7 +124,7 @@ telepathy-idle note
       </item>
       <item>
         <title><gui>Servidors</gui></title>
-        <p>Una xarxa d'IRC pot tenir molts servidors als que us podeu connectar. Quan esteu connectat a un servidor d'una xarxa en particular, us podeu comunicar amb tots els usuaris de tots els servidors d'aquella xarxa. Podeu afegir o suprimir servidors per a aquesta xarxa utilitzant els botons <gui>Afegeix</gui> i <gui>Suprimeix</gui>.</p>
+        <p>Una xarxa d'IRC pot tenir molts servidors als quals us podeu connectar. Quan esteu connectat a un servidor d'una xarxa en particular, us podeu comunicar amb tots els usuaris de tots els servidors d'aquella xarxa. Podeu afegir o suprimir servidors per a aquesta xarxa utilitzant els botons <gui>Afegeix</gui> i <gui>Suprimeix</gui>.</p>
         <p>Quan seleccioneu un servidor feu clic al camp de <gui>Servidor</gui> o <gui>Port</gui> per editar-lo. També ho podeu fer amb les tecles de navegació de cap a la dreta i de cap a l'esquerra per donar el focus al camp i si feu clic a la barra espaiadora editareu el camp.</p>
         <p>Seleccioneu la casella de selecció de la columna <gui>SSL</gui> per xifrar totes les comunicacions amb el servidor. Adoneu-vos que això no impedirà que altres usuaris de la xarxa puguin veure el que escriviu en un xat públic.</p>
       </item>

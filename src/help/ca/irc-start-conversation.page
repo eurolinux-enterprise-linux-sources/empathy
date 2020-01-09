@@ -61,7 +61,7 @@
 
   <list>
     <item>
-      <p>La llista de contactes de la sala de l'IRC no és la mateixa que la llista de contactes de l'<app>Empathy</app>. Aquesta conté la llista d'usuaris de la sala de l'IRC a la qual us heu unit. Cada sala tindrà un llista de contactes diferent.</p>
+      <p>La llista de contactes de la sala de l'IRC no és la mateixa que la llista de contactes de l'<app>Empathy</app>. Aquesta conté la llista d'usuaris de la sala de l'IRC a la qual us heu unit. Cada sala tindrà una llista de contactes diferent.</p>
     </item>
     <item>
       <p>La llista de contactes de la sala de l'IRC normalment està a la part dreta de la finestra de la sala de l'IRC. Si no la veieu, escolliu <guiseq><gui>Conversa</gui><gui>Mostra la llista de contacte</gui></guiseq>.</p>

@@ -1787,7 +1787,8 @@ static void
 do_constructed (GObject *obj)
 {
   TpawAccountWidget *self = TPAW_ACCOUNT_WIDGET (obj);
-  const gchar *display_name, *default_display_name;
+  const gchar *display_name;
+  gchar *default_display_name;
   guint i = 0;
   struct {
     const gchar *cm_name;
@@ -1967,6 +1968,7 @@ do_constructed (GObject *obj)
       g_object_set (self->priv->settings, "display-name-overridden", TRUE,
           NULL);
     }
+  g_free (default_display_name);
 }
 
 static void
@@ -2178,6 +2180,7 @@ tpaw_account_widget_get_default_display_name (TpawAccountWidget *self)
         {
           default_display_name = g_strdup (login_id);
         }
+      g_free (login_id);
 
       return default_display_name;
     }
@@ -2195,8 +2198,6 @@ tpaw_account_widget_get_default_display_name (TpawAccountWidget *self)
     {
       default_display_name = g_strdup (_("New account"));
     }
-
-  g_free (login_id);
 
   return default_display_name;
 }

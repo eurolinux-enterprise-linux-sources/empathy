@@ -62,7 +62,7 @@
 
   <title>Afegiu un compte nou</title>
 
-  <p>Podeu afegir comptes de missatgeria instantània per a qualsevol servei habilitat per comunicar-vos amb el contactes a través de l'<app>Empathy</app>. Per a alguns proveïdors de comptes aquests passos us permeten registrar-hi un compte nou. Vegeu <link xref="create-account"/> per a més informació.</p>
+  <p>Podeu afegir comptes de missatgeria instantània per a qualsevol servei habilitat per comunicar-vos amb els contactes a través de l'<app>Empathy</app>. Per a alguns proveïdors de comptes aquests passos us permeten registrar-hi un compte nou. Vegeu <link xref="create-account"/> per a més informació.</p>
 
   <steps>
     <item>
